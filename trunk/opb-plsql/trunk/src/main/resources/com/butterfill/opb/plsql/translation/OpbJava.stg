@@ -1,0 +1,171 @@
+group OpbJava;
+
+javaFile(plsqlPackage) ::= <<
+/*
+ * File created by opb-plsql.
+ * 
+ * <plsqlPackage.opbPlsqlTitle> version: <plsqlPackage.opbPlsqlVersion>
+ * <plsqlPackage.opbLibraryTitle> version: <plsqlPackage.opbLibraryVersion>
+ */
+
+package <plsqlPackage.javaPackageName>;
+
+import com.butterfill.opb.data.*;
+import com.butterfill.opb.groups.*;
+import com.butterfill.opb.timing.*;
+import com.butterfill.opb.util.*;
+
+/**
+ * File created from the PL/SQL package specification
+ * <plsqlPackage.sqlName>.
+ */
+public interface <plsqlPackage.javaInterfaceName><if(!plsqlPackage.onlyConstants)>
+
+        extends OpbGroupable, OpbTimingEventPublisher<if(plsqlPackage.identifiable)>, 
+        OpbActiveCacheableEntity<else>,
+        OpbActiveDataObject<if(plsqlPackage.loadable)>, OpbEntity<endif>
+        <endif><if(plsqlPackage.useScalarResultCache)>, OpbScalarResultCacheUser<endif><endif> {
+
+    <plsqlPackage.constants:constant()>
+    <if(plsqlPackage.fields)>
+    /**
+     * Resets all field values to their initial values.
+     */
+    void opbClearState();
+
+    <endif>
+    <plsqlPackage.fields:field()>
+    <plsqlPackage.functions:function()>
+    <plsqlPackage.procedures:procedure()>
+}
+>>
+
+
+constant() ::= <<
+/**
+ * <it.commentLines; separator="
+ * ">
+ */
+<it.datatype> <it.name> = <it.value>;
+
+
+>>
+
+
+field() ::= <<
+/**
+ * Returns the value of <it.name>.
+ * @return The value of <it.name>.
+ */
+<it.datatype> get<it.nameWithFirstCharUpper>();
+
+<if(!it.readOnly)>
+/**
+ * Sets the value of <it.name>.
+ * @param a The new value for <it.name>.
+ */
+void set<it.nameWithFirstCharUpper>(<it.datatype> a);
+
+
+<endif>
+<if(it.hasDatasourceValue)>
+/**
+ * Returns the value of <it.name>DataSourceValue.
+ * This is the last value returned by the data source for <it.name>.
+ * @return The value of <it.name>DataSourceValue.
+ */
+<it.datatype> get<it.nameWithFirstCharUpper>DataSourceValue();
+
+/**
+ * Returns true if the value of <it.name> 
+ * is different to the value that was loaded from the data source,
+ * false otherwise.
+ * @return true if <it.name> has changed since it was loaded.
+ */
+boolean get<it.nameWithFirstCharUpper>Changed();
+
+
+<endif>
+>>
+
+
+argsForCall() ::= <<
+<if(it.out)>
+<it.datatype>\<<it.wrappedDatatype>\> <it.name>
+<else>
+<if(it.array)>
+Object[] <it.name>
+<else>
+<it.datatype> <it.name>
+<endif>
+<endif>
+>>
+
+
+commentForMappedParams() ::= <<
+\<li><it.name> is mapped to <it.mappedToProperty>\</li>
+>>
+
+
+argsForMappedParamCall() ::= <<
+<if(it.out)><it.name>ValueHolder<else><if(it.mappedTo)>get<it.mappedTo>()<else><it.name><endif><endif>
+>>
+
+
+function() ::= <<
+/**
+ * <it.commentLines; separator="
+ * ">
+ * Calls the database function <it.sqlName>.
+ * @throws OpbDataAccessException
+ *   If we fail to make the database call.
+ */
+<it.return.datatype> <it.name>(<it.params:argsForCall(); separator=",\n        ">) 
+        throws OpbDataAccessException; 
+
+<if(it.atLeastOneParamIsMapped)>
+/**
+ * Calls <it.name> using mapped parameters.
+ * \<ul>
+<if(it.return.mappedTo)>
+ * \<li>The value returned is mapped to <it.return.mappedToProperty>\</li/><\n>
+<endif>
+ * <it.mappedParams:commentForMappedParams(); separator="\n * ">
+ * \</ul>
+ * @throws OpbDataAccessException
+ *   If we fail to make the database call.
+ */
+<if(it.return.mappedTo)>void<else><it.return.datatype><endif> <it.name>(<it.unMappedParams:{ p | <p.datatype> <p.name>}; separator=",\n        ">) 
+        throws OpbDataAccessException; 
+
+
+<endif>
+>>
+
+
+procedure() ::= <<
+/**
+ * <it.commentLines; separator="
+ * ">
+ * Calls the database procedure <it.sqlName>.
+ * @throws OpbDataAccessException
+ *   If we fail to make the database call.
+ */
+void <it.name>(<it.params:argsForCall(); separator=",\n        ">) 
+        throws OpbDataAccessException;
+
+<if(it.atLeastOneParamIsMapped)>
+/**
+ * Calls <it.name> using mapped parameters.
+ * \<ul>
+ * <it.mappedParams:commentForMappedParams(); separator="\n * ">
+ * \</ul>
+ * @throws OpbDataAccessException
+ *   If we fail to make the database call.
+ */
+void <it.name>(<it.unMappedParams:{ p | <p.datatype> <p.name>}; separator=",\n        ">) 
+        throws OpbDataAccessException;
+
+
+<endif>
+>>

@@ -1,0 +1,50 @@
+sql-jdbc-java;
+CHAR        java.sql.Types.CHAR             String
+VARCHAR2    java.sql.Types.VARCHAR          String
+LONG        java.sql.Types.LONGVARCHAR      String
+NUMBER      java.sql.Types.DECIMAL          java.math.BigDecimal
+INTEGER     java.sql.Types.BIGINT           Long
+RAW         java.sql.Types.BINARY           byte[]
+LONGRAW     java.sql.Types.LONGVARBINARY    byte[]
+DATE        java.sql.Types.TIMESTAMP        java.sql.Timestamp
+TIMESTAMP   java.sql.Types.TIMESTAMP        java.sql.Timestamp
+BLOB        java.sql.Types.BLOB             java.sql.Blob
+CLOB        java.sql.Types.CLOB             java.sql.Clob
+CURSOR      oracle.jdbc.OracleTypes.CURSOR  java.util.List
+BOOLEAN     java.sql.Types.VARCHAR          Boolean
+VARCHAR2[]  java.sql.Types.VARCHAR          String[]
+NUMBER[]    java.sql.Types.DECIMAL          java.math.BigDecimal[]
+
+jdbc-cursor-type;
+oracle.jdbc.OracleTypes.CURSOR
+
+plsql-sql;
+BINARY_DOUBLE           NUMBER
+BINARY_FLOAT            NUMBER
+BINARY_INTEGER          INTEGER
+DEC                     NUMBER
+DECIMAL                 NUMBER
+FLOAT                   NUMBER
+INT                     INTEGER
+NUMERIC                 NUMBER
+PLS_INTEGER             INTEGER
+POSITIVE                NUMBER
+SMALLINT                INTEGER
+CHARACTER               CHAR
+LONG RAW                RAW
+NCHAR                   VARCHAR2
+NVARCHAR2               VARCHAR2
+ROWID                   VARCHAR2
+STRING                  VARCHAR2
+UROWID                  VARCHAR2
+VARCHAR                 VARCHAR2
+DBMS_SQL.VARCHAR2_TABLE VARCHAR2[]
+DBMS_SQL.NUMBER_TABLE   NUMBER[]
+SYS_REFCURSOR           CURSOR
+
+comments;
+Boolean data is passed between Java and PL/SQL as text data.
+Conversions are handled by com.butterfill.opb.util.OpbBooleanHelper.
+VARCHAR2[] and NUMBER[] can be used to map PL/SQL index-by tables.
+e.g. VARCHAR2[] would be appropriate if you have an in param of type
+DBMS_SQL.VARCHAR2_TABLE.
