@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<FindBugsFilter>
+    <Match>
+        <Class name="com.butterfill.opb.OpbId"/>
+        <Method name="&lt;init&gt;"/>
+        <BugCode name="EI2"/>
+    </Match>
+    
+    <Match>
+        <Class name="com.butterfill.opb.util.OpbBooleanHelper"/>
+        <Method name="equals"/>
+        <BugCode name="NP"/>
+    </Match>
+    
+</FindBugsFilter>
