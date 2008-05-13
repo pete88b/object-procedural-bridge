@@ -1,0 +1,80 @@
+This file provides an overview of the contents of the package 
+com.butterfill.opb.plsql.translation.
+
+DatatypeMap.java
+  Part of the public API, this class handles the translation of SQL types to
+  JDBC and java types.
+
+GeneratePlsqlParser.java
+  Generates and compiles the parsers defined by the grammar files Plsql.g and
+  PlsqlTreeParser.g. This class should only be used during development.
+  i.e. Following changes to Plsql.g or PlsqlTreeParser.g 
+  GeneratePlsqlParser#main(String[]) should be run to re-generate the parsers.
+
+OpbComment.java
+  Used during translation, this class parses an Opb comment and provides access
+  to the elements of the comment.
+
+OpbField.java
+  Used during translation, this class represents an Opb field.
+  i.e. A field created from an Opb package comment element.
+
+OpbJava.stg
+  The group of string templates used to generate a Java interface.
+
+Plsql.g
+  The grammar for PL/SQL source code. 
+  GeneratePlsqlParser.java processes this file using org.antlr.Tool - 
+  which generates Plsql__.g (a lexer grammar), PlsqlLexer.java, Plsql.tokens
+  and PlsqlParser.java. Plsql.tokens is created in the current working directory
+  (which may not be this directory) so GeneratePlsqlParser.java copies it to
+  this directory before generating the PlsqlTreeParser.
+
+PlsqlCall.java
+  Used during translation, this class represents a PL/SQL call.
+
+PlsqlCallParameter.java
+  Used during translation, this class represents a PL/SQL call parameter.
+
+PlsqlLexer.java
+  Generated from Plsql.g. 
+  This file has been manually edited to make it package private.
+
+PlsqlParser.java
+  Generated from Plsql.g.
+  This file has been manually edited to make it package private and suppress
+  "unchecked" compiler warnings.
+
+PlsqlTranslationHelper.java
+  Used during translation, this class provides translation algorithms shared by
+  other classes in this package.
+
+PlsqlTranslator.java
+  Part of the public API, this class provides methods for users to translate
+  PL/SQL source into Java. This class uses the ANTLR generated parsers.
+
+PlsqlTreeParser.java
+  Generated from PlsqlTreeParser.g.
+  This file has been manually edited to make it package private and suppress
+  "unchecked" compiler warnings.
+
+PlsqlTreeParser.g
+  The grammar for the AST created by PlsqlParser.java. 
+  GeneratePlsqlParser.java processes this file using org.antlr.Tool - 
+  which generates PlsqlTreeParser.java and PlsqlTreeParser.tokens.
+
+PlsqlTreeParser.tokens
+  Generated from Plsql.g.
+
+PlsqlTreeParserSuperClass.java
+  Used during translation, this class is the super class of the generated 
+  PlsqlTreeParser.java. 
+  This class provides methods that can be called directly by 
+  PlsqlTreeParser.java (as defined in PlsqlTreeParser.g) and holds information
+  that is passed to the string templates.
+
+Plsql__.g
+  Generated from Plsql.g.
+
+datatypeMap.txt
+  The default datatype mappings used by DatatypeMap.java.
