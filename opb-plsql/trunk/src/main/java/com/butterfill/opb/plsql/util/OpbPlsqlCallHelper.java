@@ -450,7 +450,7 @@ public class OpbPlsqlCallHelper {
             throwException(
                     "failed to set array at " + parameterIndex + 
                     ". sqlTypeName=" + sqlTypeName +
-                    ". value=" + value, ex);
+                    ". value=" + OpbToStringHelper.toStringFull(value), ex);
             
         }
         
@@ -593,7 +593,7 @@ public class OpbPlsqlCallHelper {
             throwException(
                     "failed to set PL/SQL index table at " + parameterIndex + 
                     ". sqlType=" + sqlType +
-                    ". value=" + value, ex);
+                    ". value=" + OpbToStringHelper.toStringFull(value), ex);
             
         }
         

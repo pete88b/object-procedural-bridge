@@ -786,6 +786,18 @@ public class OpbPlsqlCallHelperTest extends TestCase {
         expected = 3L;
         assertEquals(expected, instance.get(Long.class, 1));
         
+        instance.setPlsqlIndexTable(2, Types.VARCHAR, new String[]{"1", null, "3", null});
+        instance.execute();
+        expected = 4L;
+        assertEquals(expected, instance.get(Long.class, 1));
+        
+        try {
+            instance.setPlsqlIndexTable(-9, Types.VARCHAR, new String[]{"1", null, "3", null});
+            fail();
+        } catch (Exception ex) {
+            assertEquals("Invalid column index", ex.getCause().getMessage());
+        }
+        
         instance.callComplete();
         
     }
