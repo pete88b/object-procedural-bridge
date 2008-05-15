@@ -21,7 +21,10 @@ import com.butterfill.opb.OpbObjectSourceImpl;
 import com.butterfill.opb.OpbId;
 import com.butterfill.opb.data.OpbDataObjectSource;
 import com.butterfill.opb.groups.OpbSingleMemberGroup;
+import helpers.TestHelper;
 import java.lang.reflect.Field;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import junit.framework.*;
 import static com.butterfill.opb.util.OpbToStringMode.*;
 
@@ -63,15 +66,8 @@ public class OpbToStringHelperTest extends TestCase {
         
         Object object = null;
         
-        try {
-            OpbToStringHelper.toString(object);
-            fail("should throw a null pointer when object is null");
-            
-        } catch (NullPointerException ex) {
-            //ok
-            assertTrue(ex.getMessage().indexOf("object must not be null") != -1);
-            
-        }
+        assertEquals("null", OpbToStringHelper.toString(object));
+        assertEquals("null", OpbToStringHelper.toString(null));
         
         object = new Object();
         
@@ -228,7 +224,12 @@ public class OpbToStringHelperTest extends TestCase {
         Object object = null;
         assertEquals("null", OpbToStringHelper.toStringFull(object));
         object = "null";
-        assertEquals("null", OpbToStringHelper.toStringFull(object));
+        assertEquals(
+                OpbToStringHelper.toStringFull(object), 
+                OpbToStringHelper.toStringFull(object));
+        assertNotSame(
+                OpbToStringHelper.toStringFull(object), 
+                OpbToStringHelper.toStringFull("null"));
         assertSame(OpbToStringHelper.getToStringMode(), MINIMAL);
         OpbSingleMemberGroup group = new OpbSingleMemberGroup();
         String ts = group.toString();
@@ -244,6 +245,43 @@ public class OpbToStringHelperTest extends TestCase {
         OpbToStringHelper.setToStringMode(FULL);
         ts = group.toString();
         assertEquals(full, ts);
+        assertTrue(
+                OpbToStringHelper.toStringFull(new TestObjectForToStringThrowEx())
+                .indexOf("toString() threw an exception!") != -1);
+    }
+    
+    public void testToStringExtra() {
+        System.out.println("toStringExtra()");
+        OpbToStringHelper.setToStringMode(FULL);
+        OpbToStringHelper.toString(new TestEmptyObjectForToString());
+        OpbToStringHelper.toString(getClass());
+        OpbToStringHelper.toString(TestHelper.getOracleDataSource());
+        OpbToStringHelper.toString(TestHelper.getResultSet("select * from dual"));
+        OpbToStringHelper.toString(TestHelper.getSharedOpbSession().getConnection());
+        OpbToStringHelper.toString(new TestObjectForToStringReturnNull());
+        Object o = new Object[] {
+            1, "2", 3.0, "four", 
+            TestHelper.getSharedOpbSession(), 
+            "after session", 
+            null,
+            new TestObjectForToStringReturnNull()};
+        OpbToStringHelper.toString(o);
+        o = new Object[] {
+            1, "2", 3.0, "four", 
+            null,
+            new TestObjectForToStringReturnNull()};
+        String expected = 
+                "Object[](1)[ \n" +
+                "  [0]=1\n" +
+                "  [1]=2\n" +
+                "  [2]=3.0\n" +
+                "  [3]=four\n" +
+                "  [4]=null\n" +
+                "  [5]=toString() returned null!\n" +
+                "]Object[](1)";
+        System.out.println(expected);
+        System.out.println(OpbToStringHelper.toString(o));
+        assertEquals(expected, OpbToStringHelper.toString(o));
     }
     
 }

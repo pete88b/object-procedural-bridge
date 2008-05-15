@@ -20,11 +20,11 @@ import static com.butterfill.opb.util.OpbToStringMode.*;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Provides a standard way of creating a string representation of an object and
- * it's values.
+ * Provides a standard way of creating a string representation of an object and it's values.
  *
  * <br/><br/>
  * Example of use;
@@ -46,10 +46,9 @@ public final class OpbToStringHelper {
     public static final String CLASS_NAME = OpbToStringHelper.class.getName();
 
     /**
-     * The logger for this class.
+     * The logger of this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
-
 
     /**
      * Controlls the behaviour of the toString method.
@@ -85,7 +84,6 @@ public final class OpbToStringHelper {
      */
     private static Object aboutToAddAsFieldValue;
 
-
     /**
      * Creates a new instance of OpbToStringHelper.
      * Declared to be private as toString(Object) is static.
@@ -93,6 +91,42 @@ public final class OpbToStringHelper {
     private OpbToStringHelper() {
     }
 
+    /**
+     * Returns a string representation of object for internal use.
+     * <br/>
+     * This method handles a toString call returning null or throwing an exception. 
+     * This is being really paranoid but we don't want applications to fail because 
+     * of methods in this class.
+     * 
+     * @param object The object to format.
+     * @return A string representation of object for internal use.
+     */
+    private static String format(final Object object) {
+        if (object == null) {
+            return "null";
+        }
+        
+        String result;
+        
+        try {
+            result = object.toString();
+            
+        } catch (Exception ex) {
+            logger.logp(Level.SEVERE, CLASS_NAME, "format", "toString() call failed", ex);
+            return "toString() threw an exception!";
+            
+        }
+        
+        if (result == null) {
+            return "toString() returned null!";
+            
+        } else {
+            return result.replaceAll("\n", "\n  ");
+            
+        }
+        
+    }
+    
     /**
      * Returns a string representation of object and it's values.
      * <br/><br/>
@@ -122,19 +156,16 @@ public final class OpbToStringHelper {
      *   The object for which a string representation will be returned.
      * @return
      *   A string representation of object and it's values.
-     * @throws NullPointerException
-     *   If object is null.
+     * 
      * @see #setToStringMode(OpbToStringMode)
      * @see #setFieldFilter(OpbFieldFilter)
      */
-    public static synchronized String toString(final Object object)
-            throws NullPointerException {
-        final String methodName = "toString(Object)";
+    public static synchronized String toString(final Object object) {
 
-        OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, "object", object);
-
-        if (toStringMode == MINIMAL) {
+        if (object == null) {
+            return "null";
+            
+        } else if (toStringMode == MINIMAL) {
             StringBuilder sb = new StringBuilder(object.getClass().getName());
             sb.append("@");
             sb.append(Integer.toHexString(object.hashCode()));
@@ -171,20 +202,17 @@ public final class OpbToStringHelper {
         sb.append(")");
         sb.append("[ ");
 
-        String fieldName = null;
-        Field[] fields;
         Class workingClass = topLevelClass;
         String fieldNamePrefix = "";
 
-        // get fields of the top level class and all of it's super classes
-        // except for Object
+        // get fields of the top level class and all of it's super classes except for Object
         while (!"java.lang.Object".equals(workingClass.getName())) {
-            fields = workingClass.getDeclaredFields();
+            Field[] fields = workingClass.getDeclaredFields();
 
             AccessibleObject.setAccessible(fields, true);
 
             for (Field field : fields) {
-                fieldName = field.getName();
+                String fieldName = field.getName();
 
                 // see if the field filter excludes this field
                 if (!fieldFilter.accept(object, field)) {
@@ -213,10 +241,7 @@ public final class OpbToStringHelper {
                         } else {
                             OBJECTS_ADDED.add(value);
                             aboutToAddAsFieldValue = value;
-
-                            sb.append(
-                                    value.toString().replaceAll("\n", "\n  "));
-
+                            sb.append(format(value));
                             OBJECTS_ADDED.remove(value);
 
                         }
@@ -244,6 +269,19 @@ public final class OpbToStringHelper {
 
         } // End of while (!"Object".equals(workingClass.getSimpleName()))
 
+        // if object is an array, add it's elements to the result.
+        // Note: arrays don't have any fields so the loop above will have done nothing
+        if (object instanceof Object[]) {
+            Object[] array = (Object[]) object;
+            for (int i = 0; i < array.length; i++) {
+                sb.append("\n");
+                sb.append("  [");
+                sb.append(i);
+                sb.append("]=");
+                sb.append(format(array[i]));
+            }
+        }
+        
         sb.append("\n]");
 
         sb.append(topLevelClass.getSimpleName());
@@ -253,7 +291,6 @@ public final class OpbToStringHelper {
 
         if (!objectAdded) {
             OBJECTS_ADDED.remove(object);
-
         }
 
         return sb.toString();
@@ -261,31 +298,36 @@ public final class OpbToStringHelper {
     } // End of toString(Object)
 
     /**
-     * Convenience method to return the toString() of an object when in FULL
-     * mode.
+     * Convenience method to return a string representation of an object and it's values
+     * using the toString(Object) method of this class in FULL mode.
      * <br/>
-     * The to string mode of this class will be the same after calling this
+     * If the call to toString(Object) fails, a message will be logged and "" is returned.
+     * <br/>
+     * The to string mode of this helper will be the same after calling this
      * method as before.
-     * <br/>
-     * It only makes sense to use this method if the implementation of object's
-     * toString() method uses this class.
      *
      * @param object
-     *   The object who's toString() result should be returned.
-     *   If object is null, "null" will be returned.
+     *   The object who's string representation should be returned.
      * @return
-     *   The result of object's toString() method having set the to string mode
-     *   to FULL.
+     *   The result of calling toString(object) having set the to string mode to FULL.
+     * @see #toString(java.lang.Object) 
      */
     public static synchronized String toStringFull(final Object object) {
-        if (object == null) {
-            return "null";
-        }
         OpbToStringMode initialMode = toStringMode;
-        toStringMode = FULL;
-        String result = object.toString();
-        toStringMode = initialMode;
-        return result;
+        
+        try {
+            toStringMode = FULL;
+            return toString(object);
+            
+        } catch (Exception ex) {
+            logger.logp(Level.SEVERE, CLASS_NAME, "toStringFull", "toStringFull failed", ex);
+            return "";
+            
+        } finally {
+            toStringMode = initialMode;
+            
+        }
+        
     }
 
     /**
