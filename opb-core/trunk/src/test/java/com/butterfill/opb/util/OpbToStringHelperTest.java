@@ -18,13 +18,10 @@
 package com.butterfill.opb.util;
 
 import com.butterfill.opb.OpbObjectSourceImpl;
-import com.butterfill.opb.OpbId;
 import com.butterfill.opb.data.OpbDataObjectSource;
 import com.butterfill.opb.groups.OpbSingleMemberGroup;
 import helpers.TestHelper;
 import java.lang.reflect.Field;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import junit.framework.*;
 import static com.butterfill.opb.util.OpbToStringMode.*;
 
@@ -227,7 +224,7 @@ public class OpbToStringHelperTest extends TestCase {
         assertEquals(
                 OpbToStringHelper.toStringFull(object), 
                 OpbToStringHelper.toStringFull(object));
-        assertNotSame(
+        assertSame(
                 OpbToStringHelper.toStringFull(object), 
                 OpbToStringHelper.toStringFull("null"));
         assertSame(OpbToStringHelper.getToStringMode(), MINIMAL);
@@ -246,7 +243,7 @@ public class OpbToStringHelperTest extends TestCase {
         ts = group.toString();
         assertEquals(full, ts);
         assertTrue(
-                OpbToStringHelper.toStringFull(new TestObjectForToStringThrowEx())
+                OpbToStringHelper.toString(new TestObjectForToStringThrowEx())
                 .indexOf("toString() threw an exception!") != -1);
     }
     
@@ -272,12 +269,7 @@ public class OpbToStringHelperTest extends TestCase {
             new TestObjectForToStringReturnNull()};
         String expected = 
                 "Object[](1)[ \n" +
-                "  [0]=1\n" +
-                "  [1]=2\n" +
-                "  [2]=3.0\n" +
-                "  [3]=four\n" +
-                "  [4]=null\n" +
-                "  [5]=toString() returned null!\n" +
+                "  [1, 2, 3.0, four, null, null]\n" +
                 "]Object[](1)";
         System.out.println(expected);
         System.out.println(OpbToStringHelper.toString(o));

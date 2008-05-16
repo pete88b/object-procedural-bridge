@@ -19,6 +19,7 @@ package com.butterfill.opb.util;
 import static com.butterfill.opb.util.OpbToStringMode.*;
 import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -109,7 +110,13 @@ public final class OpbToStringHelper {
         String result;
         
         try {
-            result = object.toString();
+            if (object instanceof Object[]) {
+                result = Arrays.toString((Object[]) object);
+                
+            } else {
+                result = object.toString();
+                
+            }
             
         } catch (Exception ex) {
             logger.logp(Level.SEVERE, CLASS_NAME, "format", "toString() call failed", ex);
@@ -280,14 +287,8 @@ public final class OpbToStringHelper {
         // if object is an array, add it's elements to the result.
         // Note: arrays don't have any fields so the loop above will have done nothing
         if (object instanceof Object[]) {
-            Object[] array = (Object[]) object;
-            for (int i = 0; i < array.length; i++) {
-                sb.append("\n");
-                sb.append("  [");
-                sb.append(i);
-                sb.append("]=");
-                sb.append(format(array[i]));
-            }
+            sb.append("\n  ");
+            sb.append(Arrays.toString((Object[]) object));
         }
         
         sb.append("\n]");
@@ -307,9 +308,11 @@ public final class OpbToStringHelper {
 
     /**
      * Convenience method to return a string representation of an object and it's values
-     * using the toString(Object) method of this class in FULL mode.
+     * by calling it's toString() method having set the mode of class to FULL.
      * <br/>
-     * If the call to toString(Object) fails, a message will be logged and "" is returned.
+     * If object is an array, we return the value returned by Arrays.toString(Object[]).
+     * <br/>
+     * If the call to toString() fails, a message will be logged and "" is returned.
      * <br/>
      * The to string mode of this helper will be the same after calling this
      * method as before.
@@ -321,11 +324,21 @@ public final class OpbToStringHelper {
      * @see #toString(java.lang.Object) 
      */
     public static synchronized String toStringFull(final Object object) {
+        if (object == null) {
+            return "null";
+        }
+        
         OpbToStringMode initialMode = toStringMode;
         
         try {
             toStringMode = FULL;
-            return toString(object);
+            if (object instanceof Object[]) {
+                return Arrays.toString((Object[]) object);
+                
+            } else {
+                return object.toString();
+                
+            }
             
         } catch (Exception ex) {
             logger.logp(Level.SEVERE, CLASS_NAME, "toStringFull(Object)", "failed", ex);
