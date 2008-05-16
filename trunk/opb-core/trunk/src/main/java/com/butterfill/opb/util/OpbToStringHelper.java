@@ -209,7 +209,15 @@ public final class OpbToStringHelper {
         while (!"java.lang.Object".equals(workingClass.getName())) {
             Field[] fields = workingClass.getDeclaredFields();
 
-            AccessibleObject.setAccessible(fields, true);
+            try {
+                AccessibleObject.setAccessible(fields, true);
+                
+            } catch (SecurityException ex) {
+                // if we can't make the fields accessible, we'll get illegal argument
+                // and illegal access exceptions when we try to get field values
+                logger.logp(Level.WARNING, CLASS_NAME, "toString(Object)", 
+                        "failed to make fields accessible", ex);
+            }
 
             for (Field field : fields) {
                 String fieldName = field.getName();
@@ -320,7 +328,7 @@ public final class OpbToStringHelper {
             return toString(object);
             
         } catch (Exception ex) {
-            logger.logp(Level.SEVERE, CLASS_NAME, "toStringFull", "toStringFull failed", ex);
+            logger.logp(Level.SEVERE, CLASS_NAME, "toStringFull(Object)", "failed", ex);
             return "";
             
         } finally {
