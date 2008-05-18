@@ -16,8 +16,6 @@
 
 PROMPT Opb JSE demo build
 
-PROMPT xxx FIXME @@../../../../../opb-plsql/src/main/resources/sql/build.sql
-
 @array_demo_spc.sql
 @array_demo_bdy.sql
 @boolean_demo.sql

@@ -15,6 +15,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * Demonstrates the use of Opb messages using Spring for configuration.
  * <br/>
  * <b>Please refer to package.html for DB set-up details.</b>
+ * <b>To run this demo;</b>
+ * <ul>
+ * <li>Run the main method of this class.</li>
+ * </ul>
  * 
  * Note: 
  *  The Opb messages classes are part of the opb-plsql project.
