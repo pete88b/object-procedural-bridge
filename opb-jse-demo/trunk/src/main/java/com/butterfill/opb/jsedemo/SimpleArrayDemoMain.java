@@ -15,6 +15,10 @@ import com.butterfill.opb.jsedemo.data.ArrayDemoImpl;
  * using Spring for configuration.
  * <br/>
  * <b>Please refer to package.html for DB set-up details.</b>
+ * <b>To run this demo;</b>
+ * <ul>
+ * <li>Run the main method of this class.</li>
+ * </ul>
  * 
  */
 public class SimpleArrayDemoMain {
