@@ -16,6 +16,7 @@
 
 package com.butterfill.opb.plsql.util;
 
+import com.butterfill.opb.OpbException;
 import junit.framework.*;
 import com.butterfill.opb.data.OpbConnectionProvider;
 import com.butterfill.opb.data.OpbDataAccessException;
@@ -23,6 +24,7 @@ import com.butterfill.opb.session.OpbSession;
 import com.butterfill.opb.timing.OpbEventTimer;
 import com.butterfill.opb.timing.OpbEventTimerProvider;
 import helpers.TestHelper;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Types;
@@ -606,6 +608,24 @@ public class OpbPlsqlCallHelperTest extends TestCase {
         instance.callComplete();
         
         try {
+            new OpbPlsqlCallHelper(
+                    logger,         //sourceLogger
+                    "",             //sourceClass
+                    "",             //sourceMethod
+                    evtProvider,    //eventTimerProvider
+                    new OpbConnectionProvider() {
+                        public Connection getConnection() throws OpbException {
+                            throw new OpbException("Test ex from conn provider");
+                        }
+                    },
+                    "x",             //sqlCall
+                    "");            //eventName
+            fail();
+        } catch (OpbDataAccessException ex) {
+            //ok
+        }
+        
+        try {
             evtProvider = null;
             new OpbPlsqlCallHelper(
                     logger,         //sourceLogger
@@ -821,6 +841,13 @@ public class OpbPlsqlCallHelperTest extends TestCase {
         instance.execute();
         assertEquals("null", instance.get(String.class, 1));
         
+        try {
+            instance.registerOutArray(3, "");
+            fail();
+        } catch (OpbDataAccessException ex) {
+            //ok
+        }
+        
     }
 
     /**
@@ -854,7 +881,7 @@ public class OpbPlsqlCallHelperTest extends TestCase {
         System.out.println("getArray");
         
         OpbPlsqlCallHelper instance = new OpbPlsqlCallHelper(
-                logger, "OpbPlsqlCallHelper", "testRegisterOutArray",
+                logger, "OpbPlsqlCallHelper", "testGetArray",
                 session,
                 session,
                 "{ CALL ? := user_defined_collections.how_long(?, ?) }",
@@ -870,6 +897,26 @@ public class OpbPlsqlCallHelperTest extends TestCase {
         assertEquals("1", result[0]);
         assertEquals("2", result[1]);
         assertEquals("3", result[2]);
+        
+        try {
+            instance.getArray(String[].class, 99);
+            fail();
+        } catch (OpbDataAccessException ex) {
+            //ok
+        }
+        
+        instance = new OpbPlsqlCallHelper(
+                logger, "OpbPlsqlCallHelper", "testGetArray",
+                session,
+                session,
+                "{ CALL ? := user_defined_collections.echo_number_table(?) }",
+                "testCallEventName(Array)");
+        
+        instance.registerOutArray(1, "NUMBER_TABLE");
+        instance.setArray(2, "NUMBER_TABLE", null);
+        instance.execute();
+        assertNull(instance.getArray(BigDecimal[].class, 1));
+        
     }
 
 }
