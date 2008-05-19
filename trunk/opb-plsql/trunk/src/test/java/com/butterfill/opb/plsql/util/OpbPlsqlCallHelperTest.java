@@ -23,6 +23,7 @@ import com.butterfill.opb.data.OpbDataAccessException;
 import com.butterfill.opb.session.OpbSession;
 import com.butterfill.opb.timing.OpbEventTimer;
 import com.butterfill.opb.timing.OpbEventTimerProvider;
+import com.butterfill.opb.util.OpbToStringHelper;
 import helpers.TestHelper;
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -556,6 +557,13 @@ public class OpbPlsqlCallHelperTest extends TestCase {
         
         instance.callComplete();
         
+        try {
+            instance.get(Long.class, 1);
+            fail();
+        } catch (OpbDataAccessException ex) {
+            
+        }
+        
     }
 
     /**
@@ -857,7 +865,7 @@ public class OpbPlsqlCallHelperTest extends TestCase {
         System.out.println("setArray");
         
         OpbPlsqlCallHelper instance = new OpbPlsqlCallHelper(
-                logger, "OpbPlsqlCallHelper", "testRegisterOutArray",
+                logger, "OpbPlsqlCallHelper", "testSetArray",
                 session,
                 session,
                 "{ CALL ? := user_defined_collections.how_long(?, ?) }",
@@ -872,6 +880,23 @@ public class OpbPlsqlCallHelperTest extends TestCase {
         assertEquals(2, result.length);
         assertEquals(null, result[0]);
         assertEquals(null, result[1]);
+        instance.callComplete();
+        
+        //echo_number_table
+        instance = new OpbPlsqlCallHelper(
+                logger, "OpbPlsqlCallHelper", "testSetArray",
+                session,
+                session,
+                "{ CALL ? := user_defined_collections.echo_number_table(?) }",
+                "testCallEventName(Array)");
+        instance.registerOutArray(1, "NUMBER_TABLE");
+        instance.setArray(2, "NUMBER_TABLE", null);
+        instance.execute();
+        BigDecimal[] resultOfEcho = instance.getArray(BigDecimal[].class, 1);
+        System.out.println("resultOfEcho=" + OpbToStringHelper.toStringFull(resultOfEcho));
+        assertNull(resultOfEcho);
+        instance.callComplete();
+        
     }
 
     /**
@@ -897,6 +922,7 @@ public class OpbPlsqlCallHelperTest extends TestCase {
         assertEquals("1", result[0]);
         assertEquals("2", result[1]);
         assertEquals("3", result[2]);
+        instance.callComplete();
         
         try {
             instance.getArray(String[].class, 99);
@@ -909,13 +935,25 @@ public class OpbPlsqlCallHelperTest extends TestCase {
                 logger, "OpbPlsqlCallHelper", "testGetArray",
                 session,
                 session,
-                "{ CALL ? := user_defined_collections.echo_number_table(?) }",
+                "{ CALL ? := user_defined_collections.get_null }",
                 "testCallEventName(Array)");
         
         instance.registerOutArray(1, "NUMBER_TABLE");
-        instance.setArray(2, "NUMBER_TABLE", null);
         instance.execute();
         assertNull(instance.getArray(BigDecimal[].class, 1));
+        instance.callComplete();
+        
+        instance = new OpbPlsqlCallHelper(
+                logger, "OpbPlsqlCallHelper", "testGetArray",
+                session,
+                session,
+                "{ CALL user_defined_collections.get_null_proc(?) }",
+                "testCallEventName(Array)");
+        
+        instance.registerOutArray(1, "NUMBER_TABLE");
+        instance.execute();
+        assertNull(instance.getArray(BigDecimal[].class, 1));
+        instance.callComplete();
         
     }
 

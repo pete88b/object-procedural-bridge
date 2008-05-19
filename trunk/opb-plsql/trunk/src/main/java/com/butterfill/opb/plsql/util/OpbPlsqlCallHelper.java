@@ -409,8 +409,7 @@ public class OpbPlsqlCallHelper {
     }
     
     /**
-     * Sets the value of parameter in position parameterIndex to the specified
-     * value.
+     * Sets the value of parameter in position parameterIndex to the specified value.
      * <br/>
      * The parameter should be a user defined SQL collection.
      *
@@ -419,33 +418,38 @@ public class OpbPlsqlCallHelper {
      * @param sqlTypeName 
      *   The name of the SQL type.
      * @param value 
-     *   The value to set.
-     * @throws NullPointerException
-     *   If value is null.
+     *   The value to set. This can be null.
      * @throws com.butterfill.opb.data.OpbDataAccessException 
      *   If we fail to set the value.
      */
     public void setArray(final int parameterIndex, final String sqlTypeName, 
             final Object[] value) 
-            throws OpbDataAccessException, NullPointerException {
+            throws OpbDataAccessException {
         final String methodName = "setArray(int, String, Object[])";
         
         logger.entering(CLASS_NAME, methodName);
         
-        OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, "value", value,
-                "Arrays (User defined collections) cannot be set to null");
-        
         try {
-            lggr.logp(Level.FINER, sourceClass, sourceMethod,
-                    "setting array {0} ('{1}') to {2}", 
-                    new Object[]{parameterIndex, sqlTypeName, value});
-                    
-            ArrayDescriptor descriptor = ArrayDescriptor.createDescriptor(
-                    sqlTypeName, connection);
-            ARRAY array = new ARRAY(descriptor, connection, value);
-            statement.setObject(parameterIndex, array);
+            if (logger.isLoggable(Level.FINER)) {
+                String v = OpbToStringHelper.toStringFull(value);
+                lggr.logp(Level.FINER, sourceClass, sourceMethod,
+                        "setting array {0} ('{1}') to {2}", 
+                        new Object[]{parameterIndex, sqlTypeName, v});
                 
+            }
+            
+            if (value == null) {
+                lggr.logp(Level.FINER, sourceClass, sourceMethod, "setting array to null");
+                statement.setNull(parameterIndex, Types.ARRAY, sqlTypeName);
+                
+            } else {
+                ArrayDescriptor descriptor = ArrayDescriptor.createDescriptor(
+                        sqlTypeName, connection);
+                ARRAY array = new ARRAY(descriptor, connection, value);
+                statement.setObject(parameterIndex, array);
+                
+            }
+            
         } catch (Exception ex) {
             throwException(
                     "failed to set array at " + parameterIndex + 
@@ -636,7 +640,7 @@ public class OpbPlsqlCallHelper {
      * @throws com.butterfill.opb.data.OpbDataAccessException 
      *   If we fail to get the value.
      * @return 
-     *   The value returned by the specified parameter.
+     *   The value returned by the specified parameter. This could be null.
      */
     public <T extends Object> T getArray(final Class<T> classOfObject, 
             final int parameterIndex) 
@@ -656,11 +660,13 @@ public class OpbPlsqlCallHelper {
         
         try {
             ARRAY array = statement.getARRAY(parameterIndex);
-            Object result = array.getArray();
+            
+            Object result = (array == null) ? null : array.getArray();
             
             if (result == null) {
                 lggr.logp(Level.FINEST, sourceClass, sourceMethod,
                         "result is null");
+                
             } else {
                 lggr.logp(Level.FINEST, sourceClass, sourceMethod,
                         "Class of result is {0}", result.getClass().getName());
