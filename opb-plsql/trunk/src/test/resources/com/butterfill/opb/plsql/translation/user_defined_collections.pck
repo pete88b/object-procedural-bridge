@@ -1,5 +1,11 @@
 CREATE OR REPLACE PACKAGE user_defined_collections 
 IS
+  function get_null
+  return number_table;
+
+  procedure get_null_proc(
+    p_data out number_table
+  );
 
   function echo_number_table(
     p_data in number_table
@@ -7,7 +13,8 @@ IS
   return number_table;
   
   procedure simple_in_out(
-    p_data in out varchar_table);
+    p_data in out varchar_table
+  );
 
   function how_long(
     p_data in varchar_table,
@@ -19,6 +26,20 @@ END user_defined_collections;
 /
 CREATE OR REPLACE PACKAGE BODY user_defined_collections 
 IS
+  function get_null
+  return number_table
+  is
+  begin
+    return NULL;
+  end;
+
+  procedure get_null_proc(
+    p_data out number_table
+  )
+  is
+  begin
+    p_data := NULL;
+  end;
 
   function echo_number_table(
     p_data in number_table
