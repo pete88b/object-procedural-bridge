@@ -16,10 +16,10 @@
 
 PROMPT Opb JSE demo build
 
-@array_demo_spc.sql
-@array_demo_bdy.sql
-@boolean_demo.sql
-@user_defined_collection_demo.sql
+@@array_demo_spc.sql
+@@array_demo_bdy.sql
+@@boolean_demo.sql
+@@user_defined_collection_demo.sql
 
 PROMPT
 PROMPT ___ Listing of invalid objects ___
