@@ -16,10 +16,10 @@
 
 PROMPT Opb main build
 
-@@plsql_base/logger/build.sql
-@@plsql_base/constants/build.sql
-@@plsql_base/event_mediator/build.sql
-@@plsql_base/messages/build.sql
+@@plsql-core/plsql/logger/build.sql
+@@plsql-core/plsql/constants/build.sql
+@@plsql-core/plsql/event_mediator/build.sql
+@@plsql-core/plsql/messages/build.sql
 
 @@opb/build.sql
 
