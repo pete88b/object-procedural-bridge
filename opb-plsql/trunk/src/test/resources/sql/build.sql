@@ -25,7 +25,7 @@ CREATE OR REPLACE TYPE number_table IS TABLE OF NUMBER;
 
 PROMPT
 PROMPT Creating types
-@@plsql_base/types/build.sql
+@@plsql-core/plsql/types/build.sql
 
 PROMPT
 PROMPT Creating opb_plsql_call_help_test

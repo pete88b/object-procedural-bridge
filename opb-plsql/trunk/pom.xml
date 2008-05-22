@@ -30,6 +30,42 @@
                     <target>1.5</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.butterfill.plsqlcore</groupId>
+                <artifactId>plsql-core-maven-tools</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <id>extract-plsql</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>Extract</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectoryName>${basedir}/src/main/resources/sql/</outputDirectoryName>
+                            <includesFile>${basedir}/src/main/resources/sql/plsql-core-include.txt</includesFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.butterfill.plsqlcore</groupId>
+                <artifactId>plsql-core-maven-tools</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <id>extract-plsql-for-test</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>Extract</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectoryName>${basedir}/src/test/resources/sql/</outputDirectoryName>
+                            <includesFile>${basedir}/src/test/resources/sql/plsql-core-include.txt</includesFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     
