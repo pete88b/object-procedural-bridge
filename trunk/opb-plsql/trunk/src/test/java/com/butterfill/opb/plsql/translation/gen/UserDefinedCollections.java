@@ -22,6 +22,15 @@ public interface UserDefinedCollections
 
     /**
      * 
+     * Calls the database function get_null.
+     * @throws OpbDataAccessException
+     *   If we fail to make the database call.
+     */
+    java.math.BigDecimal[] getNull() 
+            throws OpbDataAccessException; 
+    
+    /**
+     * 
      * Calls the database function echo_number_table.
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
@@ -40,6 +49,15 @@ public interface UserDefinedCollections
             throws OpbDataAccessException; 
     
 
+    /**
+     * 
+     * Calls the database procedure get_null_proc.
+     * @throws OpbDataAccessException
+     *   If we fail to make the database call.
+     */
+    void getNullProc(OpbValueWrapper<java.math.BigDecimal[]> pData) 
+            throws OpbDataAccessException;
+    
     /**
      * 
      * Calls the database procedure simple_in_out.

@@ -115,6 +115,43 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
     
     /**
      * 
+     * Calls the database function get_null.
+     * @throws OpbDataAccessException
+     *   If we fail to make the database call.
+     */
+    public java.math.BigDecimal[] 
+            getNull() 
+            throws OpbDataAccessException {
+        final String methodName = "getNull()";
+    
+        logger.entering(CLASS_NAME, methodName);
+        
+        java.math.BigDecimal[] result = null;
+    
+        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+                logger, CLASS_NAME, methodName,
+                opbEventTimerProvider,
+                opbConnectionProvider,
+                "BEGIN ? := user_defined_collections.get_null(); END;",
+                "DbCall:user_defined_collections#get_null()");
+    
+        opbCallHelper.registerOutArray(
+                1, "NUMBER_TABLE");
+    
+        opbCallHelper.execute();
+    
+        result = opbCallHelper.getArray(java.math.BigDecimal[].class, 1);
+    
+        opbCallHelper.callComplete();
+    
+        logger.exiting(CLASS_NAME, methodName);
+    
+        return result;
+    
+    }
+    
+    /**
+     * 
      * Calls the database function echo_number_table.
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
@@ -206,6 +243,43 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
     }
     
 
+    /**
+     * 
+     * Calls the database procedure get_null_proc.
+     * @throws OpbDataAccessException
+     *   If we fail to make the database call.
+     */
+    public void getNullProc(final OpbValueWrapper<java.math.BigDecimal[]> pData) 
+            throws OpbDataAccessException {
+        final String methodName = "getNullProc(OpbValueWrapper)";
+    
+        logger.entering(CLASS_NAME, methodName);
+        
+        OpbAssert.notNull(
+                logger, CLASS_NAME, methodName, 
+                "pData", pData);
+    
+        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+                logger, CLASS_NAME, methodName,
+                opbEventTimerProvider,
+                opbConnectionProvider,
+                "BEGIN user_defined_collections.get_null_proc(?); END;",
+                "DbCall:user_defined_collections#get_null_proc(number_table)");
+    
+        opbCallHelper.registerOutArray(
+                1, "NUMBER_TABLE");
+        
+    
+        opbCallHelper.execute();
+    
+        pData.setValue(opbCallHelper.getArray(java.math.BigDecimal[].class, 1));
+    
+        opbCallHelper.callComplete();
+    
+        logger.exiting(CLASS_NAME, methodName);
+    
+    }
+    
     /**
      * 
      * Calls the database procedure simple_in_out.
