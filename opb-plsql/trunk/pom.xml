@@ -43,7 +43,7 @@
                         </goals>
                         <configuration>
                             <outputDirectoryName>${basedir}/src/main/resources/sql/</outputDirectoryName>
-                            <includesFile>${basedir}/src/main/resources/sql/plsql-core-include.txt</includesFile>
+                            <includesFile>${basedir}/src/main/config/plsql-core-include.txt</includesFile>
                         </configuration>
                     </execution>
                 </executions>
