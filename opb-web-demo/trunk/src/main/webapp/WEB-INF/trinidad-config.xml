@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- opb-web-demo -->
+<trinidad-config xmlns="http://myfaces.apache.org/trinidad/config">
+    <!-- IE is too stupid to display pages generated in debug mode
+    <debug-output>true</debug-output>
+    -->
+    
+    <!-- Disable client side validation 
+    <client-validation>DISABLED</client-validation>
+    -->
+    
+    <!--
+    <skin-family>minimal</skin-family>
+    -->
+</trinidad-config>

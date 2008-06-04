@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<!DOCTYPE faces-config PUBLIC
+"-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN"
+"http://java.sun.com/dtd/web-facesconfig_1_1.dtd" >
+<faces-config>
+    
+    <application>
+        <!-- Use the Trinidad RenderKit -->
+        <default-render-kit-id>
+            org.apache.myfaces.trinidad.core
+        </default-render-kit-id>
+        <!--Use the Spring EL resolver so that we can:
+              - inject Spring managed beans into JSF managed beans and
+              - use Spring managed beans as backing beans.
+            See also web.xml (for listener config) and applicationContext.xml.
+        -->
+        <el-resolver>
+            org.springframework.web.jsf.el.SpringBeanFacesELResolver
+        </el-resolver>
+    </application>
+    
+    <managed-bean>
+        <managed-bean-name>ToSelectItemList</managed-bean-name>
+        <managed-bean-class>com.butterfill.opb.webdemo.backing.ToSelectItemList</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+    <!--configured as a Spring managed bean as JSF can't do constructor injection. 
+        See el-resolver element above
+    <managed-bean>
+        <managed-bean-name>Template</managed-bean-name>
+        <managed-bean-class>com.butterfill.opb.webdemo.backing.Template</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    -->
+    <managed-bean>
+        <managed-bean-name>DbLoggingAdmin</managed-bean-name>
+        <managed-bean-class>com.butterfill.opb.webdemo.backing.DbLoggingAdmin</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>DbMessageAdmin</managed-bean-name>
+        <managed-bean-class>com.butterfill.opb.webdemo.backing.DbMessageAdmin</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>JavaLoggingAdmin</managed-bean-name>
+        <managed-bean-class>com.butterfill.opb.webdemo.backing.JavaLoggingAdmin</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>TimingAdmin</managed-bean-name>
+        <managed-bean-class>com.butterfill.opb.webdemo.backing.TimingAdmin</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+        <!-- inject Spring managed beans. See el-resolver element above -->
+        <managed-property>
+            <property-name>opbEventTimer</property-name>
+            <value>#{opbEventTimer}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>contextName</property-name>
+            <value>#{contextName}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>contextDescription</property-name>
+            <value>#{contextDescription}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>PermissionsAdmin</managed-bean-name>
+        <managed-bean-class>com.butterfill.opb.webdemo.backing.PermissionsAdmin</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>PermissionSetsAdmin</managed-bean-name>
+        <managed-bean-class>com.butterfill.opb.webdemo.backing.PermissionSetsAdmin</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>PropertiesAdmin</managed-bean-name>
+        <managed-bean-class>com.butterfill.opb.webdemo.backing.PropertiesAdmin</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>ExceptionDemo</managed-bean-name>
+        <managed-bean-class>com.butterfill.opb.webdemo.backing.ExceptionDemo</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    
+    <!-- Global navigation rules -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>dbLoggingAdmin</from-outcome>
+            <to-view-id>/dbLoggingAdmin.jsp</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>dbMessageAdmin</from-outcome>
+            <to-view-id>/dbMessageAdmin.jsp</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>javaLoggingAdmin</from-outcome>
+            <to-view-id>/javaLoggingAdmin.jsp</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>timingAdmin</from-outcome>
+            <to-view-id>/timingAdmin.jsp</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>permissionsAdmin</from-outcome>
+            <to-view-id>/permissionsAdmin.jsp</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>permissionSetsAdmin</from-outcome>
+            <to-view-id>/permissionSetsAdmin.jsp</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>propertiesAdmin</from-outcome>
+            <to-view-id>/propertiesAdmin.jsp</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>exceptionDemo</from-outcome>
+            <to-view-id>/exceptionDemo.jsp</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.jsp</to-view-id>
+        </navigation-case>
+        
+    </navigation-rule>
+    
+</faces-config>
