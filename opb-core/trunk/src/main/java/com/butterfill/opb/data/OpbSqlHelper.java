@@ -117,14 +117,15 @@ public final class OpbSqlHelper {
                 sourceLogger, "close(Logger, String, String, Connection)");
 
         try {
-            connection.close();
-            lggr.logp(Level.FINER, sourceClass, sourceMethod,
-                    "connection closed");
+            if (connection == null) {
+                lggr.logp(Level.FINER, sourceClass, sourceMethod, "connection was null");
+                
+            } else {
+                connection.close();
+                lggr.logp(Level.FINER, sourceClass, sourceMethod, "connection closed");
 
-        } catch (NullPointerException ex) {
-            lggr.logp(Level.FINER, sourceClass, sourceMethod,
-                    "connection was null");
-
+            }
+            
         } catch (Exception ex) {
             lggr.logp(Level.WARNING, sourceClass, sourceMethod,
                     "Failed to close connection", ex);
@@ -151,14 +152,15 @@ public final class OpbSqlHelper {
                 sourceLogger, "close(Logger, String, String, ResultSet)");
 
         try {
-            resultSet.close();
-            lggr.logp(Level.FINER, sourceClass, sourceMethod,
-                    "result set closed");
-
-        } catch (NullPointerException ex) {
-            lggr.logp(Level.FINER, sourceClass, sourceMethod,
-                    "result set was null");
-
+            if (resultSet == null) {
+                lggr.logp(Level.FINER, sourceClass, sourceMethod, "result set was null");
+                
+            } else {
+                resultSet.close();
+                lggr.logp(Level.FINER, sourceClass, sourceMethod, "result set closed");
+                
+            }
+            
         } catch (Exception ex) {
             lggr.logp(Level.WARNING, sourceClass, sourceMethod,
                     "Failed to close result set", ex);
@@ -185,11 +187,14 @@ public final class OpbSqlHelper {
                 sourceLogger, "close(Logger, String, String, Statement)");
 
         try {
-            statement.close();
-
-        } catch (NullPointerException ex) {
-            lggr.logp(Level.FINER, sourceClass, sourceMethod,
-                    "statement was null");
+            if (statement == null) {
+                lggr.logp(Level.FINER, sourceClass, sourceMethod, "statement was null");
+                
+            } else {
+                statement.close();
+                lggr.logp(Level.FINER, sourceClass, sourceMethod, "statement closed");
+                
+            }
 
         } catch (Exception nonCriticalException) {
             lggr.logp(Level.FINEST, sourceClass, sourceMethod,
