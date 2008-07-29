@@ -9,12 +9,12 @@ The default connection details are;
 
   url=jdbc:oracle:thin:@//localhost:1521/xe
   user=opb_test
-  password=star01
+  password=weak_pw
 
 This URL will work if you have a local copy of Oracle XE running.
 To create the opb_test user;
 
-  CREATE USER opb_test DEFAULT TABLESPACE users IDENTIFIED BY star01;
+  CREATE USER opb_test DEFAULT TABLESPACE users IDENTIFIED BY weak_pw;
 
 Note: "DEFAULT TABLESPACE users" can be ommited but you don't want opb_test to 
 use your system tablespace.
