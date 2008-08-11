@@ -271,14 +271,11 @@ public final class DatatypeMap {
                 "inputStream", inputStream);
         
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(
-                    inputStream));
-            
-            String line;
+            BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
             
             int reading = 0;
             
-            while ((line = in.readLine()) != null) {
+            for (String line = in.readLine(); line != null; line = in.readLine()) {
                 if (line.length() > 0) {
                     if (line.trim().equals("sql-jdbc-java;")) {
                         reading = 1;
@@ -291,6 +288,8 @@ public final class DatatypeMap {
                     } else if (line.trim().equals("plsql-index-table-types;")) {
                         reading = 5;
                     } else {
+                        // no need for a default
+                        // if we don't know what we're reading, ignore it
                         switch (reading) {
                             case 1:
                                 sqlJdbcJavaMappings.add(new SqlJdbcJavaMap(line));
@@ -312,9 +311,9 @@ public final class DatatypeMap {
                         
                     }
                     
-                }
+                } // End of if (line.length() > 0)
                 
-            }
+            } // End of for (String line = in.readLine() ...
             
         } catch (Exception ex) {
             OpbExceptionHelper.throwException(
@@ -616,10 +615,29 @@ public final class DatatypeMap {
      * Holds SQL to JDBC to Java datatype mappings.
      */
     private static class SqlJdbcJavaMap {
-        private String sql;
-        private String jdbc;
-        private String java;
         
+        /**
+         * The SQL datatype.
+         */
+        private final String sql;
+        
+        /**
+         * The JDBC type.
+         */
+        private final String jdbc;
+        
+        /**
+         * The Java datatype.
+         */
+        private final String java;
+        
+        /**
+         * Creates a new map from the specified data.
+         * 
+         * @param data
+         *   This string should consist of a SQL datatype, a JDBC type
+         *   and a Java datatype separated by whitespace.
+         */
         SqlJdbcJavaMap(final String data) {
             String[] bits = data.split("[\\s]+");
             sql = bits[0];
@@ -642,9 +660,24 @@ public final class DatatypeMap {
      * Holds PL/SQL to SQL datatype mappings.
      */
     private static class PlsqlSqlMap {
-        private String plsql;
-        private String sql;
         
+        /**
+         * The PL/SQL datatype.
+         */
+        private final String plsql;
+        
+        /**
+         * The SQL datatype.
+         */
+        private final String sql;
+        
+        /**
+         * Creates a new map from the specified data.
+         * 
+         * @param data
+         *   This string should consist of a PL/SQL datatype
+         *   and a SQL datatype separated by whitespace.
+         */
         PlsqlSqlMap(final String data) {
             String[] bits = data.split("[\\s]+");
             plsql = bits[0];

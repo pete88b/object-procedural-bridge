@@ -344,7 +344,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
         logger.entering(CLASS_NAME, methodName);
         
         OpbAssert.isNull(
-                logger, CLASS_NAME, methodName, "this._id", id, 
+                logger, CLASS_NAME, methodName, "this.id", id, 
                 "you can't start a session that already has an ID");
         
         try {
@@ -384,7 +384,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
         releaseConnection(true);
         
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, "this._id", id, 
+                logger, CLASS_NAME, methodName, "this.id", id, 
                 "you can't end a session when the session has no ID");
         
         Connection connection = doGetConnection(methodName);
@@ -503,7 +503,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
         if (memoryLimitForCachedObjects == null &&
                 memoryLimitForCachedResults == null) {
             logger.logp(Level.FINE, CLASS_NAME, methodName, 
-                "both memory limit properties are null. returning");
+                    "both memory limit properties are null. returning");
             return;
         }
         
@@ -520,11 +520,11 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
         float usedMemoryAsFraction = usedMemory / maxMemory;
         
         logger.logp(Level.FINEST, CLASS_NAME, methodName, 
-                "_usedMemory={0}", usedMemory);
+                "usedMemory={0}", usedMemory);
         logger.logp(Level.FINEST, CLASS_NAME, methodName, 
-                "_maxMemory={0}", maxMemory);
+                "maxMemory={0}", maxMemory);
         logger.logp(Level.FINEST, CLASS_NAME, methodName,
-                "_usedMemoryAsFraction={0}", usedMemoryAsFraction);
+                "usedMemoryAsFraction={0}", usedMemoryAsFraction);
         logger.logp(Level.FINEST, CLASS_NAME, methodName,
                 "LimitForCachedObjects={0}", memoryLimitForCachedObjects);
         logger.logp(Level.FINEST, CLASS_NAME, methodName,
@@ -534,13 +534,13 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
                 usedMemoryAsFraction > memoryLimitForCachedObjects) {
             logger.logp(Level.WARNING, CLASS_NAME, methodName,
                     "memory limit for cached objects exceeded. clearing cached objects");
-            getDataObjectSource().clearCached();
+            dataObjectSource.clearCached();
 
         } else if (memoryLimitForCachedResults != null &&
                 usedMemoryAsFraction > memoryLimitForCachedResults) {
             logger.logp(Level.WARNING, CLASS_NAME, methodName,
                     "memory limit for cached results exceeded. clearing cached results");
-            getDataObjectSource().clearCachedResults();
+            dataObjectSource.clearCachedResults();
 
         }
             
@@ -706,11 +706,10 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
         try {
             checkMemoryUse();
             
+            // if this session's connection is already null, nothing else needs to be done
             if (activeConnection == null) {
                 logger.logp(Level.FINER, CLASS_NAME, methodName,
                         "connection is null, doing nothing");
-                // if this sessions connection is already null, 
-                // nothing else needs to be done
                 return;
             }
 
@@ -788,7 +787,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
         
         // this should not happen if createSession has been called
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, "this._id", id, 
+                logger, CLASS_NAME, methodName, "this.id", id, 
                 "you can't set the username for a session with no ID");
         
         Connection connection = doGetConnection(methodName);
@@ -973,7 +972,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
                 // If the data object is not a cacheable entity, we don't wrap
                 // access to it.
                 groupable.setGroupManagerMap(
-                    groupManager.newGroupManagerMap(groupable));
+                        groupManager.newGroupManagerMap(groupable));
                 
             } // End of if (dataObject instanceof OpbCacheableEntity)
             

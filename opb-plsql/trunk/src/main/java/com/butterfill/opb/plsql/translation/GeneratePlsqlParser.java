@@ -27,7 +27,7 @@ import org.antlr.Tool;
  * 
  * @author Peter Butterfill
  */
-class GeneratePlsqlParser {
+final class GeneratePlsqlParser {
     
     /**
      * The name of this class.
@@ -38,6 +38,13 @@ class GeneratePlsqlParser {
      * The logger for this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
+
+    /**
+     * Private constructor as there's no point creating an instance
+     * of this class.
+     */
+    private GeneratePlsqlParser() {
+    }
     
     /**
      * Generates and compiles the parsers defined in the grammar files Plsql.g
