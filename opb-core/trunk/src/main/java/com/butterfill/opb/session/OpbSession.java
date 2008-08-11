@@ -36,8 +36,7 @@ public interface OpbSession
         OpbScalarResultCacheProvider {
 
     /**
-     * Checks current memory use and may act to reduce memory used by this
-     * session.
+     * Checks current memory use and may act to reduce memory used by this session.
      */
     void checkMemoryUse();
 

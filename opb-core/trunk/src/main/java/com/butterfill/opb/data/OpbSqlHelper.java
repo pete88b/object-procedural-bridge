@@ -197,7 +197,7 @@ public final class OpbSqlHelper {
             }
 
         } catch (Exception nonCriticalException) {
-            lggr.logp(Level.FINEST, sourceClass, sourceMethod,
+            lggr.logp(Level.WARNING, sourceClass, sourceMethod,
                     "failed to close statement", nonCriticalException);
 
         }
