@@ -77,7 +77,7 @@
                     <threshold>Normal</threshold>
                     <effort>Max</effort>
                     <excludeFilterFile>
-                        ${basedir}/src/main/config/findbugs-excludeFiles.xml
+                        ${basedir}/src/main/config/findbugs-exclude-filter.xml
                     </excludeFilterFile>
                 </configuration>
             </plugin>
