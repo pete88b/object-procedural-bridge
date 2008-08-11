@@ -95,7 +95,7 @@ public class OpbContextPlsqlImpl implements OpbContext {
             final OracleDataSource dataSource, final OpbEventTimer eventTimer) 
             throws NullPointerException {
         final String methodName = 
-                "OpbContext(String, OracleDataSource, OpbEventTimer)";
+                "OpbContextPlsqlImpl(String, OracleDataSource, OpbEventTimer)";
         
         logger.entering(CLASS_NAME, methodName);
         
@@ -170,7 +170,7 @@ public class OpbContextPlsqlImpl implements OpbContext {
         this(contextName, dataSource, eventTimer);
         
         final String methodName = 
-                "OpbContext(String, OracleDataSource, OpbEventTimer, boolean)";
+                "OpbContextPlsqlImpl(String, OracleDataSource, OpbEventTimer, boolean)";
         
         logger.entering(CLASS_NAME, methodName);
         

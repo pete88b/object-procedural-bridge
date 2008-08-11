@@ -69,7 +69,7 @@ class OpbComment {
      * @param comment A complete multi-line comment including /* and &#42;/.
      * @throws NullPointerException If comment is null.
      */
-    public OpbComment(String comment) throws NullPointerException {
+    public OpbComment(final String comment) throws NullPointerException {
         final String methodName = "OpbComment(String)";
         
         logger.entering(CLASS_NAME, methodName);
@@ -122,17 +122,17 @@ class OpbComment {
         
         // remove the first line of the input string
         // remove the last ; and anything that follows
-        comment = comment.substring(firstLineBreak, lastIndexOfSemi);
+        String commentContents = comment.substring(firstLineBreak, lastIndexOfSemi);
         
         logger.logp(Level.FINEST, CLASS_NAME, methodName, 
-                "about to parse remaining comment={0}", comment);
+                "about to parse commentContents={0}", commentContents);
         
-        String[] elements = comment.split(";");
+        String[] elements = commentContents.split(";");
         
         for (int i = 0; i < elements.length; i++) {
             String element = elements[i].trim();
 
-            // if it's a comment, ignore it
+            // if it's a comment (within the comment we're parsing), ignore it
             if (element.startsWith("--")) {
                 continue;
             }
