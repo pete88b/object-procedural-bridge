@@ -498,10 +498,9 @@ public final class DatatypeMap {
                 logger,
                 CLASS_NAME,
                 methodName,
-                "_jdbcCursorType",
+                "jdbcCursorType",
                 jdbcCursorType,
-                "You can't call isCursorType(String) when the JDBC cursor " +
-                "has not been set");
+                "You can't call isCursorType(String) when the JDBC cursor has not been set");
         
         // If the object type of the cursor has been specified, remove it.
         // e.g. datatype=cursor?user_sys_priv
