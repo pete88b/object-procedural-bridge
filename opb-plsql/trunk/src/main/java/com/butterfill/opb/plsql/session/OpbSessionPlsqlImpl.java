@@ -296,7 +296,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
      * Tries to make the opb_session.create_session call.
      */
     private void doCreateSession() {
-        final String methodName = "_createSession()";
+        final String methodName = "doCreateSession()";
         
         logger.entering(CLASS_NAME, methodName);
         
