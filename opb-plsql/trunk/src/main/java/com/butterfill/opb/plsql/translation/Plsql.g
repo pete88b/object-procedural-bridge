@@ -342,6 +342,18 @@ STAR
   :  '*'
   ;
 
+EXCLAMATION
+  :  '!'
+  ;
+
+GREATERTHAN
+  :  '>'
+  ;
+
+LESSTHAN
+  :  '<'
+  ;
+
 WS  
   :  (' ' | '\t' | '\n' | '\r')+ { $channel=HIDDEN; }
   ;
