@@ -30,6 +30,9 @@ Plsql.g
   (which may not be this directory) so GeneratePlsqlParser.java copies it to
   this directory before generating the PlsqlTreeParser.
 
+Plsql.tokens
+  Generated from Plsql.g.
+
 PlsqlCall.java
   Used during translation, this class represents a PL/SQL call.
 
