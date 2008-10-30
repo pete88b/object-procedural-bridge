@@ -1,12 +1,10 @@
-// $ANTLR 3.0.1 src/main/java/com/butterfill/opb/plsql/translation/PlsqlTreeParser.g 2008-10-30 14:49:19
+// $ANTLR 3.0.1 src/main/java/com/butterfill/opb/plsql/translation/PlsqlTreeParser.g 2008-10-30 16:34:40
 
 package com.butterfill.opb.plsql.translation;
 
 
 import org.antlr.runtime.*;
-import org.antlr.runtime.tree.*;import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
+import org.antlr.runtime.tree.*;
 
 /**
  * Copyright (C) 2008 Peter Butterfill.
@@ -23,28 +21,54 @@ import java.util.ArrayList;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-public class PlsqlTreeParser extends PlsqlTreeParserSuperClass {
+@SuppressWarnings(value="unchecked")
+class PlsqlTreeParser extends PlsqlTreeParserSuperClass {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "PACKAGE", "ID", "ML_COMMENT", "CONSTANT", "NUMBER", "QUOTED_LITERAL", "NULL", "FUNCTION", "T_PARAMS", "RETURN", "PROCEDURE", "T_IGNORE", "T_PARAM", "T_PARAM_MODE", "IN", "OUT", "QUOTED_ID", "'.'", "'('", "','", "')'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "T_PARAM", "T_PARAMS", "T_PARAM_MODE", "T_IGNORE", "PACKAGE", "ID", "AUTHID", "IS", "AS", "END", "SEMI", "CONSTANT", "DEFAULT", "NUMBER", "QUOTED_LITERAL", "NULL", "FUNCTION", "RETURN", "PROCEDURE", "PRAGMA", "TYPE", "SUBTYPE", "CURSOR", "EXCEPTION", "ML_COMMENT", "SL_COMMENT", "IN", "OUT", "NOCOPY", "QUOTED_ID", "NEWLINE", "COMMA", "EQUALS", "QUESTION_MARK", "FORWARD_SLASH", "PERCENT", "PIPE", "STAR", "EXCLAMATION", "GREATERTHAN", "LESSTHAN", "WS", "'.'", "':='", "'('", "')'"
     };
-    public static final int PACKAGE=4;
-    public static final int FUNCTION=11;
-    public static final int QUOTED_LITERAL=9;
-    public static final int NULL=10;
-    public static final int NUMBER=8;
-    public static final int T_PARAM_MODE=17;
-    public static final int T_IGNORE=15;
-    public static final int ID=5;
+    public static final int PACKAGE=8;
+    public static final int FUNCTION=20;
+    public static final int STAR=41;
+    public static final int PRAGMA=23;
+    public static final int EQUALS=36;
+    public static final int T_IGNORE=7;
+    public static final int SUBTYPE=25;
+    public static final int ID=9;
     public static final int EOF=-1;
-    public static final int QUOTED_ID=20;
-    public static final int PROCEDURE=14;
-    public static final int ML_COMMENT=6;
-    public static final int IN=18;
-    public static final int OUT=19;
-    public static final int RETURN=13;
-    public static final int T_PARAM=16;
-    public static final int CONSTANT=7;
-    public static final int T_PARAMS=12;
+    public static final int QUOTED_ID=33;
+    public static final int TYPE=24;
+    public static final int ML_COMMENT=28;
+    public static final int AS=12;
+    public static final int IN=30;
+    public static final int EXCLAMATION=42;
+    public static final int COMMA=35;
+    public static final int IS=11;
+    public static final int RETURN=21;
+    public static final int QUESTION_MARK=37;
+    public static final int T_PARAMS=5;
+    public static final int PIPE=40;
+    public static final int EXCEPTION=27;
+    public static final int GREATERTHAN=43;
+    public static final int LESSTHAN=44;
+    public static final int PERCENT=39;
+    public static final int QUOTED_LITERAL=18;
+    public static final int NULL=19;
+    public static final int DEFAULT=16;
+    public static final int NUMBER=17;
+    public static final int T_PARAM_MODE=6;
+    public static final int SEMI=14;
+    public static final int PROCEDURE=22;
+    public static final int AUTHID=10;
+    public static final int NOCOPY=32;
+    public static final int WS=45;
+    public static final int NEWLINE=34;
+    public static final int OUT=31;
+    public static final int SL_COMMENT=29;
+    public static final int T_PARAM=4;
+    public static final int CONSTANT=15;
+    public static final int END=13;
+    public static final int CURSOR=26;
+    public static final int FORWARD_SLASH=38;
 
         public PlsqlTreeParser(TreeNodeStream input) {
             super(input);
@@ -73,7 +97,7 @@ public class PlsqlTreeParser extends PlsqlTreeParserSuperClass {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( ((LA1_0>=ML_COMMENT && LA1_0<=CONSTANT)||LA1_0==FUNCTION||(LA1_0>=PROCEDURE && LA1_0<=T_IGNORE)) ) {
+                if ( (LA1_0==T_IGNORE||LA1_0==CONSTANT||LA1_0==FUNCTION||LA1_0==PROCEDURE||LA1_0==ML_COMMENT) ) {
                     alt1=1;
                 }
 
@@ -664,7 +688,7 @@ public class PlsqlTreeParser extends PlsqlTreeParserSuperClass {
             if ( (LA8_0==ID||LA8_0==QUOTED_ID) ) {
                 int LA8_1 = input.LA(2);
 
-                if ( (LA8_1==21) ) {
+                if ( (LA8_1==46) ) {
                     alt8=1;
                 }
             }
@@ -676,7 +700,7 @@ public class PlsqlTreeParser extends PlsqlTreeParserSuperClass {
                     l_a=id();
                     _fsp--;
 
-                    match(input,21,FOLLOW_21_in_dataType405); 
+                    match(input,46,FOLLOW_46_in_dataType405); 
 
                     }
                     break;
@@ -691,27 +715,27 @@ public class PlsqlTreeParser extends PlsqlTreeParserSuperClass {
             int alt10=2;
             int LA10_0 = input.LA(1);
 
-            if ( (LA10_0==22) ) {
+            if ( (LA10_0==48) ) {
                 alt10=1;
             }
             switch (alt10) {
                 case 1 :
                     // src/main/java/com/butterfill/opb/plsql/translation/PlsqlTreeParser.g:92:28: '(' NUMBER ( ',' NUMBER )? ')'
                     {
-                    match(input,22,FOLLOW_22_in_dataType414); 
+                    match(input,48,FOLLOW_48_in_dataType414); 
                     match(input,NUMBER,FOLLOW_NUMBER_in_dataType416); 
                     // src/main/java/com/butterfill/opb/plsql/translation/PlsqlTreeParser.g:92:39: ( ',' NUMBER )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
-                    if ( (LA9_0==23) ) {
+                    if ( (LA9_0==COMMA) ) {
                         alt9=1;
                     }
                     switch (alt9) {
                         case 1 :
                             // src/main/java/com/butterfill/opb/plsql/translation/PlsqlTreeParser.g:92:40: ',' NUMBER
                             {
-                            match(input,23,FOLLOW_23_in_dataType419); 
+                            match(input,COMMA,FOLLOW_COMMA_in_dataType419); 
                             match(input,NUMBER,FOLLOW_NUMBER_in_dataType421); 
 
                             }
@@ -719,7 +743,7 @@ public class PlsqlTreeParser extends PlsqlTreeParserSuperClass {
 
                     }
 
-                    match(input,24,FOLLOW_24_in_dataType425); 
+                    match(input,49,FOLLOW_49_in_dataType425); 
 
                     }
                     break;
@@ -785,8 +809,8 @@ public class PlsqlTreeParser extends PlsqlTreeParserSuperClass {
 
  
 
-    public static final BitSet FOLLOW_createOrReplacePackage_in_startRule53 = new BitSet(new long[]{0x000000000000C8C2L});
-    public static final BitSet FOLLOW_element_in_startRule60 = new BitSet(new long[]{0x000000000000C8C2L});
+    public static final BitSet FOLLOW_createOrReplacePackage_in_startRule53 = new BitSet(new long[]{0x0000000010508082L});
+    public static final BitSet FOLLOW_element_in_startRule60 = new BitSet(new long[]{0x0000000010508082L});
     public static final BitSet FOLLOW_PACKAGE_in_createOrReplacePackage76 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_ID_in_createOrReplacePackage78 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_mlComment_in_element97 = new BitSet(new long[]{0x0000000000000002L});
@@ -796,35 +820,35 @@ public class PlsqlTreeParser extends PlsqlTreeParserSuperClass {
     public static final BitSet FOLLOW_ignore_in_element125 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ML_COMMENT_in_mlComment139 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_CONSTANT_in_constantDeclaration163 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_constantDeclaration167 = new BitSet(new long[]{0x0000000000100020L});
-    public static final BitSet FOLLOW_dataType_in_constantDeclaration171 = new BitSet(new long[]{0x0000000000000708L});
+    public static final BitSet FOLLOW_ID_in_constantDeclaration167 = new BitSet(new long[]{0x0000000200000200L});
+    public static final BitSet FOLLOW_dataType_in_constantDeclaration171 = new BitSet(new long[]{0x00000000000E0008L});
     public static final BitSet FOLLOW_literal_in_constantDeclaration175 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_set_in_literal0 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_FUNCTION_in_function243 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_function247 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_ID_in_function247 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_T_PARAMS_in_function250 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_param_in_function252 = new BitSet(new long[]{0x0000000000010008L});
+    public static final BitSet FOLLOW_param_in_function252 = new BitSet(new long[]{0x0000000000000018L});
     public static final BitSet FOLLOW_RETURN_in_function257 = new BitSet(new long[]{0x0000000000000004L});
     public static final BitSet FOLLOW_dataType_in_function261 = new BitSet(new long[]{0x0000000000000008L});
     public static final BitSet FOLLOW_PROCEDURE_in_procedure299 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_procedure303 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_ID_in_procedure303 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_T_PARAMS_in_procedure306 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_param_in_procedure308 = new BitSet(new long[]{0x0000000000010008L});
+    public static final BitSet FOLLOW_param_in_procedure308 = new BitSet(new long[]{0x0000000000000018L});
     public static final BitSet FOLLOW_T_IGNORE_in_ignore332 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_T_PARAM_in_param353 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_ID_in_param357 = new BitSet(new long[]{0x0000000000100020L});
-    public static final BitSet FOLLOW_dataType_in_param361 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_ID_in_param357 = new BitSet(new long[]{0x0000000200000200L});
+    public static final BitSet FOLLOW_dataType_in_param361 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_T_PARAM_MODE_in_param364 = new BitSet(new long[]{0x0000000000000004L});
-    public static final BitSet FOLLOW_IN_in_param368 = new BitSet(new long[]{0x0000000000080008L});
+    public static final BitSet FOLLOW_IN_in_param368 = new BitSet(new long[]{0x0000000080000008L});
     public static final BitSet FOLLOW_OUT_in_param373 = new BitSet(new long[]{0x0000000000000008L});
-    public static final BitSet FOLLOW_id_in_dataType403 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_dataType405 = new BitSet(new long[]{0x0000000000100020L});
-    public static final BitSet FOLLOW_id_in_dataType411 = new BitSet(new long[]{0x0000000000400002L});
-    public static final BitSet FOLLOW_22_in_dataType414 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_NUMBER_in_dataType416 = new BitSet(new long[]{0x0000000001800000L});
-    public static final BitSet FOLLOW_23_in_dataType419 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_NUMBER_in_dataType421 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_dataType425 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_id_in_dataType403 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_46_in_dataType405 = new BitSet(new long[]{0x0000000200000200L});
+    public static final BitSet FOLLOW_id_in_dataType411 = new BitSet(new long[]{0x0001000000000002L});
+    public static final BitSet FOLLOW_48_in_dataType414 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_NUMBER_in_dataType416 = new BitSet(new long[]{0x0002000800000000L});
+    public static final BitSet FOLLOW_COMMA_in_dataType419 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_NUMBER_in_dataType421 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_49_in_dataType425 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_id0 = new BitSet(new long[]{0x0000000000000002L});
 
 }

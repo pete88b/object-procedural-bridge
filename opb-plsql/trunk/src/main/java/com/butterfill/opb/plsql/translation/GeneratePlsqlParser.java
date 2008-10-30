@@ -16,6 +16,7 @@
 
 package com.butterfill.opb.plsql.translation;
 
+import java.io.File;
 import java.util.logging.Logger;
 import org.antlr.Tool;
 
@@ -79,6 +80,21 @@ final class GeneratePlsqlParser {
         }
         
         
+        logger.info("moving Plsql.tokens for tree parser creation");
+        
+        File plsqlTokensTemp = new File("Plsql.tokens");
+        
+        logger.info("deleting temp Plsql.tokens. result=" + 
+                plsqlTokensTemp.delete());
+        
+        File plsqlTokens = new File(
+                "src/main/java/com/butterfill/opb/plsql/translation/Plsql.tokens");
+        
+        boolean moved = plsqlTokens.renameTo(plsqlTokensTemp);
+        
+        logger.info("moving Plsql.tokens to temp. result=" + moved);
+        
+        
         // create the tree parser
         logger.info("Start of processing for PlsqlTreeParser.g");
         
@@ -102,6 +118,11 @@ final class GeneratePlsqlParser {
             logger.warning("compilation of PlsqlTreeParser failed");
             logger.info("compilerResult=" + compilerResult);
         }
+        
+        // clean up
+        boolean deleted = plsqlTokensTemp.delete();
+        
+        logger.info("deleting temp Plsql.tokens. result=" + deleted);
         
     }
 
