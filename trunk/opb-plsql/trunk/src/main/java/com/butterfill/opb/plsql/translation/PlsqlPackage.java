@@ -228,25 +228,25 @@ class PlsqlPackage {
      * PL/SQL package.
      */
     public void validate() {
-        for (Iterator<PlsqlCall> i = functions.iterator(); i.hasNext(); ) {
+        for (Iterator<PlsqlCall> i = functions.iterator(); i.hasNext();) {
             if (!i.next().validate()) {
                 i.remove();
             }
         }
         
-        for (Iterator<PlsqlCall> i = procedures.iterator(); i.hasNext(); ) {
+        for (Iterator<PlsqlCall> i = procedures.iterator(); i.hasNext();) {
             if (!i.next().validate()) {
                 i.remove();
             }
         }
         
-        for (Iterator<PlsqlPackageConstant> i = constants.iterator(); i.hasNext(); ) {
+        for (Iterator<PlsqlPackageConstant> i = constants.iterator(); i.hasNext();) {
             if (!i.next().validate()) {
                 i.remove();
             }
         }
         
-        for (Iterator<OpbField> i = fields.iterator(); i.hasNext(); ) {
+        for (Iterator<OpbField> i = fields.iterator(); i.hasNext();) {
             if (!i.next().validate()) {
                 i.remove();
             }
