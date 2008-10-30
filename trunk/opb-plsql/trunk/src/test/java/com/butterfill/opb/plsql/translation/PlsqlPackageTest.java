@@ -162,6 +162,15 @@ public class PlsqlPackageTest extends TestCase {
     public void testValidate() {
         System.out.println("validate");
         PlsqlPackage instance = new PlsqlPackage();
+        
+        try {
+            instance.validate();
+        } catch (NullPointerException ex) {
+            System.out.println(ex.getMessage());
+            assertTrue(ex.getMessage().contains("Java Interface name is missing"));
+        }
+        
+        instance.setSqlName("test_name");
         instance.validate();
     }
 
