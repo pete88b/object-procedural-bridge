@@ -18,6 +18,7 @@ package com.butterfill.opb.plsql.translation;
 
 
 import com.butterfill.opb.OpbConstants;
+import com.butterfill.opb.util.OpbAssert;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -222,12 +223,22 @@ class PlsqlPackage {
     /**
      * Validates this PL/SQL package.
      * <br/>
+     * If the Java Interface name of this instance is null, an exception is thrown.
+     * If we don't know the interface name, something has gone badly wrong.
+     * <br/>
      * For all functions, procedures, constants and fields of this 
-     * PL/SQL package validate() is called - if validate)( returns false, the 
+     * PL/SQL package validate() is called - if validate() returns false, the 
      * function, procedure, constant or field is removed from this 
      * PL/SQL package.
      */
     public void validate() {
+        final String method = "validate()";
+        
+        OpbAssert.notNull(
+                logger, CLASS_NAME, method, 
+                "javaInterfaceName", javaInterfaceName,
+                "Java Interface name is missing. Something has gone badly wrong");
+        
         for (Iterator<PlsqlCall> i = functions.iterator(); i.hasNext();) {
             if (!i.next().validate()) {
                 i.remove();
