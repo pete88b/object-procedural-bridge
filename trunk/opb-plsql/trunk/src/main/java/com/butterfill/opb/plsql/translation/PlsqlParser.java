@@ -1,10 +1,9 @@
-// $ANTLR 3.0.1 src/main/java/com/butterfill/opb/plsql/translation/Plsql.g 2008-10-30 14:49:18
+// $ANTLR 3.0.1 src/main/java/com/butterfill/opb/plsql/translation/Plsql.g 2008-10-30 16:34:38
 
 package com.butterfill.opb.plsql.translation;
 
 
 import org.antlr.runtime.*;
-import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -26,7 +25,8 @@ import org.antlr.runtime.tree.*;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-public class PlsqlParser extends Parser {
+@SuppressWarnings(value="unchecked")
+class PlsqlParser extends Parser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "T_PARAM", "T_PARAMS", "T_PARAM_MODE", "T_IGNORE", "PACKAGE", "ID", "AUTHID", "IS", "AS", "END", "SEMI", "CONSTANT", "DEFAULT", "NUMBER", "QUOTED_LITERAL", "NULL", "FUNCTION", "RETURN", "PROCEDURE", "PRAGMA", "TYPE", "SUBTYPE", "CURSOR", "EXCEPTION", "ML_COMMENT", "SL_COMMENT", "IN", "OUT", "NOCOPY", "QUOTED_ID", "NEWLINE", "COMMA", "EQUALS", "QUESTION_MARK", "FORWARD_SLASH", "PERCENT", "PIPE", "STAR", "EXCLAMATION", "GREATERTHAN", "LESSTHAN", "WS", "'.'", "':='", "'('", "')'"
     };

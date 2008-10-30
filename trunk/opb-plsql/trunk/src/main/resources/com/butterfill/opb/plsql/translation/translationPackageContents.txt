@@ -26,12 +26,8 @@ Plsql.g
   The grammar for PL/SQL source code. 
   GeneratePlsqlParser.java processes this file using org.antlr.Tool - 
   which generates Plsql__.g (a lexer grammar), PlsqlLexer.java, Plsql.tokens
-  and PlsqlParser.java. Plsql.tokens is created in the current working directory
-  (which may not be this directory) so GeneratePlsqlParser.java copies it to
-  this directory before generating the PlsqlTreeParser.
-
-Plsql.tokens
-  Generated from Plsql.g.
+  and PlsqlParser.java. 
+  Plsql.tokens is deleted by GeneratePlsqlParser.java.
 
 PlsqlCall.java
   Used during translation, this class represents a PL/SQL call.
