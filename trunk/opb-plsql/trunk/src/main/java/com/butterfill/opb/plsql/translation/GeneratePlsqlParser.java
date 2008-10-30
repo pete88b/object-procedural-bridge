@@ -16,7 +16,6 @@
 
 package com.butterfill.opb.plsql.translation;
 
-import java.io.File;
 import java.util.logging.Logger;
 import org.antlr.Tool;
 
@@ -58,8 +57,7 @@ final class GeneratePlsqlParser {
         
         // create the parser
         Tool antlr = new Tool(new String[]{
-                "src/com/butterfill/opb/plsql/" + 
-                "translation/Plsql.g"});
+                "src/main/java/com/butterfill/opb/plsql/translation/Plsql.g"});
         
         antlr.process();
         
@@ -68,8 +66,8 @@ final class GeneratePlsqlParser {
         String[] compilerCommand = new String[]{
                 "-d",
                 "build/classes",
-                "src/com/butterfill/opb/plsql/translation/PlsqlLexer.java",
-                "src/com/butterfill/opb/plsql/translation/PlsqlParser.java"};
+                "src/main/java/com/butterfill/opb/plsql/translation/PlsqlLexer.java",
+                "src/main/java/com/butterfill/opb/plsql/translation/PlsqlParser.java"};
         
         int compilerResult = com.sun.tools.javac.Main.compile(compilerCommand);
         
@@ -80,27 +78,12 @@ final class GeneratePlsqlParser {
             logger.info("compilerResult=" + compilerResult);
         }
         
-        logger.info("moving Plsql.tokens for tree parser creation");
-        
-        File plsqlTokensTemp = new File("Plsql.tokens");
-        
-        logger.info("deleting temp Plsql.tokens. result=" + 
-                plsqlTokensTemp.delete());
-        
-        File plsqlTokens = new File(
-                "src/com/butterfill/opb/plsql/translation/Plsql.tokens");
-        
-        boolean moved = plsqlTokens.renameTo(plsqlTokensTemp);
-        
-        logger.info("moving Plsql.tokens to temp. result=" + moved);
-        
         
         // create the tree parser
         logger.info("Start of processing for PlsqlTreeParser.g");
         
         antlr = new Tool(new String[]{
-                "src/com/butterfill/opb/plsql/" + 
-                "translation/PlsqlTreeParser.g"});
+                "src/main/java/com/butterfill/opb/plsql/translation/PlsqlTreeParser.g"});
         
         antlr.process();
         
@@ -108,8 +91,8 @@ final class GeneratePlsqlParser {
                
         compilerCommand = new String[]{
                 "-d",
-                "build/classes",
-                "src/com/butterfill/opb/plsql/translation/PlsqlTreeParser.java"};
+                "target/classes",
+                "src/main/java/com/butterfill/opb/plsql/translation/PlsqlTreeParser.java"};
         
         compilerResult = com.sun.tools.javac.Main.compile(compilerCommand);
         
@@ -119,11 +102,6 @@ final class GeneratePlsqlParser {
             logger.warning("compilation of PlsqlTreeParser failed");
             logger.info("compilerResult=" + compilerResult);
         }
-        
-        // clean up
-        boolean deleted = plsqlTokensTemp.delete();
-        
-        logger.info("deleting temp Plsql.tokens. result=" + deleted);
         
     }
 
