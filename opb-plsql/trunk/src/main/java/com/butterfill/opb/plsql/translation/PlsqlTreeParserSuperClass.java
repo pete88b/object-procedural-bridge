@@ -320,8 +320,20 @@ class PlsqlTreeParserSuperClass extends TreeParser {
      */
     public void addParam(final String sqlName, final String sqlDatatypeA, 
             final String sqlDatatypeB, final Object in, final Object out) {
+        
+        /*
+         * The parameter will be an IN parameter if specified as in or it's mode has not
+         * been specified at all.
+         * 
+         * in != null || (in == null && out == null)
+         */
+        
         PlsqlCallParameter p = new PlsqlCallParameter(
-                sqlName, toSqlDatatype(sqlDatatypeA, sqlDatatypeB), in != null, out != null);
+                sqlName, 
+                toSqlDatatype(sqlDatatypeA, sqlDatatypeB), 
+                in != null || (in == null && out == null), 
+                out != null);
+        
         currentCall.addParameter(p);
         // Note: Only return can use the scalar result cache
     }

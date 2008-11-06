@@ -12,13 +12,14 @@ CREATE OR REPLACE PACKAGE arrays_in IS
     p_array IN DBMS_SQL.VARCHAR2_TABLE
   );
   
+  -- Note: missing IN is intentional.
   /*opb
     param
       name=p_array
       datatype=NUMBER[];
   */
   PROCEDURE test_two(
-    p_array IN DBMS_SQL.NUMBER_TABLE
+    p_array DBMS_SQL.NUMBER_TABLE
   );
   
   
@@ -45,7 +46,7 @@ CREATE OR REPLACE PACKAGE BODY arrays_in IS
   END;
   
   PROCEDURE test_two(
-    p_array IN DBMS_SQL.NUMBER_TABLE
+    p_array DBMS_SQL.NUMBER_TABLE
   )
   IS
   BEGIN
