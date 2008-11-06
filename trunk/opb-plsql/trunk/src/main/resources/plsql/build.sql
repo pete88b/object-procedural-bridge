@@ -28,6 +28,11 @@ PROMPT ___ Listing of invalid objects ___
 
 COLUMN object_name FORMAT A40
 
-SELECT object_type, object_name
-FROM user_objects
-WHERE status != 'VALID';
+SELECT 
+  object_type, object_name
+FROM 
+  user_objects
+WHERE 
+  status != 'VALID'
+AND
+  object_name NOT LIKE 'BIN$%';
