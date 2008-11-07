@@ -17,6 +17,9 @@
     <dependencies>
         <dependency>
             <location>http://plsql-core.googlecode.com/svn/trunk/plsql-core/trunk/src/main/resources/plsql/constants/</location>
+            <location>http://plsql-core.googlecode.com/svn/trunk/plsql-core/trunk/src/main/resources/plsql/logger/</location>
+            <location>http://plsql-core.googlecode.com/svn/trunk/plsql-core/trunk/src/main/resources/plsql/event_mediator/</location>
+            <location>http://plsql-core.googlecode.com/svn/trunk/plsql-core/trunk/src/main/resources/plsql/messages/</location>
         </dependency>
     </dependencies>
 </plsql-core-module>
