@@ -17,8 +17,14 @@
     <dependencies>
         <dependency>
             <location>http://plsql-core.googlecode.com/svn/trunk/plsql-core/trunk/src/main/resources/plsql/constants/</location>
+        </dependency>
+        <dependency>
             <location>http://plsql-core.googlecode.com/svn/trunk/plsql-core/trunk/src/main/resources/plsql/logger/</location>
+        </dependency>
+        <dependency>
             <location>http://plsql-core.googlecode.com/svn/trunk/plsql-core/trunk/src/main/resources/plsql/event_mediator/</location>
+        </dependency>
+        <dependency>
             <location>http://plsql-core.googlecode.com/svn/trunk/plsql-core/trunk/src/main/resources/plsql/messages/</location>
         </dependency>
     </dependencies>
