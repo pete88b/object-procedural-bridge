@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 
 /**
  * Provides access to a thread local OpbSession and shortcuts to some of the
- * most common used related tasks.
+ * most common session related tasks.
  * <br/>
  * The setSession method must be called before trying to use other methods of
  * this class.
@@ -139,6 +139,10 @@ public class OpbSessionHelper {
      */
     public static void putAttribute(final Object key, final Object value) 
             throws NullPointerException {
+        final String methodName = "putAttribute(Object, Object)";
+
+        logger.entering(CLASS_NAME, methodName);
+
         getSession().getAttributes().put(key, value);
     }
 
