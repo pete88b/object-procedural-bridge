@@ -10,4 +10,11 @@
             <goal>install</goal>
         </goals>
     </action>
+    <action>
+            <actionName>CUSTOM-site:site</actionName>
+            <displayName>site:site</displayName>
+            <goals>
+                <goal>site:site</goal>
+            </goals>
+        </action>
 </actions>
