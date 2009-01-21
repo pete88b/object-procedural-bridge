@@ -249,7 +249,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
                         .getConnectionCacheManagerInstance();
 
                 connectionCacheManager.refreshCache(
-                        contextName,
+                        dataSource.getConnectionCacheName(),
                         OracleConnectionCacheManager.REFRESH_ALL_CONNECTIONS);
 
             }
@@ -353,7 +353,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
         } catch (Exception recoverableException) {
             logger.logp(
                     Level.WARNING, CLASS_NAME, methodName, 
-                    "failed to create. Checking datasource before re-try", 
+                    "failed to create session. Checking datasource before re-try",
                     recoverableException);
             
             checkDataSource();
