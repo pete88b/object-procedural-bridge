@@ -24,7 +24,12 @@ package com.butterfill.opb.data;
 public interface OpbDataObjectCreatedListener {
 
     /**
-     * Called when a data object has been created and is ready for use.
+     * Called when a data object has been created to give listeners a chance to
+     * complete the data object configuration.
+     * opbLoad(ResultSet) will have been called on the data object if it was
+     * created as part of a "get result" operation.
+     *
+     * @see OpbEntity#opbLoad(java.sql.ResultSet) 
      *
      * @param requestedType
      *   The type of data object requested.

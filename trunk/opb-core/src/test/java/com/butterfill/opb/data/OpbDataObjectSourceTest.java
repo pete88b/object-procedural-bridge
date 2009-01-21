@@ -758,7 +758,13 @@ public class OpbDataObjectSourceTest extends TestCase {
         } catch (OpbException ex) {
             //ok
         }
-        
+
+        // make sure config complete listeners get notified without having to register
+        ConfigCompleteListener configCompleteListener =
+                instance.newInstance(ConfigCompleteListener.class);
+
+        assertTrue(configCompleteListener.getDataObjectConfigCompleteWasCalled());
+
     }
 
     /**
@@ -971,5 +977,24 @@ public class OpbDataObjectSourceTest extends TestCase {
             return "test string value";
         }
     }
-    
+
+    public static interface ConfigCompleteListener extends OpbDataObjectConfigCompleteListener {
+        public boolean getDataObjectConfigCompleteWasCalled();
+    }
+
+    public static class ConfigCompleteListenerImpl implements ConfigCompleteListener {
+
+        private boolean dataObjectConfigCompleteWasCalled;
+
+        public boolean getDataObjectConfigCompleteWasCalled() {
+            return dataObjectConfigCompleteWasCalled;
+        }
+
+        public void dataObjectConfigComplete(Class requestedType, Object dataObject, boolean cached) {
+            assertSame(this, dataObject);
+            dataObjectConfigCompleteWasCalled = true;
+        }
+
+    }
+
 }

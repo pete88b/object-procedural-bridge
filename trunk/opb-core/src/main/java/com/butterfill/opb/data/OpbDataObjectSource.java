@@ -296,7 +296,8 @@ public class OpbDataObjectSource {
     }
 
     /**
-     * Notifies all listeners that an object has been created.
+     * Notifies all listeners that an object has been created and lets data objects that are
+     * config complete listeners know when their configuration is complete.
      * 
      * @param requestedType
      *   The type of data object that has just been created.
@@ -314,6 +315,13 @@ public class OpbDataObjectSource {
 
         for (OpbDataObjectCreatedListener lsnr : dataObjectCreatedListeners) {
             lsnr.dataObjectCreated(requestedType, dataObject, cached);
+        }
+
+        // let config complete listeners know when their configuration is complete
+        if (dataObject instanceof OpbDataObjectConfigCompleteListener) {
+            ((OpbDataObjectConfigCompleteListener) dataObject).dataObjectConfigComplete(
+                    requestedType, dataObject, cached);
+
         }
 
     }
