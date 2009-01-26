@@ -29,6 +29,7 @@ import com.butterfill.opb.util.OpbExceptionHelper;
 import com.butterfill.opb.util.OpbToStringHelper;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -499,6 +500,23 @@ public class OpbPlsqlCallHelper {
                             parameterIndex, 
                             OpbBooleanHelper.toString((Boolean) value));
                     
+                } else if (sqlType == OracleTypes.TIMESTAMP) {
+                    lggr.logp(Level.FINEST, sourceClass, sourceMethod,
+                            "found TIMESTAMP");
+
+                    if (value instanceof Timestamp) {
+                        lggr.logp(Level.FINEST, sourceClass, sourceMethod,
+                                "found java.sql.Timestamp");
+                        statement.setTimestamp(parameterIndex, (Timestamp) value);
+
+                    } else if (value instanceof java.util.Date) {
+                        lggr.logp(Level.FINEST, sourceClass, sourceMethod,
+                                "found java.util.Date. converting to java.sql.Timestamp");
+                        statement.setTimestamp(
+                                parameterIndex,
+                                new Timestamp(((java.util.Date) value).getTime()));
+                    }
+
                 } else if (sqlType == OracleTypes.BINARY_DOUBLE) {
                     lggr.logp(Level.FINEST, sourceClass, sourceMethod,
                             "found BINARY_DOUBLE");

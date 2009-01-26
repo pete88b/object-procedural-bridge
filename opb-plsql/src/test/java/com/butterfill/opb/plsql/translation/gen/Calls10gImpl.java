@@ -369,9 +369,9 @@ public class Calls10gImpl implements Calls10g {
      *   If we fail to make the database call.
      */
     public String 
-            fDate(final java.sql.Timestamp pData) 
+            fDate(final java.util.Date pData) 
             throws OpbDataAccessException {
-        final String methodName = "fDate(java.sql.Timestamp)";
+        final String methodName = "fDate(java.util.Date)";
     
         logger.entering(CLASS_NAME, methodName);
         
@@ -410,9 +410,9 @@ public class Calls10gImpl implements Calls10g {
      *   If we fail to make the database call.
      */
     public String 
-            fTimestamp(final java.sql.Timestamp pData) 
+            fTimestamp(final java.util.Date pData) 
             throws OpbDataAccessException {
-        final String methodName = "fTimestamp(java.sql.Timestamp)";
+        final String methodName = "fTimestamp(java.util.Date)";
     
         logger.entering(CLASS_NAME, methodName);
         
@@ -1662,14 +1662,14 @@ public class Calls10gImpl implements Calls10g {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public java.sql.Timestamp 
+    public java.util.Date 
             getDate() 
             throws OpbDataAccessException {
         final String methodName = "getDate()";
     
         logger.entering(CLASS_NAME, methodName);
         
-        java.sql.Timestamp result = null;
+        java.util.Date result = null;
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
@@ -1683,7 +1683,7 @@ public class Calls10gImpl implements Calls10g {
     
         opbCallHelper.execute();
     
-        result = opbCallHelper.get(java.sql.Timestamp.class, 1);
+        result = opbCallHelper.get(java.util.Date.class, 1);
     
         opbCallHelper.callComplete();
     
@@ -1699,14 +1699,14 @@ public class Calls10gImpl implements Calls10g {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public java.sql.Timestamp 
+    public java.util.Date 
             getTimestamp() 
             throws OpbDataAccessException {
         final String methodName = "getTimestamp()";
     
         logger.entering(CLASS_NAME, methodName);
         
-        java.sql.Timestamp result = null;
+        java.util.Date result = null;
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
@@ -1720,7 +1720,7 @@ public class Calls10gImpl implements Calls10g {
     
         opbCallHelper.execute();
     
-        result = opbCallHelper.get(java.sql.Timestamp.class, 1);
+        result = opbCallHelper.get(java.util.Date.class, 1);
     
         opbCallHelper.callComplete();
     
@@ -2519,15 +2519,15 @@ public class Calls10gImpl implements Calls10g {
             final java.math.BigDecimal pNumber,
             final Long pInteger,
             final byte[] pRaw,
-            final java.sql.Timestamp pDate,
-            final java.sql.Timestamp pTimestamp,
+            final java.util.Date pDate,
+            final java.util.Date pTimestamp,
             final java.sql.Blob pBlob,
             final java.sql.Clob pClob,
             final Boolean pBoolean,
             final String[] pVarchar2Array,
             final java.math.BigDecimal[] pNumberArray) 
             throws OpbDataAccessException {
-        final String methodName = "dataTypes(String, String, java.math.BigDecimal, Long, byte[], java.sql.Timestamp, java.sql.Timestamp, java.sql.Blob, java.sql.Clob, Boolean, String[], java.math.BigDecimal[])";
+        final String methodName = "dataTypes(String, String, java.math.BigDecimal, Long, byte[], java.util.Date, java.util.Date, java.sql.Blob, java.sql.Clob, Boolean, String[], java.math.BigDecimal[])";
     
         logger.entering(CLASS_NAME, methodName);
         

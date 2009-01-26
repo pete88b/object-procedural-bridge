@@ -423,13 +423,13 @@ public class FieldsImpl implements Fields {
     /**
      * Derived from an opb-package field.
      */
-    private java.sql.Timestamp aDate = null;
+    private java.util.Date aDate = null;
     
     /**
      * Returns the value of aDate.
      * @return The value of aDate.
      */
-    public java.sql.Timestamp getADate() {
+    public java.util.Date getADate() {
         return aDate;
     }
     
@@ -437,21 +437,21 @@ public class FieldsImpl implements Fields {
      * Sets the value of aDate.
      * @param a The new value for aDate.
      */
-    public void setADate(final java.sql.Timestamp a) {
+    public void setADate(final java.util.Date a) {
         this.aDate = a;
     }
     
     /**
      * Derived from a read-write opb-package field.
      */
-    private java.sql.Timestamp aDateDataSourceValue = null;
+    private java.util.Date aDateDataSourceValue = null;
     
     /**
      * Returns the value of aDateDataSourceValue.
      * This is the last value returned by the data source for aDate.
      * @return The value of aDateDataSourceValue.
      */
-    public java.sql.Timestamp getADateDataSourceValue() {
+    public java.util.Date getADateDataSourceValue() {
         return aDateDataSourceValue;
     }
     

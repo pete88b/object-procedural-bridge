@@ -4,8 +4,8 @@ VARCHAR2       java.sql.Types.VARCHAR                 String
 NUMBER         java.sql.Types.DECIMAL                 java.math.BigDecimal
 INTEGER        java.sql.Types.BIGINT                  Long
 RAW            java.sql.Types.BINARY                  byte[]
-DATE           java.sql.Types.TIMESTAMP               java.sql.Timestamp
-TIMESTAMP      java.sql.Types.TIMESTAMP               java.sql.Timestamp
+DATE           java.sql.Types.TIMESTAMP               java.util.Date
+TIMESTAMP      java.sql.Types.TIMESTAMP               java.util.Date
 BLOB           java.sql.Types.BLOB                    java.sql.Blob
 CLOB           java.sql.Types.CLOB                    java.sql.Clob
 CURSOR         oracle.jdbc.OracleTypes.CURSOR         java.util.List
@@ -53,10 +53,10 @@ TYPES.NUMBER_TABLE        NUMBER[]
 TYPES.INTEGER_TABLE       INTEGER[]
 
 comments;
-The SQL types LONG and LONG RAW are supported by Oracle for backward 
-compatibility only. 
+The SQL types LONG and LONG RAW are supported by Oracle for backward
+compatibility only.
 Use CLOB or NCLOB in place of LONG.
-Use BLOB or BFILE in place of LONG RAW. 
+Use BLOB or BFILE in place of LONG RAW.
 
 Boolean data is passed between Java and PL/SQL as text data.
 Conversions are handled by com.butterfill.opb.util.OpbBooleanHelper.

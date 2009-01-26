@@ -274,13 +274,13 @@ public class CatImpl implements Cat {
     /**
      * Derived from an opb-package field.
      */
-    private java.sql.Timestamp lastChanged = null;
+    private java.util.Date lastChanged = null;
     
     /**
      * Returns the value of lastChanged.
      * @return The value of lastChanged.
      */
-    public java.sql.Timestamp getLastChanged() {
+    public java.util.Date getLastChanged() {
         return lastChanged;
     }
     
@@ -288,7 +288,7 @@ public class CatImpl implements Cat {
      * Sets the value of lastChanged.
      * @param a The new value for lastChanged.
      */
-    private void setLastChanged(final java.sql.Timestamp a) {
+    private void setLastChanged(final java.util.Date a) {
         this.lastChanged = a;
     }
     
