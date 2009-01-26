@@ -164,20 +164,20 @@ public interface OneOfEachSqlType
      * Returns the value of aDate.
      * @return The value of aDate.
      */
-    java.sql.Timestamp getADate();
+    java.util.Date getADate();
     
     /**
      * Sets the value of aDate.
      * @param a The new value for aDate.
      */
-    void setADate(java.sql.Timestamp a);
+    void setADate(java.util.Date a);
     
     /**
      * Returns the value of aDateDataSourceValue.
      * This is the last value returned by the data source for aDate.
      * @return The value of aDateDataSourceValue.
      */
-    java.sql.Timestamp getADateDataSourceValue();
+    java.util.Date getADateDataSourceValue();
     
     /**
      * Returns true if the value of aDate 
@@ -299,20 +299,20 @@ public interface OneOfEachSqlType
      * Returns the value of aTimestamp.
      * @return The value of aTimestamp.
      */
-    java.sql.Timestamp getATimestamp();
+    java.util.Date getATimestamp();
     
     /**
      * Sets the value of aTimestamp.
      * @param a The new value for aTimestamp.
      */
-    void setATimestamp(java.sql.Timestamp a);
+    void setATimestamp(java.util.Date a);
     
     /**
      * Returns the value of aTimestampDataSourceValue.
      * This is the last value returned by the data source for aTimestamp.
      * @return The value of aTimestampDataSourceValue.
      */
-    java.sql.Timestamp getATimestampDataSourceValue();
+    java.util.Date getATimestampDataSourceValue();
     
     /**
      * Returns true if the value of aTimestamp 

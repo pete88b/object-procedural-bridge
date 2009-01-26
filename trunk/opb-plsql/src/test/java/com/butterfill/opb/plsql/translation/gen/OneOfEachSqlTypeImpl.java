@@ -531,13 +531,13 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     /**
      * Derived from an opb-package field.
      */
-    private java.sql.Timestamp aDate = null;
+    private java.util.Date aDate = null;
     
     /**
      * Returns the value of aDate.
      * @return The value of aDate.
      */
-    public java.sql.Timestamp getADate() {
+    public java.util.Date getADate() {
         return aDate;
     }
     
@@ -545,21 +545,21 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
      * Sets the value of aDate.
      * @param a The new value for aDate.
      */
-    public void setADate(final java.sql.Timestamp a) {
+    public void setADate(final java.util.Date a) {
         this.aDate = a;
     }
     
     /**
      * Derived from a read-write opb-package field.
      */
-    private java.sql.Timestamp aDateDataSourceValue = null;
+    private java.util.Date aDateDataSourceValue = null;
     
     /**
      * Returns the value of aDateDataSourceValue.
      * This is the last value returned by the data source for aDate.
      * @return The value of aDateDataSourceValue.
      */
-    public java.sql.Timestamp getADateDataSourceValue() {
+    public java.util.Date getADateDataSourceValue() {
         return aDateDataSourceValue;
     }
     
@@ -761,13 +761,13 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     /**
      * Derived from an opb-package field.
      */
-    private java.sql.Timestamp aTimestamp = null;
+    private java.util.Date aTimestamp = null;
     
     /**
      * Returns the value of aTimestamp.
      * @return The value of aTimestamp.
      */
-    public java.sql.Timestamp getATimestamp() {
+    public java.util.Date getATimestamp() {
         return aTimestamp;
     }
     
@@ -775,21 +775,21 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
      * Sets the value of aTimestamp.
      * @param a The new value for aTimestamp.
      */
-    public void setATimestamp(final java.sql.Timestamp a) {
+    public void setATimestamp(final java.util.Date a) {
         this.aTimestamp = a;
     }
     
     /**
      * Derived from a read-write opb-package field.
      */
-    private java.sql.Timestamp aTimestampDataSourceValue = null;
+    private java.util.Date aTimestampDataSourceValue = null;
     
     /**
      * Returns the value of aTimestampDataSourceValue.
      * This is the last value returned by the data source for aTimestamp.
      * @return The value of aTimestampDataSourceValue.
      */
-    public java.sql.Timestamp getATimestampDataSourceValue() {
+    public java.util.Date getATimestampDataSourceValue() {
         return aTimestampDataSourceValue;
     }
     

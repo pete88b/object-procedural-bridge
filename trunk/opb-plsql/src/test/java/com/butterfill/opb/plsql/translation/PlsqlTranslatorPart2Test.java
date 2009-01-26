@@ -35,6 +35,7 @@ import com.butterfill.opb.plsql.translation.gen.CatImpl;
 import com.butterfill.opb.plsql.translation.gen.Cats;
 import com.butterfill.opb.plsql.translation.gen.CatsImpl;
 import com.butterfill.opb.plsql.translation.gen.Constants;
+import com.butterfill.opb.plsql.translation.gen.Dates;
 import com.butterfill.opb.plsql.translation.gen.EmbeddedComments;
 import com.butterfill.opb.plsql.translation.gen.EmbeddedCommentsImpl;
 import com.butterfill.opb.plsql.translation.gen.Fields;
@@ -74,6 +75,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.GregorianCalendar;
 import java.util.List;
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -117,7 +119,59 @@ public class PlsqlTranslatorPart2Test extends TestCase {
     protected void tearDown() throws Exception {
         super.tearDown();
     }
-    
+
+    public void testDates() {
+        Dates instance = TestHelper.getSharedOpbSession().
+                getDataObjectSource().
+                newInstance(Dates.class);
+
+        // allow up to 1 second inaccuracy
+        long before = System.currentTimeMillis() - 999;
+
+        java.util.Date result = instance.today();
+
+        long after = System.currentTimeMillis() + 999;
+
+        // if result is between before and after (within 1 second) we got a date with a time component
+        if (result.getTime() < before) {
+            fail("expected " + result + " (" + result.getTime() + ") to be after " + before);
+        }
+
+        if (result.getTime() > after) {
+            fail("expected " + result + " (" + result.getTime() + ") to be before " + after);
+        }
+
+        // the addOneDay method makes sure we can pass dates in
+        Calendar calendar = new GregorianCalendar(2000, 1, 15);
+
+        java.util.Date pDate = calendar.getTime();
+
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+        java.util.Date expResult = calendar.getTime();
+
+        assertEquals(expResult, instance.addOneDay(pDate));
+
+        // null plus one day is still null
+        assertNull(instance.addOneDay());
+
+        instance.setBDate(pDate);
+        assertEquals(expResult, instance.addOneDay());
+
+        assertNull(instance.getADate());
+        instance.dateInOut();
+        assertNull(instance.getADate());
+
+        OpbValueWrapper<java.util.Date> wrapper =
+                new OpbValueWrapperImpl<java.util.Date>(pDate);
+        instance.dateInOut(wrapper);
+        assertEquals(expResult, wrapper.getValue());
+
+        instance.setADate(pDate);
+        instance.dateInOut();
+        assertEquals(expResult, instance.getADate());
+
+    }
+
     public void testBigDecimals() {
         BigDecimalsImpl instance = new BigDecimalsImpl();
         assertNull(instance.getANumberNoInitial());
@@ -1347,7 +1401,7 @@ public class PlsqlTranslatorPart2Test extends TestCase {
             _methodExists(cs[i], "getAIntegerChanged");
 
             _methodExists(cs[i], "getADate");
-            _methodExists(cs[i], "setADate", Timestamp.class);
+            _methodExists(cs[i], "setADate", java.util.Date.class);
             _methodExists(cs[i], "getADateDataSourceValue");
             _methodExists(cs[i], "getADateChanged");
             
@@ -1784,9 +1838,9 @@ public class PlsqlTranslatorPart2Test extends TestCase {
         assertSame(result.get(3), result.get(4));
         
         Cat cat1 = result.get(0);
-        Timestamp cat1LastChanged = cat1.getLastChanged();
+        java.util.Date cat1LastChanged = cat1.getLastChanged();
         Cat cat2 = result.get(1);
-        Timestamp cat2LastChanged = cat2.getLastChanged();
+        java.util.Date cat2LastChanged = cat2.getLastChanged();
         
         assertNotNull(dos.getCachedResult(Cat.class, keyToResult));
         cat1.updateDescription();

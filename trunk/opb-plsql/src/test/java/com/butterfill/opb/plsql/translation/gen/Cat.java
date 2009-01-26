@@ -41,7 +41,7 @@ public interface Cat
      * Returns the value of lastChanged.
      * @return The value of lastChanged.
      */
-    java.sql.Timestamp getLastChanged();
+    java.util.Date getLastChanged();
     
     /**
      * Returns the value of description.
