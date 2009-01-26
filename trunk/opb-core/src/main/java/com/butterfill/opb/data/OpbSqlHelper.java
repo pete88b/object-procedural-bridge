@@ -608,7 +608,7 @@ public final class OpbSqlHelper {
      * @exception OpbDataAccessException
      *   If failOnInvalidColumnName is true and columnName cannot be found in
      *   resultSet, or if we fail to get columnName from resultSet,
-     *   or the value of columnName cannot be cast to java.sql.Timestamp.
+     *   or the value of columnName cannot be retrieved as a java.sql.Timestamp.
      */
     public static java.sql.Timestamp getValue(
             final java.sql.Timestamp dflt, final ResultSet resultSet, 
@@ -641,6 +641,61 @@ public final class OpbSqlHelper {
 
     } // End of getValue(java.sql.Timestamp ...
 
+    /**
+     * Returns the value of columnName in the current row of resultSet
+     * as a java.util.Date.
+     * Returns dflt if failOnInvalidColumnName is false and columnName can
+     * not be found in resultSet.
+     * <br/>
+     * The method will preserve the time component of the result.
+     * <br/>
+     * This impementation retrieves the value of columnName as a java.sql.Timestamp.
+     *
+     * @param dflt
+     *   Default return value. Also used for method overloading.
+     * @param resultSet
+     *   The result set from which to retrieve the value of a column.
+     * @param columnName
+     *   The name of the column who's value will be returned.
+     * @param failOnInvalidColumnName
+     *   Controls behaviour when columnName cannot be found in resultSet.
+     * @return 
+     *   The value of columnName.
+     * @exception OpbDataAccessException
+     *   If failOnInvalidColumnName is true and columnName cannot be found in
+     *   resultSet, or if we fail to get columnName from resultSet,
+     *   or the value of columnName cannot be retrieved as a java.sql.Timestamp.
+     */
+    public static java.util.Date getValue(
+            final java.util.Date dflt, final ResultSet resultSet, 
+            final String columnName, final boolean failOnInvalidColumnName)
+            throws OpbDataAccessException {
+        
+        final String methodName = "getValue(java.util.Date ...";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        OpbAssert.notNull(
+                logger, CLASS_NAME, methodName,
+                "resultSet", resultSet);
+
+        try {
+            return resultSet.getTimestamp(columnName);
+
+        } catch (SQLException ex) {
+            if (!failOnInvalidColumnName &&
+                    ex.getErrorCode() == INVALID_COLUMN_NAME_ERROR_CODE) {
+                return dflt;
+
+            }
+
+            throw new OpbDataAccessException(
+                    "Failed to get '" + columnName +
+                    "' from result set as java.util.Date", ex);
+
+        }
+
+    } // End of getValue(java.util.Date ...
 
     // <editor-fold defaultstate="collapsed" desc="generated section">
     
