@@ -30,7 +30,7 @@
                     <target>1.5</target>
                 </configuration>
             </plugin>
-            <plugin>
+            <!--plugin>
                 <groupId>com.butterfill.plsqlcore</groupId>
                 <artifactId>plsql-core-maven-tools</artifactId>
                 <version>1.0.0</version>
@@ -65,7 +65,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin-->
         </plugins>
     </build>
     
