@@ -31,6 +31,8 @@ import com.butterfill.opb.util.OpbBooleanHelper;
 import helpers.TestHelper;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -409,7 +411,8 @@ public class OpbSqlHelperTest extends TestCase {
                 "       '" + Integer.MIN_VALUE + "' AS i_min," +
                 "       '" + Integer.MAX_VALUE + "' AS i_max," +
                 "       '" + Long.MIN_VALUE + "' AS l_min," +
-                "       '" + Long.MAX_VALUE + "' AS l_max" +
+                "       '" + Long.MAX_VALUE + "' AS l_max," +
+                "       TO_DATE('15-feb-2001 23:55:22', 'dd-mon-yyyy hh24:mi:ss') AS dt" +
                 "  FROM dual";
         
         Connection con = TestHelper.getOracleDataSource().getConnection();
@@ -559,8 +562,54 @@ public class OpbSqlHelperTest extends TestCase {
         assertEquals(s, OpbSqlHelper.getValue(s, resultSet, "x", false));
         
         // </editor-fold> End of String Section
-        
-        
+
+
+        // <editor-fold defaultstate="collapsed" desc="Date section">
+
+        java.util.Date javaUtilDate = null;
+        java.sql.Date javaSqlDate = null;
+        java.sql.Timestamp javaSqlTimestamp = null;
+
+        assertNull(OpbSqlHelper.getValue(javaUtilDate, resultSet, "unk", false));
+        assertNull(OpbSqlHelper.getValue(javaSqlDate, resultSet, "unk", false));
+        assertNull(OpbSqlHelper.getValue(javaSqlTimestamp, resultSet, "unk", false));
+
+        Calendar calendar = new GregorianCalendar();
+
+        java.util.Date result = OpbSqlHelper.getValue(javaUtilDate, resultSet, "dt", true);
+
+        calendar.setTime(result);
+        assertEquals(15, calendar.get(Calendar.DAY_OF_MONTH));
+        assertEquals(1, calendar.get(Calendar.MONTH));
+        assertEquals(2001, calendar.get(Calendar.YEAR));
+        assertEquals(11, calendar.get(Calendar.HOUR));
+        assertEquals(55, calendar.get(Calendar.MINUTE));
+        assertEquals(22, calendar.get(Calendar.SECOND));
+
+        result = OpbSqlHelper.getValue(javaSqlDate, resultSet, "dt", true);
+
+        calendar.setTime(result);
+        assertEquals(15, calendar.get(Calendar.DAY_OF_MONTH));
+        assertEquals(1, calendar.get(Calendar.MONTH));
+        assertEquals(2001, calendar.get(Calendar.YEAR));
+        // no time component with sql.Date
+        assertEquals(0, calendar.get(Calendar.HOUR));
+        assertEquals(0, calendar.get(Calendar.MINUTE));
+        assertEquals(0, calendar.get(Calendar.SECOND)); 
+
+        result = OpbSqlHelper.getValue(javaSqlTimestamp, resultSet, "dt", true);
+
+        calendar.setTime(result);
+        assertEquals(15, calendar.get(Calendar.DAY_OF_MONTH));
+        assertEquals(1, calendar.get(Calendar.MONTH));
+        assertEquals(2001, calendar.get(Calendar.YEAR));
+        assertEquals(11, calendar.get(Calendar.HOUR));
+        assertEquals(55, calendar.get(Calendar.MINUTE));
+        assertEquals(22, calendar.get(Calendar.SECOND));
+
+        // </editor-fold> End of Date Section
+
+
         con.close();
         
     }
