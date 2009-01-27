@@ -299,20 +299,20 @@ public interface OneOfEachSqlType
      * Returns the value of aTimestamp.
      * @return The value of aTimestamp.
      */
-    java.util.Date getATimestamp();
+    java.sql.Timestamp getATimestamp();
     
     /**
      * Sets the value of aTimestamp.
      * @param a The new value for aTimestamp.
      */
-    void setATimestamp(java.util.Date a);
+    void setATimestamp(java.sql.Timestamp a);
     
     /**
      * Returns the value of aTimestampDataSourceValue.
      * This is the last value returned by the data source for aTimestamp.
      * @return The value of aTimestampDataSourceValue.
      */
-    java.util.Date getATimestampDataSourceValue();
+    java.sql.Timestamp getATimestampDataSourceValue();
     
     /**
      * Returns true if the value of aTimestamp 

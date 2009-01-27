@@ -5,7 +5,7 @@ NUMBER         java.sql.Types.DECIMAL                 java.math.BigDecimal
 INTEGER        java.sql.Types.BIGINT                  Long
 RAW            java.sql.Types.BINARY                  byte[]
 DATE           java.sql.Types.TIMESTAMP               java.util.Date
-TIMESTAMP      java.sql.Types.TIMESTAMP               java.util.Date
+TIMESTAMP      java.sql.Types.TIMESTAMP               java.sql.Timestamp
 BLOB           java.sql.Types.BLOB                    java.sql.Blob
 CLOB           java.sql.Types.CLOB                    java.sql.Clob
 CURSOR         oracle.jdbc.OracleTypes.CURSOR         java.util.List

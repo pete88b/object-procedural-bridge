@@ -92,7 +92,7 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fTimestamp(java.util.Date pData) 
+    String fTimestamp(java.sql.Timestamp pData) 
             throws OpbDataAccessException; 
     
     /**
@@ -380,7 +380,7 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.util.Date getTimestamp() 
+    java.sql.Timestamp getTimestamp() 
             throws OpbDataAccessException; 
     
     /**
@@ -584,7 +584,7 @@ public interface Calls10g
             Long pInteger,
             byte[] pRaw,
             java.util.Date pDate,
-            java.util.Date pTimestamp,
+            java.sql.Timestamp pTimestamp,
             java.sql.Blob pBlob,
             java.sql.Clob pClob,
             Boolean pBoolean,
