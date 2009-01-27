@@ -759,8 +759,8 @@ public class PlsqlTranslatorPart2Test extends TestCase {
         Calendar calendarExpected = Calendar.getInstance();
         calendarExpected.set(0003, 01, 01, 04, 05, 06);
         calendarExpected.set(Calendar.MILLISECOND, 0);
-        Timestamp timestampExpected = 
-                new Timestamp(calendarExpected.getTimeInMillis());
+        java.util.Date dateExpected =
+                new java.util.Date(calendarExpected.getTimeInMillis());
         
         BigDecimal numberExpected = BigDecimal.valueOf(3.14159265358979);
         
@@ -770,12 +770,14 @@ public class PlsqlTranslatorPart2Test extends TestCase {
         assertNotNull(result.getAClob());
         assertNotNull(result.getANclob());
         assertEquals("Pi        ", result.getAChar());
-        assertEquals(timestampExpected, result.getADate());
+        assertEquals(dateExpected, result.getADate());
         assertEquals(numberExpected, result.getANumber());
         assertEquals("Pi", result.getANvarchar2());
         assertEquals(3, result.getARaw()[0]);
         assertEquals("Pi", result.getAVarchar2());
-        
+
+        Timestamp timestampExpected =
+                new Timestamp(calendarExpected.getTimeInMillis());
         timestampExpected.setNanos(7000);
         assertEquals(timestampExpected, result.getATimestamp());
         
@@ -1301,8 +1303,8 @@ public class PlsqlTranslatorPart2Test extends TestCase {
         Calendar calendarExpected = Calendar.getInstance();
         calendarExpected.set(0003, 01, 01, 04, 05, 06);
         calendarExpected.set(Calendar.MILLISECOND, 0);
-        Timestamp timestampExpected = 
-                new Timestamp(calendarExpected.getTimeInMillis());
+        java.util.Date dateExpected =
+                new java.util.Date(calendarExpected.getTimeInMillis());
         
         BigDecimal numberExpected = BigDecimal.valueOf(3.14159265358979);
         
@@ -1310,7 +1312,7 @@ public class PlsqlTranslatorPart2Test extends TestCase {
         assertNotNull(result.getAClob());
         assertNotNull(result.getANclob());
         assertEquals("Pi        ", result.getAChar());
-        assertEquals(timestampExpected, result.getADate());
+        assertEquals(dateExpected, result.getADate());
         assertEquals(numberExpected, result.getANumber());
         assertEquals(3, result.getARaw()[0]);
         assertEquals("Pi", result.getAVarchar2());

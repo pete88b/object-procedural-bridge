@@ -761,13 +761,13 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     /**
      * Derived from an opb-package field.
      */
-    private java.util.Date aTimestamp = null;
+    private java.sql.Timestamp aTimestamp = null;
     
     /**
      * Returns the value of aTimestamp.
      * @return The value of aTimestamp.
      */
-    public java.util.Date getATimestamp() {
+    public java.sql.Timestamp getATimestamp() {
         return aTimestamp;
     }
     
@@ -775,21 +775,21 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
      * Sets the value of aTimestamp.
      * @param a The new value for aTimestamp.
      */
-    public void setATimestamp(final java.util.Date a) {
+    public void setATimestamp(final java.sql.Timestamp a) {
         this.aTimestamp = a;
     }
     
     /**
      * Derived from a read-write opb-package field.
      */
-    private java.util.Date aTimestampDataSourceValue = null;
+    private java.sql.Timestamp aTimestampDataSourceValue = null;
     
     /**
      * Returns the value of aTimestampDataSourceValue.
      * This is the last value returned by the data source for aTimestamp.
      * @return The value of aTimestampDataSourceValue.
      */
-    public java.util.Date getATimestampDataSourceValue() {
+    public java.sql.Timestamp getATimestampDataSourceValue() {
         return aTimestampDataSourceValue;
     }
     
