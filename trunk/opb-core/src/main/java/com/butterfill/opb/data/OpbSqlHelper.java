@@ -680,7 +680,13 @@ public final class OpbSqlHelper {
                 "resultSet", resultSet);
 
         try {
-            return resultSet.getTimestamp(columnName);
+            java.sql.Timestamp timestamp = resultSet.getTimestamp(columnName);
+
+            if (timestamp == null) {
+                return null;
+            }
+
+            return new java.util.Date(timestamp.getTime());
 
         } catch (SQLException ex) {
             if (!failOnInvalidColumnName &&
