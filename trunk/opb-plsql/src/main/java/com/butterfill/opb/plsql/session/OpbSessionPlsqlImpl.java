@@ -206,7 +206,12 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
         final String methodName = "doGetConnection(String)";
         
         try {
-            return dataSource.getConnection();
+            // get a connection
+            final Connection result = dataSource.getConnection();
+            // disable auto-commit
+            result.setAutoCommit(false);
+            // return the connection
+            return result;
                 
         } catch (Exception ex) {
             String url = null;
