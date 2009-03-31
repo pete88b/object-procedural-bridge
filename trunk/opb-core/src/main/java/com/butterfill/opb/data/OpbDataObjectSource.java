@@ -25,9 +25,9 @@ import com.butterfill.opb.util.OpbToStringHelper;
 import com.butterfill.opb.util.OpbExactMatchList;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -137,7 +137,7 @@ public class OpbDataObjectSource {
      * This map contains one map of results for each type of data object
      * retreived by the getResult(Class, ResultSet, OpbId) and
      * getResult(Class, ResultSet, OpbId, boolean) methods.
-     * Results (lists of data objects) can be retreived from the result maps
+     * Results (lists of data objects) can be retrieved from the result maps
      * by the key specified in the
      * getResult(Class, ResultSet, OpbId [, boolean]) call.
      *
@@ -364,6 +364,25 @@ public class OpbDataObjectSource {
     } // End of rawInstance(Class)
 
 
+    /**
+     * Returns the types of data objects cached by previous <code>getResult</code> calls.
+     * <br/>
+     * The result of this method is not backed by this instance,
+     * so changes to the result are not reflected in this instance, and vice-versa.
+     *
+     * @return
+     *   The types of cached data objects.
+     */
+    public Collection<Class> getCachedTypes() {
+        final String method = "getCachedTypes()";
+        
+        logger.entering(CLASS_NAME, method);
+        
+        return new HashSet<Class>(mapOfResultMaps.keySet());
+        
+    }
+
+
     // <editor-fold defaultstate="collapsed" desc="invalidate cached section">
 
     /**
@@ -504,12 +523,17 @@ public class OpbDataObjectSource {
         logger.logp(Level.FINEST, CLASS_NAME, methodName,
                 "classOfObject={0}", classOfObject.getName());
 
-        mapOfDataObjectMaps.remove(classOfObject);
+        // remove the map for cached data objects of the specified class
+        final Map dataObjectMap = mapOfDataObjectMaps.remove(classOfObject);
+        // remove the map for cached results of the specified class
         mapOfResultMaps.remove(classOfObject);
 
-        for (Iterator i = listOfInvalidObjects.iterator(); i.hasNext(); ) {
-            if (i.next().getClass().equals(classOfObject)) {
-                i.remove();
+        // we kept the map for cached data objects of the specified class so we can
+        // now see if any of the objects removed from cache are in the list of invalid
+        // objects (if they are, we remove them now).
+        if (dataObjectMap != null) {
+            for (Object dataObject : dataObjectMap.values()) {
+                listOfInvalidObjects.remove(dataObject);
             }
         }
 

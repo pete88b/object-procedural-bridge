@@ -31,8 +31,11 @@ import com.butterfill.opb.plsql.messages.OpbMessage;
 import com.butterfill.opb.plsql.messages.OpbMessages;
 import helpers.TestHelper;
 import java.sql.ResultSet;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -194,6 +197,26 @@ public class OpbDataObjectSourceTest extends TestCase {
         
     }
 
+
+    public void testGetCachedTypes() {
+
+        assertTrue(instance.getCachedTypes().isEmpty());
+
+        ResultSet rs = TestHelper.getResultSet(message9Sql);
+        instance.getResult(OpbMessage.class, rs);
+        // result was not cached, cached types will still be empty
+        assertTrue(instance.getCachedTypes().isEmpty());
+
+        rs = TestHelper.getResultSet(message9Sql);
+        instance.getResult(OpbMessage.class, rs, new OpbId());
+        Collection<Class> result = instance.getCachedTypes();
+        // result was cached, cached types will contain one element
+        assertEquals(1, result.size());
+        assertEquals(OpbMessage.class, result.iterator().next());
+
+    }
+
+
     /**
      * Test of invalidateCached method, of class com.butterfill.opb.data.OpbDataObjectSource.
      */
@@ -224,7 +247,7 @@ public class OpbDataObjectSourceTest extends TestCase {
      */
     public void testClearCached() {
         System.out.println("clearCached");
-        
+        Logger.getLogger("").setLevel(Level.OFF);
         instance.clearCached();
         try {
             instance.clearCached(null);
@@ -241,7 +264,13 @@ public class OpbDataObjectSourceTest extends TestCase {
         }
         instance.clearCached(OpbMessage.class, null);
         instance.clearCached(OpbMessage.class, new OpbId());
-        
+
+        // clear cached (by class) should remove instances from the list of invalid objects
+        ResultSet rs = TestHelper.getResultSet(message9Sql);
+        instance.getResult(OpbMessage.class, rs, new OpbId(), true);
+        instance.invalidateCached();
+        instance.clearCached(OpbMessage.class);
+
     }
 
     /**
