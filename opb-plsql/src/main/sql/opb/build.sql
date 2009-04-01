@@ -14,14 +14,6 @@
  * limitations under the License.
  */
 
-/*
-  Depends on: logger.
-  Depends on: constants.
-  Depends on: event_mediator.
-  Depends on: messages.
-
-*/
-
 PROMPT ___ Start of opb build.sql ___
 
 DECLARE

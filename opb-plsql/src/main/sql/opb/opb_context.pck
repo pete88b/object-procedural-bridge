@@ -1,33 +1,74 @@
 CREATE OR REPLACE PACKAGE opb_context 
 IS
-  --xxx todo add global message support to opb_context?
-  --xxx i.e. message can be added info/warning for everyone to see. not cleared when active phase ends
-  --xxx provide effective from time / expires time
-  --xxx access through opbContext
+  
 
-  --xxx return a client ID. use this as part of the session / when creating sessions???
-  -- clients can specify context name
-  -- published an opb_context_started event to call opb_context_started(ctx name) on all listeners
+  /*
+    Starts a context.
+    
+    The context is saved as started in the table opb_context_data and
+    an opb_context_started event is published after the context has been 
+    started.
+    
+    The opb_context_started event is published via the event_mediator and
+    will call opb_context_started(p_context_name) on all listeners.
+    
+    Commits: Yes
+    
+    parameters
+      p_context_name
+        The name of the context.
+      
+      p_remote_host
+        An identifier of the remote host that is starting the context.
+        
+      p_remote_user_name
+        An identifier of the remote user that is starting the context.
+        
+      p_stop_context_first
+        Pass 'Y' (or constants.yes) to call stop context before
+        starting the context.
+  */
   PROCEDURE start_context(
     p_context_name IN VARCHAR2,
     p_remote_host IN VARCHAR2,
     p_remote_user_name IN VARCHAR2,
-    p_stop_context_first IN VARCHAR2); -- Y/N constants.yes / constants.no
+    p_stop_context_first IN VARCHAR2);
 
-  -- published an opb_context_stopping event to call opb_context_stopping(ctx name) on all listeners
+  
+  /*
+    Stops a context.
+    
+    A stop date is saved for the context in the table opb_context_data and
+    an opb_context_stopping event is published before the context is stopped.
+    
+    The opb_context_stopping event is published via the event_mediator and
+    will call opb_context_stopping(p_context_name) on all listeners.
+    
+    Commits: Yes
+    
+    parameters
+      p_context_name
+        The name of the context.
+      
+      p_remote_host
+        An identifier of the remote host that is starting the context.
+        
+      p_remote_user_name
+        An identifier of the remote user that is starting the context.
+  */
   PROCEDURE stop_context(
     p_context_name IN VARCHAR2,
     p_remote_host IN VARCHAR2,
     p_remote_user_name IN VARCHAR2);
-
-  --xxx stop_all_contexts???
-  --xxx clear all ctx data
   
 END opb_context;
 /
 CREATE OR REPLACE PACKAGE BODY opb_context 
 IS
 
+  /*
+    Starts a context.
+  */
   PROCEDURE start_context(
     p_context_name IN VARCHAR2,
     p_remote_host IN VARCHAR2,
@@ -73,6 +114,9 @@ IS
   END start_context;
 
 
+  /*
+    Stops a context.
+  */
   PROCEDURE stop_context(
     p_context_name IN VARCHAR2,
     p_remote_host IN VARCHAR2,
@@ -96,14 +140,13 @@ IS
     
     opb_session.clear_session_data(p_context_name);
     
+    -- set the stopped date for this context
     UPDATE opb_context_data
-    SET    stopped = SYSDATE
-    WHERE  stopped IS NULL
-    AND    context_name = p_context_name;
+       SET stopped = SYSDATE
+     WHERE stopped IS NULL
+       AND context_name = p_context_name;
     
     COMMIT;
-    
-    --xxx block all connections for context???
     
   EXCEPTION
     WHEN OTHERS
