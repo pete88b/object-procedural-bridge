@@ -42,7 +42,7 @@
                             <goal>Extract</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/src/main/resources/plsql/</outputDirectory>
+                            <outputDirectory>${basedir}/src/main/sql/</outputDirectory>
                             <includesFile>${basedir}/src/main/config/plsql-core-includes.xml</includesFile>
                         </configuration>
                     </execution>
@@ -60,7 +60,7 @@
                             <goal>Extract</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/src/test/resources/plsql/</outputDirectory>
+                            <outputDirectory>${basedir}/src/test/sql/</outputDirectory>
                             <includesFile>${basedir}/src/test/config/plsql-core-includes.xml</includesFile>
                         </configuration>
                     </execution>
