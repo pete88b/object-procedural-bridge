@@ -1,0 +1,62 @@
+sql-jdbc-java;
+CHAR           java.sql.Types.CHAR                    String
+VARCHAR2       java.sql.Types.VARCHAR                 String
+NUMBER         java.sql.Types.DECIMAL                 java.math.BigDecimal
+INTEGER        java.sql.Types.BIGINT                  Long
+RAW            java.sql.Types.BINARY                  byte[]
+DATE           java.sql.Types.TIMESTAMP               java.util.Date
+TIMESTAMP      java.sql.Types.TIMESTAMP               java.util.Date
+BLOB           java.sql.Types.BLOB                    java.sql.Blob
+CLOB           java.sql.Types.CLOB                    java.sql.Clob
+CURSOR         oracle.jdbc.OracleTypes.CURSOR         java.util.List
+BOOLEAN        java.sql.Types.VARCHAR                 Boolean
+VARCHAR2[]     java.sql.Types.VARCHAR                 String[]
+NUMBER[]       java.sql.Types.DECIMAL                 java.math.BigDecimal[]
+INTEGER[]      java.sql.Types.BIGINT                  Long[]
+BINARY_DOUBLE  oracle.jdbc.OracleTypes.BINARY_DOUBLE  Double
+BINARY_FLOAT   oracle.jdbc.OracleTypes.BINARY_FLOAT   Float
+VARCHAR_TABLE  java.sql.Types.ARRAY                   String[]
+NUMBER_TABLE   java.sql.Types.ARRAY                   java.math.BigDecimal[]
+
+jdbc-cursor-type;
+oracle.jdbc.OracleTypes.CURSOR
+
+plsql-index-table-types;
+VARCHAR2[]
+NUMBER[]
+INTEGER[]
+
+plsql-sql;
+BINARY_INTEGER            INTEGER
+DEC                       NUMBER
+DECIMAL                   NUMBER
+FLOAT                     NUMBER
+INT                       INTEGER
+NUMERIC                   NUMBER
+PLS_INTEGER               INTEGER
+POSITIVE                  NUMBER
+SMALLINT                  INTEGER
+CHARACTER                 CHAR
+ROWID                     VARCHAR2
+STRING                    VARCHAR2
+UROWID                    VARCHAR2
+VARCHAR                   VARCHAR2
+NCHAR                     VARCHAR2
+NVARCHAR2                 VARCHAR2
+NCLOB                     CLOB
+SYS_REFCURSOR             CURSOR
+DBMS_SQL.VARCHAR2_TABLE   VARCHAR2[]
+DBMS_SQL.NUMBER_TABLE     NUMBER[]
+VARCHAR[]                 VARCHAR2[]
+TYPES.MAX_VARCHAR2_TABLE  VARCHAR2[]
+TYPES.NUMBER_TABLE        NUMBER[]
+TYPES.INTEGER_TABLE       INTEGER[]
+
+comments;
+The SQL types LONG and LONG RAW are supported by Oracle for backward
+compatibility only.
+Use CLOB or NCLOB in place of LONG.
+Use BLOB or BFILE in place of LONG RAW.
+
+Boolean data is passed between Java and PL/SQL as text data.
+Conversions are handled by com.butterfill.opb.util.OpbBooleanHelper.
