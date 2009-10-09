@@ -4,7 +4,7 @@
     <groupId>com.butterfill.opb</groupId>
     <artifactId>opb-jse-demo</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <name>opb-jse-demo</name>
     <url>http://maven.apache.org</url>
     <build>
@@ -24,7 +24,7 @@
         <dependency>
             <groupId>com.butterfill.opb</groupId>
             <artifactId>opb-plsql</artifactId>
-            <version>1.0.0</version>
+            <version>1.1.0</version>
         </dependency>
         
         <dependency>

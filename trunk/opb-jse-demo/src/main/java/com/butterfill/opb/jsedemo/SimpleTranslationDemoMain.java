@@ -32,7 +32,8 @@ public class SimpleTranslationDemoMain {
                 new File[] { 
                 new File("src/main/resources/sql/array_demo_spc.sql"),
                 new File("src/main/resources/sql/boolean_demo.sql"),
-                new File("src/main/resources/sql/user_defined_collection_demo.sql")};
+                new File("src/main/resources/sql/user_defined_collection_demo.sql"),
+                new File("src/main/resources/sql/dbms_output.spc")};
         
         File outputDir = new File(
                 "src/main/java/com/butterfill/opb/jsedemo/data");

@@ -1,8 +1,8 @@
 /*
  * File created by opb-plsql.
  * 
- * opb-plsql version: 1.0.0
- * opb-core version: 1.0.0
+ * opb-plsql version: 1.1.0
+ * opb-core version: 1.1.0
  */
 
 package com.butterfill.opb.jsedemo.data;
