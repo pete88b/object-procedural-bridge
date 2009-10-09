@@ -216,6 +216,18 @@ public class OpbSessionPlsqlImplTest extends TestCase {
         
     }
 
+    public void testGetMemoryLimitForCachedObjects() {
+        System.out.println("getMemoryLimitForCachedObjects");
+
+        assertNull(instance.getMemoryLimitForCachedObjects());
+    }
+
+    public void testGetMemoryLimitForCachedResults() {
+        System.out.println("getMemoryLimitForCachedResults");
+
+        assertEquals((Float) 0.9F, instance.getMemoryLimitForCachedResults());
+    }
+
     /**
      * Test of checkMemoryUse method, of class com.butterfill.opb.session.OpbSessionPlsqlImpl.
      */
