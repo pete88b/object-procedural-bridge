@@ -2,7 +2,7 @@
  * File created by opb-plsql.
  * 
  *  version: 
- * opb-core version: 1.0.0
+ * opb-core version: 1.1.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;

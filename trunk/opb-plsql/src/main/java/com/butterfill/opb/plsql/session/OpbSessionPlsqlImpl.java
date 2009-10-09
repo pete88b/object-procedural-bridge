@@ -16,34 +16,26 @@
 
 package com.butterfill.opb.plsql.session;
 
-import com.butterfill.opb.data.OpbActiveDataObject;
-import com.butterfill.opb.data.OpbCacheableEntity;
 import com.butterfill.opb.data.OpbDataAccessException;
 import com.butterfill.opb.data.OpbDataObjectCreatedListener;
 import com.butterfill.opb.data.OpbDataObjectSource;
 import com.butterfill.opb.data.OpbSqlHelper;
-import com.butterfill.opb.groups.OpbGroupMemberWrapper;
 import com.butterfill.opb.plsql.util.OpbPlsqlCallHelper;
 import com.butterfill.opb.session.OpbSession;
 import com.butterfill.opb.timing.OpbEventTimer;
 import com.butterfill.opb.util.OpbAssert;
-import com.butterfill.opb.util.OpbExceptionHelper;
 import com.butterfill.opb.util.OpbScalarResultCache;
-import com.butterfill.opb.util.OpbScalarResultCacheUser;
 import com.butterfill.opb.util.OpbToStringHelper;
-import com.butterfill.opb.groups.OpbGroupable;
 import com.butterfill.opb.groups.OpbGroupManager;
-import com.butterfill.opb.timing.OpbTimingEventPublisher;
+import com.butterfill.opb.session.OpbSessionUtils;
 import com.butterfill.opb.util.OpbBooleanHelper;
 import java.lang.ref.WeakReference;
 import java.sql.Connection;
-import java.sql.Statement;
 import java.sql.Types;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import oracle.jdbc.pool.OracleConnectionCacheManager;
 import oracle.jdbc.pool.OracleDataSource;
 
 /**
@@ -81,33 +73,33 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
     private final String contextName;
     
     /**
-     * The name of the data source being used by this session.
+     * The data source being used by this session.
      */
     private final OracleDataSource dataSource;
     
     /**
-     * The name of the data object source being used by this session.
+     * The data object source being used by this session.
      */
     private final OpbDataObjectSource dataObjectSource;
     
     /**
-     * The name of the group manager being used by this session.
+     * The group manager being used by this session.
      */
     private final OpbGroupManager groupManager;
     
     /**
-     * The name of the scalar result cache being used by this session.
+     * The scalar result cache being used by this session.
      */
     private final OpbScalarResultCache scalarResultCache;
     
     /**
-     * The name of the event timer being used by this session.
+     * The event timer being used by this session.
      */
     private final OpbEventTimer eventTimer;
     
     
     /** 
-     * Creates a new instance of OpbSession to use the specified context.
+     * Creates a new instance of OpbSessionPlsqlImpl to use the specified context.
      * 
      * @param contextName
      *   The name of the context that this session should use.
@@ -187,115 +179,9 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
     public String getId() {
         return id;
     }
-    
-    /**
-     * Returns a connection from the datasource, wrapping any exceptions
-     * thrown in an OpbDataAccessException.
-     * 
-     * @param sourceMethod
-     *   The name of the method calling this method.
-     *   This is used when logging exceptions.
-     * @throws com.butterfill.opb.data.OpbDataAccessException
-     *   If we can't get a connection.
-     * @return
-     *   A SQL connection.
-     */
-    private Connection doGetConnection(final String sourceMethod) 
-            throws OpbDataAccessException {
-        
-        final String methodName = "doGetConnection(String)";
-        
-        try {
-            // get a connection
-            final Connection result = dataSource.getConnection();
-            // disable auto-commit
-            result.setAutoCommit(false);
-            // return the connection
-            return result;
-                
-        } catch (Exception ex) {
-            String url = null;
-            
-            try {
-                url = dataSource.getURL();
-                
-            } catch (Exception nonCriticalException) {
-                logger.logp(Level.FINEST, CLASS_NAME, methodName, 
-                        "Failed to get data source URL", nonCriticalException);
-                
-            }
-            
-            throw OpbExceptionHelper.throwException(
-                    new OpbDataAccessException(
-                    "Failed to get connection from datasource. url=" + url, ex),
-                    logger, CLASS_NAME, sourceMethod);
 
-        }
-        
-    }
-    
+
     // <editor-fold defaultstate="collapsed" desc="create/end session section">
-    
-    /**
-     * Tries to fix the data source.
-     */
-    private void checkDataSource() {
-        final String methodName = "checkDataSource()";
-        
-        logger.entering(CLASS_NAME, methodName);
-        
-        try {
-            if (dataSource.getConnectionCachingEnabled()) {
-                logger.logp(Level.FINER, CLASS_NAME, methodName, 
-                        "connection caching is enabled. refreshing cache");
-
-                OracleConnectionCacheManager connectionCacheManager =
-                        OracleConnectionCacheManager
-                        .getConnectionCacheManagerInstance();
-
-                connectionCacheManager.refreshCache(
-                        dataSource.getConnectionCacheName(),
-                        OracleConnectionCacheManager.REFRESH_ALL_CONNECTIONS);
-
-            }
-
-        } catch (Exception ex) {
-            logger.logp(Level.WARNING, CLASS_NAME, methodName, 
-                    "Failed to refresh cache", ex);
-
-        }
-
-        Connection connection = null;
-        Statement statement = null;
-
-        try {
-            connection = dataSource.getConnection();
-
-            statement = connection.createStatement();
-
-            logger.logp(Level.FINER, CLASS_NAME, methodName, 
-                    "trying SELECT 1 FROM DUAL");
-
-            statement.executeQuery(
-                    "SELECT 1 FROM DUAL");
-
-            logger.logp(Level.FINER, CLASS_NAME, methodName, 
-                    "data source is ok. SELECT 1 FROM DUAL ran without error");
-
-        } catch (Exception ex) {
-            OpbExceptionHelper.throwException(
-                    new OpbDataAccessException(
-                    "Data source check failed. " +
-                    "Failed to execute test query (SELECT 1 FROM DUAL)", ex),
-                    logger, CLASS_NAME, methodName);
-
-        } finally {
-            OpbSqlHelper.close(logger, CLASS_NAME, methodName, statement);
-            OpbSqlHelper.close(logger, CLASS_NAME, methodName, connection);
-
-        }
-        
-    } // End of checkDataSource()
     
     /**
      * Tries to make the opb_session.create_session call.
@@ -305,7 +191,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
         
         logger.entering(CLASS_NAME, methodName);
         
-        Connection connection = doGetConnection(methodName);
+        Connection connection = OpbSessionPlsqlUtils.getConnection(dataSource, methodName);
         
         try {
             OpbPlsqlCallHelper callHelper = new OpbPlsqlCallHelper(
@@ -360,9 +246,14 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
                     Level.WARNING, CLASS_NAME, methodName, 
                     "failed to create session. Checking datasource before re-try",
                     recoverableException);
-            
-            checkDataSource();
-            
+
+            // refresh the connection cache
+            OpbSessionPlsqlUtils.refreshConnectionCache(dataSource);
+
+            // run the test query
+            OpbSessionPlsqlUtils.runTestQuery(dataSource);
+
+            // try to create the session again
             doCreateSession();
             
         }
@@ -392,7 +283,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
                 logger, CLASS_NAME, methodName, "this.id", id, 
                 "you can't end a session when the session has no ID");
         
-        Connection connection = doGetConnection(methodName);
+        Connection connection = OpbSessionPlsqlUtils.getConnection(dataSource, methodName);
         
         try {
             OpbPlsqlCallHelper callHelper = new OpbPlsqlCallHelper(
@@ -501,55 +392,14 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
      * @see OpbDataObjectSource#clearCachedResults()
      */
     public void checkMemoryUse() {
-        final String methodName = "checkMemoryLimits()";
+        final String methodName = "checkMemoryUse()";
         
         logger.entering(CLASS_NAME, methodName);
         
-        if (memoryLimitForCachedObjects == null &&
-                memoryLimitForCachedResults == null) {
-            logger.logp(Level.FINE, CLASS_NAME, methodName, 
-                    "both memory limit properties are null. returning");
-            return;
-        }
-        
-        Runtime runtime = Runtime.getRuntime();
-        // Note: We need to put these values into floats so that the 
-        // division will return a float. totalMemory(), freeMemory() and
-        // maxMemory() all return longs
-        
-        // how much memory is being used now
-        float usedMemory = runtime.totalMemory() - runtime.freeMemory();
-        // what JVM limit has been set for memory use
-        float maxMemory = runtime.maxMemory();
-        // calculate the used memory as a fraction of the max memory
-        float usedMemoryAsFraction = usedMemory / maxMemory;
-        
-        logger.logp(Level.FINEST, CLASS_NAME, methodName, 
-                "usedMemory={0}", usedMemory);
-        logger.logp(Level.FINEST, CLASS_NAME, methodName, 
-                "maxMemory={0}", maxMemory);
-        logger.logp(Level.FINEST, CLASS_NAME, methodName,
-                "usedMemoryAsFraction={0}", usedMemoryAsFraction);
-        logger.logp(Level.FINEST, CLASS_NAME, methodName,
-                "LimitForCachedObjects={0}", memoryLimitForCachedObjects);
-        logger.logp(Level.FINEST, CLASS_NAME, methodName,
-                "LimitForCachedResults={0}", memoryLimitForCachedResults);
-
-        if (memoryLimitForCachedObjects != null &&
-                usedMemoryAsFraction > memoryLimitForCachedObjects) {
-            logger.logp(Level.WARNING, CLASS_NAME, methodName,
-                    "memory limit for cached objects exceeded. clearing cached objects");
-            dataObjectSource.clearCached();
-
-        } else if (memoryLimitForCachedResults != null &&
-                usedMemoryAsFraction > memoryLimitForCachedResults) {
-            logger.logp(Level.WARNING, CLASS_NAME, methodName,
-                    "memory limit for cached results exceeded. clearing cached results");
-            dataObjectSource.clearCachedResults();
-
-        }
+        OpbSessionUtils.checkMemoryUse(
+                memoryLimitForCachedObjects, memoryLimitForCachedResults, dataObjectSource);
             
-    } // End of checkMemoryLimits()
+    } // End of checkMemoryUse()
     
     // </editor-fold> End of memory section
     
@@ -607,7 +457,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
      * The connection returned should be used by no more than one thread at a
      * time.
      * <br/>
-     * This method will log a warning if more a thread tries to get the
+     * This method will log a warning if a thread tries to get the
      * connection before a different thread has released the connection.
      * 
      * @see #releaseConnection(boolean)
@@ -650,7 +500,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
         }
         
         // get a new connection
-        activeConnection = doGetConnection(methodName);
+        activeConnection = OpbSessionPlsqlUtils.getConnection(dataSource, methodName);
         
         // tell the database we have got a connection
         // i.e. start an active phase
@@ -688,7 +538,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
      * </li>
      * </ul>
      * <br>
-     * If closing the connection raise an exception, warnings are logged.
+     * If closing the connection raises an exception, warnings are logged.
      * <br/>
      * 
      * @param clearTempData
@@ -698,7 +548,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
      *   If we fail to end the active phase.
      */
     public synchronized void releaseConnection(final boolean clearTempData) 
-    throws OpbDataAccessException {
+            throws OpbDataAccessException {
         final String methodName = "releaseConnection()";
         
         logger.entering(CLASS_NAME, methodName);
@@ -746,7 +596,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
             
         } finally {
             // clear the weak reference to the thread using the connection to 
-            // indicate this thread is finished used the connection
+            // indicate this thread is finished with the connection
             weakRefToThreadUsingConnection = null;
 
         }
@@ -768,8 +618,8 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
     }
 
     /**
-     * Sets the username for this session to the value returned by
-     * trimDomain(username). 
+     * Sets the username for this session.
+     * <br/>
      * Note: This method sets the username for this session in the database 
      * before setting the username on this object so if the database call fails,
      * the username of this object will not have been changed.
@@ -795,7 +645,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
                 logger, CLASS_NAME, methodName, "this.id", id, 
                 "you can't set the username for a session with no ID");
         
-        Connection connection = doGetConnection(methodName);
+        Connection connection = OpbSessionPlsqlUtils.getConnection(dataSource, methodName);
         
         try {
             OpbPlsqlCallHelper callHelper = new OpbPlsqlCallHelper(
@@ -895,7 +745,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
      * @param dataObject
      *   A data object.
      * @param cached
-     *   Pass true to indicate dataObject has been cached, false otehrwise.
+     *   Pass true to indicate dataObject has been cached, false otherwise.
      * @throws NullPointerException
      *   If requestedType or dataObject are null.
      */
@@ -906,7 +756,12 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
         final String methodName = "dataObjectCreated(Class, Object, boolean)";
         
         logger.entering(CLASS_NAME, methodName);
-        
+
+        OpbSessionUtils.dataObjectCreated(
+                requestedType, dataObject, cached,
+                dataObjectSource, groupManager, this, this, this);
+
+        /*
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName, "requestedType", requestedType);
         
@@ -982,7 +837,7 @@ public class OpbSessionPlsqlImpl implements OpbSession, OpbDataObjectCreatedList
             } // End of if (dataObject instanceof OpbCacheableEntity)
             
         } // End of if (dataObject instanceof OpbGroupable)
-        
+        */
     } // End of dataObjectCreated(Class, Object, boolean)
     
     /**
