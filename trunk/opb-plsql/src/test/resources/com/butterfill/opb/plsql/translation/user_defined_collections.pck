@@ -12,6 +12,11 @@ IS
   )
   return number_table;
   
+  function format_number_table(
+    p_data in number_table
+  )
+  return varchar2;
+  
   procedure simple_in_out(
     p_data in out varchar_table
   );
@@ -55,6 +60,30 @@ IS
       logger.fb('p_data is not null. last=' || p_data.last);
     end if;
     return p_data;
+  end;
+  
+  function format_number_table(
+    p_data in number_table
+  )
+  return varchar2
+  is
+    l_result varchar2(32767);
+    
+  begin
+    logger.entering('format_number_table');
+    
+    for i in p_data.first .. p_data.last
+    loop
+      if (1 = p_data.first)
+      then
+        l_result := p_data(i);
+      else
+        l_result := ', ' || p_data(i);
+      end if;
+    end loop;
+    
+    return l_result;
+    
   end;
   
   procedure simple_in_out(

@@ -193,6 +193,47 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
     
     /**
      * 
+     * Calls the database function format_number_table.
+     * @throws OpbDataAccessException
+     *   If we fail to make the database call.
+     */
+    public String 
+            formatNumberTable(final Object[] pData) 
+            throws OpbDataAccessException {
+        final String methodName = "formatNumberTable(java.math.BigDecimal[])";
+    
+        logger.entering(CLASS_NAME, methodName);
+        
+        String result = null;
+    
+        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+                logger, CLASS_NAME, methodName,
+                opbEventTimerProvider,
+                opbConnectionProvider,
+                "BEGIN ? := user_defined_collections.format_number_table(?); END;",
+                "DbCall:user_defined_collections#format_number_table(number_table)");
+    
+        opbCallHelper.registerOutParameter(
+                1, java.sql.Types.VARCHAR);
+    
+        opbCallHelper.setArray(
+                2, "NUMBER_TABLE", pData);
+        
+    
+        opbCallHelper.execute();
+    
+        result = opbCallHelper.get(String.class, 1);
+    
+        opbCallHelper.callComplete();
+    
+        logger.exiting(CLASS_NAME, methodName);
+    
+        return result;
+    
+    }
+    
+    /**
+     * 
      * Calls the database function how_long.
      * @throws OpbDataAccessException
      *   If we fail to make the database call.

@@ -1986,13 +1986,41 @@ public class PlsqlTranslatorPart2Test extends TestCase {
         instance.testTwo(data);
         
     }
+
+    public void testUserDefinedCollectionsPassingNull() throws Exception {
+        UserDefinedCollections instance = TestHelper
+                .getSharedOpbSession()
+                .getDataObjectSource()
+                .newInstance(UserDefinedCollections.class);
+
+        // passing NULL for a user defined collection is ok - function should return NULL
+        assertNull(instance.echoNumberTable(null));
+
+        try {
+            // this should fail as the format_number_table function uses the collection
+            instance.formatNumberTable(null);
+            fail();
+        } catch (OpbDataAccessException ex) {
+            //Caused by: java.sql.SQLException: ORA-06531: Reference to uninitialized collection
+        }
+
+        // passing null to an IN OUT parameter is also OK
+        OpbValueWrapper<String[]> wrapperForSimpleInOut = new OpbValueWrapperImpl<String[]>();
+        instance.simpleInOut(wrapperForSimpleInOut);
+        String[] resultOfSimpleInOut = (String[]) wrapperForSimpleInOut.getValue();
+        assertNull(resultOfSimpleInOut);
+
+    }
     
     public void testUserDefinedCollections() throws Exception {
         UserDefinedCollections instance = TestHelper
                 .getSharedOpbSession()
                 .getDataObjectSource()
                 .newInstance(UserDefinedCollections.class);
-        
+
+        String[] numbers = new String[]{"1", "2", "3"};
+        assertEquals("1, 2, 3", instance.formatNumberTable(numbers));
+
         BigDecimal[] data = new BigDecimal[]{
             BigDecimal.ONE,
             BigDecimal.TEN,
@@ -2048,7 +2076,7 @@ public class PlsqlTranslatorPart2Test extends TestCase {
         OpbValueWrapper<String[]> wrapperForSimpleInOut = 
                 new OpbValueWrapperImpl<String[]>(dataForSimpleInOut);
         instance.simpleInOut(wrapperForSimpleInOut);
-        String[] resultOfSimpleInOut = (String[])wrapperForSimpleInOut.getValue();
+        String[] resultOfSimpleInOut = (String[]) wrapperForSimpleInOut.getValue();
         for (int i = 0; i < dataForSimpleInOut.length; i++) {
             assertEquals(dataForSimpleInOut[i], resultOfSimpleInOut[i]);
         }

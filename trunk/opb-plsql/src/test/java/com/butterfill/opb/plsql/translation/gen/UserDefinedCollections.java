@@ -40,6 +40,15 @@ public interface UserDefinedCollections
     
     /**
      * 
+     * Calls the database function format_number_table.
+     * @throws OpbDataAccessException
+     *   If we fail to make the database call.
+     */
+    String formatNumberTable(Object[] pData) 
+            throws OpbDataAccessException; 
+    
+    /**
+     * 
      * Calls the database function how_long.
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
