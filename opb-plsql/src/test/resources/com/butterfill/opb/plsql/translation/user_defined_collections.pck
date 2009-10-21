@@ -74,11 +74,11 @@ IS
     
     for i in p_data.first .. p_data.last
     loop
-      if (1 = p_data.first)
+      if (i = p_data.first)
       then
         l_result := p_data(i);
       else
-        l_result := ', ' || p_data(i);
+        l_result := l_result || ', ' || p_data(i);
       end if;
     end loop;
     
