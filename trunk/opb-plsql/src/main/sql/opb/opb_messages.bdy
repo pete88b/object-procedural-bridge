@@ -17,6 +17,17 @@
 CREATE OR REPLACE PACKAGE BODY opb_messages 
 IS
   
+  /*
+    Use this to catch the exception thrown by Oracle when we try to
+    bind a LONG value for insert into a non-LONG column.
+  */
+  cant_bind_long_value EXCEPTION;
+  PRAGMA EXCEPTION_INIT(cant_bind_long_value, -01461);
+
+
+  /*
+    Returns all valid message types.
+  */
   FUNCTION get_message_types
   RETURN SYS_REFCURSOR
   IS
@@ -42,6 +53,10 @@ IS
     
   END get_message_types;
   
+  
+  /*
+    Returns all valid message levels.
+  */
   FUNCTION get_message_levels
   RETURN SYS_REFCURSOR
   IS
@@ -75,6 +90,75 @@ IS
     
   END get_message_levels;
   
+  
+  /*
+    Inserts a message into opb_message_data.
+    This procedure handles summary and details that are too long to insert
+    into the table (by truncating them).
+  */
+  PROCEDURE ins(
+    p_context_name IN VARCHAR2,
+    p_session_id IN VARCHAR2,
+    p_message_type IN VARCHAR2, 
+    p_message_level IN VARCHAR2, 
+    p_message_summary IN VARCHAR2, 
+    p_message_detail IN VARCHAR2
+  )
+  IS
+  BEGIN
+    INSERT INTO opb_message_data(
+      id, context_name, session_id,
+      message_type, message_level, 
+      message_summary, message_detail)
+    VALUES (
+      opb_message_id.NEXTVAL, p_context_name, p_session_id, 
+      p_message_type, p_message_level, 
+      p_message_summary, p_message_detail);
+      
+  EXCEPTION
+    WHEN cant_bind_long_value
+    THEN
+      logger.warn(
+        'Failed to save complete message. Saving truncated message instead.');
+      
+      <<save_truncated_message>>
+      DECLARE
+        l_summary VARCHAR2(2000);
+        l_detail VARCHAR2(4000);
+        
+      BEGIN
+        IF (LENGTH(p_message_summary) > 2000)
+        THEN
+          l_summary := SUBSTR(p_message_summary, 1, 1996) || ' ...';
+          
+        ELSE
+          l_summary := p_message_summary;
+          
+        END IF;
+        
+        IF (LENGTH(p_message_detail) > 4000)
+        THEN
+          l_detail := SUBSTR(p_message_detail, 1, 3996) || ' ...';
+          
+        ELSE
+          l_detail := p_message_detail;
+          
+        END IF;
+        
+        INSERT INTO opb_message_data(
+          id, context_name, session_id,
+          message_type, message_level, 
+          message_summary, message_detail)
+        VALUES (
+          opb_message_id.NEXTVAL, p_context_name, p_session_id, 
+          p_message_type, p_message_level, 
+          l_summary, l_detail);
+          
+      END save_truncated_message;
+              
+  END ins;
+  
+  
   /*
     Adds a message to the message set for this session by calling 
     add_session_message.
@@ -93,8 +177,9 @@ IS
     
   END add_message;
   
-  /*
   
+  /*
+    Adds a message to the message set for this session.
   */
   PROCEDURE add_session_message(
     p_level IN VARCHAR2,
@@ -120,12 +205,8 @@ IS
     THEN
       messages.check_message_level(p_level);
       
-      INSERT INTO opb_message_data(
-        id, context_name, session_id,
-        message_type, message_level, 
-        message_summary, message_detail)
-      VALUES (
-        opb_message_id.NEXTVAL, l_context_name, l_session_id, 
+      ins(
+        l_context_name, l_session_id, 
         message_type_session, p_level, 
         p_summary, p_detail);
         
@@ -135,12 +216,11 @@ IS
     
   END add_session_message;
   
+  
   /*
     Returns all messages set for this session during the current 
     active phase.
-    xxx context stuff
     Note: Session messages are cleared upon ending an active phase.
-    xxxx observer stuff
   */
   FUNCTION get_session_messages
   RETURN SYS_REFCURSOR
@@ -168,6 +248,10 @@ IS
     
   END get_session_messages;
   
+  
+  /*
+    Adds a message to the specified context.
+  */
   PROCEDURE add_context_message(
     p_context_name IN VARCHAR2,
     p_level IN VARCHAR2,
@@ -188,12 +272,8 @@ IS
       
     messages.check_message_level(p_level);
       
-    INSERT INTO opb_message_data(
-      id, context_name, session_id,
-      message_type, message_level, 
-      message_summary, message_detail)
-    VALUES (
-      opb_message_id.NEXTVAL, p_context_name, NULL, 
+    ins(
+      p_context_name, NULL, 
       message_type_context, p_level, 
       p_summary, p_detail);
     
@@ -201,6 +281,10 @@ IS
     
   END add_context_message;
   
+  
+  /*
+    Returns messages for the specified context (using the LIKE condition).
+  */
   FUNCTION get_context_messages(
     p_context_name IN VARCHAR2
   )
@@ -226,6 +310,9 @@ IS
   END get_context_messages;
   
   
+  /*
+    Adds an all context message. This is a message that applies to all contexts.
+  */
   PROCEDURE add_all_context_message(
     p_level IN VARCHAR2,
     p_summary IN VARCHAR2,
@@ -244,12 +331,8 @@ IS
       
     messages.check_message_level(p_level);
       
-    INSERT INTO opb_message_data(
-      id, context_name, session_id,
-      message_type, message_level, 
-      message_summary, message_detail)
-    VALUES (
-      opb_message_id.NEXTVAL, NULL, NULL,
+    ins(
+      NULL, NULL,
       message_type_all_contexts, p_level,
       p_summary, p_detail);
     
@@ -257,6 +340,10 @@ IS
     
   END add_all_context_message;
   
+  
+  /*
+    Returns messages that apply to all contexts.
+  */
   FUNCTION get_all_context_messages
   RETURN SYS_REFCURSOR
   IS
@@ -274,6 +361,7 @@ IS
     RETURN l_result;
     
   END get_all_context_messages;
+  
   
   /*
     Clears all messages for the specified session.
@@ -299,6 +387,7 @@ IS
     
   END clear_session_messages;
   
+  
   /*
     Clears all messages for the specified context.
     
@@ -323,6 +412,7 @@ IS
     
   END clear_messages_for_context;
   
+  
   /*
     Clears all message data.
     
@@ -340,6 +430,7 @@ IS
     COMMIT;
     
   END clear_all_messages;
+  
   
 END opb_messages;
 /
