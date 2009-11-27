@@ -18,14 +18,6 @@ CREATE OR REPLACE PACKAGE BODY opb_messages
 IS
   
   /*
-    Use this to catch the exception thrown by Oracle when we try to
-    bind a LONG value for insert into a non-LONG column.
-  */
-  cant_bind_long_value EXCEPTION;
-  PRAGMA EXCEPTION_INIT(cant_bind_long_value, -01461);
-
-
-  /*
     Returns all valid message types.
   */
   FUNCTION get_message_types
@@ -105,7 +97,28 @@ IS
     p_message_detail IN VARCHAR2
   )
   IS
+    l_summary VARCHAR2(2000);
+    l_detail VARCHAR2(4000);
+    
   BEGIN
+    IF (LENGTH(p_message_summary) > 2000)
+    THEN
+      l_summary := SUBSTR(p_message_summary, 1, 1996) || ' ...';
+          
+    ELSE
+      l_summary := p_message_summary;
+          
+    END IF;
+        
+    IF (LENGTH(p_message_detail) > 4000)
+    THEN
+      l_detail := SUBSTR(p_message_detail, 1, 3996) || ' ...';
+          
+    ELSE
+      l_detail := p_message_detail;
+          
+    END IF;
+        
     INSERT INTO opb_message_data(
       id, context_name, session_id,
       message_type, message_level, 
@@ -113,49 +126,8 @@ IS
     VALUES (
       opb_message_id.NEXTVAL, p_context_name, p_session_id, 
       p_message_type, p_message_level, 
-      p_message_summary, p_message_detail);
-      
-  EXCEPTION
-    WHEN cant_bind_long_value
-    THEN
-      logger.warn(
-        'Failed to save complete message. Saving truncated message instead.');
-      
-      <<save_truncated_message>>
-      DECLARE
-        l_summary VARCHAR2(2000);
-        l_detail VARCHAR2(4000);
-        
-      BEGIN
-        IF (LENGTH(p_message_summary) > 2000)
-        THEN
-          l_summary := SUBSTR(p_message_summary, 1, 1996) || ' ...';
-          
-        ELSE
-          l_summary := p_message_summary;
-          
-        END IF;
-        
-        IF (LENGTH(p_message_detail) > 4000)
-        THEN
-          l_detail := SUBSTR(p_message_detail, 1, 3996) || ' ...';
-          
-        ELSE
-          l_detail := p_message_detail;
-          
-        END IF;
-        
-        INSERT INTO opb_message_data(
-          id, context_name, session_id,
-          message_type, message_level, 
-          message_summary, message_detail)
-        VALUES (
-          opb_message_id.NEXTVAL, p_context_name, p_session_id, 
-          p_message_type, p_message_level, 
-          l_summary, l_detail);
-          
-      END save_truncated_message;
-              
+      l_summary, l_detail);
+    
   END ins;
   
   
