@@ -19,10 +19,7 @@ package com.butterfill.opb.timing;
 
 import junit.framework.*;
 import com.butterfill.opb.util.OpbToStringHelper;
-import com.butterfill.opb.util.OpbExactMatchList;
 import java.util.List;
-import java.util.logging.Logger;
-import com.butterfill.opb.util.OpbAssert;
 
 /**
  *
@@ -34,9 +31,11 @@ public class OpbBasicTimingEventListenerTest extends TestCase {
         super(testName);
     }
 
+    @Override
     protected void setUp() throws Exception {
     }
 
+    @Override
     protected void tearDown() throws Exception {
     }
 
@@ -81,11 +80,12 @@ public class OpbBasicTimingEventListenerTest extends TestCase {
         assertEquals(1, result.get(0).getStartTime());
         assertEquals(99, result.get(0).getEndTime());
         
-        instance.timingEventComplete(evt);
-        result = instance.getCompletedEvents();
-        assertEquals(1, result.size());
-        
         instance.clearCompletedEvents();
+        // result still points to the old result -
+        // getCompletedEvents() won't return the same instance twice
+        assertEquals(1, result.size());
+        // get the current completed events (which should be empty)
+        result = instance.getCompletedEvents();
         assertEquals(0, result.size());
         
         instance.timingEventComplete(evt);
@@ -96,8 +96,18 @@ public class OpbBasicTimingEventListenerTest extends TestCase {
         evt = new OpbTimingEvent("", 0);
         instance.timingEventComplete(evt);
         result = instance.getCompletedEvents();
+        assertEquals(1, result.size());
+        assertTrue(evt == result.get(0));
+
+
+        evt = new OpbTimingEvent("", 0);
+        instance.timingEventComplete(evt);
+        evt = new OpbTimingEvent("", 0);
+        instance.timingEventComplete(evt);
+        result = instance.getCompletedEvents();
         assertEquals(2, result.size());
         assertTrue(evt == result.get(1));
+
         
     }
 
@@ -118,7 +128,15 @@ public class OpbBasicTimingEventListenerTest extends TestCase {
         
         event = new OpbTimingEvent("", 0);
         instance.timingEventComplete(event);
-        assertEquals(event, instance.getCompletedEvents().get(0));
+        // Note: getCompletedEvents clears saved events
+        List<OpbTimingEvent> completedEvents = instance.getCompletedEvents();
+        assertEquals(event, completedEvents.get(0));
+        assertEquals(1, completedEvents.size());
+
+        // adding the same event twice, will mean it's saved as a completed event twice
+        instance.timingEventComplete(event);
+        instance.timingEventComplete(event);
+        assertEquals(2, instance.getCompletedEvents().size());
         
     }
 
@@ -136,9 +154,17 @@ public class OpbBasicTimingEventListenerTest extends TestCase {
         for (int i = 0; i < 9; i++) {
             instance.timingEventComplete(
                     new OpbTimingEvent("", 0));
-            assertEquals(i + 1, instance.getCompletedEvents().size());
         }
-        
+        // prove that the above loop added some events
+        // Note: getCompletedEvents() clears saved events too
+        assertEquals(9, instance.getCompletedEvents().size());
+
+        // add some events again
+        for (int i = 0; i < 9; i++) {
+            instance.timingEventComplete(
+                    new OpbTimingEvent("", 0));
+        }
+        // this time, it's clearCompletedEvents that clears the saved events
         instance.clearCompletedEvents();
         assertEquals(0, instance.getCompletedEvents().size());
         
