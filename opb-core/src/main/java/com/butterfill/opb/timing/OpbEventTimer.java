@@ -20,6 +20,7 @@ import com.butterfill.opb.util.OpbAssert;
 import com.butterfill.opb.util.OpbToStringHelper;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -100,6 +101,7 @@ public class OpbEventTimer {
                 logger, CLASS_NAME, methodName, "listener", listener);
 
         timingEventListeners.add(listener);
+
     }
 
     /**
@@ -115,6 +117,7 @@ public class OpbEventTimer {
         logger.entering(CLASS_NAME, methodName);
 
         timingEventListeners.remove(listener);
+
     }
 
     /**
@@ -126,6 +129,7 @@ public class OpbEventTimer {
         logger.entering(CLASS_NAME, methodName);
 
         timingEventListeners.clear();
+
     }
 
     /**
@@ -154,6 +158,9 @@ public class OpbEventTimer {
      * <br/>
      * Called by timing event publishers at the end of an event.
      * <br/>
+     * If calling timingEventComplete on a registered listener raises an exception,
+     * details of the exception will be logged and the listener will be removed
+     * (so it doesn't have change to raise further exceptions).
      *
      * @param event
      *   A timing event returned by a previous call to start(String).
@@ -164,17 +171,55 @@ public class OpbEventTimer {
 
         logger.entering(CLASS_NAME, methodName);
 
-        if (event == null) {
-            logger.logp(Level.FINER, CLASS_NAME, methodName,
-                    "event is null. returning");
-            return;
+        try {
+            if (event == null) {
+                logger.logp(Level.FINER, CLASS_NAME, methodName,
+                        "event is null. returning");
+                return;
+
+            }
+
+            event.setEndTime(System.currentTimeMillis());
+
+            notifyListeners(event);
+
+        } catch (Exception ex) {
+            // don't let any exceptions propogate from this method
+            logger.logp(Level.SEVERE, CLASS_NAME, methodName, "unexpected exception", ex);
 
         }
 
-        event.setEndTime(System.currentTimeMillis());
+    }
 
-        for (OpbTimingEventListener listener : timingEventListeners) {
-            listener.timingEventComplete(event);
+    /**
+     * Calls timingEventComplete on all registed listeners.
+     * <br/>
+     * This is a separate method, just to make end(OpbTimingEvent) easier to read.
+     * 
+     * @param event
+     *   A timing event returned by a previous call to start(String).
+     */
+    private synchronized void notifyListeners(final OpbTimingEvent event) {
+        final String methodName = "notifyListeners(OpbTimingEvent)";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        for (Iterator<OpbTimingEventListener> i = timingEventListeners.iterator(); i.hasNext(); ) {
+            try {
+                // call timingEventComplete on the listener
+                i.next().
+                        timingEventComplete(event);
+
+            } catch (Exception ex) {
+                // if the listener raised any exception, remove it so we don't use it again
+                // Note: this remove is why we have to synchronize this method
+                i.remove();
+                // log details of the exception (but don't let the exception propogate)
+                logger.logp(Level.SEVERE, CLASS_NAME, methodName,
+                        "removed listener as it threw an exception", ex);
+
+            }
+
         }
 
     }
