@@ -65,20 +65,22 @@ public class OpbBasicTimingEventListener implements OpbTimingEventListener {
     }
 
     /**
-     * Saves the specified timing event as as complete.
+     * Saves the specified timing event as complete.
+     * <br/>
+     * Adding the same event twice will cause it to appear twice in the list returned by
+     * <code>getCompletedEvents()</code>.
      *
      * @param event
-     *   A complete timing event. i.e. One that has a name, a start time and an
-     *   end time.
+     *   A complete timing event. 
+     *   i.e. One that has a name, a start time and an end time.
+     *   If event is null, this is a no-op.
      */
-    public void timingEventComplete(final OpbTimingEvent event) {
+    public synchronized void timingEventComplete(final OpbTimingEvent event) {
         final String methodName = "timingEventComplete(OpbTimingEvent)";
 
         logger.entering(CLASS_NAME, methodName);
 
-        // only add the object if it is not null and has not been added already
-        if (event != null &&
-                !completed.contains(event)) {
+        if (event != null) {
             completed.add(event);
 
         }
@@ -86,26 +88,36 @@ public class OpbBasicTimingEventListener implements OpbTimingEventListener {
     }
 
     /**
-     * Returns all completed events received by this listener.
+     * Returns all completed events received by this listener and
+     * clears all completed events that have been saved by this listener.
+     * <br/>
+     * This method will not return the same instance twice.
+     *
      * @return All completed events received by this listener.
      */
-    public List<OpbTimingEvent> getCompletedEvents() {
+    public synchronized List<OpbTimingEvent> getCompletedEvents() {
         final String methodName = "getCompletedEvents()";
 
         logger.entering(CLASS_NAME, methodName);
 
-        return completed;
+        final List<OpbTimingEvent> result = completed;
+
+        completed = new OpbExactMatchList<OpbTimingEvent>();
+
+        return result;
+
     }
 
     /**
      * Clears all completed events that have been saved by this listener.
      */
-    public void clearCompletedEvents() {
+    public synchronized void clearCompletedEvents() {
         final String methodName = "clearCompletedEvents()";
 
         logger.entering(CLASS_NAME, methodName);
 
         completed.clear();
+        
     }
 
 } // End of class OpbBasicTimingEventListener
