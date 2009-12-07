@@ -50,6 +50,7 @@ public class TimingSuite extends TestCase {
         suite.addTest(com.butterfill.opb.timing.OpbEventTimerProviderTest.suite());
         suite.addTest(com.butterfill.opb.timing.OpbTimingEventPublisherTest.suite());
         suite.addTest(com.butterfill.opb.timing.OpbBasicTimingEventListenerConcurrentTest.suite());
+        suite.addTest(com.butterfill.opb.timing.OpbEventTimerConcurrentTest.suite());
         return suite;
     }
     

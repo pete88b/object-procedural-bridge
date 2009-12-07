@@ -20,12 +20,6 @@ package com.butterfill.opb.timing;
 import java.util.ArrayList;
 import java.util.List;
 import junit.framework.*;
-import com.butterfill.opb.util.OpbAssert;
-import com.butterfill.opb.util.OpbToStringHelper;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.logging.Logger;
-import java.util.logging.Level;
 
 /**
  *
@@ -37,9 +31,11 @@ public class OpbEventTimerTest extends TestCase {
         super(testName);
     }
 
+    @Override
     protected void setUp() throws Exception {
     }
 
+    @Override
     protected void tearDown() throws Exception {
     }
 
@@ -228,7 +224,28 @@ public class OpbEventTimerTest extends TestCase {
         instance.end(event);
         
         assertEquals(event, lsnr.events.get(0));
-        
+
+        // test with a listener that throws exceptions
+        instance = new OpbEventTimer();
+        lsnr = new Lsnr();
+        BadLsnr badLsnr = new BadLsnr();
+        instance.addTimingEventListener(lsnr);
+        instance.addTimingEventListener(badLsnr);
+        event = instance.start("test event");
+        instance.end(event);
+        assertEquals(event, lsnr.events.get(0));
+        // show that badLsnr was called
+        assertEquals(1, badLsnr.callCount);
+        // show that lsnt is still registered
+        instance.end(event);
+        assertEquals(2, lsnr.events.size());
+        // show that basLsnr was removed - call count has not increated
+        assertEquals(1, badLsnr.callCount);
+
+
+        // make sure end won't let exception propogate
+        instance.end(new BadEvent());
+
     }
     
     private static class Lsnr implements OpbTimingEventListener {
@@ -239,5 +256,27 @@ public class OpbEventTimerTest extends TestCase {
         }
         
     }
-    
+
+    private static class BadLsnr implements OpbTimingEventListener {
+        int callCount = 0;
+        public void timingEventComplete(OpbTimingEvent event) {
+            callCount++;
+            throw new RuntimeException("test ex");
+        }
+
+    }
+
+    private static class BadEvent extends OpbTimingEvent {
+
+        public BadEvent() {
+            super("bad-event", 0);
+        }
+
+        @Override
+        void setEndTime(final long endTime) {
+            throw new RuntimeException("test-ex from bad-event");
+        }
+
+    }
+
 }
