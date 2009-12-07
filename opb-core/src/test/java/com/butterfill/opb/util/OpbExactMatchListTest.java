@@ -114,13 +114,18 @@ public class OpbExactMatchListTest extends TestCase {
         for (int i = 0; i < 99; i++) {
             instance.add(""+i);
             elementData = (Object[])field.get(instance);
-            assertEquals(i + 1, elementData.length);
+            // make sure that element data is at least as long as i
+            assertTrue(
+                    "elementData was not as long as expected. elementData.length=" +
+                    elementData.length + ". i=" + i,
+                    elementData.length >= i);
+
             instance.trimToSize();
             elementData = (Object[])field.get(instance);
             assertEquals(i + 1, elementData.length);
         }
         
-        for (int i = 98; i >= 0; i--) {
+           for (int i = 98; i >= 0; i--) {
             instance.remove(i);
             elementData = (Object[])field.get(instance);
             assertEquals(i + 1, elementData.length);
@@ -137,7 +142,7 @@ public class OpbExactMatchListTest extends TestCase {
     public void testEnsureCapacity() throws Exception {
         System.out.println("ensureCapacity");
         
-        int minCapacity = 0;
+        // test with default initial capacity of 10
         OpbExactMatchList<String> instance = new OpbExactMatchList<String>();
         
         Field field = instance.getClass().getDeclaredField("elementData");
@@ -147,18 +152,47 @@ public class OpbExactMatchListTest extends TestCase {
         
         assertEquals(10, elementData.length);
         
-        instance.ensureCapacity(minCapacity);
+        instance.ensureCapacity(0);
+        elementData = (Object[])field.get(instance);
+        assertEquals(10, elementData.length);
+
+        instance.ensureCapacity(10);
+        elementData = (Object[])field.get(instance);
+        assertEquals(10, elementData.length);
         
         for (int i = 10; i < 99; i++) {
             instance.ensureCapacity(i);
-            elementData = (Object[])field.get(instance);
-            assertEquals(i, elementData.length);
+            elementData = (Object[]) field.get(instance);
+            // make sure that element data is at least as long as i
+            assertTrue(
+                    "elementData was not as long as expected. elementData.length=" +
+                    elementData.length + ". i=" + i,
+                    elementData.length >= i);
         }
         instance.ensureCapacity(5);
-        elementData = (Object[])field.get(instance);
-        assertEquals(98, elementData.length);
-        
-        
+        elementData = (Object[]) field.get(instance);
+        assertEquals(133, elementData.length);
+
+        // test elementData size increade with non-default initial capacity
+        instance = new OpbExactMatchList<String>(100);
+        elementData = (Object[]) field.get(instance);
+        assertEquals(100, elementData.length);
+
+        instance.ensureCapacity(100);
+        // instance can already cope with this capacity so no change
+        elementData = (Object[]) field.get(instance);
+        assertEquals(100, elementData.length);
+
+        instance.ensureCapacity(101);
+        // instance will need to increase capacity, by 50% + 1
+        elementData = (Object[]) field.get(instance);
+        assertEquals(151, elementData.length);
+
+        instance.ensureCapacity(152);
+        // instance will need to increase capacity, by 50% + 1
+        elementData = (Object[]) field.get(instance);
+        assertEquals(227, elementData.length);
+
     }
 
     /**
