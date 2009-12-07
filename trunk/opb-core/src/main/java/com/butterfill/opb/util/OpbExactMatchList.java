@@ -167,8 +167,19 @@ implements List<E>, RandomAccess {
         modCount++;
 
         if (minCapacity > elementData.length) {
-            Object[] elementDataTemp = new Object[minCapacity];
-            
+            final int oldCapacity = elementData.length;
+            // calculate the new capacity to be 1.5 times the old capacity plus one
+            // Note: the plus one is needed as 1.5 times might not be exact
+            int newCapacity = ((oldCapacity * 3) / 2) + 1;
+
+            if (minCapacity > newCapacity) {
+                // or the specified minCapacity (whichever is bigger)
+                newCapacity = minCapacity;
+
+            }
+
+            final Object[] elementDataTemp = new Object[newCapacity];
+
             System.arraycopy(elementData, 0, elementDataTemp, 0, size);
             
             elementData = elementDataTemp;
