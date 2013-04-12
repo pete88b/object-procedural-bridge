@@ -52,7 +52,7 @@ public final class OpbToStringHelper {
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
     /**
-     * Controlls the behaviour of the toString method.
+     * Controls the behaviour of the toString method.
      */
     private static OpbToStringMode toStringMode = MINIMAL;
 
@@ -77,7 +77,7 @@ public final class OpbToStringHelper {
      * Objects are added to this list just before they are added to the output.
      * If an object is in this list, it's details need not be repeated.
      */
-    private static final List<Object> OBJECTS_ADDED = 
+    private static final List<Object> OBJECTS_ADDED =
             new OpbExactMatchList<Object>();
 
     /**
@@ -95,10 +95,10 @@ public final class OpbToStringHelper {
     /**
      * Returns a string representation of object for internal use.
      * <br/>
-     * This method handles a toString call returning null or throwing an exception. 
-     * This is being really paranoid but we don't want applications to fail because 
+     * This method handles a toString call returning null or throwing an exception.
+     * This is being really paranoid but we don't want applications to fail because
      * of methods in this class.
-     * 
+     *
      * @param object The object to format.
      * @return A string representation of object for internal use.
      */
@@ -106,34 +106,34 @@ public final class OpbToStringHelper {
         if (object == null) {
             return "null";
         }
-        
-        String result;
-        
+
+        final String result;
+
         try {
             if (object instanceof Object[]) {
                 result = Arrays.toString((Object[]) object);
-                
+
             } else {
                 result = object.toString();
-                
+
             }
-            
+
         } catch (Exception ex) {
             logger.logp(Level.SEVERE, CLASS_NAME, "format", "toString() call failed", ex);
             return "toString() threw an exception!";
-            
+
         }
-        
+
         if (result == null) {
             return "toString() returned null!";
-            
+
         } else {
             return result.replaceAll("\n", "\n  ");
-            
+
         }
-        
+
     }
-    
+
     /**
      * Returns a string representation of object and it's values.
      * <br/><br/>
@@ -163,7 +163,7 @@ public final class OpbToStringHelper {
      *   The object for which a string representation will be returned.
      * @return
      *   A string representation of object and it's values.
-     * 
+     *
      * @see #setToStringMode(OpbToStringMode)
      * @see #setFieldFilter(OpbFieldFilter)
      */
@@ -171,24 +171,24 @@ public final class OpbToStringHelper {
 
         if (object == null) {
             return "null";
-            
+
         } else if (toStringMode == MINIMAL) {
-            StringBuilder sb = new StringBuilder(object.getClass().getName());
+            final StringBuilder sb = new StringBuilder(object.getClass().getName());
             sb.append("@");
             sb.append(Integer.toHexString(object.hashCode()));
             return sb.toString();
 
         }
 
-        Class topLevelClass = object.getClass();
-        
-        boolean objectAdded = OBJECTS_ADDED.contains(object);
+        final Class topLevelClass = object.getClass();
+
+        final boolean objectAdded = OBJECTS_ADDED.contains(object);
 
         if (!objectAdded) {
             OBJECTS_ADDED.add(object);
         }
 
-        StringBuilder sb = new StringBuilder(topLevelClass.getSimpleName());
+        final StringBuilder sb = new StringBuilder(topLevelClass.getSimpleName());
 
         try {
             if (objectAdded && object != aboutToAddAsFieldValue) {
@@ -201,7 +201,7 @@ public final class OpbToStringHelper {
 
         } finally {
             aboutToAddAsFieldValue = null;
-            
+
         }
 
         sb.append("(");
@@ -214,21 +214,19 @@ public final class OpbToStringHelper {
 
         // get fields of the top level class and all of it's super classes except for Object
         while (!"java.lang.Object".equals(workingClass.getName())) {
-            Field[] fields = workingClass.getDeclaredFields();
+            final Field[] fields = workingClass.getDeclaredFields();
 
             try {
                 AccessibleObject.setAccessible(fields, true);
-                
+
             } catch (SecurityException ex) {
                 // if we can't make the fields accessible, we'll get illegal argument
                 // and illegal access exceptions when we try to get field values
-                logger.logp(Level.WARNING, CLASS_NAME, "toString(Object)", 
+                logger.logp(Level.WARNING, CLASS_NAME, "toString(Object)",
                         "failed to make fields accessible", ex);
             }
 
             for (Field field : fields) {
-                String fieldName = field.getName();
-
                 // see if the field filter excludes this field
                 if (!fieldFilter.accept(object, field)) {
                     continue;
@@ -236,12 +234,12 @@ public final class OpbToStringHelper {
 
                 sb.append("\n  ");
                 sb.append(fieldNamePrefix);
-                sb.append(fieldName);
+                sb.append(field.getName());
                 sb.append("=");
 
                 try {
-                    Object value = field.get(object);
-                    
+                    final Object value = field.get(object);
+
                     if (value == null) {
                         sb.append("null");
 
@@ -290,7 +288,7 @@ public final class OpbToStringHelper {
             sb.append("\n  ");
             sb.append(Arrays.toString((Object[]) object));
         }
-        
+
         sb.append("\n]");
 
         sb.append(topLevelClass.getSimpleName());
@@ -321,34 +319,34 @@ public final class OpbToStringHelper {
      *   The object who's string representation should be returned.
      * @return
      *   The result of calling toString(object) having set the to string mode to FULL.
-     * @see #toString(java.lang.Object) 
+     * @see #toString(java.lang.Object)
      */
     public static synchronized String toStringFull(final Object object) {
         if (object == null) {
             return "null";
         }
-        
-        OpbToStringMode initialMode = toStringMode;
-        
+
+        final OpbToStringMode initialMode = toStringMode;
+
         try {
             toStringMode = FULL;
             if (object instanceof Object[]) {
                 return Arrays.toString((Object[]) object);
-                
+
             } else {
                 return object.toString();
-                
+
             }
-            
+
         } catch (Exception ex) {
             logger.logp(Level.SEVERE, CLASS_NAME, "toStringFull(Object)", "failed", ex);
             return "";
-            
+
         } finally {
             toStringMode = initialMode;
-            
+
         }
-        
+
     }
 
     /**
