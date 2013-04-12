@@ -44,7 +44,7 @@ DECLARE
 BEGIN
   -- Get the database version for test_table creation
   DBMS_UTILITY.DB_VERSION(db_version, db_compatibility);
-  
+
   DBMS_OUTPUT.PUT_LINE('Found database version: ' || db_version || CHR(10));
 
   BEGIN
@@ -76,25 +76,25 @@ BEGIN
 
       EXECUTE IMMEDIATE '
         INSERT INTO test_table(
-          a_binary_double, 
-          a_binary_float, 
-          a_char, 
-          a_date, 
-          a_number, 
-          a_nvarchar2, 
-          a_raw, 
-          a_timestamp, 
+          a_binary_double,
+          a_binary_float,
+          a_char,
+          a_date,
+          a_number,
+          a_nvarchar2,
+          a_raw,
+          a_timestamp,
           a_varchar2,
           a_blob, a_clob, a_nclob)
        VALUES(
-         3.14159265358979E+000, 
-         3.14159274E+000, 
-         ''Pi'', 
-         TO_DATE(''01-02-0003 04:05:06'', ''dd-mm-yyyy hh24:mi:ss''), 
-         3.14159265358979, 
-         ''Pi'', 
-         ''03'', 
-         TO_TIMESTAMP(''01-02-0003 04:05:06.000007'', ''dd-mm-yyyy hh24:mi:ss.ff''), 
+         3.14159265358979E+000,
+         3.14159274E+000,
+         ''Pi'',
+         TO_DATE(''01-02-0003 04:05:06'', ''dd-mm-yyyy hh24:mi:ss''),
+         3.14159265358979,
+         ''Pi'',
+         ''03'',
+         TO_TIMESTAMP(''01-02-0003 04:05:06.000007'', ''dd-mm-yyyy hh24:mi:ss.ff''),
          ''Pi'',
          EMPTY_BLOB(), EMPTY_CLOB(), EMPTY_CLOB())';
 
@@ -112,24 +112,24 @@ BEGIN
         a_blob          BLOB,
         a_clob          CLOB,
         a_nclob         NCLOB)';
-        
+
       DBMS_OUTPUT.PUT_LINE('Inserting row into pre 10g test_table');
 
       EXECUTE IMMEDIATE '
         INSERT INTO test_table(
-          a_char, 
-          a_date, 
-          a_number, 
-          a_nvarchar2, 
-          a_raw, 
+          a_char,
+          a_date,
+          a_number,
+          a_nvarchar2,
+          a_raw,
           a_varchar2,
           a_blob, a_clob, a_nclob)
         VALUES(
-          ''Pi'', 
-          TO_DATE(''01-02-0003 04:05:06'', ''dd-mm-yyyy hh24:mi:ss''), 
-          3.14159265358979, 
-          NULL, 
-          ''03'', 
+          ''Pi'',
+          TO_DATE(''01-02-0003 04:05:06'', ''dd-mm-yyyy hh24:mi:ss''),
+          3.14159265358979,
+          NULL,
+          ''03'',
           ''Pi'',
           EMPTY_BLOB(), EMPTY_CLOB(), EMPTY_CLOB())';
 
@@ -140,44 +140,48 @@ BEGIN
 END;
 /
 
-PROMPT 
+PROMPT
 PROMPT Creating calls 10g
 PROMPT This will create with compilation errors on pre-10g databases
 @@../com/butterfill/opb/plsql/translation/calls10g.pck
 
-PROMPT 
+PROMPT
 PROMPT Creating calls 8i
 @@../com/butterfill/opb/plsql/translation/calls8i.pck
 
-PROMPT 
+PROMPT
 PROMPT Creating cat
 @@../com/butterfill/opb/plsql/translation/cat.pck
 
-PROMPT 
+PROMPT
 PROMPT Creating cats
 @@../com/butterfill/opb/plsql/translation/cats.pck
 
-PROMPT 
+PROMPT
+PROMPT Creating cats
+@@../com/butterfill/opb/plsql/translation/dates.pck
+
+PROMPT
 PROMPT Creating index_table
 @@../com/butterfill/opb/plsql/translation/index_table.pck
 
-PROMPT 
+PROMPT
 PROMPT Creating long_strings
 @@../com/butterfill/opb/plsql/translation/long_strings.pck
 
-PROMPT 
+PROMPT
 PROMPT Creating param_cache
 @@../com/butterfill/opb/plsql/translation/param_cache.pck
 
-PROMPT 
+PROMPT
 PROMPT Creating param_cache2
 @@../com/butterfill/opb/plsql/translation/param_cache2.pck
 
-PROMPT 
+PROMPT
 PROMPT Creating param_cache3
 @@../com/butterfill/opb/plsql/translation/param_cache3.pck
 
-PROMPT 
+PROMPT
 PROMPT Creating param_cache
 @@../com/butterfill/opb/plsql/translation/user_defined_collections.pck
 
