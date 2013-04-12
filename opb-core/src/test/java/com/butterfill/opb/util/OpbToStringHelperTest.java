@@ -27,17 +27,19 @@ import static com.butterfill.opb.util.OpbToStringMode.*;
 
 /**
  * Note: Full test suite will run toString on all objects.
- * 
+ *
  * @author Peter Butterfill
  */
 public class OpbToStringHelperTest extends TestCase {
-    
+
     public OpbToStringHelperTest(String testName) {
         super(testName);
     }
 
     @Override
     protected void setUp() throws Exception {
+        OpbToStringHelper.setToStringMode(MINIMAL);
+        OpbToStringHelper.setFieldFilter(null);
     }
 
     @Override
@@ -48,7 +50,7 @@ public class OpbToStringHelperTest extends TestCase {
 
     public static Test suite() {
         TestSuite suite = new TestSuite(OpbToStringHelperTest.class);
-        
+
         return suite;
     }
 
@@ -57,49 +59,46 @@ public class OpbToStringHelperTest extends TestCase {
      */
     public void testToString() {
         System.out.println("toString");
-        
-        OpbToStringMode initMode = OpbToStringHelper.getToStringMode();
-        OpbFieldFilter initFilter = OpbToStringHelper.getFieldFilter();
-        
+
         Object object = null;
-        
+
         assertEquals("null", OpbToStringHelper.toString(object));
         assertEquals("null", OpbToStringHelper.toString(null));
-        
+
         object = new Object();
-        
+
         String expResult = object.toString();
         String result = OpbToStringHelper.toString(object);
         assertEquals(expResult, result);
-        
+
         OpbToStringHelper.setToStringMode(OpbToStringMode.FULL);
         result = OpbToStringHelper.toString(object);
         assertNotSame(expResult, result);
         OpbToStringHelper.setToStringMode(OpbToStringMode.MINIMAL);
-        
+
         object = new OpbDataObjectSource(new OpbObjectSourceImpl());
-        
+
         expResult = object.toString();
         result = OpbToStringHelper.toString(object);
         assertEquals(expResult, result);
-        
+
         OpbToStringHelper.setToStringMode(OpbToStringMode.FULL);
         result = OpbToStringHelper.toString(object);
         assertNotSame(expResult, result);
         OpbToStringHelper.setToStringMode(OpbToStringMode.MINIMAL);
-        
+
         OpbFieldFilter acceptAll = new OpbFieldFilter() {
             public boolean accept(Object object, Field field) {
                 return true;
             }
         };
-        
+
         OpbFieldFilter acceptNone = new OpbFieldFilter() {
             public boolean accept(Object object, Field field) {
                 return false;
             }
         };
-        
+
         for (int i = 0; i < 3; i++) {
             System.out.println("~~~~~~~~~~~~~~~~");
             System.out.println(i);
@@ -137,9 +136,7 @@ public class OpbToStringHelperTest extends TestCase {
             }
 
         }
-        
-        OpbToStringHelper.setToStringMode(initMode);
-        OpbToStringHelper.setFieldFilter(initFilter);
+
     }
 
     /**
@@ -147,11 +144,11 @@ public class OpbToStringHelperTest extends TestCase {
      */
     public void testGetToStringMode() {
         System.out.println("getToStringMode");
-        
+
         OpbToStringMode expResult = OpbToStringMode.MINIMAL;
         OpbToStringMode result = OpbToStringHelper.getToStringMode();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -159,21 +156,21 @@ public class OpbToStringHelperTest extends TestCase {
      */
     public void testSetToStringMode() {
         System.out.println("setToStringMode");
-        
+
         OpbToStringMode mode = OpbToStringMode.MINIMAL;
         OpbToStringHelper.setToStringMode(mode);
         assertSame(mode, OpbToStringHelper.getToStringMode());
         OpbToStringHelper.setToStringMode(null);
         assertSame(mode, OpbToStringHelper.getToStringMode());
-        
+
         mode = OpbToStringMode.EXCLUDE_SUPER_CLASS;
         OpbToStringHelper.setToStringMode(mode);
         assertSame(mode, OpbToStringHelper.getToStringMode());
-        
+
         mode = OpbToStringMode.FULL;
         OpbToStringHelper.setToStringMode(mode);
         assertSame(mode, OpbToStringHelper.getToStringMode());
-        
+
     }
 
     /**
@@ -181,7 +178,7 @@ public class OpbToStringHelperTest extends TestCase {
      */
     public void testGetFieldFilter() {
         System.out.println("getFieldFilter");
-        
+
         OpbFieldFilter result = OpbToStringHelper.getFieldFilter();
         assertNotNull(result);
         OpbFieldFilter f = new OpbFieldFilter() {
@@ -210,7 +207,7 @@ public class OpbToStringHelperTest extends TestCase {
         };
         OpbToStringHelper.setFieldFilter(f);
         assertSame(f, OpbToStringHelper.getFieldFilter());
-        
+
     }
 
     /**
@@ -222,10 +219,10 @@ public class OpbToStringHelperTest extends TestCase {
         assertEquals("null", OpbToStringHelper.toStringFull(object));
         object = "null";
         assertEquals(
-                OpbToStringHelper.toStringFull(object), 
+                OpbToStringHelper.toStringFull(object),
                 OpbToStringHelper.toStringFull(object));
         assertSame(
-                OpbToStringHelper.toStringFull(object), 
+                OpbToStringHelper.toStringFull(object),
                 OpbToStringHelper.toStringFull("null"));
         assertSame(OpbToStringHelper.getToStringMode(), MINIMAL);
         OpbSingleMemberGroup group = new OpbSingleMemberGroup();
@@ -246,7 +243,7 @@ public class OpbToStringHelperTest extends TestCase {
                 OpbToStringHelper.toString(new TestObjectForToStringThrowEx())
                 .indexOf("toString() threw an exception!") != -1);
     }
-    
+
     public void testToStringExtra() {
         System.out.println("toStringExtra()");
         OpbToStringHelper.setToStringMode(FULL);
@@ -257,17 +254,17 @@ public class OpbToStringHelperTest extends TestCase {
         OpbToStringHelper.toString(TestHelper.getSharedOpbSession().getConnection());
         OpbToStringHelper.toString(new TestObjectForToStringReturnNull());
         Object o = new Object[] {
-            1, "2", 3.0, "four", 
-            TestHelper.getSharedOpbSession(), 
-            "after session", 
+            1, "2", 3.0, "four",
+            TestHelper.getSharedOpbSession(),
+            "after session",
             null,
             new TestObjectForToStringReturnNull()};
         OpbToStringHelper.toString(o);
         o = new Object[] {
-            1, "2", 3.0, "four", 
+            1, "2", 3.0, "four",
             null,
             new TestObjectForToStringReturnNull()};
-        String expected = 
+        String expected =
                 "Object[](1)[ \n" +
                 "  [1, 2, 3.0, four, null, null]\n" +
                 "]Object[](1)";
@@ -275,5 +272,5 @@ public class OpbToStringHelperTest extends TestCase {
         System.out.println(OpbToStringHelper.toString(o));
         assertEquals(expected, OpbToStringHelper.toString(o));
     }
-    
+
 }
