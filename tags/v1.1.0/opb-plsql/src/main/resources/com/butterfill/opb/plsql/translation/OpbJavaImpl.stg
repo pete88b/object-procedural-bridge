@@ -1,0 +1,651 @@
+group OpbJavaImpl;
+
+javaFile(plsqlPackage) ::= <<
+/*
+ * File created by opb-plsql.
+ * 
+ * <plsqlPackage.opbPlsqlTitle> version: <plsqlPackage.opbPlsqlVersion>
+ * <plsqlPackage.opbLibraryTitle> version: <plsqlPackage.opbLibraryVersion>
+ */
+
+package <plsqlPackage.javaPackageName>;
+
+import com.butterfill.opb.*;
+import com.butterfill.opb.data.*;
+import com.butterfill.opb.groups.*;
+import com.butterfill.opb.timing.*;
+import com.butterfill.opb.util.*;
+import com.butterfill.opb.plsql.util.*;
+import java.util.logging.*;
+
+/**
+ * File created from the PL/SQL package specification
+ * <plsqlPackage.sqlName>.
+ */
+public class <plsqlPackage.javaClassName> implements <plsqlPackage.javaInterfaceName> {
+    
+    /**
+     * The name of this class.
+     */
+    public static final String CLASS_NAME =
+            <plsqlPackage.javaClassName>.class.getName();
+            
+    /**
+     * The logger of this class.
+     */
+    private static final Logger logger = Logger.getLogger(CLASS_NAME);
+
+    
+    /**
+     * Creates a new instance of <plsqlPackage.javaClassName>.
+     */
+    public <plsqlPackage.javaClassName>() {
+        logger.entering(CLASS_NAME, "<plsqlPackage.javaClassName>()");
+    }
+
+    /**
+     * Returns a String representation of this instance and it's values.
+     * @return A String representation of this <plsqlPackage.javaClassName>.
+     */
+    @Override
+    public String toString() {
+        return com.butterfill.opb.util.OpbToStringHelper.toString(this);
+    }
+    
+    /**
+     * The group mananger map to be used by this <plsqlPackage.javaClassName>.
+     */
+    private OpbGroupManagerMap opbGroupManagerMap;
+
+    /**
+     * Sets the group manager map to be used by this <plsqlPackage.javaClassName>.
+     * @param map The group manager map to use.
+     */
+    public void setGroupManagerMap(final OpbGroupManagerMap map) {
+        this.opbGroupManagerMap = map;
+    }
+
+    /**
+     * Returns the group manager map used by this <plsqlPackage.javaClassName>.
+     * @return The group manager map used by this instance.
+     */
+    public OpbGroupManagerMap getGroupManagerMap() {
+        return opbGroupManagerMap;
+    }
+    
+
+    /**
+     * The event timer provider to be used by this <plsqlPackage.javaClassName>.
+     */
+    private OpbEventTimerProvider opbEventTimerProvider;
+
+    /**
+     * Sets the event timer to be used by this <plsqlPackage.javaClassName>.
+     * @param provider The event timer to use.
+     */
+    public void setOpbEventTimerProvider(final OpbEventTimerProvider provider) {
+        this.opbEventTimerProvider = provider;
+    }
+
+    
+    /**
+     * The data object source to be used by this <plsqlPackage.javaClassName>.
+     */
+    private OpbDataObjectSource opbDataObjectSource;
+
+    /**
+     * Sets the data object source to be used by this <plsqlPackage.javaClassName>.
+     * @param source The data object source to use.
+     */
+    public void setOpbDataObjectSource(final OpbDataObjectSource source) {
+        this.opbDataObjectSource = source;
+    }
+
+
+    /**
+     * The connection provider to be used by this <plsqlPackage.javaClassName>.
+     */
+    private OpbConnectionProvider opbConnectionProvider;
+
+    /**
+     * Sets the connection provider to be used by this <plsqlPackage.javaClassName>.
+     * @param provider The connection provider to use.
+     */
+    public void setOpbConnectionProvider(final OpbConnectionProvider provider) {
+        this.opbConnectionProvider = provider;
+    }
+
+    <if(plsqlPackage.useScalarResultCache)>
+    /**
+     * The scalar result cache provider to be used by this DiscrepancyImpl.
+     */
+    private OpbScalarResultCacheProvider opbScalarResultCacheProvider;
+
+    /**
+     * Sets the scalar result cache provider to be used by this DiscrepancyImpl.
+     * @param provider The scalar result cache provider to use.
+     */
+    public void setOpbScalarResultCacheProvider(final OpbScalarResultCacheProvider provider) {
+        this.opbScalarResultCacheProvider = provider;
+    }
+    <endif>
+    
+    <if(plsqlPackage.fields)>
+    /**
+     * Resets all field values to their initial values.
+     */
+    public void opbClearState() {
+        final String methodName = "opbClearState()";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        <if(plsqlPackage.identifiable)>
+        // set the id to null
+        opbId = null;
+
+        <endif>
+        // set all fields to their initial values
+        <plsqlPackage.fields:initField()>
+    } // End of opbClearState()
+
+    <endif>
+    <if(plsqlPackage.loadable)>
+    <if(plsqlPackage.identifiable)>
+    /**
+     * The id of this <plsqlPackage.javaClassName>. 
+     * Set by opbLoad(ResultSet).
+     */
+    private OpbId opbId;
+
+    /**
+     * Returns the id of this <plsqlPackage.javaClassName>.
+     * This ID is created using the field(s):
+     * \<ul>
+     * <plsqlPackage.idFieldNames:listItem(); separator="\n     * ">
+     * \</ul>
+     * This method will return null if opbLoad(ResultSet) has not been called.
+     * 
+     * @return The ID of this instance.
+     */
+    public OpbId getOpbId() {
+        return opbId;
+    }
+
+    <endif>
+
+    /**
+     * Resets all field values to their initial values by calling 
+     * opbClearState() and then sets all field values using values taken from 
+     * the current row in resultSet.
+     * \<br/>
+     * This method will look for the following fields in resultSet;
+     * \<ul>
+     * <plsqlPackage.fields:fieldForOpbLoadComment(); separator="\n     * ">
+     * \</ul>
+     * 
+     * @param resultSet The result set from which this instance should be loaded.
+     * @throws OpbDataAccessException If we fail to load this instance.
+     */
+    public void opbLoad(final java.sql.ResultSet resultSet) 
+            throws OpbDataAccessException {
+        final String methodName = "opbLoad(ResultSet)";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        // Clear all field values
+        opbClearState();
+
+        // Make sure resultSet is not null
+        OpbAssert.notNull(logger, CLASS_NAME, methodName, "resultSet", resultSet);
+
+        // Get field values from resultSet
+        try {
+            <plsqlPackage.fields:opbLoadField()>
+            <if(plsqlPackage.identifiable)>
+            // create the id
+            opbId = new OpbId(<plsqlPackage.idFieldNames; separator=",\n                ">);
+
+            <endif>
+        } catch (Exception ex) {
+            OpbExceptionHelper.throwException(
+                    new OpbDataAccessException("failed to load", ex),
+                    logger, CLASS_NAME, methodName);
+
+        } finally {
+            logger.exiting(CLASS_NAME, methodName);
+
+        }
+
+    } // End of opbLoad(ResultSet resultSet)
+
+
+    <endif>
+    <plsqlPackage.fields:field()>
+    <plsqlPackage.functions:function()>
+    <plsqlPackage.procedures:procedure()>
+}
+>>
+
+
+listItem() ::= <<
+\<li><it>\</li>
+>>
+
+
+opbLoadField() ::= <<
+<if(it.loadable)>
+// load <it.name> from column <it.sqlName>
+<it.name> = OpbSqlHelper.getValue(
+        <it.name>, resultSet, 
+        "<it.sqlName>", <if(it.optionalInLoad)>false<else>true<endif>);
+<if(it.hasDatasourceValue)>
+// save the value we just loaded as the datasource value
+<it.name>DataSourceValue = <it.name>;
+<endif>
+
+
+
+<endif>
+>>
+
+
+initField() ::= <<
+<it.name> = <it.initialValue>;
+<if(it.hasDatasourceValue)><it.name>DataSourceValue = <it.initialValue>;<endif>
+
+
+>>
+
+
+fieldForOpbLoadComment() ::= <<
+<if(it.loadable)>
+\<li><it.sqlName> is <if(it.optionalInLoad)>optional<else>\<em>mandatory\</em><endif>\</li>
+<endif>
+>>
+
+
+field(field) ::= <<
+/**
+ * Derived from an opb-package field.
+ */
+private <it.datatype> <it.name> = <it.initialValue>;
+
+/**
+ * Returns the value of <it.name>.
+ * @return The value of <it.name>.
+ */
+public <it.datatype> get<it.nameWithFirstCharUpper>() {
+    return <it.name>;
+}
+
+/**
+ * Sets the value of <it.name>.<if(it.onChangeList)>
+
+ * Calls <it.onChangeList:{<it>()};separator=", "> 
+ * if this call changes the value of <it.name>.<endif>
+ * @param a The new value for <it.name>.
+ */
+<if(!it.readOnly)>public<else>private<endif> void set<it.nameWithFirstCharUpper>(final <it.datatype> a) {
+    <if(it.onChangeList)>
+    if (!OpbComparisonHelper.isEqual(this.<it.name>, a)) {
+        // If the new value is different, save it
+        this.<it.name> = a;
+        // and make the "on change" calls
+        <it.onChangeList:{<it>();};separator="\n">
+    }
+    <else>
+    this.<it.name> = a;
+    <endif>
+}
+
+<if(it.hasDatasourceValue)>
+/**
+ * Derived from a read-write opb-package field.
+ */
+private <it.datatype> <it.name>DataSourceValue = <it.initialValue>;
+
+/**
+ * Returns the value of <it.name>DataSourceValue.
+ * This is the last value returned by the data source for <it.name>.
+ * @return The value of <it.name>DataSourceValue.
+ */
+public <it.datatype> get<it.nameWithFirstCharUpper>DataSourceValue() {
+    return <it.name>DataSourceValue;
+}
+
+/**
+ * Returns true if the value of <it.name> 
+ * is different to the value that was loaded from the data source,
+ * false otherwise.
+ * @return true if <it.name> has changed since it was loaded.
+ */
+public boolean get<it.nameWithFirstCharUpper>Changed() {
+    return !OpbComparisonHelper.isEqual(
+                <it.name>, <it.name>DataSourceValue);
+}
+<\n>
+<endif>
+>>
+
+
+constantDeclaration(name, datatype, value, commentLines) ::= <<
+>>
+
+
+checkParams() ::= <<
+<if(it.out)>
+OpbAssert.notNull(
+        logger, CLASS_NAME, methodName, 
+        "<it.name>", <it.name>);
+
+<endif>
+<if(it.plsqlIndexTable)>
+OpbAssert.notNull(
+        logger, CLASS_NAME, methodName, 
+        "<it.name>", <it.name>,
+        "PL/SQL index-by tables cannot be set to null");
+
+<endif>
+>>
+
+
+preExecuteParamSetup() ::= <<
+<if(it.in)>
+<if(it.plsqlIndexTable)>
+opbCallHelper.setPlsqlIndexTable(
+        <it.index>, <it.jdbcType>, <it.name>);
+
+
+<else><if(it.array)>
+opbCallHelper.setArray(
+        <it.index>, "<it.sqlDatatype>", <it.name><if(it.out)>.getValue()<endif>);
+
+
+<else>
+opbCallHelper.setObject(
+        <it.index>, <it.jdbcType>, <it.name><if(it.out)>.getValue()<endif>);
+
+
+<endif>
+<endif>
+<endif>
+<if(it.out)>
+<if(it.array)>
+opbCallHelper.registerOutArray(
+        <it.index>, "<it.sqlDatatype>");
+
+
+<else>
+opbCallHelper.registerOutParameter(
+        <it.index>, <it.jdbcType>);
+
+
+<endif>
+<endif>
+>>
+
+
+postExecuteParamProcess() ::= <<
+<if(it.out)>
+<if(it.cursor)>
+<it.name>.setValue(opbDataObjectSource.getResult(
+        <it.elementTypeOfDatatype>.class, 
+        opbCallHelper.get(java.sql.ResultSet.class, <it.index>)<if(it.useDataObjectCache)>, true<endif>));
+<else>
+<it.name>.setValue(opbCallHelper.get<if(it.array)>Array<endif>(<it.wrappedDatatype>.class, <it.index>));
+<endif>
+
+
+<endif>
+>>
+
+
+preExecuteMappedParamSetup() ::= <<
+<if(it.out)>
+<plsqlPackage.defaultValueWrapper>\<<it.wrappedDatatype>\> <it.name>ValueWrapper = 
+        new <plsqlPackage.defaultValueWrapper>Impl\<<it.wrappedDatatype>\>(<if(it.in)>get<it.mappedTo>()<endif>);
+
+
+<endif>
+>>
+
+
+postExecuteMappedParamProcess() ::= <<
+<if(it.out)>
+set<it.mappedTo>(<it.name>ValueWrapper.getValue());
+
+
+<endif>
+>>
+
+
+argsForMappedParamCall() ::= <<
+<if(it.out)><it.name>ValueWrapper<else><if(it.mappedTo)>get<it.mappedTo>()<else><it.name><endif><endif>
+>>
+
+
+argsForCall() ::= <<
+<if(it.out)>
+final <it.datatype>\<<it.wrappedDatatype>\> <it.name>
+<else>
+<if(it.array)>
+final Object[] <it.name>
+<else>
+final <it.datatype> <it.name>
+<endif>
+<endif>
+>>
+
+
+clearCached() ::= <<
+<if(it.clearCachedAll)>opbDataObjectSource.clearCached();<endif>
+<if(it.clearCachedThis)>opbDataObjectSource.clearCached(<plsqlPackage.javaInterfaceName>.class, getOpbId());<endif>
+<it.clearCached:{p | opbDataObjectSource.clearCached(<p>.class);}; separator="\n">
+<if(it.invalidateCachedAll)>opbDataObjectSource.invalidateCached();<endif>
+<if(it.invalidateCachedThis)>opbDataObjectSource.invalidateCached(<plsqlPackage.javaInterfaceName>.class, getOpbId());<endif>
+<it.invalidateCached:{p | opbDataObjectSource.invalidateCached(<p>.class);}; separator="\n">
+
+>>
+
+
+function() ::= <<
+/**
+ * <it.commentLines; separator="
+ * ">
+ * Calls the database function <it.sqlName>.
+ * @throws OpbDataAccessException
+ *   If we fail to make the database call.
+ */
+public <it.return.datatype> 
+        <it.name>(<it.params:argsForCall(); separator=",\n">) 
+        throws OpbDataAccessException {
+    final String methodName = "<it.name>(<it.params:{p | <p.datatype>}; separator=", ">)";
+
+    logger.entering(CLASS_NAME, methodName);
+    
+    <if(it.return.cursor)>
+    OpbAssert.notNull(
+            logger, CLASS_NAME, methodName, 
+            "DataObjectSource", opbDataObjectSource);
+
+    <endif>
+    <if(it.return.useScalarResultCache)>
+    OpbAssert.notNull(
+            logger, CLASS_NAME, methodName, 
+            "Scalar Result Cache Provider", opbScalarResultCacheProvider);
+    
+    OpbId keyToResult = new OpbId(
+            "<plsqlPackage.sqlName>.<it.sqlName>"<if(it.params)>,
+            <it.params:{p | <p.name>}; separator=",\n">
+            <endif>);
+    
+    OpbScalarResultCache opbScalarResultCache = 
+            opbScalarResultCacheProvider.getScalarResultCache();
+
+    if (opbScalarResultCache.isCached(keyToResult)) {
+        logger.logp(Level.FINER, CLASS_NAME, methodName,
+                "cached result found. returning");
+        return opbScalarResultCache.getCached(<it.return.datatype>.class, keyToResult);
+    }
+
+    <endif>
+    <if(it.return.useResultCache)>
+    OpbId keyToResult = new OpbId(
+            "<plsqlPackage.sqlName>.<it.sqlName>"<if(it.params)>,
+            <it.params:{p | <p.name>}; separator=",\n">
+            <endif>);
+
+    <it.return.datatype> result = 
+            opbDataObjectSource.getCachedResult(
+            <it.return.elementTypeOfDatatype>.class, keyToResult);
+    
+    if (result != null) {
+        logger.logp(Level.FINER, CLASS_NAME, methodName,
+                "cached result found. returning");
+        return result;
+    }
+    <else>
+    <it.return.datatype> result = null;
+    <endif>
+
+    <it.params:checkParams()>
+    OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+            logger, CLASS_NAME, methodName,
+            opbEventTimerProvider,
+            opbConnectionProvider,
+            "BEGIN ? := <plsqlPackage.sqlName>.<it.sqlName>(<it.params:{?}; separator=", ">); END;",
+            "DbCall:<plsqlPackage.sqlName>#<it.sqlName>(<it.params:{p | <p.originalSqlDatatype>}; separator=", ">)");
+
+    <if(it.return.array)>
+    opbCallHelper.registerOutArray(
+            1, "<it.return.sqlDatatype>");
+    <else>
+    opbCallHelper.registerOutParameter(
+            1, <it.return.jdbcType>);
+    <endif>
+
+    <it.params:preExecuteParamSetup()>
+    opbCallHelper.execute();
+
+    <if(it.return.cursor)>
+    result = opbDataObjectSource.getResult(
+            <it.return.elementTypeOfDatatype>.class, 
+            opbCallHelper.get(java.sql.ResultSet.class, 1)<if(it.return.useResultCache)>, keyToResult<endif><if(it.return.useDataObjectCache)>, true<endif>);
+
+    <else>
+    result = opbCallHelper.get<if(it.return.array)>Array<endif>(<it.return.datatype>.class, 1);
+
+    <endif>
+    <it.params:postExecuteParamProcess()>
+    <it:clearCached()>
+    <if(it.return.useScalarResultCache)>
+    opbScalarResultCache.cache(keyToResult, result);
+
+    <endif>
+    opbCallHelper.callComplete();
+
+    logger.exiting(CLASS_NAME, methodName);
+
+    return result;
+
+}
+
+<if(it.atLeastOneParamIsMapped)>
+/**
+ * Calls <it.name> using mapped parameters.
+ * \<ul>
+<if(it.return.mappedTo)>
+ * \<li>The value returned is mapped to <it.return.mappedToProperty>\</li/><\n>
+<endif>
+ * <it.mappedParams:commentForMappedParams(); separator="\n * ">
+ * \</ul>
+ * @throws OpbDataAccessException
+ *   If we fail to make the database call.
+ */
+public <if(it.return.mappedTo)>void<else><it.return.datatype><endif>
+        <it.name>(<it.unMappedParams:{p | <p.datatype> <p.name>}; separator=",\n">) 
+        throws OpbDataAccessException {
+    final String methodName = "<it.name>(<it.unMappedParams:{p | <p.datatype>}; separator=", ">)";
+
+    logger.entering(CLASS_NAME, methodName);
+
+    <it.mappedParams:preExecuteMappedParamSetup()>
+    <it.return.datatype> result = <it.name>(
+            <it.params:argsForMappedParamCall(); separator=",\n">);
+
+    <it.mappedParams:postExecuteMappedParamProcess()>
+
+    <if(it.return.mappedTo)>
+    set<it.return.mappedTo>(result);
+    <else>
+    return result;
+    <endif>
+}
+
+
+<endif>
+>>
+
+
+procedure() ::= <<
+/**
+ * <it.commentLines; separator="
+ * ">
+ * Calls the database procedure <it.sqlName>.
+ * @throws OpbDataAccessException
+ *   If we fail to make the database call.
+ */
+public void <it.name>(<it.params:argsForCall(); separator=",\n        ">) 
+        throws OpbDataAccessException {
+    final String methodName = "<it.name>(<it.params:{p | <p.datatype>}; separator=", ">)";
+
+    logger.entering(CLASS_NAME, methodName);
+    
+    <it.params:checkParams()>
+    OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+            logger, CLASS_NAME, methodName,
+            opbEventTimerProvider,
+            opbConnectionProvider,
+            "BEGIN <plsqlPackage.sqlName>.<it.sqlName>(<it.params:{?}; separator=", ">); END;",
+            "DbCall:<plsqlPackage.sqlName>#<it.sqlName>(<it.params:{p | <p.originalSqlDatatype>}; separator=", ">)");
+
+    <it.params:preExecuteParamSetup()>
+    opbCallHelper.execute();
+
+    <it.params:postExecuteParamProcess()>
+    <it:clearCached()>
+    opbCallHelper.callComplete();
+
+    logger.exiting(CLASS_NAME, methodName);
+
+}
+
+<if(it.atLeastOneParamIsMapped)>
+/**
+ * Calls <it.name> using mapped parameters.
+ * \<ul>
+ * <it.mappedParams:commentForMappedParams(); separator="\n * ">
+ * \</ul>
+ * @throws OpbDataAccessException
+ *   If we fail to make the database call.
+ */
+public void <it.name>(<it.unMappedParams:{p | <p.datatype> <p.name>}; separator=",\n        ">) 
+        throws OpbDataAccessException {
+    final String methodName = "<it.name>(<it.unMappedParams:{p | <p.datatype>}; separator=", ">)";
+
+    logger.entering(CLASS_NAME, methodName);
+
+    <it.mappedParams:preExecuteMappedParamSetup()>
+    <it.name>(<it.params:argsForMappedParamCall(); separator=",\n            ">);
+
+    <it.mappedParams:postExecuteMappedParamProcess()>
+}
+
+
+<endif>
+>>
+
+
+commentForMappedParams() ::= <<
+\<li><it.name> is mapped to <it.mappedToProperty>\</li>
+>>

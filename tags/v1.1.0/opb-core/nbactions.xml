@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action>
+        <actionName>rebuild</actionName>
+        <packagings>
+            <packaging>*</packaging>
+        </packagings>
+        <goals>
+            <goal>clean</goal>
+            <goal>install</goal>
+        </goals>
+    </action>
+    <action>
+            <actionName>CUSTOM-site:site</actionName>
+            <displayName>site:site</displayName>
+            <goals>
+                <goal>site:site</goal>
+            </goals>
+        </action>
+    <action>
+            <actionName>CUSTOM-cobertura:cobertura</actionName>
+            <displayName>cobertura:cobertura</displayName>
+            <goals>
+                <goal>cobertura:cobertura</goal>
+            </goals>
+        </action>
+</actions>

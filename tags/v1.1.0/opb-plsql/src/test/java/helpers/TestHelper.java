@@ -1,0 +1,151 @@
+/**
+ * Copyright (C) 2008 Peter Butterfill.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package helpers;
+
+
+import com.butterfill.opb.OpbObjectSourceImpl;
+import com.butterfill.opb.context.OpbContext;
+import com.butterfill.opb.data.OpbDataObjectSource;
+import com.butterfill.opb.groups.OpbGroupManager;
+import com.butterfill.opb.plsql.context.OpbContextPlsqlImpl;
+import com.butterfill.opb.plsql.session.OpbSessionPlsqlImpl;
+import com.butterfill.opb.session.OpbSession;
+import com.butterfill.opb.timing.OpbEventTimer;
+import com.butterfill.opb.util.OpbScalarResultCache;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Arrays;
+import oracle.jdbc.pool.OracleDataSource;
+
+/**
+ * opb-plsql
+ * 
+ * @author Peter Butterfill
+ */
+public class TestHelper {
+    
+    private static OpbEventTimer _sharedEventTimer = new OpbEventTimer();
+    
+    private static OracleDataSource _sharedOracleDataSource = 
+            getOracleDataSource();
+    
+    private static Connection _sharedConnection;
+    
+    private static OpbSession _sharedSession = getOpbSession();
+    
+    static {
+        _sharedSession.createSession();
+    }
+    
+    private static Connection _getConnection() {
+        if (_sharedConnection == null) {
+            try {
+                _sharedConnection = _sharedOracleDataSource.getConnection();
+            } catch (Exception ex) {
+                throw new RuntimeException(
+                        "Failed to get connection from shared datasource", ex);
+            }
+        }
+        return _sharedConnection;
+    }
+    
+    public static OracleDataSource getSharedOracleDataSource() {
+        return _sharedOracleDataSource;
+    }
+    
+    private static OracleDataSource getOracleDataSource() {
+        
+        OracleDataSource dataSource = null;
+        
+        try {
+            dataSource = new OracleDataSource();
+            dataSource.setURL("jdbc:oracle:thin:@//localhost:1521/xe");
+            dataSource.setUser("opb_test");
+            dataSource.setPassword("weak_pw");
+            dataSource.setConnectionCachingEnabled(true);
+            dataSource.setImplicitCachingEnabled(true);
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(
+                    "Failed to create Oracle data source", ex);
+        }
+        
+        return dataSource;
+
+    }
+    
+    public static OpbContext getOpbContext() {
+        return new OpbContextPlsqlImpl(
+                "test-context", _sharedOracleDataSource, _sharedEventTimer);
+    }
+    
+    public static OpbSession getSharedOpbSession() {
+        return _sharedSession;
+    }
+    
+    public static OpbSession getOpbSession() {
+        return new OpbSessionPlsqlImpl(
+                "test-context", _sharedOracleDataSource, 
+                new OpbDataObjectSource(new OpbObjectSourceImpl()), 
+                new OpbGroupManager(), 
+                new OpbScalarResultCache(), _sharedEventTimer);
+    }
+    
+    public static ResultSet getResultSet(String[] columns, int skipColumn) {
+        
+        try {
+            Statement statement = _getConnection().createStatement();
+            String sql = "SELECT ";
+            for (int i = 0; i < columns.length; i++) {
+                if (i != skipColumn) {
+                    sql += "'' AS ";
+                    sql += columns[i];
+                    sql += ", ";
+                }
+
+            }
+            sql = sql.substring(0, sql.length() - 2);
+            sql += " FROM dual";
+            System.out.format("sql=%s%n", sql);
+            return statement.executeQuery(sql);
+            
+        } catch (Exception ex) {
+            throw new RuntimeException(
+                    "Failed to get result set. columns=" + 
+                    Arrays.asList(columns) + ". skipColumn=" + skipColumn, ex);
+            
+        }
+        
+    }
+    
+    public static ResultSet getResultSet(String sql) {
+        try {
+            Statement statement = _getConnection().createStatement();
+            ResultSet result = statement.executeQuery(sql);
+            return result;
+            
+        } catch (Exception ex) {
+            throw new RuntimeException("Failed to get result set " + sql, ex);
+            
+        }
+        
+    }
+    
+    
+}

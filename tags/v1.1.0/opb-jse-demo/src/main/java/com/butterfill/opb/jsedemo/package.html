@@ -1,0 +1,86 @@
+<html>
+  <body>
+    Provides classes to demonstrate opb-plsql use in a JSE environment.
+    
+    <h3>Database set-up</h3>
+
+    To run all of the demo's you'll need to create 2 database (DB) accounts:
+    <a href="#opb_jse_demo">opb_jse_demo</a> and 
+    <a href="#opb_jse_light_demo">opb_jse_light_demo</a>.
+
+    <h4 id="opb_jse_demo">opb_jse_demo</h4>
+
+    The opb_jse_demo account is set-up with all Opb features enabled
+    (such as session tracking and the ability to create user messages).
+    <br/>
+    The opb_jse_light_demo account is used by
+    <code>SimpleArrayDemoMain</code>,
+    <code>SimpleBooleanDemoMain</code>,
+    <code>SimpleMessagesDemoMain</code> and
+    <code>USerDefinedCollectionDemoMain</code>.
+
+    <ol>
+        <li>Create the DB account (opb_jse_demo). e.g. Run the following commands via SQL*Plus:</li>
+        <ul>
+            <li>CREATE USER opb_jse_demo DEFAULT TABLESPACE users IDENTIFIED BY weak_pw;</li>
+            <li>GRANT DBA TO opb_jse_demo;</li>
+        </ul>
+        
+        <li>Build the Opb SQL:</li>
+        <ul>
+            <li>Run src/main/resources/sql/build.sql from the opb-plsql project as opb_jse_demo.</li>
+        </ul>
+
+        <li>Build the demo SQL</li>
+        <ul>
+            <li>Run src/main/resources/sql/build.sql from this project as opb_jse_demo.</li>
+        </ul>
+        
+    </ol>
+    
+    The default DB connection details are (see applicationContext.xml);
+    <ul>
+        <li>url=jdbc:oracle:thin:@//localhost:1521/xe</li>
+        <li>user=opb_jse_demo</li>
+        <li>password=weak_pw</li>
+    </ul>
+    
+    This URL will work if you have a local copy of Oracle XE running.
+    <br/>
+    If you would like to use a different URL or user, please edit the configuration of
+    the oracleDataSource bean in src/main/resources/applicationContext.xml.
+
+
+    <h4 id="opb_jse_light_demo">opb_jse_light_demo</h4>
+
+    The opb_jse_light_demo account could be any DB account and does not need Opb PL/SQL
+    objects to be compiled.
+    <br/>
+    The opb_jse_light_demo account is used by <code>LightSessionDemoMain</code>.
+    
+    <ol>
+        <li>
+            Create the DB account (opb_jse_light_demo). e.g. Run the following commands via SQL*Plus:
+        </li>
+        <ul>
+            <li>CREATE USER opb_jse_light_demo DEFAULT TABLESPACE users IDENTIFIED BY weak_pw;</li>
+            <li>GRANT DBA TO opb_jse_light_demo;</li>
+        </ul>
+
+    </ol>
+
+    The default DB connection details are (see applicationContext.xml);
+    <ul>
+        <li>url=jdbc:oracle:thin:@//localhost:1521/xe</li>
+        <li>user=opb_jse_light_demo</li>
+        <li>password=weak_pw</li>
+    </ul>
+
+    This URL will work if you have a local copy of Oracle XE running.
+    <br/>
+    If you would like to use a different URL or user, please edit the configuration of
+    the oracleDataSource bean in src/main/resources/applicationContext.xml.
+
+  </body>
+
+</html>
