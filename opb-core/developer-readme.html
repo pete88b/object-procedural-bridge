@@ -1,0 +1,44 @@
+<html>
+  <body>
+    TODO: xxx
+
+    <h3>Database set-up</h3>
+
+    To run the unit tests, you need to set-up a database account;
+
+    The <strong>opb_test</strong> account is set-up with all Opb features enabled
+    (such as session tracking and the ability to create user messages).
+
+    <ol>
+        <li>Create the DB account (opb_test). e.g. Run the following commands via SQL*Plus;</li>
+        <li><ul>
+            <li>CREATE USER opb_test DEFAULT TABLESPACE users IDENTIFIED BY weak_pw;</li>
+            <li>GRANT DBA TO opb_test;</li>
+        </ul></li>
+
+        <li>Build the objects needed to test opb-core;</li>
+        <ul>
+            <li>Run src/main/resources/sql/build.sql from the opb-plsql project as opb_test.</li>
+        </ul>
+
+        <li>Build the objects needed to test opb-plsql;</li>
+        <ul>
+            <li>Run src/test/resources/plsql/build.sql from the opb-plsql project as opb_test.</li>
+        </ul>
+
+    </ol>
+
+    The default DB connection details are (see helpers.TestHelper);
+    <ul>
+        <li>url=jdbc:oracle:thin:@//localhost:1521/xe</li>
+        <li>user=opb_test</li>
+        <li>password=weak_pw</li>
+    </ul>
+
+    This URL will work if you have a local copy of Oracle XE running.
+    <br/>
+    If you would like to use a different URL or user, please edit helpers.TestHelper.
+
+  </body>
+
+</html>
