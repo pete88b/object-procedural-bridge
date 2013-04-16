@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * param_datatype.
  */
 public interface ParamDatatype
-        extends OpbGroupable, OpbTimingEventPublisher,
-        OpbActiveDataObject {
+        extends OpbActiveDataObject {
 
     /**
      * 
@@ -26,8 +23,8 @@ public interface ParamDatatype
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.math.BigDecimal invalid1() 
-            throws OpbDataAccessException; 
+    java.math.BigDecimal invalid1()
+            throws OpbDataAccessException;
     
 
     /**
@@ -36,7 +33,7 @@ public interface ParamDatatype
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void invalid2(java.math.BigDecimal p1) 
+    void invalid2(java.math.BigDecimal p1)
             throws OpbDataAccessException;
     
     /**
@@ -46,7 +43,7 @@ public interface ParamDatatype
      *   If we fail to make the database call.
      */
     void dodgy(OpbValueWrapper<Long> p1,
-            OpbValueWrapper<Long> p2) 
+            OpbValueWrapper<Long> p2)
             throws OpbDataAccessException;
     
     /**
@@ -56,7 +53,7 @@ public interface ParamDatatype
      *   If we fail to make the database call.
      */
     void a(Long p1,
-            Long p2) 
+            Long p2)
             throws OpbDataAccessException;
     
 

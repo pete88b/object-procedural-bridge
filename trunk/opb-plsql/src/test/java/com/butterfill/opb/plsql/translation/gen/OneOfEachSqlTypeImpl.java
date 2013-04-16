@@ -1,16 +1,14 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.*;
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 import com.butterfill.opb.plsql.util.*;
 import java.util.logging.*;
@@ -20,19 +18,19 @@ import java.util.logging.*;
  * one_of_each_sql_type.
  */
 public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
-    
+
     /**
      * The name of this class.
      */
     public static final String CLASS_NAME =
             OneOfEachSqlTypeImpl.class.getName();
-            
+
     /**
      * The logger of this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
-    
+
     /**
      * Creates a new instance of OneOfEachSqlTypeImpl.
      */
@@ -48,43 +46,8 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public String toString() {
         return com.butterfill.opb.util.OpbToStringHelper.toString(this);
     }
-    
-    /**
-     * The group mananger map to be used by this OneOfEachSqlTypeImpl.
-     */
-    private OpbGroupManagerMap opbGroupManagerMap;
 
-    /**
-     * Sets the group manager map to be used by this OneOfEachSqlTypeImpl.
-     * @param map The group manager map to use.
-     */
-    public void setGroupManagerMap(final OpbGroupManagerMap map) {
-        this.opbGroupManagerMap = map;
-    }
 
-    /**
-     * Returns the group manager map used by this OneOfEachSqlTypeImpl.
-     * @return The group manager map used by this instance.
-     */
-    public OpbGroupManagerMap getGroupManagerMap() {
-        return opbGroupManagerMap;
-    }
-    
-
-    /**
-     * The event timer provider to be used by this OneOfEachSqlTypeImpl.
-     */
-    private OpbEventTimerProvider opbEventTimerProvider;
-
-    /**
-     * Sets the event timer to be used by this OneOfEachSqlTypeImpl.
-     * @param provider The event timer to use.
-     */
-    public void setOpbEventTimerProvider(final OpbEventTimerProvider provider) {
-        this.opbEventTimerProvider = provider;
-    }
-
-    
     /**
      * The data object source to be used by this OneOfEachSqlTypeImpl.
      */
@@ -112,7 +75,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
         this.opbConnectionProvider = provider;
     }
 
-    
+
     /**
      * Resets all field values to their initial values.
      */
@@ -163,8 +126,8 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
 
 
     /**
-     * Resets all field values to their initial values by calling 
-     * opbClearState() and then sets all field values using values taken from 
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
      * the current row in resultSet.
      * <br/>
      * This method will look for the following fields in resultSet;
@@ -182,11 +145,11 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
      * <li>a_timestamp is optional</li>
      * <li>a_varchar2 is <em>mandatory</em></li>
      * </ul>
-     * 
+     *
      * @param resultSet The result set from which this instance should be loaded.
      * @throws OpbDataAccessException If we fail to load this instance.
      */
-    public void opbLoad(final java.sql.ResultSet resultSet) 
+    public void opbLoad(final java.sql.ResultSet resultSet)
             throws OpbDataAccessException {
         final String methodName = "opbLoad(ResultSet)";
 
@@ -202,84 +165,84 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
         try {
             // load aBinaryDouble from column a_binary_double
             aBinaryDouble = OpbSqlHelper.getValue(
-                    aBinaryDouble, resultSet, 
+                    aBinaryDouble, resultSet,
                     "a_binary_double", false);
             // save the value we just loaded as the datasource value
             aBinaryDoubleDataSourceValue = aBinaryDouble;
             
             // load aBinaryFloat from column a_binary_float
             aBinaryFloat = OpbSqlHelper.getValue(
-                    aBinaryFloat, resultSet, 
+                    aBinaryFloat, resultSet,
                     "a_binary_float", false);
             // save the value we just loaded as the datasource value
             aBinaryFloatDataSourceValue = aBinaryFloat;
             
             // load aBlob from column a_blob
             aBlob = OpbSqlHelper.getValue(
-                    aBlob, resultSet, 
+                    aBlob, resultSet,
                     "a_blob", true);
             // save the value we just loaded as the datasource value
             aBlobDataSourceValue = aBlob;
             
             // load aChar from column a_char
             aChar = OpbSqlHelper.getValue(
-                    aChar, resultSet, 
+                    aChar, resultSet,
                     "a_char", true);
             // save the value we just loaded as the datasource value
             aCharDataSourceValue = aChar;
             
             // load aClob from column a_clob
             aClob = OpbSqlHelper.getValue(
-                    aClob, resultSet, 
+                    aClob, resultSet,
                     "a_clob", true);
             // save the value we just loaded as the datasource value
             aClobDataSourceValue = aClob;
             
             // load aDate from column a_date
             aDate = OpbSqlHelper.getValue(
-                    aDate, resultSet, 
+                    aDate, resultSet,
                     "a_date", true);
             // save the value we just loaded as the datasource value
             aDateDataSourceValue = aDate;
             
             // load aNclob from column a_nclob
             aNclob = OpbSqlHelper.getValue(
-                    aNclob, resultSet, 
+                    aNclob, resultSet,
                     "a_nclob", true);
             // save the value we just loaded as the datasource value
             aNclobDataSourceValue = aNclob;
             
             // load aNumber from column a_number
             aNumber = OpbSqlHelper.getValue(
-                    aNumber, resultSet, 
+                    aNumber, resultSet,
                     "a_number", true);
             // save the value we just loaded as the datasource value
             aNumberDataSourceValue = aNumber;
             
             // load aNvarchar2 from column a_nvarchar2
             aNvarchar2 = OpbSqlHelper.getValue(
-                    aNvarchar2, resultSet, 
+                    aNvarchar2, resultSet,
                     "a_nvarchar2", true);
             // save the value we just loaded as the datasource value
             aNvarchar2DataSourceValue = aNvarchar2;
             
             // load aRaw from column a_raw
             aRaw = OpbSqlHelper.getValue(
-                    aRaw, resultSet, 
+                    aRaw, resultSet,
                     "a_raw", true);
             // save the value we just loaded as the datasource value
             aRawDataSourceValue = aRaw;
             
             // load aTimestamp from column a_timestamp
             aTimestamp = OpbSqlHelper.getValue(
-                    aTimestamp, resultSet, 
+                    aTimestamp, resultSet,
                     "a_timestamp", false);
             // save the value we just loaded as the datasource value
             aTimestampDataSourceValue = aTimestamp;
             
             // load aVarchar2 from column a_varchar2
             aVarchar2 = OpbSqlHelper.getValue(
-                    aVarchar2, resultSet, 
+                    aVarchar2, resultSet,
                     "a_varchar2", true);
             // save the value we just loaded as the datasource value
             aVarchar2DataSourceValue = aVarchar2;
@@ -334,7 +297,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     }
     
     /**
-     * Returns true if the value of aBinaryDouble 
+     * Returns true if the value of aBinaryDouble
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aBinaryDouble has changed since it was loaded.
@@ -380,7 +343,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     }
     
     /**
-     * Returns true if the value of aBinaryFloat 
+     * Returns true if the value of aBinaryFloat
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aBinaryFloat has changed since it was loaded.
@@ -426,7 +389,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     }
     
     /**
-     * Returns true if the value of aBlob 
+     * Returns true if the value of aBlob
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aBlob has changed since it was loaded.
@@ -472,7 +435,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     }
     
     /**
-     * Returns true if the value of aChar 
+     * Returns true if the value of aChar
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aChar has changed since it was loaded.
@@ -518,7 +481,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     }
     
     /**
-     * Returns true if the value of aClob 
+     * Returns true if the value of aClob
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aClob has changed since it was loaded.
@@ -564,7 +527,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     }
     
     /**
-     * Returns true if the value of aDate 
+     * Returns true if the value of aDate
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aDate has changed since it was loaded.
@@ -610,7 +573,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     }
     
     /**
-     * Returns true if the value of aNclob 
+     * Returns true if the value of aNclob
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aNclob has changed since it was loaded.
@@ -656,7 +619,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     }
     
     /**
-     * Returns true if the value of aNumber 
+     * Returns true if the value of aNumber
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aNumber has changed since it was loaded.
@@ -702,7 +665,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     }
     
     /**
-     * Returns true if the value of aNvarchar2 
+     * Returns true if the value of aNvarchar2
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aNvarchar2 has changed since it was loaded.
@@ -748,7 +711,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     }
     
     /**
-     * Returns true if the value of aRaw 
+     * Returns true if the value of aRaw
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aRaw has changed since it was loaded.
@@ -794,7 +757,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     }
     
     /**
-     * Returns true if the value of aTimestamp 
+     * Returns true if the value of aTimestamp
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aTimestamp has changed since it was loaded.
@@ -840,7 +803,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     }
     
     /**
-     * Returns true if the value of aVarchar2 
+     * Returns true if the value of aVarchar2
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aVarchar2 has changed since it was loaded.

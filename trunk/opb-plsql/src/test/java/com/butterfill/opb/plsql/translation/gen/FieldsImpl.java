@@ -1,16 +1,14 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.*;
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 import com.butterfill.opb.plsql.util.*;
 import java.util.logging.*;
@@ -20,19 +18,19 @@ import java.util.logging.*;
  * fields.
  */
 public class FieldsImpl implements Fields {
-    
+
     /**
      * The name of this class.
      */
     public static final String CLASS_NAME =
             FieldsImpl.class.getName();
-            
+
     /**
      * The logger of this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
-    
+
     /**
      * Creates a new instance of FieldsImpl.
      */
@@ -48,43 +46,8 @@ public class FieldsImpl implements Fields {
     public String toString() {
         return com.butterfill.opb.util.OpbToStringHelper.toString(this);
     }
-    
-    /**
-     * The group mananger map to be used by this FieldsImpl.
-     */
-    private OpbGroupManagerMap opbGroupManagerMap;
 
-    /**
-     * Sets the group manager map to be used by this FieldsImpl.
-     * @param map The group manager map to use.
-     */
-    public void setGroupManagerMap(final OpbGroupManagerMap map) {
-        this.opbGroupManagerMap = map;
-    }
 
-    /**
-     * Returns the group manager map used by this FieldsImpl.
-     * @return The group manager map used by this instance.
-     */
-    public OpbGroupManagerMap getGroupManagerMap() {
-        return opbGroupManagerMap;
-    }
-    
-
-    /**
-     * The event timer provider to be used by this FieldsImpl.
-     */
-    private OpbEventTimerProvider opbEventTimerProvider;
-
-    /**
-     * Sets the event timer to be used by this FieldsImpl.
-     * @param provider The event timer to use.
-     */
-    public void setOpbEventTimerProvider(final OpbEventTimerProvider provider) {
-        this.opbEventTimerProvider = provider;
-    }
-
-    
     /**
      * The data object source to be used by this FieldsImpl.
      */
@@ -112,7 +75,7 @@ public class FieldsImpl implements Fields {
         this.opbConnectionProvider = provider;
     }
 
-    
+
     /**
      * Resets all field values to their initial values.
      */
@@ -144,8 +107,8 @@ public class FieldsImpl implements Fields {
 
 
     /**
-     * Resets all field values to their initial values by calling 
-     * opbClearState() and then sets all field values using values taken from 
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
      * the current row in resultSet.
      * <br/>
      * This method will look for the following fields in resultSet;
@@ -157,11 +120,11 @@ public class FieldsImpl implements Fields {
      * <li>a_date is <em>mandatory</em></li>
      * <li>a_ro is <em>mandatory</em></li>
      * </ul>
-     * 
+     *
      * @param resultSet The result set from which this instance should be loaded.
      * @throws OpbDataAccessException If we fail to load this instance.
      */
-    public void opbLoad(final java.sql.ResultSet resultSet) 
+    public void opbLoad(final java.sql.ResultSet resultSet)
             throws OpbDataAccessException {
         final String methodName = "opbLoad(ResultSet)";
 
@@ -177,42 +140,42 @@ public class FieldsImpl implements Fields {
         try {
             // load a from column a
             a = OpbSqlHelper.getValue(
-                    a, resultSet, 
+                    a, resultSet,
                     "a", true);
             // save the value we just loaded as the datasource value
             aDataSourceValue = a;
             
             // load aVarchar from column a_varchar
             aVarchar = OpbSqlHelper.getValue(
-                    aVarchar, resultSet, 
+                    aVarchar, resultSet,
                     "a_varchar", true);
             // save the value we just loaded as the datasource value
             aVarcharDataSourceValue = aVarchar;
             
             // load aNumber from column a_number
             aNumber = OpbSqlHelper.getValue(
-                    aNumber, resultSet, 
+                    aNumber, resultSet,
                     "a_number", true);
             // save the value we just loaded as the datasource value
             aNumberDataSourceValue = aNumber;
             
             // load aInteger from column a_integer
             aInteger = OpbSqlHelper.getValue(
-                    aInteger, resultSet, 
+                    aInteger, resultSet,
                     "a_integer", true);
             // save the value we just loaded as the datasource value
             aIntegerDataSourceValue = aInteger;
             
             // load aDate from column a_date
             aDate = OpbSqlHelper.getValue(
-                    aDate, resultSet, 
+                    aDate, resultSet,
                     "a_date", true);
             // save the value we just loaded as the datasource value
             aDateDataSourceValue = aDate;
             
             // load aRo from column a_ro
             aRo = OpbSqlHelper.getValue(
-                    aRo, resultSet, 
+                    aRo, resultSet,
                     "a_ro", true);
             
 
@@ -244,7 +207,7 @@ public class FieldsImpl implements Fields {
     
     /**
      * Sets the value of a.
-     * Calls aChanged() 
+     * Calls aChanged()
      * if this call changes the value of a.
      * @param a The new value for a.
      */
@@ -272,7 +235,7 @@ public class FieldsImpl implements Fields {
     }
     
     /**
-     * Returns true if the value of a 
+     * Returns true if the value of a
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if a has changed since it was loaded.
@@ -318,7 +281,7 @@ public class FieldsImpl implements Fields {
     }
     
     /**
-     * Returns true if the value of aVarchar 
+     * Returns true if the value of aVarchar
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aVarchar has changed since it was loaded.
@@ -364,7 +327,7 @@ public class FieldsImpl implements Fields {
     }
     
     /**
-     * Returns true if the value of aNumber 
+     * Returns true if the value of aNumber
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aNumber has changed since it was loaded.
@@ -410,7 +373,7 @@ public class FieldsImpl implements Fields {
     }
     
     /**
-     * Returns true if the value of aInteger 
+     * Returns true if the value of aInteger
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aInteger has changed since it was loaded.
@@ -456,7 +419,7 @@ public class FieldsImpl implements Fields {
     }
     
     /**
-     * Returns true if the value of aDate 
+     * Returns true if the value of aDate
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aDate has changed since it was loaded.
@@ -495,18 +458,16 @@ public class FieldsImpl implements Fields {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void aChanged() 
+    public void aChanged()
             throws OpbDataAccessException {
         final String methodName = "aChanged()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN fields.a_changed(); END;",
-                "DbCall:fields#a_changed()");
+                "BEGIN fields.a_changed(); END;");
     
         opbCallHelper.execute();
     

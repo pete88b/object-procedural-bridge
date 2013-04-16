@@ -1,16 +1,14 @@
 /*
  * File created by opb-plsql.
- * 
- * opb-plsql version: 1.1.0
- * opb-core version: 1.1.0
+ *
+ * opb-plsql version: 2.0.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.jsedemo.data;
 
 import com.butterfill.opb.*;
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 import com.butterfill.opb.plsql.util.*;
 import java.util.logging.*;
@@ -20,19 +18,19 @@ import java.util.logging.*;
  * dbms_output.
  */
 public class DbmsOutputImpl implements DbmsOutput {
-    
+
     /**
      * The name of this class.
      */
     public static final String CLASS_NAME =
             DbmsOutputImpl.class.getName();
-            
+
     /**
      * The logger of this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
-    
+
     /**
      * Creates a new instance of DbmsOutputImpl.
      */
@@ -48,43 +46,8 @@ public class DbmsOutputImpl implements DbmsOutput {
     public String toString() {
         return com.butterfill.opb.util.OpbToStringHelper.toString(this);
     }
-    
-    /**
-     * The group mananger map to be used by this DbmsOutputImpl.
-     */
-    private OpbGroupManagerMap opbGroupManagerMap;
 
-    /**
-     * Sets the group manager map to be used by this DbmsOutputImpl.
-     * @param map The group manager map to use.
-     */
-    public void setGroupManagerMap(final OpbGroupManagerMap map) {
-        this.opbGroupManagerMap = map;
-    }
 
-    /**
-     * Returns the group manager map used by this DbmsOutputImpl.
-     * @return The group manager map used by this instance.
-     */
-    public OpbGroupManagerMap getGroupManagerMap() {
-        return opbGroupManagerMap;
-    }
-    
-
-    /**
-     * The event timer provider to be used by this DbmsOutputImpl.
-     */
-    private OpbEventTimerProvider opbEventTimerProvider;
-
-    /**
-     * Sets the event timer to be used by this DbmsOutputImpl.
-     * @param provider The event timer to use.
-     */
-    public void setOpbEventTimerProvider(final OpbEventTimerProvider provider) {
-        this.opbEventTimerProvider = provider;
-    }
-
-    
     /**
      * The data object source to be used by this DbmsOutputImpl.
      */
@@ -112,25 +75,23 @@ public class DbmsOutputImpl implements DbmsOutput {
         this.opbConnectionProvider = provider;
     }
 
-    
+
     /**
      * 
      * Calls the database procedure enable.
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void enable(final Long bufferSize) 
+    public void enable(final Long bufferSize)
             throws OpbDataAccessException {
         final String methodName = "enable(Long)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN dbms_output.enable(?); END;",
-                "DbCall:dbms_output#enable(integer)");
+                "BEGIN dbms_output.enable(?); END;");
     
         opbCallHelper.setObject(
                 1, java.sql.Types.BIGINT, bufferSize);
@@ -150,18 +111,16 @@ public class DbmsOutputImpl implements DbmsOutput {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void disable() 
+    public void disable()
             throws OpbDataAccessException {
         final String methodName = "disable()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN dbms_output.disable(); END;",
-                "DbCall:dbms_output#disable()");
+                "BEGIN dbms_output.disable(); END;");
     
         opbCallHelper.execute();
     
@@ -177,18 +136,16 @@ public class DbmsOutputImpl implements DbmsOutput {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void put(final String a) 
+    public void put(final String a)
             throws OpbDataAccessException {
         final String methodName = "put(String)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN dbms_output.put(?); END;",
-                "DbCall:dbms_output#put(varchar2)");
+                "BEGIN dbms_output.put(?); END;");
     
         opbCallHelper.setObject(
                 1, java.sql.Types.VARCHAR, a);
@@ -208,18 +165,16 @@ public class DbmsOutputImpl implements DbmsOutput {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void putLine(final String a) 
+    public void putLine(final String a)
             throws OpbDataAccessException {
         final String methodName = "putLine(String)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN dbms_output.put_line(?); END;",
-                "DbCall:dbms_output#put_line(varchar2)");
+                "BEGIN dbms_output.put_line(?); END;");
     
         opbCallHelper.setObject(
                 1, java.sql.Types.VARCHAR, a);
@@ -239,18 +194,16 @@ public class DbmsOutputImpl implements DbmsOutput {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void newLine() 
+    public void newLine()
             throws OpbDataAccessException {
         final String methodName = "newLine()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN dbms_output.new_line(); END;",
-                "DbCall:dbms_output#new_line()");
+                "BEGIN dbms_output.new_line(); END;");
     
         opbCallHelper.execute();
     
@@ -267,25 +220,23 @@ public class DbmsOutputImpl implements DbmsOutput {
      *   If we fail to make the database call.
      */
     public void getLine(final OpbValueWrapper<String> line,
-            final OpbValueWrapper<Long> status) 
+            final OpbValueWrapper<Long> status)
             throws OpbDataAccessException {
         final String methodName = "getLine(OpbValueWrapper, OpbValueWrapper)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
+                logger, CLASS_NAME, methodName,
                 "line", line);
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
+                logger, CLASS_NAME, methodName,
                 "status", status);
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN dbms_output.get_line(?, ?); END;",
-                "DbCall:dbms_output#get_line(varchar2, integer)");
+                "BEGIN dbms_output.get_line(?, ?); END;");
     
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);

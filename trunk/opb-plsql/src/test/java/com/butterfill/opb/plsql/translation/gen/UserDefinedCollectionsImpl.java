@@ -1,16 +1,14 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.*;
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 import com.butterfill.opb.plsql.util.*;
 import java.util.logging.*;
@@ -20,19 +18,19 @@ import java.util.logging.*;
  * user_defined_collections.
  */
 public class UserDefinedCollectionsImpl implements UserDefinedCollections {
-    
+
     /**
      * The name of this class.
      */
     public static final String CLASS_NAME =
             UserDefinedCollectionsImpl.class.getName();
-            
+
     /**
      * The logger of this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
-    
+
     /**
      * Creates a new instance of UserDefinedCollectionsImpl.
      */
@@ -48,43 +46,8 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
     public String toString() {
         return com.butterfill.opb.util.OpbToStringHelper.toString(this);
     }
-    
-    /**
-     * The group mananger map to be used by this UserDefinedCollectionsImpl.
-     */
-    private OpbGroupManagerMap opbGroupManagerMap;
 
-    /**
-     * Sets the group manager map to be used by this UserDefinedCollectionsImpl.
-     * @param map The group manager map to use.
-     */
-    public void setGroupManagerMap(final OpbGroupManagerMap map) {
-        this.opbGroupManagerMap = map;
-    }
 
-    /**
-     * Returns the group manager map used by this UserDefinedCollectionsImpl.
-     * @return The group manager map used by this instance.
-     */
-    public OpbGroupManagerMap getGroupManagerMap() {
-        return opbGroupManagerMap;
-    }
-    
-
-    /**
-     * The event timer provider to be used by this UserDefinedCollectionsImpl.
-     */
-    private OpbEventTimerProvider opbEventTimerProvider;
-
-    /**
-     * Sets the event timer to be used by this UserDefinedCollectionsImpl.
-     * @param provider The event timer to use.
-     */
-    public void setOpbEventTimerProvider(final OpbEventTimerProvider provider) {
-        this.opbEventTimerProvider = provider;
-    }
-
-    
     /**
      * The data object source to be used by this UserDefinedCollectionsImpl.
      */
@@ -112,28 +75,26 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
         this.opbConnectionProvider = provider;
     }
 
-    
+
     /**
      * 
      * Calls the database function get_null.
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public java.math.BigDecimal[] 
-            getNull() 
+    public java.math.BigDecimal[]
+            getNull()
             throws OpbDataAccessException {
         final String methodName = "getNull()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         java.math.BigDecimal[] result = null;
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN ? := user_defined_collections.get_null(); END;",
-                "DbCall:user_defined_collections#get_null()");
+                "BEGIN ? := user_defined_collections.get_null(); END;");
     
         opbCallHelper.registerOutArray(
                 1, "NUMBER_TABLE");
@@ -156,21 +117,19 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public java.math.BigDecimal[] 
-            echoNumberTable(final Object[] pData) 
+    public java.math.BigDecimal[]
+            echoNumberTable(final Object[] pData)
             throws OpbDataAccessException {
         final String methodName = "echoNumberTable(java.math.BigDecimal[])";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         java.math.BigDecimal[] result = null;
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN ? := user_defined_collections.echo_number_table(?); END;",
-                "DbCall:user_defined_collections#echo_number_table(number_table)");
+                "BEGIN ? := user_defined_collections.echo_number_table(?); END;");
     
         opbCallHelper.registerOutArray(
                 1, "NUMBER_TABLE");
@@ -197,21 +156,19 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public String 
-            formatNumberTable(final Object[] pData) 
+    public String
+            formatNumberTable(final Object[] pData)
             throws OpbDataAccessException {
         final String methodName = "formatNumberTable(java.math.BigDecimal[])";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         String result = null;
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN ? := user_defined_collections.format_number_table(?); END;",
-                "DbCall:user_defined_collections#format_number_table(number_table)");
+                "BEGIN ? := user_defined_collections.format_number_table(?); END;");
     
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
@@ -238,26 +195,24 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public String 
+    public String
             howLong(final Object[] pData,
-            final OpbValueWrapper<String[]> pResults) 
+            final OpbValueWrapper<String[]> pResults)
             throws OpbDataAccessException {
         final String methodName = "howLong(String[], OpbValueWrapper)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         String result = null;
     
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
+                logger, CLASS_NAME, methodName,
                 "pResults", pResults);
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN ? := user_defined_collections.how_long(?, ?); END;",
-                "DbCall:user_defined_collections#how_long(varchar_table, varchar_table)");
+                "BEGIN ? := user_defined_collections.how_long(?, ?); END;");
     
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
@@ -290,22 +245,20 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void getNullProc(final OpbValueWrapper<java.math.BigDecimal[]> pData) 
+    public void getNullProc(final OpbValueWrapper<java.math.BigDecimal[]> pData)
             throws OpbDataAccessException {
         final String methodName = "getNullProc(OpbValueWrapper)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
+                logger, CLASS_NAME, methodName,
                 "pData", pData);
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN user_defined_collections.get_null_proc(?); END;",
-                "DbCall:user_defined_collections#get_null_proc(number_table)");
+                "BEGIN user_defined_collections.get_null_proc(?); END;");
     
         opbCallHelper.registerOutArray(
                 1, "NUMBER_TABLE");
@@ -327,22 +280,20 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void simpleInOut(final OpbValueWrapper<String[]> pData) 
+    public void simpleInOut(final OpbValueWrapper<String[]> pData)
             throws OpbDataAccessException {
         final String methodName = "simpleInOut(OpbValueWrapper)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
+                logger, CLASS_NAME, methodName,
                 "pData", pData);
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN user_defined_collections.simple_in_out(?); END;",
-                "DbCall:user_defined_collections#simple_in_out(varchar_table)");
+                "BEGIN user_defined_collections.simple_in_out(?); END;");
     
         opbCallHelper.setArray(
                 1, "VARCHAR_TABLE", pData.getValue());

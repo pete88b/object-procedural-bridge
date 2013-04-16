@@ -1,16 +1,14 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.*;
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 import com.butterfill.opb.plsql.util.*;
 import java.util.logging.*;
@@ -20,19 +18,19 @@ import java.util.logging.*;
  * param_datatype.
  */
 public class ParamDatatypeImpl implements ParamDatatype {
-    
+
     /**
      * The name of this class.
      */
     public static final String CLASS_NAME =
             ParamDatatypeImpl.class.getName();
-            
+
     /**
      * The logger of this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
-    
+
     /**
      * Creates a new instance of ParamDatatypeImpl.
      */
@@ -48,43 +46,8 @@ public class ParamDatatypeImpl implements ParamDatatype {
     public String toString() {
         return com.butterfill.opb.util.OpbToStringHelper.toString(this);
     }
-    
-    /**
-     * The group mananger map to be used by this ParamDatatypeImpl.
-     */
-    private OpbGroupManagerMap opbGroupManagerMap;
 
-    /**
-     * Sets the group manager map to be used by this ParamDatatypeImpl.
-     * @param map The group manager map to use.
-     */
-    public void setGroupManagerMap(final OpbGroupManagerMap map) {
-        this.opbGroupManagerMap = map;
-    }
 
-    /**
-     * Returns the group manager map used by this ParamDatatypeImpl.
-     * @return The group manager map used by this instance.
-     */
-    public OpbGroupManagerMap getGroupManagerMap() {
-        return opbGroupManagerMap;
-    }
-    
-
-    /**
-     * The event timer provider to be used by this ParamDatatypeImpl.
-     */
-    private OpbEventTimerProvider opbEventTimerProvider;
-
-    /**
-     * Sets the event timer to be used by this ParamDatatypeImpl.
-     * @param provider The event timer to use.
-     */
-    public void setOpbEventTimerProvider(final OpbEventTimerProvider provider) {
-        this.opbEventTimerProvider = provider;
-    }
-
-    
     /**
      * The data object source to be used by this ParamDatatypeImpl.
      */
@@ -112,28 +75,26 @@ public class ParamDatatypeImpl implements ParamDatatype {
         this.opbConnectionProvider = provider;
     }
 
-    
+
     /**
      * 
      * Calls the database function invalid_1.
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public java.math.BigDecimal 
-            invalid1() 
+    public java.math.BigDecimal
+            invalid1()
             throws OpbDataAccessException {
         final String methodName = "invalid1()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         java.math.BigDecimal result = null;
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN ? := param_datatype.invalid_1(); END;",
-                "DbCall:param_datatype#invalid_1()");
+                "BEGIN ? := param_datatype.invalid_1(); END;");
     
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.DECIMAL);
@@ -157,18 +118,16 @@ public class ParamDatatypeImpl implements ParamDatatype {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void invalid2(final java.math.BigDecimal p1) 
+    public void invalid2(final java.math.BigDecimal p1)
             throws OpbDataAccessException {
         final String methodName = "invalid2(java.math.BigDecimal)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN param_datatype.invalid_2(?); END;",
-                "DbCall:param_datatype#invalid_2(date)");
+                "BEGIN param_datatype.invalid_2(?); END;");
     
         opbCallHelper.setObject(
                 1, java.sql.Types.DECIMAL, p1);
@@ -189,25 +148,23 @@ public class ParamDatatypeImpl implements ParamDatatype {
      *   If we fail to make the database call.
      */
     public void dodgy(final OpbValueWrapper<Long> p1,
-            final OpbValueWrapper<Long> p2) 
+            final OpbValueWrapper<Long> p2)
             throws OpbDataAccessException {
         final String methodName = "dodgy(OpbValueWrapper, OpbValueWrapper)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
+                logger, CLASS_NAME, methodName,
                 "p1", p1);
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
+                logger, CLASS_NAME, methodName,
                 "p2", p2);
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN param_datatype.dodgy(?, ?); END;",
-                "DbCall:param_datatype#dodgy(varchar2, number)");
+                "BEGIN param_datatype.dodgy(?, ?); END;");
     
         opbCallHelper.setObject(
                 1, java.sql.Types.BIGINT, p1.getValue());
@@ -240,18 +197,16 @@ public class ParamDatatypeImpl implements ParamDatatype {
      *   If we fail to make the database call.
      */
     public void a(final Long p1,
-            final Long p2) 
+            final Long p2)
             throws OpbDataAccessException {
         final String methodName = "a(Long, Long)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN param_datatype.a(?, ?); END;",
-                "DbCall:param_datatype#a(varchar2, number)");
+                "BEGIN param_datatype.a(?, ?); END;");
     
         opbCallHelper.setObject(
                 1, java.sql.Types.BIGINT, p1);

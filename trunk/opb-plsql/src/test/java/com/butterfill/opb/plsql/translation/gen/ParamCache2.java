@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * param_cache2.
  */
 public interface ParamCache2
-        extends OpbGroupable, OpbTimingEventPublisher,
-        OpbActiveDataObject, OpbScalarResultCacheUser {
+        extends OpbActiveDataObject, OpbScalarResultCacheUser {
 
     /**
      * functions that return cursors use the result cache by default -
@@ -28,8 +25,8 @@ public interface ParamCache2
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.util.List<OpbDynamicDataView> useResultCacheB(Long pKey) 
-            throws OpbDataAccessException; 
+    java.util.List<OpbDynamicDataView> useResultCacheB(Long pKey)
+            throws OpbDataAccessException;
     
     /**
      * explicitly use the result cache.
@@ -37,8 +34,8 @@ public interface ParamCache2
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.util.List<OpbDynamicDataView> useResultCacheB2(Long pKey) 
-            throws OpbDataAccessException; 
+    java.util.List<OpbDynamicDataView> useResultCacheB2(Long pKey)
+            throws OpbDataAccessException;
     
     /**
      * do not use the scalar result cache.
@@ -46,8 +43,8 @@ public interface ParamCache2
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.util.List<OpbDynamicDataView> useResultCacheB3(Long pKey) 
-            throws OpbDataAccessException; 
+    java.util.List<OpbDynamicDataView> useResultCacheB3(Long pKey)
+            throws OpbDataAccessException;
     
     /**
      * functions do not use the scalar result cache by default.
@@ -55,8 +52,8 @@ public interface ParamCache2
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    Long useScalarResultCacheB(Long pKey) 
-            throws OpbDataAccessException; 
+    Long useScalarResultCacheB(Long pKey)
+            throws OpbDataAccessException;
     
     /**
      * explicitly use the scalar result cache.
@@ -64,8 +61,8 @@ public interface ParamCache2
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    Long useScalarResultCacheB2(Long pKey) 
-            throws OpbDataAccessException; 
+    Long useScalarResultCacheB2(Long pKey)
+            throws OpbDataAccessException;
     
     /**
      * do not use the scalar result cache.
@@ -73,8 +70,8 @@ public interface ParamCache2
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    Long useScalarResultCacheB3(Long pKey) 
-            throws OpbDataAccessException; 
+    Long useScalarResultCacheB3(Long pKey)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -82,8 +79,8 @@ public interface ParamCache2
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.util.List<FieldsId> useDataObjectCacheB(Long pKey) 
-            throws OpbDataAccessException; 
+    java.util.List<FieldsId> useDataObjectCacheB(Long pKey)
+            throws OpbDataAccessException;
     
     /**
      * do not use data object cache.
@@ -91,8 +88,8 @@ public interface ParamCache2
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.util.List<FieldsId> useDataObjectCacheB2(Long pKey) 
-            throws OpbDataAccessException; 
+    java.util.List<FieldsId> useDataObjectCacheB2(Long pKey)
+            throws OpbDataAccessException;
     
 
     /**
@@ -102,7 +99,7 @@ public interface ParamCache2
      *   If we fail to make the database call.
      */
     void useResultCacheA(OpbValueWrapper<java.util.List<OpbDynamicDataView>> pData,
-            String pKey) 
+            String pKey)
             throws OpbDataAccessException;
     
     /**
@@ -112,7 +109,7 @@ public interface ParamCache2
      *   If we fail to make the database call.
      */
     void useScalarResultCacheA(OpbValueWrapper<Long> pData,
-            Long pKey) 
+            Long pKey)
             throws OpbDataAccessException;
     
     /**
@@ -122,7 +119,7 @@ public interface ParamCache2
      *   If we fail to make the database call.
      */
     void useDataObjectCacheA(OpbValueWrapper<java.util.List<FieldsId>> pResult,
-            Long pKey) 
+            Long pKey)
             throws OpbDataAccessException;
     
 

@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
- * opb-plsql version: 1.1.0
- * opb-core version: 1.1.0
+ *
+ * opb-plsql version: 2.0.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.jsedemo.data;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * array_demo.
  */
 public interface ArrayDemo
-        extends OpbGroupable, OpbTimingEventPublisher,
-        OpbActiveDataObject {
+        extends OpbActiveDataObject {
 
     /**
      * Logs the elements of the specified collection at level 101.
@@ -26,7 +23,7 @@ public interface ArrayDemo
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void demoOne(String[] pArray) 
+    void demoOne(String[] pArray)
             throws OpbDataAccessException;
     
 

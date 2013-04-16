@@ -19,7 +19,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * </ul>
  *
  */
-public class LightSessionDemoMain {
+public class SessionDemoMain {
 
     /**
      * Sends some data to DBMS_OUTPUT (via a PUT_LINE call)
@@ -39,7 +39,7 @@ public class LightSessionDemoMain {
         context.registerShutdownHook();
 
         // get a new session
-        final OpbSession session = (OpbSession) context.getBean("opbSessionLight");
+        final OpbSession session = (OpbSession) context.getBean("opbSession");
 
         // get an object that can make DBMS_OUTPUT calls
         final DbmsOutput dbmsOutput = session.
@@ -68,7 +68,7 @@ public class LightSessionDemoMain {
 
         // release the connection help by our session
         // (this would probably be in a finally block in production code)
-        session.releaseConnection(false);
+        session.getOpbConnectionProvider().releaseConnection();
 
     }
 

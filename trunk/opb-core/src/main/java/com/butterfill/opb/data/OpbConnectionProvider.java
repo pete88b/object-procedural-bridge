@@ -16,20 +16,31 @@
 
 package com.butterfill.opb.data;
 
-import com.butterfill.opb.OpbException;
 import java.sql.Connection;
 
 /**
- * Provides a SQL connection.
+ * Provides a SQL connection and a way to close the connection.
  * @author Peter Butterfill
  */
 public interface OpbConnectionProvider {
 
     /**
-     * Returns a sql connection.
-     * @throws com.butterfill.opb.OpbException If we fail to get a connection.
+     * Returns a SQL connection.
+     * <br/>
+     * <em>Do not call close() on a connection returned by a connection provider.</em>
+     *
+     * @see #releaseConnection(boolean)
+     * @throws OpbDataAccessException If we fail to get a connection.
      * @return A connection.
      */
-    Connection getConnection() throws OpbException;
+    Connection getConnection() throws OpbDataAccessException;
+
+    /**
+     * Releases the connection being used by this session optionally clearing
+     * any temporary data saved by this session.
+     * <br/>
+     * <em>Do not call close() on a connection returned by a session.</em>
+     */
+    void releaseConnection();
 
 }

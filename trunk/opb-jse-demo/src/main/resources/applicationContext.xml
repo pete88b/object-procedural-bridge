@@ -5,7 +5,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-    <!-- Normal session set-up -->
     <bean id="oracleDataSource" class="oracle.jdbc.pool.OracleDataSource">
         <property name="URL" value="jdbc:oracle:thin:@//localhost:1521/xe"/>
         <property name="user" value="opb_jse_demo"/>
@@ -14,19 +13,8 @@
         <property name="implicitCachingEnabled" value="true"/>
     </bean>
 
-    <bean id="opbEventTimer" class="com.butterfill.opb.timing.OpbEventTimer"/>
-
-    <bean id="opbContext" destroy-method="stopContext"
-          class="com.butterfill.opb.plsql.context.OpbContextPlsqlImpl">
-        <constructor-arg value="opb-jse-demo"/>
-        <constructor-arg ref="oracleDataSource"/>
-        <constructor-arg ref="opbEventTimer"/>
-        <constructor-arg value="true"/>
-    </bean>
-
-    <bean id="opbSession" scope="prototype" init-method="createSession"
+    <bean id="opbSession" scope="prototype"
           class="com.butterfill.opb.plsql.session.OpbSessionPlsqlImpl">
-        <constructor-arg value="opb-jse-demo"/>
         <constructor-arg ref="oracleDataSource"/>
         <constructor-arg>
             <bean class="com.butterfill.opb.data.OpbDataObjectSource">
@@ -36,47 +24,8 @@
             </bean>
         </constructor-arg>
         <constructor-arg>
-            <bean class="com.butterfill.opb.groups.OpbGroupManager"/>
-        </constructor-arg>
-        <constructor-arg>
             <bean class="com.butterfill.opb.util.OpbScalarResultCache"/>
         </constructor-arg>
-        <constructor-arg ref="opbEventTimer"/>
     </bean>
-
-    <!-- End of Normal session set-up -->
-
-
-    <!-- Light session set-up -->
-    <bean id="oracleDataSourceLight" class="oracle.jdbc.pool.OracleDataSource">
-        <property name="URL" value="jdbc:oracle:thin:@//localhost:1521/xe"/>
-        <property name="user" value="opb_jse_light_demo"/>
-        <property name="password" value="weak_pw"/>
-        <property name="connectionCachingEnabled" value="true"/>
-        <property name="implicitCachingEnabled" value="true"/>
-    </bean>
-
-    <bean id="opbEventTimerLight" class="com.butterfill.opb.timing.OpbEventTimer"/>
-
-    <bean id="opbSessionLight" scope="prototype"
-          class="com.butterfill.opb.plsql.session.OpbSessionLightPlsqlImpl">
-        <constructor-arg ref="oracleDataSourceLight"/>
-        <constructor-arg>
-            <bean class="com.butterfill.opb.data.OpbDataObjectSource">
-                <constructor-arg>
-                    <bean class="com.butterfill.opb.OpbObjectSourceImpl"/>
-                </constructor-arg>
-            </bean>
-        </constructor-arg>
-        <constructor-arg>
-            <bean class="com.butterfill.opb.groups.OpbGroupManager"/>
-        </constructor-arg>
-        <constructor-arg>
-            <bean class="com.butterfill.opb.util.OpbScalarResultCache"/>
-        </constructor-arg>
-        <constructor-arg ref="opbEventTimerLight"/>
-    </bean>
-
-    <!-- End of Light session set-up -->
 
 </beans>

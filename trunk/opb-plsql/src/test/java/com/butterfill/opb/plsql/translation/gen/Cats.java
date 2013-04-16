@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * cats.
  */
 public interface Cats
-        extends OpbGroupable, OpbTimingEventPublisher,
-        OpbActiveDataObject {
+        extends OpbActiveDataObject {
 
     /**
      * 
@@ -26,8 +23,8 @@ public interface Cats
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.util.List<Cat> getCats() 
-            throws OpbDataAccessException; 
+    java.util.List<Cat> getCats()
+            throws OpbDataAccessException;
     
 
 }

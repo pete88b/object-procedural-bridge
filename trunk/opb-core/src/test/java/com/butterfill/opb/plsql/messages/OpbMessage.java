@@ -18,18 +18,15 @@
 package com.butterfill.opb.plsql.messages;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 import java.sql.ResultSet;
 
 /**
- * File created from the PL/SQL package specification 
+ * File created from the PL/SQL package specification
  * opb_message.
  */
 public interface OpbMessage
-        extends OpbGroupable, OpbTimingEventPublisher,
-        OpbActiveCacheableEntity {
+        extends OpbActiveCacheableEntity {
 
     /**
      * Clears all field values of this OpbMessage.

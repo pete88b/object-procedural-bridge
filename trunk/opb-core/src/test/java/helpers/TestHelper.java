@@ -16,13 +16,9 @@
 package helpers;
 
 import com.butterfill.opb.OpbObjectSourceImpl;
-import com.butterfill.opb.context.OpbContext;
 import com.butterfill.opb.data.OpbDataObjectSource;
-import com.butterfill.opb.groups.OpbGroupManager;
-import com.butterfill.opb.plsql.context.OpbContextPlsqlImpl;
 import com.butterfill.opb.plsql.session.OpbSessionPlsqlImpl;
 import com.butterfill.opb.session.OpbSession;
-import com.butterfill.opb.timing.OpbEventTimer;
 import com.butterfill.opb.util.OpbScalarResultCache;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -44,36 +40,31 @@ public class TestHelper {
      * The name of this class.
      */
     public static final String CLASS_NAME = TestHelper.class.getName();
-    
+
     /**
      * The logger of this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
-    
-    /**
-     * An event timer that can be shared between tests.
-     */
-    private static OpbEventTimer _sharedEventTimer = new OpbEventTimer();
-    
+
     /**
      * JDBC connection properties to be used when creating data sources.
      */
     private static final Properties _jdbcProperties = new Properties();
-    
+
     /**
      * A data source that can be shared between tests.
      */
-    private static OracleDataSource _sharedOracleDataSource;
-    
+    private static final OracleDataSource _sharedOracleDataSource;
+
     /**
      * A connection that can be shared between tests.
      */
     private static Connection _sharedConnection;
-    
+
     /**
      * An Opb session that can be shared between tests.
      */
-    private static OpbSession _sharedSession;
+    private static final OpbSession _sharedSession;
 
     /**
      * Initialise the shared connection, "creates" the shared session and
@@ -81,7 +72,7 @@ public class TestHelper {
      */
     static {
         logger.info("java.version=" + System.getProperty("java.version"));
-        
+
         try {
             // load the properties from file
             _jdbcProperties.load(
@@ -102,44 +93,43 @@ public class TestHelper {
                 "${opb.test.jdbc.user}",
                 "${opb.test.jdbc.password}"
             };
-            
+
             for (int i = 0; i < keys.length; i++) {
                 if (notFound[i].equals(_jdbcProperties.get(keys[i]))) {
                     logger.logp(Level.INFO, CLASS_NAME, "static",
                             "{0} not found. using default {1}",
                             new Object[]{keys[i], defaults[i]});
-                    
+
                     _jdbcProperties.setProperty(keys[i], defaults[i]);
-                    
+
                 } else {
                     logger.logp(Level.INFO, CLASS_NAME, "static", "{0}={1}",
                             new Object[]{keys[i], _jdbcProperties.get(keys[i])});
-                    
+
                 }
-                
+
             }
-            
+
         } catch (Exception ex) {
             throw new RuntimeException("Failed to load jdbc.properties", ex);
-            
+
         }
-        
+
         // create the shared data source
         _sharedOracleDataSource = getOracleDataSource();
-        
+
         // initialise the shared connection
         try {
             _sharedConnection = _sharedOracleDataSource.getConnection();
-            
+
         } catch (Exception ex) {
             throw new RuntimeException(
                     "Failed to get connection from shared datasource", ex);
-            
+
         }
 
         // create the shared session
         _sharedSession = getOpbSession();
-        _sharedSession.createSession();
 
     } // End of static
 
@@ -153,15 +143,14 @@ public class TestHelper {
 
         logger.entering(CLASS_NAME, _method);
 
-        OracleDataSource dataSource = null;
-
         try {
-            dataSource = new OracleDataSource();
+            final OracleDataSource dataSource = new OracleDataSource();
             dataSource.setURL(_jdbcProperties.getProperty("url"));
             dataSource.setUser(_jdbcProperties.getProperty("user"));
             dataSource.setPassword(_jdbcProperties.getProperty("password"));
             dataSource.setConnectionCachingEnabled(true);
             dataSource.setImplicitCachingEnabled(true);
+            return dataSource;
 
         } catch (Exception ex) {
             throw new RuntimeException(
@@ -169,13 +158,6 @@ public class TestHelper {
 
         }
 
-        return dataSource;
-
-    }
-
-    public static OpbContext getOpbContext() {
-        return new OpbContextPlsqlImpl(
-                "test-context", _sharedOracleDataSource, _sharedEventTimer);
     }
 
     public static OpbSession getSharedOpbSession() {
@@ -184,10 +166,9 @@ public class TestHelper {
 
     public static OpbSession getOpbSession() {
         return new OpbSessionPlsqlImpl(
-                "test-context", _sharedOracleDataSource,
+                _sharedOracleDataSource,
                 new OpbDataObjectSource(new OpbObjectSourceImpl()),
-                new OpbGroupManager(),
-                new OpbScalarResultCache(), _sharedEventTimer);
+                new OpbScalarResultCache());
     }
 
     public static ResultSet getResultSet(String[] columns, int skipColumn) {
@@ -228,5 +209,5 @@ public class TestHelper {
         }
 
     }
-    
+
 }

@@ -31,7 +31,7 @@ DECLARE
   IS
   BEGIN
     DBMS_OUTPUT.PUT_LINE(p_data);
-    
+
   END p;
 
   PROCEDURE drop_object(
@@ -43,13 +43,13 @@ DECLARE
     EXECUTE IMMEDIATE 'DROP ' || p_type_and_name;
     p(p_type_and_name || ' dropped');
     p('-');
-    
+
   EXCEPTION
     WHEN OTHERS
     THEN
       p(p_type_and_name || ' not found');
       p('-');
-      
+
   END drop_object;
 
 BEGIN
@@ -61,22 +61,10 @@ BEGIN
     drop_object('SEQUENCE opb_message_id');
     drop_object('TABLE opb_session_data');
     drop_object('SEQUENCE opb_session_id');
-    drop_object('TABLE opb_context_data');
 
   END IF;
 END;
 /
-
-
-PROMPT Creating table opb_context_data
-
-CREATE TABLE opb_context_data(
-  context_name VARCHAR2(200),
-  remote_host VARCHAR2(200),
-  remote_user_name VARCHAR2(200),
-  started DATE,
-  stopped DATE
-);
 
 
 PROMPT Creating opb_session_data
@@ -143,9 +131,6 @@ PROMPT Creating opb_messages specificaton
 
 PROMPT Creating opb session specificaton
 @@opb_session.spc
-
-PROMPT Creating opb context package
-@@opb_context.pck
 
 PROMPT Creating opb_message body
 @@opb_message.bdy

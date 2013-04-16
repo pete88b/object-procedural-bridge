@@ -38,7 +38,7 @@ public final class OpbSqlHelper {
      * The name of this class.
      */
     public static final String CLASS_NAME = OpbSqlHelper.class.getName();
-    
+
     /**
      * The SQL error code that indicates a column name is invalid.
      */
@@ -76,15 +76,15 @@ public final class OpbSqlHelper {
     /**
      * Returns sourceLogger if it is not null. Otherwise a warning is logged
      * and the logger of this class is returned.
-     * 
+     *
      * @param sourceLogger
      *   The logger of the caller of one of this classes public methods.
      * @param method
      *   The name of the method (of this class) that called this method.
-     * @return 
+     * @return
      *   The logger that this helper should use.
      */
-    private static Logger getLogger(final Logger sourceLogger, 
+    private static Logger getLogger(final Logger sourceLogger,
             final String method) {
 
         if (sourceLogger == null) {
@@ -102,15 +102,15 @@ public final class OpbSqlHelper {
     /**
      * Closes the specified connection.
      * If connection is not null, any exception thrown by the close
-     * opperation will be logged as a warning.
-     * 
+     * operation will be logged as a warning.
+     *
      * @param sourceLogger The logger of the caller of this method.
      * @param sourceClass The name of the class calling this method.
      * @param sourceMethod The name of the method calling this method.
-     * @param connection The connecton to be closed.
+     * @param connection The connection to be closed.
      */
-    public static void close(final Logger sourceLogger, 
-            final String sourceClass, final String sourceMethod, 
+    public static void close(final Logger sourceLogger,
+            final String sourceClass, final String sourceMethod,
             final Connection connection) {
 
         Logger lggr = getLogger(
@@ -119,13 +119,13 @@ public final class OpbSqlHelper {
         try {
             if (connection == null) {
                 lggr.logp(Level.FINER, sourceClass, sourceMethod, "connection was null");
-                
+
             } else {
                 connection.close();
                 lggr.logp(Level.FINER, sourceClass, sourceMethod, "connection closed");
 
             }
-            
+
         } catch (Exception ex) {
             lggr.logp(Level.WARNING, sourceClass, sourceMethod,
                     "Failed to close connection", ex);
@@ -137,15 +137,15 @@ public final class OpbSqlHelper {
     /**
      * Closes the specified result set.
      * If resultSet is not null, any exception thrown by the close
-     * opperation will be logged as a warning.
-     * 
+     * operation will be logged as a warning.
+     *
      * @param sourceLogger The logger of the caller of this method.
      * @param sourceClass The name of the class calling this method.
      * @param sourceMethod The name of the method calling this method.
      * @param resultSet The result set to be closed.
      */
-    public static void close(final Logger sourceLogger, 
-            final String sourceClass, final String sourceMethod, 
+    public static void close(final Logger sourceLogger,
+            final String sourceClass, final String sourceMethod,
             final ResultSet resultSet) {
 
         Logger lggr = getLogger(
@@ -154,13 +154,13 @@ public final class OpbSqlHelper {
         try {
             if (resultSet == null) {
                 lggr.logp(Level.FINER, sourceClass, sourceMethod, "result set was null");
-                
+
             } else {
                 resultSet.close();
                 lggr.logp(Level.FINER, sourceClass, sourceMethod, "result set closed");
-                
+
             }
-            
+
         } catch (Exception ex) {
             lggr.logp(Level.WARNING, sourceClass, sourceMethod,
                     "Failed to close result set", ex);
@@ -172,15 +172,15 @@ public final class OpbSqlHelper {
     /**
      * Closes the specified statement.
      * If statement is not null, any exception thrown by the close
-     * opperation will be logged as a warning.
-     * 
+     * operation will be logged as a warning.
+     *
      * @param sourceLogger The logger of the caller of this method.
      * @param sourceClass The name of the class calling this method.
      * @param sourceMethod The name of the method calling this method.
      * @param statement The statement to be closed.
      */
-    public static void close(final Logger sourceLogger, 
-            final String sourceClass, final String sourceMethod, 
+    public static void close(final Logger sourceLogger,
+            final String sourceClass, final String sourceMethod,
             final Statement statement) {
 
         Logger lggr = getLogger(
@@ -189,11 +189,11 @@ public final class OpbSqlHelper {
         try {
             if (statement == null) {
                 lggr.logp(Level.FINER, sourceClass, sourceMethod, "statement was null");
-                
+
             } else {
                 statement.close();
                 lggr.logp(Level.FINER, sourceClass, sourceMethod, "statement closed");
-                
+
             }
 
         } catch (Exception nonCriticalException) {
@@ -208,11 +208,11 @@ public final class OpbSqlHelper {
      * Returns the set of error codes that effect the behaviour of
      * execute(Logger, String, String, CallableStatement).
      * The set returned may be modified.
-     * 
+     *
      * @see #execute(Logger, String, String sourceMethod, CallableStatement)
      * @return
      *   The set of error codes that when raised by execute indicate a second
-     *   attemp to execute might succeed.
+     *   attempt to execute might succeed.
      */
     public static Set<Integer> getReTryableErrorCodes() {
         return RE_TRYABLE_ERROR_CODES;
@@ -222,33 +222,33 @@ public final class OpbSqlHelper {
      * Calls execute on the given statement.
      * <br/>
      * If calling execute throws a SQLException and the error code of the
-     * SQLException is in the set of retryable error codes, execute will be
+     * SQLException is in the set of re-tryable error codes, execute will be
      * called a second time.
      * <br/>
      * By default, the set of re-tryable error codes contains codes relating to
      * existing state discarded errors.
-     * 
+     *
      * @see #getReTryableErrorCodes()
-     * @param sourceLogger 
+     * @param sourceLogger
      *   The logger of the caller of this method.
-     * @param sourceClass 
+     * @param sourceClass
      *   The name of the class calling this method.
-     * @param sourceMethod 
+     * @param sourceMethod
      *   The name of the method calling this method.
-     * @param statement 
+     * @param statement
      *   The statement to be executed.
      * @throws NullPointerException
      *   If statement is null.
      * @throws java.sql.SQLException
      *   If execute fails.
      */
-    public static void execute(final Logger sourceLogger, 
-            final String sourceClass, final String sourceMethod, 
+    public static void execute(final Logger sourceLogger,
+            final String sourceClass, final String sourceMethod,
             final CallableStatement statement)
             throws NullPointerException, SQLException {
 
         Logger lggr = getLogger(
-                sourceLogger, 
+                sourceLogger,
                 "execute(Logger, String, String, CallableStatement)");
 
         OpbAssert.notNull(
@@ -298,17 +298,17 @@ public final class OpbSqlHelper {
      *   The name of the column who's value will be returned.
      * @param failOnInvalidColumnName
      *   Controls behaviour when columnName cannot be found in resultSet.
-     * @return 
+     * @return
      *   The value of columnName.
      * @throws OpbDataAccessException
      *   If failOnInvalidColumnName is true and columnName cannot be found in
      *   resultSet, or if we fail to get columnName from resultSet.
      */
-    private static Object getObject(final Object dflt, 
-            final ResultSet resultSet, final String columnName, 
+    private static Object getObject(final Object dflt,
+            final ResultSet resultSet, final String columnName,
             final boolean failOnInvalidColumnName)
             throws OpbDataAccessException {
-        final String methodName = 
+        final String methodName =
                 "getObject(Object, ResultSet, String, boolean)";
 
         OpbAssert.notNull(
@@ -366,14 +366,14 @@ public final class OpbSqlHelper {
      *   or the value of columnName cannot be cast or converted to Long.
      * @return The value of columnName.
      */
-    public static Boolean getValue(final Boolean dflt, 
-            final ResultSet resultSet, final String columnName, 
+    public static Boolean getValue(final Boolean dflt,
+            final ResultSet resultSet, final String columnName,
             final boolean failOnInvalidColumnName)
             throws OpbDataAccessException {
-        
+
         logger.entering(CLASS_NAME, "getValue(Boolean ...");
 
-        Object value = 
+        Object value =
                 getObject(dflt, resultSet, columnName, failOnInvalidColumnName);
 
         if (value == null) {
@@ -416,17 +416,17 @@ public final class OpbSqlHelper {
      *   If failOnInvalidColumnName is true and columnName cannot be found in
      *   resultSet, or if we fail to get columnName from resultSet,
      *   or the value of columnName cannot be cast or converted to Long.
-     * @return 
+     * @return
      *   The value of columnName.
      */
-    public static Integer getValue(final Integer dflt, 
-            final ResultSet resultSet, final String columnName, 
+    public static Integer getValue(final Integer dflt,
+            final ResultSet resultSet, final String columnName,
             final boolean failOnInvalidColumnName)
             throws OpbDataAccessException {
-        
+
         logger.entering(CLASS_NAME, "getValue(Integer ...");
 
-        Object value = 
+        Object value =
                 getObject(dflt, resultSet, columnName, failOnInvalidColumnName);
 
         try {
@@ -447,7 +447,7 @@ public final class OpbSqlHelper {
 
         }
 
-    } // End of getValue(Integer 
+    } // End of getValue(Integer
 
     /**
      * Returns the value of columnName in the current row of resultSet
@@ -467,17 +467,17 @@ public final class OpbSqlHelper {
      *   If failOnInvalidColumnName is true and columnName cannot be found in
      *   resultSet, or if we fail to get columnName from resultSet,
      *   or the value of columnName cannot be cast or converted to Long.
-     * @return 
+     * @return
      *   The value of columnName.
      */
-    public static Long getValue(final Long dflt, 
-            final ResultSet resultSet, final String columnName, 
+    public static Long getValue(final Long dflt,
+            final ResultSet resultSet, final String columnName,
             final boolean failOnInvalidColumnName)
             throws OpbDataAccessException {
-        
+
         logger.entering(CLASS_NAME, "getValue(Long ...");
 
-        Object value = 
+        Object value =
                 getObject(dflt, resultSet, columnName, failOnInvalidColumnName);
 
         try {
@@ -498,7 +498,7 @@ public final class OpbSqlHelper {
 
         }
 
-    } // End of getValue(Long 
+    } // End of getValue(Long
 
     /**
      * Returns the value of columnName in the current row of resultSet
@@ -514,7 +514,7 @@ public final class OpbSqlHelper {
      *   The name of the column who's value will be returned.
      * @param failOnInvalidColumnName
      *   Controls behaviour when columnName cannot be found in resultSet.
-     * @return 
+     * @return
      *   The value of columnName.
      * @exception OpbDataAccessException
      *   If failOnInvalidColumnName is true and columnName cannot be found in
@@ -522,14 +522,14 @@ public final class OpbSqlHelper {
      *   or the value of columnName cannot be cast to Double.
      */
     public static Double getValue(final Double dflt,
-            final ResultSet resultSet, final String columnName, 
+            final ResultSet resultSet, final String columnName,
             final boolean failOnInvalidColumnName)
             throws OpbDataAccessException {
         final String methodName = "getValue(Double ...";
 
         logger.entering(CLASS_NAME, methodName);
 
-        Object value = 
+        Object value =
                 getObject(dflt, resultSet, columnName, failOnInvalidColumnName);
 
         try {
@@ -566,15 +566,15 @@ public final class OpbSqlHelper {
      *   or the value of columnName cannot be cast to Float.
      */
     public static Float getValue(final Float dflt,
-            final ResultSet resultSet, final String columnName, 
+            final ResultSet resultSet, final String columnName,
             final boolean failOnInvalidColumnName)
             throws OpbDataAccessException {
-        
+
         final String methodName = "getValue(Float ...";
 
         logger.entering(CLASS_NAME, methodName);
 
-        Object value = 
+        Object value =
                 getObject(dflt, resultSet, columnName, failOnInvalidColumnName);
 
         try {
@@ -603,7 +603,7 @@ public final class OpbSqlHelper {
      *   The name of the column who's value will be returned.
      * @param failOnInvalidColumnName
      *   Controls behaviour when columnName cannot be found in resultSet.
-     * @return 
+     * @return
      *   The value of columnName.
      * @exception OpbDataAccessException
      *   If failOnInvalidColumnName is true and columnName cannot be found in
@@ -611,10 +611,10 @@ public final class OpbSqlHelper {
      *   or the value of columnName cannot be retrieved as a java.sql.Timestamp.
      */
     public static java.sql.Timestamp getValue(
-            final java.sql.Timestamp dflt, final ResultSet resultSet, 
+            final java.sql.Timestamp dflt, final ResultSet resultSet,
             final String columnName, final boolean failOnInvalidColumnName)
             throws OpbDataAccessException {
-        
+
         final String methodName = "getValue(java.sql.Timestamp ...";
 
         logger.entering(CLASS_NAME, methodName);
@@ -659,7 +659,7 @@ public final class OpbSqlHelper {
      *   The name of the column who's value will be returned.
      * @param failOnInvalidColumnName
      *   Controls behaviour when columnName cannot be found in resultSet.
-     * @return 
+     * @return
      *   The value of columnName.
      * @exception OpbDataAccessException
      *   If failOnInvalidColumnName is true and columnName cannot be found in
@@ -667,10 +667,10 @@ public final class OpbSqlHelper {
      *   or the value of columnName cannot be retrieved as a java.sql.Timestamp.
      */
     public static java.util.Date getValue(
-            final java.util.Date dflt, final ResultSet resultSet, 
+            final java.util.Date dflt, final ResultSet resultSet,
             final String columnName, final boolean failOnInvalidColumnName)
             throws OpbDataAccessException {
-        
+
         final String methodName = "getValue(java.util.Date ...";
 
         logger.entering(CLASS_NAME, methodName);
@@ -704,25 +704,25 @@ public final class OpbSqlHelper {
     } // End of getValue(java.util.Date ...
 
     // <editor-fold defaultstate="collapsed" desc="generated section">
-    
+
     /**
      * Returns the value of columnName in the current row of resultSet
      * as a String.
-     * Returns dflt if failOnInvalidColumnName is false and columnName can 
+     * Returns dflt if failOnInvalidColumnName is false and columnName can
      * not be found in resultSet.
      *
-     * @param dflt 
+     * @param dflt
      *   Default return value. Also used for method overloading.
-     * @param resultSet 
+     * @param resultSet
      *   The result set from which to retrieve the value of a column.
      * @param columnName
      *   The name of the column who's value will be returned.
-     * @param failOnInvalidColumnName 
+     * @param failOnInvalidColumnName
      *   Controls behaviour when columnName cannot be found in resultSet.
      * @return
      *   The value of columnName.
      * @exception OpbDataAccessException
-     *   If failOnInvalidColumnName is true and columnName cannot be found in 
+     *   If failOnInvalidColumnName is true and columnName cannot be found in
      *   resultSet, or if we fail to get columnName from resultSet,
      *   or the value of columnName cannot be cast to String.
      */
@@ -741,7 +741,7 @@ public final class OpbSqlHelper {
 
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
-                    "Failed to cast column " + columnName + 
+                    "Failed to cast column " + columnName +
                     " to String. value=" + value);
 
         }
@@ -751,21 +751,21 @@ public final class OpbSqlHelper {
     /**
      * Returns the value of columnName in the current row of resultSet
      * as a java.sql.Date.
-     * Returns dflt if failOnInvalidColumnName is false and columnName can 
+     * Returns dflt if failOnInvalidColumnName is false and columnName can
      * not be found in resultSet.
      *
-     * @param dflt 
+     * @param dflt
      *   Default return value. Also used for method overloading.
-     * @param resultSet 
+     * @param resultSet
      *   The result set from which to retrieve the value of a column.
      * @param columnName
      *   The name of the column who's value will be returned.
-     * @param failOnInvalidColumnName 
+     * @param failOnInvalidColumnName
      *   Controls behaviour when columnName cannot be found in resultSet.
      * @return
      *   The value of columnName.
      * @exception OpbDataAccessException
-     *   If failOnInvalidColumnName is true and columnName cannot be found in 
+     *   If failOnInvalidColumnName is true and columnName cannot be found in
      *   resultSet, or if we fail to get columnName from resultSet,
      *   or the value of columnName cannot be cast to java.sql.Date.
      */
@@ -784,7 +784,7 @@ public final class OpbSqlHelper {
 
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
-                    "Failed to cast column " + columnName + 
+                    "Failed to cast column " + columnName +
                     " to java.sql.Date. value=" + value);
 
         }
@@ -794,21 +794,21 @@ public final class OpbSqlHelper {
     /**
      * Returns the value of columnName in the current row of resultSet
      * as a java.math.BigDecimal.
-     * Returns dflt if failOnInvalidColumnName is false and columnName can 
+     * Returns dflt if failOnInvalidColumnName is false and columnName can
      * not be found in resultSet.
      *
-     * @param dflt 
+     * @param dflt
      *   Default return value. Also used for method overloading.
-     * @param resultSet 
+     * @param resultSet
      *   The result set from which to retrieve the value of a column.
      * @param columnName
      *   The name of the column who's value will be returned.
-     * @param failOnInvalidColumnName 
+     * @param failOnInvalidColumnName
      *   Controls behaviour when columnName cannot be found in resultSet.
      * @return
      *   The value of columnName.
      * @exception OpbDataAccessException
-     *   If failOnInvalidColumnName is true and columnName cannot be found in 
+     *   If failOnInvalidColumnName is true and columnName cannot be found in
      *   resultSet, or if we fail to get columnName from resultSet,
      *   or the value of columnName cannot be cast to java.math.BigDecimal.
      */
@@ -827,7 +827,7 @@ public final class OpbSqlHelper {
 
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
-                    "Failed to cast column " + columnName + 
+                    "Failed to cast column " + columnName +
                     " to java.math.BigDecimal. value=" + value);
 
         }
@@ -837,21 +837,21 @@ public final class OpbSqlHelper {
     /**
      * Returns the value of columnName in the current row of resultSet
      * as a byte[].
-     * Returns dflt if failOnInvalidColumnName is false and columnName can 
+     * Returns dflt if failOnInvalidColumnName is false and columnName can
      * not be found in resultSet.
      *
-     * @param dflt 
+     * @param dflt
      *   Default return value. Also used for method overloading.
-     * @param resultSet 
+     * @param resultSet
      *   The result set from which to retrieve the value of a column.
      * @param columnName
      *   The name of the column who's value will be returned.
-     * @param failOnInvalidColumnName 
+     * @param failOnInvalidColumnName
      *   Controls behaviour when columnName cannot be found in resultSet.
      * @return
      *   The value of columnName.
      * @exception OpbDataAccessException
-     *   If failOnInvalidColumnName is true and columnName cannot be found in 
+     *   If failOnInvalidColumnName is true and columnName cannot be found in
      *   resultSet, or if we fail to get columnName from resultSet,
      *   or the value of columnName cannot be cast to byte[].
      */
@@ -870,7 +870,7 @@ public final class OpbSqlHelper {
 
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
-                    "Failed to cast column " + columnName + 
+                    "Failed to cast column " + columnName +
                     " to byte[]. value=" + value);
 
         }
@@ -880,21 +880,21 @@ public final class OpbSqlHelper {
     /**
      * Returns the value of columnName in the current row of resultSet
      * as a java.sql.Blob.
-     * Returns dflt if failOnInvalidColumnName is false and columnName can 
+     * Returns dflt if failOnInvalidColumnName is false and columnName can
      * not be found in resultSet.
      *
-     * @param dflt 
+     * @param dflt
      *   Default return value. Also used for method overloading.
-     * @param resultSet 
+     * @param resultSet
      *   The result set from which to retrieve the value of a column.
      * @param columnName
      *   The name of the column who's value will be returned.
-     * @param failOnInvalidColumnName 
+     * @param failOnInvalidColumnName
      *   Controls behaviour when columnName cannot be found in resultSet.
      * @return
      *   The value of columnName.
      * @exception OpbDataAccessException
-     *   If failOnInvalidColumnName is true and columnName cannot be found in 
+     *   If failOnInvalidColumnName is true and columnName cannot be found in
      *   resultSet, or if we fail to get columnName from resultSet,
      *   or the value of columnName cannot be cast to java.sql.Blob.
      */
@@ -913,7 +913,7 @@ public final class OpbSqlHelper {
 
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
-                    "Failed to cast column " + columnName + 
+                    "Failed to cast column " + columnName +
                     " to java.sql.Blob. value=" + value);
 
         }
@@ -923,21 +923,21 @@ public final class OpbSqlHelper {
     /**
      * Returns the value of columnName in the current row of resultSet
      * as a java.sql.Clob.
-     * Returns dflt if failOnInvalidColumnName is false and columnName can 
+     * Returns dflt if failOnInvalidColumnName is false and columnName can
      * not be found in resultSet.
      *
-     * @param dflt 
+     * @param dflt
      *   Default return value. Also used for method overloading.
-     * @param resultSet 
+     * @param resultSet
      *   The result set from which to retrieve the value of a column.
      * @param columnName
      *   The name of the column who's value will be returned.
-     * @param failOnInvalidColumnName 
+     * @param failOnInvalidColumnName
      *   Controls behaviour when columnName cannot be found in resultSet.
      * @return
      *   The value of columnName.
      * @exception OpbDataAccessException
-     *   If failOnInvalidColumnName is true and columnName cannot be found in 
+     *   If failOnInvalidColumnName is true and columnName cannot be found in
      *   resultSet, or if we fail to get columnName from resultSet,
      *   or the value of columnName cannot be cast to java.sql.Clob.
      */
@@ -956,14 +956,14 @@ public final class OpbSqlHelper {
 
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
-                    "Failed to cast column " + columnName + 
+                    "Failed to cast column " + columnName +
                     " to java.sql.Clob. value=" + value);
 
         }
 
     } // End of getValue(java.sql.Clob ...
 
-    
+
     // </editor-fold> End of generated Section
 
 

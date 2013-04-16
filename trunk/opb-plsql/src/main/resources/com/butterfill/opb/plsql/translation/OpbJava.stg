@@ -3,7 +3,7 @@ group OpbJava;
 javaFile(plsqlPackage) ::= <<
 /*
  * File created by opb-plsql.
- * 
+ *
  * <plsqlPackage.opbPlsqlTitle> version: <plsqlPackage.opbPlsqlVersion>
  * <plsqlPackage.opbLibraryTitle> version: <plsqlPackage.opbLibraryVersion>
  */
@@ -11,8 +11,6 @@ javaFile(plsqlPackage) ::= <<
 package <plsqlPackage.javaPackageName>;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -21,9 +19,8 @@ import com.butterfill.opb.util.*;
  */
 public interface <plsqlPackage.javaInterfaceName><if(!plsqlPackage.onlyConstants)>
 
-        extends OpbGroupable, OpbTimingEventPublisher<if(plsqlPackage.identifiable)>, 
-        OpbActiveCacheableEntity<else>,
-        OpbActiveDataObject<if(plsqlPackage.loadable)>, OpbEntity<endif>
+        extends <if(plsqlPackage.identifiable)>OpbActiveCacheableEntity
+        <else>OpbActiveDataObject<if(plsqlPackage.loadable)>, OpbEntity<endif>
         <endif><if(plsqlPackage.useScalarResultCache)>, OpbScalarResultCacheUser<endif><endif> {
 
     <plsqlPackage.constants:constant()>
@@ -77,7 +74,7 @@ void set<it.nameWithFirstCharUpper>(<it.datatype> a);
 <it.datatype> get<it.nameWithFirstCharUpper>DataSourceValue();
 
 /**
- * Returns true if the value of <it.name> 
+ * Returns true if the value of <it.name>
  * is different to the value that was loaded from the data source,
  * false otherwise.
  * @return true if <it.name> has changed since it was loaded.
@@ -120,8 +117,8 @@ function() ::= <<
  * @throws OpbDataAccessException
  *   If we fail to make the database call.
  */
-<it.return.datatype> <it.name>(<it.params:argsForCall(); separator=",\n        ">) 
-        throws OpbDataAccessException; 
+<it.return.datatype> <it.name>(<it.params:argsForCall(); separator=",\n        ">)
+        throws OpbDataAccessException;
 
 <if(it.atLeastOneParamIsMapped)>
 /**
@@ -135,8 +132,8 @@ function() ::= <<
  * @throws OpbDataAccessException
  *   If we fail to make the database call.
  */
-<if(it.return.mappedTo)>void<else><it.return.datatype><endif> <it.name>(<it.unMappedParams:{ p | <p.datatype> <p.name>}; separator=",\n        ">) 
-        throws OpbDataAccessException; 
+<if(it.return.mappedTo)>void<else><it.return.datatype><endif> <it.name>(<it.unMappedParams:{ p | <p.datatype> <p.name>}; separator=",\n        ">)
+        throws OpbDataAccessException;
 
 
 <endif>
@@ -151,7 +148,7 @@ procedure() ::= <<
  * @throws OpbDataAccessException
  *   If we fail to make the database call.
  */
-void <it.name>(<it.params:argsForCall(); separator=",\n        ">) 
+void <it.name>(<it.params:argsForCall(); separator=",\n        ">)
         throws OpbDataAccessException;
 
 <if(it.atLeastOneParamIsMapped)>
@@ -163,7 +160,7 @@ void <it.name>(<it.params:argsForCall(); separator=",\n        ">)
  * @throws OpbDataAccessException
  *   If we fail to make the database call.
  */
-void <it.name>(<it.unMappedParams:{ p | <p.datatype> <p.name>}; separator=",\n        ">) 
+void <it.name>(<it.unMappedParams:{ p | <p.datatype> <p.name>}; separator=",\n        ">)
         throws OpbDataAccessException;
 
 

@@ -22,15 +22,11 @@ IS
   )
   IS
   BEGIN
-    logger.fb('Start of test_one');
-
-    logger.fb('p_array.LAST=' || p_array.LAST);
-
     IF (p_array.LAST IS NOT NULL)
     THEN
       FOR i IN p_array.FIRST .. p_array.LAST
       LOOP
-        logger.log(101, i || '=' || p_array(i));
+        dbms_output.put_line(i || '=' || p_array(i));
       END LOOP;
     END IF;
   END;

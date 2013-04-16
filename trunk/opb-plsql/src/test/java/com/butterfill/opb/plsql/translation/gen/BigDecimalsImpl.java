@@ -1,16 +1,14 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.*;
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 import com.butterfill.opb.plsql.util.*;
 import java.util.logging.*;
@@ -20,19 +18,19 @@ import java.util.logging.*;
  * big_decimals.
  */
 public class BigDecimalsImpl implements BigDecimals {
-    
+
     /**
      * The name of this class.
      */
     public static final String CLASS_NAME =
             BigDecimalsImpl.class.getName();
-            
+
     /**
      * The logger of this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
-    
+
     /**
      * Creates a new instance of BigDecimalsImpl.
      */
@@ -48,43 +46,8 @@ public class BigDecimalsImpl implements BigDecimals {
     public String toString() {
         return com.butterfill.opb.util.OpbToStringHelper.toString(this);
     }
-    
-    /**
-     * The group mananger map to be used by this BigDecimalsImpl.
-     */
-    private OpbGroupManagerMap opbGroupManagerMap;
 
-    /**
-     * Sets the group manager map to be used by this BigDecimalsImpl.
-     * @param map The group manager map to use.
-     */
-    public void setGroupManagerMap(final OpbGroupManagerMap map) {
-        this.opbGroupManagerMap = map;
-    }
 
-    /**
-     * Returns the group manager map used by this BigDecimalsImpl.
-     * @return The group manager map used by this instance.
-     */
-    public OpbGroupManagerMap getGroupManagerMap() {
-        return opbGroupManagerMap;
-    }
-    
-
-    /**
-     * The event timer provider to be used by this BigDecimalsImpl.
-     */
-    private OpbEventTimerProvider opbEventTimerProvider;
-
-    /**
-     * Sets the event timer to be used by this BigDecimalsImpl.
-     * @param provider The event timer to use.
-     */
-    public void setOpbEventTimerProvider(final OpbEventTimerProvider provider) {
-        this.opbEventTimerProvider = provider;
-    }
-
-    
     /**
      * The data object source to be used by this BigDecimalsImpl.
      */
@@ -112,7 +75,7 @@ public class BigDecimalsImpl implements BigDecimals {
         this.opbConnectionProvider = provider;
     }
 
-    
+
     /**
      * Resets all field values to their initial values.
      */
@@ -139,8 +102,8 @@ public class BigDecimalsImpl implements BigDecimals {
 
 
     /**
-     * Resets all field values to their initial values by calling 
-     * opbClearState() and then sets all field values using values taken from 
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
      * the current row in resultSet.
      * <br/>
      * This method will look for the following fields in resultSet;
@@ -150,11 +113,11 @@ public class BigDecimalsImpl implements BigDecimals {
      * <li>a_number_with_initial2 is <em>mandatory</em></li>
      * <li>a_number_with_initial3 is <em>mandatory</em></li>
      * </ul>
-     * 
+     *
      * @param resultSet The result set from which this instance should be loaded.
      * @throws OpbDataAccessException If we fail to load this instance.
      */
-    public void opbLoad(final java.sql.ResultSet resultSet) 
+    public void opbLoad(final java.sql.ResultSet resultSet)
             throws OpbDataAccessException {
         final String methodName = "opbLoad(ResultSet)";
 
@@ -170,28 +133,28 @@ public class BigDecimalsImpl implements BigDecimals {
         try {
             // load aNumberNoInitial from column a_number_no_initial
             aNumberNoInitial = OpbSqlHelper.getValue(
-                    aNumberNoInitial, resultSet, 
+                    aNumberNoInitial, resultSet,
                     "a_number_no_initial", true);
             // save the value we just loaded as the datasource value
             aNumberNoInitialDataSourceValue = aNumberNoInitial;
             
             // load aNumberWithInitial from column a_number_with_initial
             aNumberWithInitial = OpbSqlHelper.getValue(
-                    aNumberWithInitial, resultSet, 
+                    aNumberWithInitial, resultSet,
                     "a_number_with_initial", true);
             // save the value we just loaded as the datasource value
             aNumberWithInitialDataSourceValue = aNumberWithInitial;
             
             // load aNumberWithInitial2 from column a_number_with_initial2
             aNumberWithInitial2 = OpbSqlHelper.getValue(
-                    aNumberWithInitial2, resultSet, 
+                    aNumberWithInitial2, resultSet,
                     "a_number_with_initial2", true);
             // save the value we just loaded as the datasource value
             aNumberWithInitial2DataSourceValue = aNumberWithInitial2;
             
             // load aNumberWithInitial3 from column a_number_with_initial3
             aNumberWithInitial3 = OpbSqlHelper.getValue(
-                    aNumberWithInitial3, resultSet, 
+                    aNumberWithInitial3, resultSet,
                     "a_number_with_initial3", true);
             // save the value we just loaded as the datasource value
             aNumberWithInitial3DataSourceValue = aNumberWithInitial3;
@@ -246,7 +209,7 @@ public class BigDecimalsImpl implements BigDecimals {
     }
     
     /**
-     * Returns true if the value of aNumberNoInitial 
+     * Returns true if the value of aNumberNoInitial
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aNumberNoInitial has changed since it was loaded.
@@ -292,7 +255,7 @@ public class BigDecimalsImpl implements BigDecimals {
     }
     
     /**
-     * Returns true if the value of aNumberWithInitial 
+     * Returns true if the value of aNumberWithInitial
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aNumberWithInitial has changed since it was loaded.
@@ -338,7 +301,7 @@ public class BigDecimalsImpl implements BigDecimals {
     }
     
     /**
-     * Returns true if the value of aNumberWithInitial2 
+     * Returns true if the value of aNumberWithInitial2
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aNumberWithInitial2 has changed since it was loaded.
@@ -384,7 +347,7 @@ public class BigDecimalsImpl implements BigDecimals {
     }
     
     /**
-     * Returns true if the value of aNumberWithInitial3 
+     * Returns true if the value of aNumberWithInitial3
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aNumberWithInitial3 has changed since it was loaded.

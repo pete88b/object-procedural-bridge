@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * index_table.
  */
 public interface IndexTable
-        extends OpbGroupable, OpbTimingEventPublisher,
-        OpbActiveDataObject {
+        extends OpbActiveDataObject {
 
     /**
      * Resets all field values to their initial values.
@@ -56,7 +53,7 @@ public interface IndexTable
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void a(String[] pData) 
+    void a(String[] pData)
             throws OpbDataAccessException;
     
     /**
@@ -65,7 +62,7 @@ public interface IndexTable
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void a2(java.math.BigDecimal[] pData) 
+    void a2(java.math.BigDecimal[] pData)
             throws OpbDataAccessException;
     
     /**
@@ -74,7 +71,7 @@ public interface IndexTable
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void a3(Long[] pData) 
+    void a3(Long[] pData)
             throws OpbDataAccessException;
     
     /**
@@ -83,7 +80,7 @@ public interface IndexTable
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void x(String[] pData) 
+    void x(String[] pData)
             throws OpbDataAccessException;
     
     /**
@@ -92,7 +89,7 @@ public interface IndexTable
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void x2(java.math.BigDecimal[] pData) 
+    void x2(java.math.BigDecimal[] pData)
             throws OpbDataAccessException;
     
     /**
@@ -101,7 +98,7 @@ public interface IndexTable
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void x3(Long[] pData) 
+    void x3(Long[] pData)
             throws OpbDataAccessException;
     
     /**
@@ -110,7 +107,7 @@ public interface IndexTable
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void y2(String[] pData) 
+    void y2(String[] pData)
             throws OpbDataAccessException;
     
     /**
@@ -121,7 +118,7 @@ public interface IndexTable
      */
     void z(String[] pData,
             Long[] pData2,
-            String[] pData3) 
+            String[] pData3)
             throws OpbDataAccessException;
     
 

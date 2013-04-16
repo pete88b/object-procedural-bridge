@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * embedded_comments.
  */
 public interface EmbeddedComments
-        extends OpbGroupable, OpbTimingEventPublisher,
-        OpbActiveDataObject, OpbEntity {
+        extends OpbActiveDataObject, OpbEntity {
 
     /**
      * Resets all field values to their initial values.
@@ -45,7 +42,7 @@ public interface EmbeddedComments
     String getIncludeDataSourceValue();
     
     /**
-     * Returns true if the value of include 
+     * Returns true if the value of include
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if include has changed since it was loaded.
@@ -60,7 +57,7 @@ public interface EmbeddedComments
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void a(java.math.BigDecimal pData) 
+    void a(java.math.BigDecimal pData)
             throws OpbDataAccessException;
     
 

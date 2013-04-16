@@ -20,7 +20,7 @@ import com.butterfill.opb.OpbException;
 import java.util.logging.Logger;
 
 /**
- * Exception thrown when a data access opperation fails.
+ * Exception thrown when a data access operation fails.
  *
  * @author Peter Butterfill
  */

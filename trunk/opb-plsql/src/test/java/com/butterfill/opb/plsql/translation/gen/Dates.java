@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * dates.
  */
 public interface Dates
-        extends OpbGroupable, OpbTimingEventPublisher,
-        OpbActiveDataObject, OpbEntity {
+        extends OpbActiveDataObject, OpbEntity {
 
     /**
      * Resets all field values to their initial values.
@@ -45,7 +42,7 @@ public interface Dates
     java.util.Date getADateDataSourceValue();
     
     /**
-     * Returns true if the value of aDate 
+     * Returns true if the value of aDate
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aDate has changed since it was loaded.
@@ -72,7 +69,7 @@ public interface Dates
     java.util.Date getBDateDataSourceValue();
     
     /**
-     * Returns true if the value of bDate 
+     * Returns true if the value of bDate
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if bDate has changed since it was loaded.
@@ -86,8 +83,8 @@ public interface Dates
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.util.Date addOneDay(java.util.Date pDate) 
-            throws OpbDataAccessException; 
+    java.util.Date addOneDay(java.util.Date pDate)
+            throws OpbDataAccessException;
     
     /**
      * Calls addOneDay using mapped parameters.
@@ -97,8 +94,8 @@ public interface Dates
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.util.Date addOneDay() 
-            throws OpbDataAccessException; 
+    java.util.Date addOneDay()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -106,8 +103,8 @@ public interface Dates
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.util.Date today() 
-            throws OpbDataAccessException; 
+    java.util.Date today()
+            throws OpbDataAccessException;
     
 
     /**
@@ -116,7 +113,7 @@ public interface Dates
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void dateInOut(OpbValueWrapper<java.util.Date> pDate) 
+    void dateInOut(OpbValueWrapper<java.util.Date> pDate)
             throws OpbDataAccessException;
     
     /**
@@ -127,7 +124,7 @@ public interface Dates
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void dateInOut() 
+    void dateInOut()
             throws OpbDataAccessException;
     
 
