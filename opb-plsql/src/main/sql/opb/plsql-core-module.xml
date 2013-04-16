@@ -6,7 +6,6 @@
     <version>0.1</version>
     <file-set>
         <file>build.sql</file>
-        <file>opb_context.pck</file>
         <file>opb_message.bdy</file>
         <file>opb_message.spc</file>
         <file>opb_messages.bdy</file>

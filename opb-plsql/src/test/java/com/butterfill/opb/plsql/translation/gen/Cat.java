@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * cat.
  */
 public interface Cat
-        extends OpbGroupable, OpbTimingEventPublisher, 
-        OpbActiveCacheableEntity {
+        extends OpbActiveCacheableEntity {
 
     /**
      * Resets all field values to their initial values.
@@ -63,7 +60,7 @@ public interface Cat
     String getDescriptionDataSourceValue();
     
     /**
-     * Returns true if the value of description 
+     * Returns true if the value of description
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if description has changed since it was loaded.
@@ -79,7 +76,7 @@ public interface Cat
      */
     void updateDescription(String pName,
             Long pType,
-            String pDescription) 
+            String pDescription)
             throws OpbDataAccessException;
     
     /**
@@ -92,7 +89,7 @@ public interface Cat
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void updateDescription() 
+    void updateDescription()
             throws OpbDataAccessException;
     
     /**
@@ -102,7 +99,7 @@ public interface Cat
      *   If we fail to make the database call.
      */
     void deleteCat(String pName,
-            Long pType) 
+            Long pType)
             throws OpbDataAccessException;
     
     /**
@@ -114,7 +111,7 @@ public interface Cat
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void deleteCat() 
+    void deleteCat()
             throws OpbDataAccessException;
     
     /**
@@ -123,7 +120,7 @@ public interface Cat
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void clearCachedAll() 
+    void clearCachedAll()
             throws OpbDataAccessException;
     
     /**
@@ -132,7 +129,7 @@ public interface Cat
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void invalidateCachedAll() 
+    void invalidateCachedAll()
             throws OpbDataAccessException;
     
     /**
@@ -141,7 +138,7 @@ public interface Cat
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void clearCachedCats() 
+    void clearCachedCats()
             throws OpbDataAccessException;
     
     /**
@@ -150,7 +147,7 @@ public interface Cat
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void invalidateCachedCats() 
+    void invalidateCachedCats()
             throws OpbDataAccessException;
     
 

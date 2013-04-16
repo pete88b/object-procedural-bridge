@@ -74,7 +74,7 @@ import java.util.logging.Logger;
  * // In real code, you would get a data object source from an OpbSession.
  * // e.g. OpbDataObjectSource dos = session.getDataObjectSource();
  * // For this example we can just create a new one.
- * OpbDataObjectSource dos = 
+ * OpbDataObjectSource dos =
  *         new OpbDataObjectSource(new OpbObjectSourceImpl());
  *
  * // get an object from the source
@@ -128,14 +128,14 @@ public class OpbDataObjectSource {
      * identifiable) data object loaded.
      * The data object maps contain all data objects loaded (that have not been
      * cleared etc).
-     * Data objects can be retreived from the data object maps by their id's.
+     * Data objects can be retrieved from the data object maps by their id's.
      */
     private Map<Class, Map> mapOfDataObjectMaps = new HashMap<Class, Map>();
     // dataObjectMap(Class) must be the only method to put into this map
 
     /**
      * This map contains one map of results for each type of data object
-     * retreived by the getResult(Class, ResultSet, OpbId) and
+     * retrieved by the getResult(Class, ResultSet, OpbId) and
      * getResult(Class, ResultSet, OpbId, boolean) methods.
      * Results (lists of data objects) can be retrieved from the result maps
      * by the key specified in the
@@ -156,7 +156,7 @@ public class OpbDataObjectSource {
     /**
      * Creates a new instance of OpbDataObjectSource to use the specified
      * object source.
-     * 
+     *
      * @param objectSource
      *   The object source to be used by this data object source.
      */
@@ -200,7 +200,7 @@ public class OpbDataObjectSource {
      * @see #clearCached(Class)
      */
     @SuppressWarnings("unchecked")
-    private <T extends OpbCacheableEntity> Map<OpbId, T> 
+    private <T extends OpbCacheableEntity> Map<OpbId, T>
             dataObjectMap(final Class<T> c) {
         // This is the only method that puts elements into the map of data
         // object maps. So it's safe to suppress unchecked warnings
@@ -265,7 +265,7 @@ public class OpbDataObjectSource {
      * <ul>
      * <li>data object created</li>
      * </ul>
-     * 
+     *
      * @param lsnr A data object listener.
      */
     public void addListener(final OpbDataObjectCreatedListener lsnr) {
@@ -276,17 +276,17 @@ public class OpbDataObjectSource {
         if (lsnr != null) {
             dataObjectCreatedListeners.add(lsnr);
         }
-        
+
     }
 
     /**
      * Un-registers an objects interest in data object life cycle events.
      * If the specified listener is not currently registed, this is a no-op.
-     * 
+     *
      * @param lsnr A data object listener.
      */
     public void removeListener(final OpbDataObjectCreatedListener lsnr) {
-        final String methodName = 
+        final String methodName =
                 "removeListener(OpbDataObjectCreatedListener)";
 
         logger.entering(CLASS_NAME, methodName);
@@ -298,7 +298,7 @@ public class OpbDataObjectSource {
     /**
      * Notifies all listeners that an object has been created and lets data objects that are
      * config complete listeners know when their configuration is complete.
-     * 
+     *
      * @param requestedType
      *   The type of data object that has just been created.
      * @param dataObject
@@ -333,7 +333,7 @@ public class OpbDataObjectSource {
      * Returns a newley created, partially configured data object instance for
      * use by the newInstance, getInstance and the getResult methods.
      * Note: This method does not notify data object lifecycle listeners.
-     * 
+     *
      * @param <T>
      *   The type of object to return.
      * @param c
@@ -345,7 +345,7 @@ public class OpbDataObjectSource {
      *   If we can't create a new instance of the specified type.
      */
     @SuppressWarnings("unchecked")
-    private <T extends Object> T rawInstance(final Class<T> c) 
+    private <T extends Object> T rawInstance(final Class<T> c)
             throws OpbException {
         final String methodName = "rawInstance(Class)";
 
@@ -375,11 +375,11 @@ public class OpbDataObjectSource {
      */
     public Collection<Class> getCachedTypes() {
         final String method = "getCachedTypes()";
-        
+
         logger.entering(CLASS_NAME, method);
-        
+
         return new HashSet<Class>(mapOfResultMaps.keySet());
-        
+
     }
 
 
@@ -390,7 +390,7 @@ public class OpbDataObjectSource {
      * not already in this list.
      * This is a no-op if o is null or already in the list of invalid objects.
      * Used by the invalidateCached methods.
-     * 
+     *
      * @param o
      *   The object to add to the list of invalid objects.
      */
@@ -426,7 +426,7 @@ public class OpbDataObjectSource {
      *
      * @param <T>
      *   The type of object to invalidate.
-     * @param classOfObject 
+     * @param classOfObject
      *   Class of the object to invalidate.
      */
     public <T extends OpbCacheableEntity> void
@@ -456,9 +456,9 @@ public class OpbDataObjectSource {
      *
      * @param <T>
      *   The type of object to invalidate.
-     * @param classOfObject 
+     * @param classOfObject
      *   Class of the object to invalidate.
-     * @param id 
+     * @param id
      *   ID of object to invalidate.
      */
     public <T extends OpbCacheableEntity> void invalidateCached(
@@ -487,7 +487,7 @@ public class OpbDataObjectSource {
     // <editor-fold defaultstate="collapsed" desc="clear cached section">
 
     /**
-     * Removes all cached data objects from all caches used by this object 
+     * Removes all cached data objects from all caches used by this object
      * source.
      * This does not affect saved instances.
      */
@@ -508,7 +508,7 @@ public class OpbDataObjectSource {
      *
      * @param <T>
      *   The type of object to clear.
-     * @param classOfObject 
+     * @param classOfObject
      *   Class of the object to remove from cache.
      */
     public <T extends OpbEntity> void clearCached(
@@ -548,9 +548,9 @@ public class OpbDataObjectSource {
      *
      * @param <T>
      *   The type of object to clear.
-     * @param classOfObject 
+     * @param classOfObject
      *   Class of the object to remove from cache.
-     * @param id 
+     * @param id
      *   ID of object to remove from cache.
      */
     public <T extends OpbCacheableEntity> void clearCached(
@@ -588,7 +588,7 @@ public class OpbDataObjectSource {
      * Clears the specified result from all caches used by this object source.
      *
      * @see #getResult(Class, ResultSet, OpbId)
-     * 
+     *
      * @param <T>
      *   The type of object who's results should be cleared.
      * @param classOfObject
@@ -631,7 +631,7 @@ public class OpbDataObjectSource {
      *
      * @param <T>
      *   The type of object who's results should be cleared.
-     * @param classOfObject 
+     * @param classOfObject
      *   Class of data object.
      */
     public <T extends OpbEntity> void clearCachedResults(
@@ -656,14 +656,14 @@ public class OpbDataObjectSource {
 
     /**
      * Returns true if the specified object is cached, false otherwise.
-     * 
+     *
      * @param <T>
      *   The type of cached object.
-     * @param classOfObject 
+     * @param classOfObject
      *   Class of the data object.
-     * @param id 
+     * @param id
      *   ID of the object.
-     * @return 
+     * @return
      *   true if the specified object is cached
      */
     public <T extends OpbCacheableEntity> boolean isCached(
@@ -685,7 +685,7 @@ public class OpbDataObjectSource {
 
     /**
      * Returns the specified object or null if the object is not cached.
-     * 
+     *
      * @param <T>
      *   The type of cached object.
      * @param classOfObject
@@ -746,18 +746,18 @@ public class OpbDataObjectSource {
      * result is not cached.
      * The result will not be cached if no call to getResult has been made or
      * the result has been cleared.
-     * 
+     *
      * @see #getResult(Class, ResultSet, OpbId)
      * @see #getResult(Class, ResultSet, OpbId, boolean)
      * @see #clearCachedResult(Class, OpbId)
-     * 
+     *
      * @param <T>
      *   The type of object in the result.
-     * @param classOfObject 
+     * @param classOfObject
      *   Class of the data object.
-     * @param key 
+     * @param key
      *   Key to the cached result.
-     * @return 
+     * @return
      *   A cached result or null if the result is not cached.
      */
     public <T extends OpbEntity> List<T> getCachedResult(
@@ -884,8 +884,8 @@ public class OpbDataObjectSource {
      *   A result built from the specified result set.
      */
     public <T extends OpbCacheableEntity> List<T> getResult(
-            final Class<T> classOfObject, final ResultSet resultSet, 
-            final boolean useDataObjectCache) throws OpbDataAccessException, 
+            final Class<T> classOfObject, final ResultSet resultSet,
+            final boolean useDataObjectCache) throws OpbDataAccessException,
             NullPointerException {
         final String methodName = "getResult(Class, ResultSet, boolean)";
 
@@ -919,7 +919,7 @@ public class OpbDataObjectSource {
                     if (dataObjectMap.containsKey(dataObject.getOpbId())) {
                         // if we're using the data object cache and the object
                         // we need is cached, get it from the cache
-                        cachedDataObject = 
+                        cachedDataObject =
                                 dataObjectMap.get(dataObject.getOpbId());
 
                         if (listOfInvalidObjects.remove(cachedDataObject)) {
@@ -1009,8 +1009,8 @@ public class OpbDataObjectSource {
      *   A result built from the specified result set.
      */
     public <T extends OpbEntity> List<T> getResult(
-            final Class<T> classOfObject, final ResultSet resultSet, 
-            final OpbId key) 
+            final Class<T> classOfObject, final ResultSet resultSet,
+            final OpbId key)
             throws OpbDataAccessException, NullPointerException {
         final String methodName = "getResult(Class, ResultSet, OpbId)";
 
@@ -1073,7 +1073,7 @@ public class OpbDataObjectSource {
      *   A result built from the specified result set.
      */
     public <T extends OpbCacheableEntity> List<T> getResult(
-            final Class<T> classOfObject, final ResultSet resultSet, 
+            final Class<T> classOfObject, final ResultSet resultSet,
             final OpbId key, final boolean useDataObjectCache)
             throws OpbDataAccessException, NullPointerException {
         final String methodName = "getResult(Class, ResultSet, OpbId, boolean)";
@@ -1095,7 +1095,7 @@ public class OpbDataObjectSource {
         logger.logp(Level.FINEST, CLASS_NAME, methodName,
                 "useDataObjectCache={0}", useDataObjectCache);
 
-        List<T> result = 
+        List<T> result =
                 getResult(classOfObject, resultSet, useDataObjectCache);
 
         resultMap(classOfObject).put(key, result);
@@ -1125,7 +1125,7 @@ public class OpbDataObjectSource {
      * The first call to this method for a given class will return a newly
      * created map. Subsequent calls for the same class will return the same map
      * until clearInstances() or clearInstances(Class) are called.
-     * 
+     *
      * @param <T>
      *   The type of object that the map should contain.
      * @param c
@@ -1208,7 +1208,7 @@ public class OpbDataObjectSource {
      * @see #clearInstances(Class)
      * @see #clearInstance(Class, String)
      */
-    public <T extends Object> T getInstance(final Class<T> classOfObject, 
+    public <T extends Object> T getInstance(final Class<T> classOfObject,
             final String key) throws OpbException {
         final String methodName = "getInstance(Class, String)";
 

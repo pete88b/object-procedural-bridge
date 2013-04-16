@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * long_strings.
  */
 public interface LongStrings
-        extends OpbGroupable, OpbTimingEventPublisher,
-        OpbActiveDataObject {
+        extends OpbActiveDataObject {
 
     /**
      * 
@@ -26,8 +23,8 @@ public interface LongStrings
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    Long howLong(String pData) 
-            throws OpbDataAccessException; 
+    Long howLong(String pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -35,8 +32,8 @@ public interface LongStrings
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String getLong(Long pHowLong) 
-            throws OpbDataAccessException; 
+    String getLong(Long pHowLong)
+            throws OpbDataAccessException;
     
 
     /**
@@ -45,7 +42,7 @@ public interface LongStrings
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void inOut(OpbValueWrapper<String> pData) 
+    void inOut(OpbValueWrapper<String> pData)
             throws OpbDataAccessException;
     
 

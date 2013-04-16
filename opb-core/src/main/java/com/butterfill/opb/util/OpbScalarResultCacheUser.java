@@ -24,10 +24,10 @@ package com.butterfill.opb.util;
 public interface OpbScalarResultCacheUser {
 
     /**
-     * Sets the OpbScalarResultCacheProvider to be used.
-     * @param provider
-     *   An OpbScalarResultCacheProvider.
+     * Sets the OpbScalarResultCache to be used.
+     * @param cache
+     *   A scalar result cache.
      */
-    void setOpbScalarResultCacheProvider(OpbScalarResultCacheProvider provider);
+    void setOpbScalarResultCache(OpbScalarResultCache cache);
 
 }

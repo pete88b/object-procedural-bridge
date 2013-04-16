@@ -1,16 +1,14 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.*;
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 import com.butterfill.opb.plsql.util.*;
 import java.util.logging.*;
@@ -20,19 +18,19 @@ import java.util.logging.*;
  * param_cache.
  */
 public class ParamCacheImpl implements ParamCache {
-    
+
     /**
      * The name of this class.
      */
     public static final String CLASS_NAME =
             ParamCacheImpl.class.getName();
-            
+
     /**
      * The logger of this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
-    
+
     /**
      * Creates a new instance of ParamCacheImpl.
      */
@@ -48,43 +46,8 @@ public class ParamCacheImpl implements ParamCache {
     public String toString() {
         return com.butterfill.opb.util.OpbToStringHelper.toString(this);
     }
-    
-    /**
-     * The group mananger map to be used by this ParamCacheImpl.
-     */
-    private OpbGroupManagerMap opbGroupManagerMap;
 
-    /**
-     * Sets the group manager map to be used by this ParamCacheImpl.
-     * @param map The group manager map to use.
-     */
-    public void setGroupManagerMap(final OpbGroupManagerMap map) {
-        this.opbGroupManagerMap = map;
-    }
 
-    /**
-     * Returns the group manager map used by this ParamCacheImpl.
-     * @return The group manager map used by this instance.
-     */
-    public OpbGroupManagerMap getGroupManagerMap() {
-        return opbGroupManagerMap;
-    }
-    
-
-    /**
-     * The event timer provider to be used by this ParamCacheImpl.
-     */
-    private OpbEventTimerProvider opbEventTimerProvider;
-
-    /**
-     * Sets the event timer to be used by this ParamCacheImpl.
-     * @param provider The event timer to use.
-     */
-    public void setOpbEventTimerProvider(final OpbEventTimerProvider provider) {
-        this.opbEventTimerProvider = provider;
-    }
-
-    
     /**
      * The data object source to be used by this ParamCacheImpl.
      */
@@ -113,18 +76,18 @@ public class ParamCacheImpl implements ParamCache {
     }
 
     /**
-     * The scalar result cache provider to be used by this DiscrepancyImpl.
+     * The scalar result cache to be used by this ParamCacheImpl.
      */
-    private OpbScalarResultCacheProvider opbScalarResultCacheProvider;
+    private OpbScalarResultCache opbScalarResultCache;
 
     /**
-     * Sets the scalar result cache provider to be used by this DiscrepancyImpl.
-     * @param provider The scalar result cache provider to use.
+     * Sets the scalar result cache to be used by this ParamCacheImpl.
+     * @param cache The scalar result cache to use.
      */
-    public void setOpbScalarResultCacheProvider(final OpbScalarResultCacheProvider provider) {
-        this.opbScalarResultCacheProvider = provider;
+    public void setOpbScalarResultCache(final OpbScalarResultCache cache) {
+        this.opbScalarResultCache = cache;
     }
-    
+
     /**
      * functions that return cursors use the result cache by default -
      * use_data_object_cache=Y will be ignored
@@ -133,24 +96,24 @@ public class ParamCacheImpl implements ParamCache {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public java.util.List<OpbDynamicDataView> 
-            useResultCacheB() 
+    public java.util.List<OpbDynamicDataView>
+            useResultCacheB()
             throws OpbDataAccessException {
         final String methodName = "useResultCacheB()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
+                logger, CLASS_NAME, methodName,
                 "DataObjectSource", opbDataObjectSource);
     
         OpbId keyToResult = new OpbId(
                 "param_cache.use_result_cache_b");
     
-        java.util.List<OpbDynamicDataView> result = 
+        java.util.List<OpbDynamicDataView> result =
                 opbDataObjectSource.getCachedResult(
                 OpbDynamicDataView.class, keyToResult);
-        
+    
         if (result != null) {
             logger.logp(Level.FINER, CLASS_NAME, methodName,
                     "cached result found. returning");
@@ -159,10 +122,8 @@ public class ParamCacheImpl implements ParamCache {
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN ? := param_cache.use_result_cache_b(); END;",
-                "DbCall:param_cache#use_result_cache_b()");
+                "BEGIN ? := param_cache.use_result_cache_b(); END;");
     
         opbCallHelper.registerOutParameter(
                 1, oracle.jdbc.OracleTypes.CURSOR);
@@ -170,7 +131,7 @@ public class ParamCacheImpl implements ParamCache {
         opbCallHelper.execute();
     
         result = opbDataObjectSource.getResult(
-                OpbDynamicDataView.class, 
+                OpbDynamicDataView.class,
                 opbCallHelper.get(java.sql.ResultSet.class, 1), keyToResult);
     
         opbCallHelper.callComplete();
@@ -187,24 +148,24 @@ public class ParamCacheImpl implements ParamCache {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public java.util.List<OpbDynamicDataView> 
-            useResultCacheB2() 
+    public java.util.List<OpbDynamicDataView>
+            useResultCacheB2()
             throws OpbDataAccessException {
         final String methodName = "useResultCacheB2()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
+                logger, CLASS_NAME, methodName,
                 "DataObjectSource", opbDataObjectSource);
     
         OpbId keyToResult = new OpbId(
                 "param_cache.use_result_cache_b2");
     
-        java.util.List<OpbDynamicDataView> result = 
+        java.util.List<OpbDynamicDataView> result =
                 opbDataObjectSource.getCachedResult(
                 OpbDynamicDataView.class, keyToResult);
-        
+    
         if (result != null) {
             logger.logp(Level.FINER, CLASS_NAME, methodName,
                     "cached result found. returning");
@@ -213,10 +174,8 @@ public class ParamCacheImpl implements ParamCache {
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN ? := param_cache.use_result_cache_b2(); END;",
-                "DbCall:param_cache#use_result_cache_b2()");
+                "BEGIN ? := param_cache.use_result_cache_b2(); END;");
     
         opbCallHelper.registerOutParameter(
                 1, oracle.jdbc.OracleTypes.CURSOR);
@@ -224,7 +183,7 @@ public class ParamCacheImpl implements ParamCache {
         opbCallHelper.execute();
     
         result = opbDataObjectSource.getResult(
-                OpbDynamicDataView.class, 
+                OpbDynamicDataView.class,
                 opbCallHelper.get(java.sql.ResultSet.class, 1), keyToResult);
     
         opbCallHelper.callComplete();
@@ -241,25 +200,23 @@ public class ParamCacheImpl implements ParamCache {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public java.util.List<OpbDynamicDataView> 
-            useResultCacheB3() 
+    public java.util.List<OpbDynamicDataView>
+            useResultCacheB3()
             throws OpbDataAccessException {
         final String methodName = "useResultCacheB3()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
+                logger, CLASS_NAME, methodName,
                 "DataObjectSource", opbDataObjectSource);
     
         java.util.List<OpbDynamicDataView> result = null;
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN ? := param_cache.use_result_cache_b3(); END;",
-                "DbCall:param_cache#use_result_cache_b3()");
+                "BEGIN ? := param_cache.use_result_cache_b3(); END;");
     
         opbCallHelper.registerOutParameter(
                 1, oracle.jdbc.OracleTypes.CURSOR);
@@ -267,7 +224,7 @@ public class ParamCacheImpl implements ParamCache {
         opbCallHelper.execute();
     
         result = opbDataObjectSource.getResult(
-                OpbDynamicDataView.class, 
+                OpbDynamicDataView.class,
                 opbCallHelper.get(java.sql.ResultSet.class, 1));
     
         opbCallHelper.callComplete();
@@ -284,21 +241,19 @@ public class ParamCacheImpl implements ParamCache {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public Long 
-            useScalarResultCacheB() 
+    public Long
+            useScalarResultCacheB()
             throws OpbDataAccessException {
         final String methodName = "useScalarResultCacheB()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         Long result = null;
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN ? := param_cache.use_scalar_result_cache_b(); END;",
-                "DbCall:param_cache#use_scalar_result_cache_b()");
+                "BEGIN ? := param_cache.use_scalar_result_cache_b(); END;");
     
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BIGINT);
@@ -321,22 +276,19 @@ public class ParamCacheImpl implements ParamCache {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public Long 
-            useScalarResultCacheB2() 
+    public Long
+            useScalarResultCacheB2()
             throws OpbDataAccessException {
         final String methodName = "useScalarResultCacheB2()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
-                "Scalar Result Cache Provider", opbScalarResultCacheProvider);
-        
+                logger, CLASS_NAME, methodName,
+                "Scalar Result Cache", opbScalarResultCache);
+    
         OpbId keyToResult = new OpbId(
                 "param_cache.use_scalar_result_cache_b2");
-        
-        OpbScalarResultCache opbScalarResultCache = 
-                opbScalarResultCacheProvider.getScalarResultCache();
     
         if (opbScalarResultCache.isCached(keyToResult)) {
             logger.logp(Level.FINER, CLASS_NAME, methodName,
@@ -348,10 +300,8 @@ public class ParamCacheImpl implements ParamCache {
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN ? := param_cache.use_scalar_result_cache_b2(); END;",
-                "DbCall:param_cache#use_scalar_result_cache_b2()");
+                "BEGIN ? := param_cache.use_scalar_result_cache_b2(); END;");
     
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BIGINT);
@@ -376,21 +326,19 @@ public class ParamCacheImpl implements ParamCache {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public Long 
-            useScalarResultCacheB3() 
+    public Long
+            useScalarResultCacheB3()
             throws OpbDataAccessException {
         final String methodName = "useScalarResultCacheB3()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         Long result = null;
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN ? := param_cache.use_scalar_result_cache_b3(); END;",
-                "DbCall:param_cache#use_scalar_result_cache_b3()");
+                "BEGIN ? := param_cache.use_scalar_result_cache_b3(); END;");
     
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BIGINT);
@@ -413,24 +361,24 @@ public class ParamCacheImpl implements ParamCache {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public java.util.List<FieldsId> 
-            useDataObjectCacheB() 
+    public java.util.List<FieldsId>
+            useDataObjectCacheB()
             throws OpbDataAccessException {
         final String methodName = "useDataObjectCacheB()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
+                logger, CLASS_NAME, methodName,
                 "DataObjectSource", opbDataObjectSource);
     
         OpbId keyToResult = new OpbId(
                 "param_cache.use_data_object_cache_b");
     
-        java.util.List<FieldsId> result = 
+        java.util.List<FieldsId> result =
                 opbDataObjectSource.getCachedResult(
                 FieldsId.class, keyToResult);
-        
+    
         if (result != null) {
             logger.logp(Level.FINER, CLASS_NAME, methodName,
                     "cached result found. returning");
@@ -439,10 +387,8 @@ public class ParamCacheImpl implements ParamCache {
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN ? := param_cache.use_data_object_cache_b(); END;",
-                "DbCall:param_cache#use_data_object_cache_b()");
+                "BEGIN ? := param_cache.use_data_object_cache_b(); END;");
     
         opbCallHelper.registerOutParameter(
                 1, oracle.jdbc.OracleTypes.CURSOR);
@@ -450,7 +396,7 @@ public class ParamCacheImpl implements ParamCache {
         opbCallHelper.execute();
     
         result = opbDataObjectSource.getResult(
-                FieldsId.class, 
+                FieldsId.class,
                 opbCallHelper.get(java.sql.ResultSet.class, 1), keyToResult, true);
     
         opbCallHelper.callComplete();
@@ -467,24 +413,24 @@ public class ParamCacheImpl implements ParamCache {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public java.util.List<FieldsId> 
-            useDataObjectCacheB2() 
+    public java.util.List<FieldsId>
+            useDataObjectCacheB2()
             throws OpbDataAccessException {
         final String methodName = "useDataObjectCacheB2()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
+                logger, CLASS_NAME, methodName,
                 "DataObjectSource", opbDataObjectSource);
     
         OpbId keyToResult = new OpbId(
                 "param_cache.use_data_object_cache_b2");
     
-        java.util.List<FieldsId> result = 
+        java.util.List<FieldsId> result =
                 opbDataObjectSource.getCachedResult(
                 FieldsId.class, keyToResult);
-        
+    
         if (result != null) {
             logger.logp(Level.FINER, CLASS_NAME, methodName,
                     "cached result found. returning");
@@ -493,10 +439,8 @@ public class ParamCacheImpl implements ParamCache {
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN ? := param_cache.use_data_object_cache_b2(); END;",
-                "DbCall:param_cache#use_data_object_cache_b2()");
+                "BEGIN ? := param_cache.use_data_object_cache_b2(); END;");
     
         opbCallHelper.registerOutParameter(
                 1, oracle.jdbc.OracleTypes.CURSOR);
@@ -504,7 +448,7 @@ public class ParamCacheImpl implements ParamCache {
         opbCallHelper.execute();
     
         result = opbDataObjectSource.getResult(
-                FieldsId.class, 
+                FieldsId.class,
                 opbCallHelper.get(java.sql.ResultSet.class, 1), keyToResult);
     
         opbCallHelper.callComplete();
@@ -522,22 +466,20 @@ public class ParamCacheImpl implements ParamCache {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void useResultCacheA(final OpbValueWrapper<java.util.List<OpbDynamicDataView>> pData) 
+    public void useResultCacheA(final OpbValueWrapper<java.util.List<OpbDynamicDataView>> pData)
             throws OpbDataAccessException {
         final String methodName = "useResultCacheA(OpbValueWrapper)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
+                logger, CLASS_NAME, methodName,
                 "pData", pData);
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN param_cache.use_result_cache_a(?); END;",
-                "DbCall:param_cache#use_result_cache_a(sys_refcursor)");
+                "BEGIN param_cache.use_result_cache_a(?); END;");
     
         opbCallHelper.registerOutParameter(
                 1, oracle.jdbc.OracleTypes.CURSOR);
@@ -546,7 +488,7 @@ public class ParamCacheImpl implements ParamCache {
         opbCallHelper.execute();
     
         pData.setValue(opbDataObjectSource.getResult(
-                OpbDynamicDataView.class, 
+                OpbDynamicDataView.class,
                 opbCallHelper.get(java.sql.ResultSet.class, 1)));
     
         opbCallHelper.callComplete();
@@ -561,22 +503,20 @@ public class ParamCacheImpl implements ParamCache {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void useScalarResultCacheA(final OpbValueWrapper<Long> pData) 
+    public void useScalarResultCacheA(final OpbValueWrapper<Long> pData)
             throws OpbDataAccessException {
         final String methodName = "useScalarResultCacheA(OpbValueWrapper)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
+                logger, CLASS_NAME, methodName,
                 "pData", pData);
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN param_cache.use_scalar_result_cache_a(?); END;",
-                "DbCall:param_cache#use_scalar_result_cache_a(integer)");
+                "BEGIN param_cache.use_scalar_result_cache_a(?); END;");
     
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BIGINT);
@@ -598,22 +538,20 @@ public class ParamCacheImpl implements ParamCache {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void useDataObjectCacheA(final OpbValueWrapper<java.util.List<FieldsId>> pResult) 
+    public void useDataObjectCacheA(final OpbValueWrapper<java.util.List<FieldsId>> pResult)
             throws OpbDataAccessException {
         final String methodName = "useDataObjectCacheA(OpbValueWrapper)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
+                logger, CLASS_NAME, methodName,
                 "pResult", pResult);
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN param_cache.use_data_object_cache_a(?); END;",
-                "DbCall:param_cache#use_data_object_cache_a(sys_refcursor)");
+                "BEGIN param_cache.use_data_object_cache_a(?); END;");
     
         opbCallHelper.registerOutParameter(
                 1, oracle.jdbc.OracleTypes.CURSOR);
@@ -622,7 +560,7 @@ public class ParamCacheImpl implements ParamCache {
         opbCallHelper.execute();
     
         pResult.setValue(opbDataObjectSource.getResult(
-                FieldsId.class, 
+                FieldsId.class,
                 opbCallHelper.get(java.sql.ResultSet.class, 1), true));
     
         opbCallHelper.callComplete();

@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * fields_id.
  */
 public interface FieldsId
-        extends OpbGroupable, OpbTimingEventPublisher, 
-        OpbActiveCacheableEntity {
+        extends OpbActiveCacheableEntity {
 
     /**
      * Resets all field values to their initial values.
@@ -51,7 +48,7 @@ public interface FieldsId
     String getPk2DataSourceValue();
     
     /**
-     * Returns true if the value of pk2 
+     * Returns true if the value of pk2
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if pk2 has changed since it was loaded.

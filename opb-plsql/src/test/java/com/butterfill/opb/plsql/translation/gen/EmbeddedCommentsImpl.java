@@ -1,16 +1,14 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.*;
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 import com.butterfill.opb.plsql.util.*;
 import java.util.logging.*;
@@ -20,19 +18,19 @@ import java.util.logging.*;
  * embedded_comments.
  */
 public class EmbeddedCommentsImpl implements EmbeddedComments {
-    
+
     /**
      * The name of this class.
      */
     public static final String CLASS_NAME =
             EmbeddedCommentsImpl.class.getName();
-            
+
     /**
      * The logger of this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
-    
+
     /**
      * Creates a new instance of EmbeddedCommentsImpl.
      */
@@ -48,43 +46,8 @@ public class EmbeddedCommentsImpl implements EmbeddedComments {
     public String toString() {
         return com.butterfill.opb.util.OpbToStringHelper.toString(this);
     }
-    
-    /**
-     * The group mananger map to be used by this EmbeddedCommentsImpl.
-     */
-    private OpbGroupManagerMap opbGroupManagerMap;
 
-    /**
-     * Sets the group manager map to be used by this EmbeddedCommentsImpl.
-     * @param map The group manager map to use.
-     */
-    public void setGroupManagerMap(final OpbGroupManagerMap map) {
-        this.opbGroupManagerMap = map;
-    }
 
-    /**
-     * Returns the group manager map used by this EmbeddedCommentsImpl.
-     * @return The group manager map used by this instance.
-     */
-    public OpbGroupManagerMap getGroupManagerMap() {
-        return opbGroupManagerMap;
-    }
-    
-
-    /**
-     * The event timer provider to be used by this EmbeddedCommentsImpl.
-     */
-    private OpbEventTimerProvider opbEventTimerProvider;
-
-    /**
-     * Sets the event timer to be used by this EmbeddedCommentsImpl.
-     * @param provider The event timer to use.
-     */
-    public void setOpbEventTimerProvider(final OpbEventTimerProvider provider) {
-        this.opbEventTimerProvider = provider;
-    }
-
-    
     /**
      * The data object source to be used by this EmbeddedCommentsImpl.
      */
@@ -112,7 +75,7 @@ public class EmbeddedCommentsImpl implements EmbeddedComments {
         this.opbConnectionProvider = provider;
     }
 
-    
+
     /**
      * Resets all field values to their initial values.
      */
@@ -130,19 +93,19 @@ public class EmbeddedCommentsImpl implements EmbeddedComments {
 
 
     /**
-     * Resets all field values to their initial values by calling 
-     * opbClearState() and then sets all field values using values taken from 
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
      * the current row in resultSet.
      * <br/>
      * This method will look for the following fields in resultSet;
      * <ul>
      * <li>include is <em>mandatory</em></li>
      * </ul>
-     * 
+     *
      * @param resultSet The result set from which this instance should be loaded.
      * @throws OpbDataAccessException If we fail to load this instance.
      */
-    public void opbLoad(final java.sql.ResultSet resultSet) 
+    public void opbLoad(final java.sql.ResultSet resultSet)
             throws OpbDataAccessException {
         final String methodName = "opbLoad(ResultSet)";
 
@@ -158,7 +121,7 @@ public class EmbeddedCommentsImpl implements EmbeddedComments {
         try {
             // load include from column include
             include = OpbSqlHelper.getValue(
-                    include, resultSet, 
+                    include, resultSet,
                     "include", true);
             // save the value we just loaded as the datasource value
             includeDataSourceValue = include;
@@ -213,7 +176,7 @@ public class EmbeddedCommentsImpl implements EmbeddedComments {
     }
     
     /**
-     * Returns true if the value of include 
+     * Returns true if the value of include
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if include has changed since it was loaded.
@@ -231,18 +194,16 @@ public class EmbeddedCommentsImpl implements EmbeddedComments {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void a(final java.math.BigDecimal pData) 
+    public void a(final java.math.BigDecimal pData)
             throws OpbDataAccessException {
         final String methodName = "a(java.math.BigDecimal)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN embedded_comments.a(?); END;",
-                "DbCall:embedded_comments#a(number)");
+                "BEGIN embedded_comments.a(?); END;");
     
         opbCallHelper.setObject(
                 1, java.sql.Types.DECIMAL, pData);

@@ -24,7 +24,7 @@ import junit.framework.*;
  * @author Peter Butterfill
  */
 public class ButterfillSuite extends TestCase {
-    
+
     public ButterfillSuite(String testName) {
         super(testName);
     }
@@ -45,16 +45,13 @@ public class ButterfillSuite extends TestCase {
         TestSuite suite = new TestSuite("ButterfillSuite");
         suite.addTest(com.butterfill.opb.OpbSuite.suite());
         suite.addTest(com.butterfill.opb.util.UtilSuite.suite());
-        suite.addTest(com.butterfill.opb.session.SessionSuite.suite());
-        suite.addTest(com.butterfill.opb.groups.GroupsSuite.suite());
-        suite.addTest(com.butterfill.opb.timing.TimingSuite.suite());
         suite.addTest(com.butterfill.opb.data.DataSuite.suite());
-        
+
         // keep the context tests last
         // they break the context of TestSuiteHelper
         suite.addTest(com.butterfill.opb.context.ContextSuite.suite());
-        
+
         return suite;
     }
-    
+
 }

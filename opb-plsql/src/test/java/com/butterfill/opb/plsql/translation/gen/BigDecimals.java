@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * big_decimals.
  */
 public interface BigDecimals
-        extends OpbGroupable, OpbTimingEventPublisher,
-        OpbActiveDataObject, OpbEntity {
+        extends OpbActiveDataObject, OpbEntity {
 
     /**
      * Resets all field values to their initial values.
@@ -45,7 +42,7 @@ public interface BigDecimals
     java.math.BigDecimal getANumberNoInitialDataSourceValue();
     
     /**
-     * Returns true if the value of aNumberNoInitial 
+     * Returns true if the value of aNumberNoInitial
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aNumberNoInitial has changed since it was loaded.
@@ -72,7 +69,7 @@ public interface BigDecimals
     java.math.BigDecimal getANumberWithInitialDataSourceValue();
     
     /**
-     * Returns true if the value of aNumberWithInitial 
+     * Returns true if the value of aNumberWithInitial
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aNumberWithInitial has changed since it was loaded.
@@ -99,7 +96,7 @@ public interface BigDecimals
     java.math.BigDecimal getANumberWithInitial2DataSourceValue();
     
     /**
-     * Returns true if the value of aNumberWithInitial2 
+     * Returns true if the value of aNumberWithInitial2
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aNumberWithInitial2 has changed since it was loaded.
@@ -126,7 +123,7 @@ public interface BigDecimals
     java.math.BigDecimal getANumberWithInitial3DataSourceValue();
     
     /**
-     * Returns true if the value of aNumberWithInitial3 
+     * Returns true if the value of aNumberWithInitial3
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aNumberWithInitial3 has changed since it was loaded.

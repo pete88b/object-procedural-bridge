@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * fields.
  */
 public interface Fields
-        extends OpbGroupable, OpbTimingEventPublisher,
-        OpbActiveDataObject, OpbEntity {
+        extends OpbActiveDataObject, OpbEntity {
 
     /**
      * Resets all field values to their initial values.
@@ -45,7 +42,7 @@ public interface Fields
     String getADataSourceValue();
     
     /**
-     * Returns true if the value of a 
+     * Returns true if the value of a
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if a has changed since it was loaded.
@@ -72,7 +69,7 @@ public interface Fields
     String getAVarcharDataSourceValue();
     
     /**
-     * Returns true if the value of aVarchar 
+     * Returns true if the value of aVarchar
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aVarchar has changed since it was loaded.
@@ -99,7 +96,7 @@ public interface Fields
     java.math.BigDecimal getANumberDataSourceValue();
     
     /**
-     * Returns true if the value of aNumber 
+     * Returns true if the value of aNumber
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aNumber has changed since it was loaded.
@@ -126,7 +123,7 @@ public interface Fields
     Long getAIntegerDataSourceValue();
     
     /**
-     * Returns true if the value of aInteger 
+     * Returns true if the value of aInteger
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aInteger has changed since it was loaded.
@@ -153,7 +150,7 @@ public interface Fields
     java.util.Date getADateDataSourceValue();
     
     /**
-     * Returns true if the value of aDate 
+     * Returns true if the value of aDate
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aDate has changed since it was loaded.
@@ -174,7 +171,7 @@ public interface Fields
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void aChanged() 
+    void aChanged()
             throws OpbDataAccessException;
     
 

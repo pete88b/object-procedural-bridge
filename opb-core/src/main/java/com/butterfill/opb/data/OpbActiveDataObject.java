@@ -25,7 +25,7 @@ package com.butterfill.opb.data;
  * interactions need a connection to the data source (so the data object needs
  * a connection source).
  * <br/>
- * Most active data objects will retreive other data objects from the data
+ * Most active data objects will retrieve other data objects from the data
  * source (so the data object needs an object source).
  *
  * @author Peter Butterfill
@@ -34,7 +34,7 @@ public interface OpbActiveDataObject {
 
     /**
      * Sets the data object source to be used by the active data object (to
-     * retreive other data objects).
+     * retrieve other data objects).
      * It is expected that this data object source will be the data object
      * source that this object came from.
      * @see OpbDataObjectSource

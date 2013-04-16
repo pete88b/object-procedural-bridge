@@ -1,16 +1,14 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.*;
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 import com.butterfill.opb.plsql.util.*;
 import java.util.logging.*;
@@ -20,19 +18,19 @@ import java.util.logging.*;
  * dates.
  */
 public class DatesImpl implements Dates {
-    
+
     /**
      * The name of this class.
      */
     public static final String CLASS_NAME =
             DatesImpl.class.getName();
-            
+
     /**
      * The logger of this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
-    
+
     /**
      * Creates a new instance of DatesImpl.
      */
@@ -48,43 +46,8 @@ public class DatesImpl implements Dates {
     public String toString() {
         return com.butterfill.opb.util.OpbToStringHelper.toString(this);
     }
-    
-    /**
-     * The group mananger map to be used by this DatesImpl.
-     */
-    private OpbGroupManagerMap opbGroupManagerMap;
 
-    /**
-     * Sets the group manager map to be used by this DatesImpl.
-     * @param map The group manager map to use.
-     */
-    public void setGroupManagerMap(final OpbGroupManagerMap map) {
-        this.opbGroupManagerMap = map;
-    }
 
-    /**
-     * Returns the group manager map used by this DatesImpl.
-     * @return The group manager map used by this instance.
-     */
-    public OpbGroupManagerMap getGroupManagerMap() {
-        return opbGroupManagerMap;
-    }
-    
-
-    /**
-     * The event timer provider to be used by this DatesImpl.
-     */
-    private OpbEventTimerProvider opbEventTimerProvider;
-
-    /**
-     * Sets the event timer to be used by this DatesImpl.
-     * @param provider The event timer to use.
-     */
-    public void setOpbEventTimerProvider(final OpbEventTimerProvider provider) {
-        this.opbEventTimerProvider = provider;
-    }
-
-    
     /**
      * The data object source to be used by this DatesImpl.
      */
@@ -112,7 +75,7 @@ public class DatesImpl implements Dates {
         this.opbConnectionProvider = provider;
     }
 
-    
+
     /**
      * Resets all field values to their initial values.
      */
@@ -133,8 +96,8 @@ public class DatesImpl implements Dates {
 
 
     /**
-     * Resets all field values to their initial values by calling 
-     * opbClearState() and then sets all field values using values taken from 
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
      * the current row in resultSet.
      * <br/>
      * This method will look for the following fields in resultSet;
@@ -142,11 +105,11 @@ public class DatesImpl implements Dates {
      * <li>a_date is <em>mandatory</em></li>
      * <li>b_date is <em>mandatory</em></li>
      * </ul>
-     * 
+     *
      * @param resultSet The result set from which this instance should be loaded.
      * @throws OpbDataAccessException If we fail to load this instance.
      */
-    public void opbLoad(final java.sql.ResultSet resultSet) 
+    public void opbLoad(final java.sql.ResultSet resultSet)
             throws OpbDataAccessException {
         final String methodName = "opbLoad(ResultSet)";
 
@@ -162,14 +125,14 @@ public class DatesImpl implements Dates {
         try {
             // load aDate from column a_date
             aDate = OpbSqlHelper.getValue(
-                    aDate, resultSet, 
+                    aDate, resultSet,
                     "a_date", true);
             // save the value we just loaded as the datasource value
             aDateDataSourceValue = aDate;
             
             // load bDate from column b_date
             bDate = OpbSqlHelper.getValue(
-                    bDate, resultSet, 
+                    bDate, resultSet,
                     "b_date", true);
             // save the value we just loaded as the datasource value
             bDateDataSourceValue = bDate;
@@ -224,7 +187,7 @@ public class DatesImpl implements Dates {
     }
     
     /**
-     * Returns true if the value of aDate 
+     * Returns true if the value of aDate
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aDate has changed since it was loaded.
@@ -270,7 +233,7 @@ public class DatesImpl implements Dates {
     }
     
     /**
-     * Returns true if the value of bDate 
+     * Returns true if the value of bDate
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if bDate has changed since it was loaded.
@@ -287,21 +250,19 @@ public class DatesImpl implements Dates {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public java.util.Date 
-            addOneDay(final java.util.Date pDate) 
+    public java.util.Date
+            addOneDay(final java.util.Date pDate)
             throws OpbDataAccessException {
         final String methodName = "addOneDay(java.util.Date)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         java.util.Date result = null;
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN ? := dates.add_one_day(?); END;",
-                "DbCall:dates#add_one_day(date)");
+                "BEGIN ? := dates.add_one_day(?); END;");
     
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.TIMESTAMP);
@@ -331,7 +292,7 @@ public class DatesImpl implements Dates {
      *   If we fail to make the database call.
      */
     public java.util.Date
-            addOneDay() 
+            addOneDay()
             throws OpbDataAccessException {
         final String methodName = "addOneDay()";
     
@@ -350,21 +311,19 @@ public class DatesImpl implements Dates {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public java.util.Date 
-            today() 
+    public java.util.Date
+            today()
             throws OpbDataAccessException {
         final String methodName = "today()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         java.util.Date result = null;
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN ? := dates.today(); END;",
-                "DbCall:dates#today()");
+                "BEGIN ? := dates.today(); END;");
     
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.TIMESTAMP);
@@ -388,22 +347,20 @@ public class DatesImpl implements Dates {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void dateInOut(final OpbValueWrapper<java.util.Date> pDate) 
+    public void dateInOut(final OpbValueWrapper<java.util.Date> pDate)
             throws OpbDataAccessException {
         final String methodName = "dateInOut(OpbValueWrapper)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, 
+                logger, CLASS_NAME, methodName,
                 "pDate", pDate);
     
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN dates.date_in_out(?); END;",
-                "DbCall:dates#date_in_out(DATE)");
+                "BEGIN dates.date_in_out(?); END;");
     
         opbCallHelper.setObject(
                 1, java.sql.Types.TIMESTAMP, pDate.getValue());
@@ -430,13 +387,13 @@ public class DatesImpl implements Dates {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void dateInOut() 
+    public void dateInOut()
             throws OpbDataAccessException {
         final String methodName = "dateInOut()";
     
         logger.entering(CLASS_NAME, methodName);
     
-        OpbValueWrapper<java.util.Date> pDateValueWrapper = 
+        OpbValueWrapper<java.util.Date> pDateValueWrapper =
                 new OpbValueWrapperImpl<java.util.Date>(getADate());
         
     

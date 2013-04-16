@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * one_of_each_sql_type.
  */
 public interface OneOfEachSqlType
-        extends OpbGroupable, OpbTimingEventPublisher,
-        OpbActiveDataObject, OpbEntity {
+        extends OpbActiveDataObject, OpbEntity {
 
     /**
      * Resets all field values to their initial values.
@@ -45,7 +42,7 @@ public interface OneOfEachSqlType
     Double getABinaryDoubleDataSourceValue();
     
     /**
-     * Returns true if the value of aBinaryDouble 
+     * Returns true if the value of aBinaryDouble
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aBinaryDouble has changed since it was loaded.
@@ -72,7 +69,7 @@ public interface OneOfEachSqlType
     Float getABinaryFloatDataSourceValue();
     
     /**
-     * Returns true if the value of aBinaryFloat 
+     * Returns true if the value of aBinaryFloat
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aBinaryFloat has changed since it was loaded.
@@ -99,7 +96,7 @@ public interface OneOfEachSqlType
     java.sql.Blob getABlobDataSourceValue();
     
     /**
-     * Returns true if the value of aBlob 
+     * Returns true if the value of aBlob
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aBlob has changed since it was loaded.
@@ -126,7 +123,7 @@ public interface OneOfEachSqlType
     String getACharDataSourceValue();
     
     /**
-     * Returns true if the value of aChar 
+     * Returns true if the value of aChar
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aChar has changed since it was loaded.
@@ -153,7 +150,7 @@ public interface OneOfEachSqlType
     java.sql.Clob getAClobDataSourceValue();
     
     /**
-     * Returns true if the value of aClob 
+     * Returns true if the value of aClob
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aClob has changed since it was loaded.
@@ -180,7 +177,7 @@ public interface OneOfEachSqlType
     java.util.Date getADateDataSourceValue();
     
     /**
-     * Returns true if the value of aDate 
+     * Returns true if the value of aDate
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aDate has changed since it was loaded.
@@ -207,7 +204,7 @@ public interface OneOfEachSqlType
     java.sql.Clob getANclobDataSourceValue();
     
     /**
-     * Returns true if the value of aNclob 
+     * Returns true if the value of aNclob
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aNclob has changed since it was loaded.
@@ -234,7 +231,7 @@ public interface OneOfEachSqlType
     java.math.BigDecimal getANumberDataSourceValue();
     
     /**
-     * Returns true if the value of aNumber 
+     * Returns true if the value of aNumber
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aNumber has changed since it was loaded.
@@ -261,7 +258,7 @@ public interface OneOfEachSqlType
     String getANvarchar2DataSourceValue();
     
     /**
-     * Returns true if the value of aNvarchar2 
+     * Returns true if the value of aNvarchar2
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aNvarchar2 has changed since it was loaded.
@@ -288,7 +285,7 @@ public interface OneOfEachSqlType
     byte[] getARawDataSourceValue();
     
     /**
-     * Returns true if the value of aRaw 
+     * Returns true if the value of aRaw
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aRaw has changed since it was loaded.
@@ -315,7 +312,7 @@ public interface OneOfEachSqlType
     java.sql.Timestamp getATimestampDataSourceValue();
     
     /**
-     * Returns true if the value of aTimestamp 
+     * Returns true if the value of aTimestamp
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aTimestamp has changed since it was loaded.
@@ -342,7 +339,7 @@ public interface OneOfEachSqlType
     String getAVarchar2DataSourceValue();
     
     /**
-     * Returns true if the value of aVarchar2 
+     * Returns true if the value of aVarchar2
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if aVarchar2 has changed since it was loaded.

@@ -23,7 +23,7 @@ import junit.framework.*;
  * @author Peter Butterfill
  */
 public class PlsqlSuite extends TestCase {
-    
+
     public PlsqlSuite(String testName) {
         super(testName);
     }
@@ -42,13 +42,10 @@ public class PlsqlSuite extends TestCase {
      */
     public static Test suite() {
         TestSuite suite = new TestSuite("PlsqlSuite");
-        // Note: Keep message test first
-        suite.addTest(com.butterfill.opb.plsql.messages.MessagesSuite.suite());
-        suite.addTest(com.butterfill.opb.plsql.context.ContextSuite.suite());
         suite.addTest(com.butterfill.opb.plsql.session.SessionSuite.suite());
         suite.addTest(com.butterfill.opb.plsql.util.UtilSuite.suite());
         suite.addTest(com.butterfill.opb.plsql.translation.TranslationSuite.suite());
         return suite;
     }
-    
+
 }

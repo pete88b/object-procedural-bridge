@@ -25,14 +25,14 @@ import junit.framework.TestSuite;
  * @author Peter Butterfill
  */
 public class TranslationSuite extends TestCase {
-    
+
     public TranslationSuite(String testName) {
         super(testName);
-    }            
+    }
 
     public static Test suite() {
         TestSuite suite = new TestSuite("TranslationSuite");
-        
+
         suite.addTest(com.butterfill.opb.plsql.translation.DatatypeMapTest.suite());
         suite.addTest(com.butterfill.opb.plsql.translation.GeneratePlsqlParserTest.suite());
         suite.addTest(com.butterfill.opb.plsql.translation.OpbCommentTest.suite());
@@ -45,10 +45,10 @@ public class TranslationSuite extends TestCase {
         suite.addTest(com.butterfill.opb.plsql.translation.PlsqlParserTest.suite());
         suite.addTest(com.butterfill.opb.plsql.translation.PlsqlTranslationHelperTest.suite());
         suite.addTest(com.butterfill.opb.plsql.translation.PlsqlTranslatorTest.suite());
-        suite.addTest(com.butterfill.opb.plsql.translation.PlsqlTranslatorPart2Test.suite());
+//        suite.addTest(com.butterfill.opb.plsql.translation.PlsqlTranslatorPart2Test.suite());
         suite.addTest(com.butterfill.opb.plsql.translation.PlsqlTreeParserSuperClassTest.suite());
         suite.addTest(com.butterfill.opb.plsql.translation.PlsqlTreeParserTest.suite());
-        
+
         return suite;
     }
 

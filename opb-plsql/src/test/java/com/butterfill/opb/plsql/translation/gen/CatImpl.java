@@ -1,16 +1,14 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.*;
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 import com.butterfill.opb.plsql.util.*;
 import java.util.logging.*;
@@ -20,19 +18,19 @@ import java.util.logging.*;
  * cat.
  */
 public class CatImpl implements Cat {
-    
+
     /**
      * The name of this class.
      */
     public static final String CLASS_NAME =
             CatImpl.class.getName();
-            
+
     /**
      * The logger of this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
-    
+
     /**
      * Creates a new instance of CatImpl.
      */
@@ -48,43 +46,8 @@ public class CatImpl implements Cat {
     public String toString() {
         return com.butterfill.opb.util.OpbToStringHelper.toString(this);
     }
-    
-    /**
-     * The group mananger map to be used by this CatImpl.
-     */
-    private OpbGroupManagerMap opbGroupManagerMap;
 
-    /**
-     * Sets the group manager map to be used by this CatImpl.
-     * @param map The group manager map to use.
-     */
-    public void setGroupManagerMap(final OpbGroupManagerMap map) {
-        this.opbGroupManagerMap = map;
-    }
 
-    /**
-     * Returns the group manager map used by this CatImpl.
-     * @return The group manager map used by this instance.
-     */
-    public OpbGroupManagerMap getGroupManagerMap() {
-        return opbGroupManagerMap;
-    }
-    
-
-    /**
-     * The event timer provider to be used by this CatImpl.
-     */
-    private OpbEventTimerProvider opbEventTimerProvider;
-
-    /**
-     * Sets the event timer to be used by this CatImpl.
-     * @param provider The event timer to use.
-     */
-    public void setOpbEventTimerProvider(final OpbEventTimerProvider provider) {
-        this.opbEventTimerProvider = provider;
-    }
-
-    
     /**
      * The data object source to be used by this CatImpl.
      */
@@ -112,7 +75,7 @@ public class CatImpl implements Cat {
         this.opbConnectionProvider = provider;
     }
 
-    
+
     /**
      * Resets all field values to their initial values.
      */
@@ -138,7 +101,7 @@ public class CatImpl implements Cat {
     } // End of opbClearState()
 
     /**
-     * The id of this CatImpl. 
+     * The id of this CatImpl.
      * Set by opbLoad(ResultSet).
      */
     private OpbId opbId;
@@ -151,7 +114,7 @@ public class CatImpl implements Cat {
      * <li>type</li>
      * </ul>
      * This method will return null if opbLoad(ResultSet) has not been called.
-     * 
+     *
      * @return The ID of this instance.
      */
     public OpbId getOpbId() {
@@ -160,8 +123,8 @@ public class CatImpl implements Cat {
 
 
     /**
-     * Resets all field values to their initial values by calling 
-     * opbClearState() and then sets all field values using values taken from 
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
      * the current row in resultSet.
      * <br/>
      * This method will look for the following fields in resultSet;
@@ -171,11 +134,11 @@ public class CatImpl implements Cat {
      * <li>last_changed is <em>mandatory</em></li>
      * <li>description is <em>mandatory</em></li>
      * </ul>
-     * 
+     *
      * @param resultSet The result set from which this instance should be loaded.
      * @throws OpbDataAccessException If we fail to load this instance.
      */
-    public void opbLoad(final java.sql.ResultSet resultSet) 
+    public void opbLoad(final java.sql.ResultSet resultSet)
             throws OpbDataAccessException {
         final String methodName = "opbLoad(ResultSet)";
 
@@ -191,22 +154,22 @@ public class CatImpl implements Cat {
         try {
             // load name from column name
             name = OpbSqlHelper.getValue(
-                    name, resultSet, 
+                    name, resultSet,
                     "name", true);
             
             // load type from column type
             type = OpbSqlHelper.getValue(
-                    type, resultSet, 
+                    type, resultSet,
                     "type", true);
             
             // load lastChanged from column last_changed
             lastChanged = OpbSqlHelper.getValue(
-                    lastChanged, resultSet, 
+                    lastChanged, resultSet,
                     "last_changed", true);
             
             // load description from column description
             description = OpbSqlHelper.getValue(
-                    description, resultSet, 
+                    description, resultSet,
                     "description", true);
             // save the value we just loaded as the datasource value
             descriptionDataSourceValue = description;
@@ -328,7 +291,7 @@ public class CatImpl implements Cat {
     }
     
     /**
-     * Returns true if the value of description 
+     * Returns true if the value of description
      * is different to the value that was loaded from the data source,
      * false otherwise.
      * @return true if description has changed since it was loaded.
@@ -347,18 +310,16 @@ public class CatImpl implements Cat {
      */
     public void updateDescription(final String pName,
             final Long pType,
-            final String pDescription) 
+            final String pDescription)
             throws OpbDataAccessException {
         final String methodName = "updateDescription(String, Long, String)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN cat.update_description(?, ?, ?); END;",
-                "DbCall:cat#update_description(varchar2, integer, varchar2)");
+                "BEGIN cat.update_description(?, ?, ?); END;");
     
         opbCallHelper.setObject(
                 1, java.sql.Types.VARCHAR, pName);
@@ -390,7 +351,7 @@ public class CatImpl implements Cat {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void updateDescription() 
+    public void updateDescription()
             throws OpbDataAccessException {
         final String methodName = "updateDescription()";
     
@@ -409,18 +370,16 @@ public class CatImpl implements Cat {
      *   If we fail to make the database call.
      */
     public void deleteCat(final String pName,
-            final Long pType) 
+            final Long pType)
             throws OpbDataAccessException {
         final String methodName = "deleteCat(String, Long)";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN cat.delete_cat(?, ?); END;",
-                "DbCall:cat#delete_cat(varchar2, integer)");
+                "BEGIN cat.delete_cat(?, ?); END;");
     
         opbCallHelper.setObject(
                 1, java.sql.Types.VARCHAR, pName);
@@ -448,7 +407,7 @@ public class CatImpl implements Cat {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void deleteCat() 
+    public void deleteCat()
             throws OpbDataAccessException {
         final String methodName = "deleteCat()";
     
@@ -465,18 +424,16 @@ public class CatImpl implements Cat {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void clearCachedAll() 
+    public void clearCachedAll()
             throws OpbDataAccessException {
         final String methodName = "clearCachedAll()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN cat.clear_cached_all(); END;",
-                "DbCall:cat#clear_cached_all()");
+                "BEGIN cat.clear_cached_all(); END;");
     
         opbCallHelper.execute();
     
@@ -494,18 +451,16 @@ public class CatImpl implements Cat {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void invalidateCachedAll() 
+    public void invalidateCachedAll()
             throws OpbDataAccessException {
         final String methodName = "invalidateCachedAll()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN cat.invalidate_cached_all(); END;",
-                "DbCall:cat#invalidate_cached_all()");
+                "BEGIN cat.invalidate_cached_all(); END;");
     
         opbCallHelper.execute();
     
@@ -523,18 +478,16 @@ public class CatImpl implements Cat {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void clearCachedCats() 
+    public void clearCachedCats()
             throws OpbDataAccessException {
         final String methodName = "clearCachedCats()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN cat.clear_cached_cats(); END;",
-                "DbCall:cat#clear_cached_cats()");
+                "BEGIN cat.clear_cached_cats(); END;");
     
         opbCallHelper.execute();
     
@@ -552,18 +505,16 @@ public class CatImpl implements Cat {
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    public void invalidateCachedCats() 
+    public void invalidateCachedCats()
             throws OpbDataAccessException {
         final String methodName = "invalidateCachedCats()";
     
         logger.entering(CLASS_NAME, methodName);
-        
+    
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
-                opbEventTimerProvider,
                 opbConnectionProvider,
-                "BEGIN cat.invalidate_cached_cats(); END;",
-                "DbCall:cat#invalidate_cached_cats()");
+                "BEGIN cat.invalidate_cached_cats(); END;");
     
         opbCallHelper.execute();
     

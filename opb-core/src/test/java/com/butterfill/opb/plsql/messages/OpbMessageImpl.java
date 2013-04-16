@@ -19,16 +19,13 @@ package com.butterfill.opb.plsql.messages;
 
 import com.butterfill.opb.*;
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 import java.util.logging.Logger;
-import java.util.logging.Level;
 import java.sql.ResultSet;
 import com.butterfill.opb.plsql.util.OpbPlsqlCallHelper;
 
 /**
- * File created from the PL/SQL package specification 
+ * File created from the PL/SQL package specification
  * opb_message.
  */
 public class OpbMessageImpl implements OpbMessage {
@@ -157,44 +154,6 @@ public class OpbMessageImpl implements OpbMessage {
 
     // </editor-fold> End of connection provider Section
 
-    // <editor-fold defaultstate="collapsed" desc="event timer section">
-
-    /**
-     * The event timer provider to be used by this OpbMessage.
-     */
-    private OpbEventTimerProvider _opbEventTimerProvider;
-
-    /**
-     * Sets the event timer to be used by this OpbMessage.
-     */
-    public void setOpbEventTimerProvider(OpbEventTimerProvider provider) {
-        this._opbEventTimerProvider = provider;
-    }
-
-    // </editor-fold> End of event timer section
-
-    // <editor-fold defaultstate="collapsed" desc="groups section">
-
-    /**
-     * The group mananger map to be used by this OpbMessage.
-     */
-    private OpbGroupManagerMap _opbGroupManagerMap;
-
-    /**
-     * Sets the group manager map to be used by this OpbMessage.
-     */
-    public void setGroupManagerMap(OpbGroupManagerMap map) {
-        _opbGroupManagerMap = map;
-    }
-
-    /**
-     * Returns the group manager map used by this OpbMessage.
-     */
-    public OpbGroupManagerMap getGroupManagerMap() {
-        return _opbGroupManagerMap;
-    }
-
-    // </editor-fold> End of groups Section
 
     /**
      * Clears all field values of this OpbMessage.
@@ -241,7 +200,7 @@ public class OpbMessageImpl implements OpbMessage {
      *   <li> message_detail </li>
      * </ul>
      */
-    public void opbLoad(ResultSet resultSet) 
+    public void opbLoad(ResultSet resultSet)
     throws OpbDataAccessException {
         final String _method = "opbLoad(ResultSet)";
 
@@ -558,7 +517,6 @@ public class OpbMessageImpl implements OpbMessage {
 
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, _method,
-                _opbEventTimerProvider,
                 _opbConnectionProvider,
                 "{ CALL opb_message.delete_message(?) }",
                 "DbCall:opb_message#delete_message(NUMBER)");

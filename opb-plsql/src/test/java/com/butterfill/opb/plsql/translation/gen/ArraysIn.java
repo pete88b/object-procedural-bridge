@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * arrays_in.
  */
 public interface ArraysIn
-        extends OpbGroupable, OpbTimingEventPublisher,
-        OpbActiveDataObject {
+        extends OpbActiveDataObject {
 
     /**
      * 
@@ -26,7 +23,7 @@ public interface ArraysIn
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void testOne(String[] pArray) 
+    void testOne(String[] pArray)
             throws OpbDataAccessException;
     
     /**
@@ -35,7 +32,7 @@ public interface ArraysIn
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void testTwo(java.math.BigDecimal[] pArray) 
+    void testTwo(java.math.BigDecimal[] pArray)
             throws OpbDataAccessException;
     
 

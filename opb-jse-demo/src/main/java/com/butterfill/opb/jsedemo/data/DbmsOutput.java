@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
- * opb-plsql version: 1.1.0
- * opb-core version: 1.1.0
+ *
+ * opb-plsql version: 2.0.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.jsedemo.data;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * dbms_output.
  */
 public interface DbmsOutput
-        extends OpbGroupable, OpbTimingEventPublisher,
-        OpbActiveDataObject {
+        extends OpbActiveDataObject {
 
     /**
      * 
@@ -26,7 +23,7 @@ public interface DbmsOutput
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void enable(Long bufferSize) 
+    void enable(Long bufferSize)
             throws OpbDataAccessException;
     
     /**
@@ -35,7 +32,7 @@ public interface DbmsOutput
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void disable() 
+    void disable()
             throws OpbDataAccessException;
     
     /**
@@ -44,7 +41,7 @@ public interface DbmsOutput
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void put(String a) 
+    void put(String a)
             throws OpbDataAccessException;
     
     /**
@@ -53,7 +50,7 @@ public interface DbmsOutput
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void putLine(String a) 
+    void putLine(String a)
             throws OpbDataAccessException;
     
     /**
@@ -62,7 +59,7 @@ public interface DbmsOutput
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void newLine() 
+    void newLine()
             throws OpbDataAccessException;
     
     /**
@@ -72,7 +69,7 @@ public interface DbmsOutput
      *   If we fail to make the database call.
      */
     void getLine(OpbValueWrapper<String> line,
-            OpbValueWrapper<Long> status) 
+            OpbValueWrapper<Long> status)
             throws OpbDataAccessException;
     
 

@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * user_defined_collections.
  */
 public interface UserDefinedCollections
-        extends OpbGroupable, OpbTimingEventPublisher,
-        OpbActiveDataObject {
+        extends OpbActiveDataObject {
 
     /**
      * 
@@ -26,8 +23,8 @@ public interface UserDefinedCollections
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.math.BigDecimal[] getNull() 
-            throws OpbDataAccessException; 
+    java.math.BigDecimal[] getNull()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -35,8 +32,8 @@ public interface UserDefinedCollections
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.math.BigDecimal[] echoNumberTable(Object[] pData) 
-            throws OpbDataAccessException; 
+    java.math.BigDecimal[] echoNumberTable(Object[] pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -44,8 +41,8 @@ public interface UserDefinedCollections
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String formatNumberTable(Object[] pData) 
-            throws OpbDataAccessException; 
+    String formatNumberTable(Object[] pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -54,8 +51,8 @@ public interface UserDefinedCollections
      *   If we fail to make the database call.
      */
     String howLong(Object[] pData,
-            OpbValueWrapper<String[]> pResults) 
-            throws OpbDataAccessException; 
+            OpbValueWrapper<String[]> pResults)
+            throws OpbDataAccessException;
     
 
     /**
@@ -64,7 +61,7 @@ public interface UserDefinedCollections
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void getNullProc(OpbValueWrapper<java.math.BigDecimal[]> pData) 
+    void getNullProc(OpbValueWrapper<java.math.BigDecimal[]> pData)
             throws OpbDataAccessException;
     
     /**
@@ -73,7 +70,7 @@ public interface UserDefinedCollections
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    void simpleInOut(OpbValueWrapper<String[]> pData) 
+    void simpleInOut(OpbValueWrapper<String[]> pData)
             throws OpbDataAccessException;
     
 

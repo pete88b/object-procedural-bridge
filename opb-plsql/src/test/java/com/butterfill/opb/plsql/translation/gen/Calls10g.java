@@ -1,15 +1,13 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 
 /**
@@ -17,8 +15,7 @@ import com.butterfill.opb.util.*;
  * calls10g.
  */
 public interface Calls10g
-        extends OpbGroupable, OpbTimingEventPublisher,
-        OpbActiveDataObject {
+        extends OpbActiveDataObject {
 
     /**
      * 
@@ -26,8 +23,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String echo(String pData) 
-            throws OpbDataAccessException; 
+    String echo(String pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -35,8 +32,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fChar(String pData) 
-            throws OpbDataAccessException; 
+    String fChar(String pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -44,8 +41,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fVarchar2(String pData) 
-            throws OpbDataAccessException; 
+    String fVarchar2(String pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -53,8 +50,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fNumber(java.math.BigDecimal pData) 
-            throws OpbDataAccessException; 
+    String fNumber(java.math.BigDecimal pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -62,8 +59,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fInteger(Long pData) 
-            throws OpbDataAccessException; 
+    String fInteger(Long pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -71,8 +68,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fRaw(byte[] pData) 
-            throws OpbDataAccessException; 
+    String fRaw(byte[] pData)
+            throws OpbDataAccessException;
     
     /**
      * FUNCTION f_LONGRAW (
@@ -83,8 +80,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fDate(java.util.Date pData) 
-            throws OpbDataAccessException; 
+    String fDate(java.util.Date pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -92,8 +89,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fTimestamp(java.sql.Timestamp pData) 
-            throws OpbDataAccessException; 
+    String fTimestamp(java.sql.Timestamp pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -101,8 +98,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.sql.Blob getBlob() 
-            throws OpbDataAccessException; 
+    java.sql.Blob getBlob()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -110,8 +107,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fBlob(java.sql.Blob pData) 
-            throws OpbDataAccessException; 
+    String fBlob(java.sql.Blob pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -119,8 +116,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.sql.Clob getClob() 
-            throws OpbDataAccessException; 
+    java.sql.Clob getClob()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -128,8 +125,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fClob(java.sql.Clob pData) 
-            throws OpbDataAccessException; 
+    String fClob(java.sql.Clob pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -137,8 +134,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fBoolean(Boolean pData) 
-            throws OpbDataAccessException; 
+    String fBoolean(Boolean pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -146,8 +143,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fDbmsSqlVarchar2Table(String[] pData) 
-            throws OpbDataAccessException; 
+    String fDbmsSqlVarchar2Table(String[] pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -155,8 +152,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fDbmsSqlNumberTable(java.math.BigDecimal[] pData) 
-            throws OpbDataAccessException; 
+    String fDbmsSqlNumberTable(java.math.BigDecimal[] pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -164,8 +161,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fBinaryDouble(Double pData) 
-            throws OpbDataAccessException; 
+    String fBinaryDouble(Double pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -173,8 +170,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fBinaryFloat(Float pData) 
-            throws OpbDataAccessException; 
+    String fBinaryFloat(Float pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -182,8 +179,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fBinaryInteger(Long pData) 
-            throws OpbDataAccessException; 
+    String fBinaryInteger(Long pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -191,8 +188,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fDec(java.math.BigDecimal pData) 
-            throws OpbDataAccessException; 
+    String fDec(java.math.BigDecimal pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -200,8 +197,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fDecimal(java.math.BigDecimal pData) 
-            throws OpbDataAccessException; 
+    String fDecimal(java.math.BigDecimal pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -209,8 +206,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fFloat(java.math.BigDecimal pData) 
-            throws OpbDataAccessException; 
+    String fFloat(java.math.BigDecimal pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -218,8 +215,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fInt(Long pData) 
-            throws OpbDataAccessException; 
+    String fInt(Long pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -227,8 +224,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fNumeric(java.math.BigDecimal pData) 
-            throws OpbDataAccessException; 
+    String fNumeric(java.math.BigDecimal pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -236,8 +233,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fPlsInteger(Long pData) 
-            throws OpbDataAccessException; 
+    String fPlsInteger(Long pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -245,8 +242,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fPositive(java.math.BigDecimal pData) 
-            throws OpbDataAccessException; 
+    String fPositive(java.math.BigDecimal pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -254,8 +251,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fSmallint(Long pData) 
-            throws OpbDataAccessException; 
+    String fSmallint(Long pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -263,8 +260,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fCharacter(String pData) 
-            throws OpbDataAccessException; 
+    String fCharacter(String pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -272,8 +269,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fNchar(String pData) 
-            throws OpbDataAccessException; 
+    String fNchar(String pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -281,8 +278,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fNvarchar2(String pData) 
-            throws OpbDataAccessException; 
+    String fNvarchar2(String pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -290,8 +287,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fRowid(String pData) 
-            throws OpbDataAccessException; 
+    String fRowid(String pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -299,8 +296,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fString(String pData) 
-            throws OpbDataAccessException; 
+    String fString(String pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -308,8 +305,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fUrowid(String pData) 
-            throws OpbDataAccessException; 
+    String fUrowid(String pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -317,8 +314,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String fVarchar(String pData) 
-            throws OpbDataAccessException; 
+    String fVarchar(String pData)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -326,8 +323,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String getChar() 
-            throws OpbDataAccessException; 
+    String getChar()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -335,8 +332,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String getVarchar2() 
-            throws OpbDataAccessException; 
+    String getVarchar2()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -344,8 +341,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.math.BigDecimal getNumber() 
-            throws OpbDataAccessException; 
+    java.math.BigDecimal getNumber()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -353,8 +350,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    Long getInteger() 
-            throws OpbDataAccessException; 
+    Long getInteger()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -362,8 +359,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    byte[] getRaw() 
-            throws OpbDataAccessException; 
+    byte[] getRaw()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -371,8 +368,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.util.Date getDate() 
-            throws OpbDataAccessException; 
+    java.util.Date getDate()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -380,8 +377,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.sql.Timestamp getTimestamp() 
-            throws OpbDataAccessException; 
+    java.sql.Timestamp getTimestamp()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -389,8 +386,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    Boolean getBoolean() 
-            throws OpbDataAccessException; 
+    Boolean getBoolean()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -398,8 +395,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    Double getBinaryDouble() 
-            throws OpbDataAccessException; 
+    Double getBinaryDouble()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -407,8 +404,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    Double getBinaryDoubleNull() 
-            throws OpbDataAccessException; 
+    Double getBinaryDoubleNull()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -416,8 +413,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    Float getBinaryFloat() 
-            throws OpbDataAccessException; 
+    Float getBinaryFloat()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -425,8 +422,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    Float getBinaryFloatNull() 
-            throws OpbDataAccessException; 
+    Float getBinaryFloatNull()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -434,8 +431,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    Long getBinaryInteger() 
-            throws OpbDataAccessException; 
+    Long getBinaryInteger()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -443,8 +440,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.math.BigDecimal getDec() 
-            throws OpbDataAccessException; 
+    java.math.BigDecimal getDec()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -452,8 +449,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.math.BigDecimal getDecimal() 
-            throws OpbDataAccessException; 
+    java.math.BigDecimal getDecimal()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -461,8 +458,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.math.BigDecimal getFloat() 
-            throws OpbDataAccessException; 
+    java.math.BigDecimal getFloat()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -470,8 +467,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    Long getInt() 
-            throws OpbDataAccessException; 
+    Long getInt()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -479,8 +476,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.math.BigDecimal getNumeric() 
-            throws OpbDataAccessException; 
+    java.math.BigDecimal getNumeric()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -488,8 +485,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    Long getPlsInteger() 
-            throws OpbDataAccessException; 
+    Long getPlsInteger()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -497,8 +494,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.math.BigDecimal getPositive() 
-            throws OpbDataAccessException; 
+    java.math.BigDecimal getPositive()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -506,8 +503,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    Long getSmallint() 
-            throws OpbDataAccessException; 
+    Long getSmallint()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -515,8 +512,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String getCharacter() 
-            throws OpbDataAccessException; 
+    String getCharacter()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -524,8 +521,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String getNchar() 
-            throws OpbDataAccessException; 
+    String getNchar()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -533,8 +530,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String getNvarchar2() 
-            throws OpbDataAccessException; 
+    String getNvarchar2()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -542,8 +539,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String getRowid() 
-            throws OpbDataAccessException; 
+    String getRowid()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -551,8 +548,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String getString() 
-            throws OpbDataAccessException; 
+    String getString()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -560,8 +557,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String getUrowid() 
-            throws OpbDataAccessException; 
+    String getUrowid()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -569,8 +566,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    String getVarchar() 
-            throws OpbDataAccessException; 
+    String getVarchar()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -589,8 +586,8 @@ public interface Calls10g
             java.sql.Clob pClob,
             Boolean pBoolean,
             String[] pVarchar2Array,
-            java.math.BigDecimal[] pNumberArray) 
-            throws OpbDataAccessException; 
+            java.math.BigDecimal[] pNumberArray)
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -598,8 +595,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.util.List<OpbDynamicDataView> getFromTestTable() 
-            throws OpbDataAccessException; 
+    java.util.List<OpbDynamicDataView> getFromTestTable()
+            throws OpbDataAccessException;
     
     /**
      * 
@@ -607,8 +604,8 @@ public interface Calls10g
      * @throws OpbDataAccessException
      *   If we fail to make the database call.
      */
-    java.util.List<OneOfEachSqlType> getOneOfEachSqlType() 
-            throws OpbDataAccessException; 
+    java.util.List<OneOfEachSqlType> getOneOfEachSqlType()
+            throws OpbDataAccessException;
     
 
     /**
@@ -618,7 +615,7 @@ public interface Calls10g
      *   If we fail to make the database call.
      */
     void echo(String pData,
-            OpbValueWrapper<String> pResult) 
+            OpbValueWrapper<String> pResult)
             throws OpbDataAccessException;
     
 

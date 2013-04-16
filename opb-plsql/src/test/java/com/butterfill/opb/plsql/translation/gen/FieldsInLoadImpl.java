@@ -1,16 +1,14 @@
 /*
  * File created by opb-plsql.
- * 
+ *
  *  version: 
- * opb-core version: 1.1.0
+ * opb-core version: 2.0.0
  */
 
 package com.butterfill.opb.plsql.translation.gen;
 
 import com.butterfill.opb.*;
 import com.butterfill.opb.data.*;
-import com.butterfill.opb.groups.*;
-import com.butterfill.opb.timing.*;
 import com.butterfill.opb.util.*;
 import com.butterfill.opb.plsql.util.*;
 import java.util.logging.*;
@@ -20,19 +18,19 @@ import java.util.logging.*;
  * fields_in_load.
  */
 public class FieldsInLoadImpl implements FieldsInLoad {
-    
+
     /**
      * The name of this class.
      */
     public static final String CLASS_NAME =
             FieldsInLoadImpl.class.getName();
-            
+
     /**
      * The logger of this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
-    
+
     /**
      * Creates a new instance of FieldsInLoadImpl.
      */
@@ -48,43 +46,8 @@ public class FieldsInLoadImpl implements FieldsInLoad {
     public String toString() {
         return com.butterfill.opb.util.OpbToStringHelper.toString(this);
     }
-    
-    /**
-     * The group mananger map to be used by this FieldsInLoadImpl.
-     */
-    private OpbGroupManagerMap opbGroupManagerMap;
 
-    /**
-     * Sets the group manager map to be used by this FieldsInLoadImpl.
-     * @param map The group manager map to use.
-     */
-    public void setGroupManagerMap(final OpbGroupManagerMap map) {
-        this.opbGroupManagerMap = map;
-    }
 
-    /**
-     * Returns the group manager map used by this FieldsInLoadImpl.
-     * @return The group manager map used by this instance.
-     */
-    public OpbGroupManagerMap getGroupManagerMap() {
-        return opbGroupManagerMap;
-    }
-    
-
-    /**
-     * The event timer provider to be used by this FieldsInLoadImpl.
-     */
-    private OpbEventTimerProvider opbEventTimerProvider;
-
-    /**
-     * Sets the event timer to be used by this FieldsInLoadImpl.
-     * @param provider The event timer to use.
-     */
-    public void setOpbEventTimerProvider(final OpbEventTimerProvider provider) {
-        this.opbEventTimerProvider = provider;
-    }
-
-    
     /**
      * The data object source to be used by this FieldsInLoadImpl.
      */
@@ -112,7 +75,7 @@ public class FieldsInLoadImpl implements FieldsInLoad {
         this.opbConnectionProvider = provider;
     }
 
-    
+
     /**
      * Resets all field values to their initial values.
      */
@@ -133,8 +96,8 @@ public class FieldsInLoadImpl implements FieldsInLoad {
 
 
     /**
-     * Resets all field values to their initial values by calling 
-     * opbClearState() and then sets all field values using values taken from 
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
      * the current row in resultSet.
      * <br/>
      * This method will look for the following fields in resultSet;
@@ -143,11 +106,11 @@ public class FieldsInLoadImpl implements FieldsInLoad {
      * <li>f_optional is optional</li>
      * 
      * </ul>
-     * 
+     *
      * @param resultSet The result set from which this instance should be loaded.
      * @throws OpbDataAccessException If we fail to load this instance.
      */
-    public void opbLoad(final java.sql.ResultSet resultSet) 
+    public void opbLoad(final java.sql.ResultSet resultSet)
             throws OpbDataAccessException {
         final String methodName = "opbLoad(ResultSet)";
 
@@ -163,12 +126,12 @@ public class FieldsInLoadImpl implements FieldsInLoad {
         try {
             // load fDefault from column f_default
             fDefault = OpbSqlHelper.getValue(
-                    fDefault, resultSet, 
+                    fDefault, resultSet,
                     "f_default", true);
             
             // load fOptional from column f_optional
             fOptional = OpbSqlHelper.getValue(
-                    fOptional, resultSet, 
+                    fOptional, resultSet,
                     "f_optional", false);
             
 
