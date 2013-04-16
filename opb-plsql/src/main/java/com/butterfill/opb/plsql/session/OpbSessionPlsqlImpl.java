@@ -124,7 +124,6 @@ public class OpbSessionPlsqlImpl implements OpbSession {
      */
     public OpbScalarResultCache getOpbScalarResultCache() {
         return scalarResultCache;
-
     }
 
     /**
@@ -133,7 +132,21 @@ public class OpbSessionPlsqlImpl implements OpbSession {
      */
     public OpbDataObjectSource getDataObjectSource() {
         return dataObjectSource;
+    }
 
+    /**
+     * Calls {@link OpbConnectionProvider#releaseConnection() }.
+     * <br/>
+     * This method is here to simplify connection releasing when using a
+     * dependency injection container such as Spring.
+     * <br/>
+     * With Spring; you could configure a request scoped bean of this class, setting
+     * destroy-method="releaseConnection" -
+     * So the connection would be opened as it's needed but always closed at the end
+     * of the request.
+     */
+    public void releaseConnection() {
+        connectionProvider.releaseConnection();
     }
 
 } // End of class OpbSessionPlsqlImpl
