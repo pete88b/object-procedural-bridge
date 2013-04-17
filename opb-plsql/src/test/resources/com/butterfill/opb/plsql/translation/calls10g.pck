@@ -5,7 +5,7 @@ Aimed at testing datatypes available in 10g.
 */
 create or replace package calls10g
 is
-  
+
   function echo(
     p_data in varchar2
   )
@@ -15,7 +15,7 @@ is
     p_data in varchar2,
     p_result out varchar2
   );
-  
+
   FUNCTION f_CHAR (
     p_data IN CHAR
   )
@@ -66,15 +66,15 @@ is
 
   function get_blob
   return blob;
-  
+
   FUNCTION f_BLOB (
     p_data IN BLOB
   )
   RETURN VARCHAR2;
-  
+
   function get_clob
   return CLOB;
-  
+
   FUNCTION f_CLOB (
     p_data IN CLOB
   )
@@ -236,16 +236,16 @@ is
 
   FUNCTION get_BINARY_DOUBLE
   RETURN BINARY_DOUBLE;
-  
+
   FUNCTION get_BINARY_DOUBLE_null
   RETURN BINARY_DOUBLE;
-  
+
   FUNCTION get_BINARY_FLOAT
   RETURN BINARY_FLOAT;
 
   FUNCTION get_BINARY_FLOAT_null
   RETURN BINARY_FLOAT;
-  
+
   FUNCTION get_BINARY_INTEGER
   RETURN BINARY_INTEGER;
 
@@ -343,9 +343,9 @@ is
   return varchar2
   is
   begin
-    logger.entering('echo (function)');
- 
-    logger.fb('p_data=' || p_data);
+    dbms_output.put_line('echo (function)');
+
+    dbms_output.put_line('p_data=' || p_data);
 
     return p_data;
 
@@ -357,9 +357,9 @@ is
   )
   is
   begin
-    logger.entering('echo (procedure)');
- 
-    logger.fb('p_data=' || p_data);
+    dbms_output.put_line('echo (procedure)');
+
+    dbms_output.put_line('p_data=' || p_data);
 
     p_result := p_data;
 
@@ -371,7 +371,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_CHAR');
+    dbms_output.put_line('f_CHAR');
 
     IF (p_data IS NULL)
     THEN
@@ -388,7 +388,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_VARCHAR2');
+    dbms_output.put_line('f_VARCHAR2');
 
     IF (p_data IS NULL)
     THEN
@@ -405,7 +405,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_LONG');
+    dbms_output.put_line('f_LONG');
 
     IF (p_data IS NULL)
     THEN
@@ -422,7 +422,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_NUMBER');
+    dbms_output.put_line('f_NUMBER');
 
     IF (p_data IS NULL)
     THEN
@@ -439,7 +439,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_INTEGER');
+    dbms_output.put_line('f_INTEGER');
 
     IF (p_data IS NULL)
     THEN
@@ -456,9 +456,9 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_RAW');
+    dbms_output.put_line('f_RAW');
 
-    logger.fb('(RAW)p_data=' || p_data);
+    dbms_output.put_line('(RAW)p_data=' || p_data);
 
     IF (p_data IS NULL)
     THEN
@@ -475,7 +475,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_LONGRAW');
+    dbms_output.put_line('f_LONGRAW');
 
     IF (p_data IS NULL)
     THEN
@@ -492,7 +492,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_DATE');
+    dbms_output.put_line('f_DATE');
 
     IF (p_data IS NULL)
     THEN
@@ -509,7 +509,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_TIMESTAMP');
+    dbms_output.put_line('f_TIMESTAMP');
 
     IF (p_data IS NULL)
     THEN
@@ -526,9 +526,9 @@ is
     l_blob blob;
   begin
     dbms_lob.createtemporary(l_blob, false);
-    
+
     return l_blob;
-    
+
   end;
 
   FUNCTION f_BLOB(
@@ -537,45 +537,45 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_BLOB');
+    dbms_output.put_line('f_BLOB');
 
     IF (p_data IS NULL)
     THEN
       RAISE_APPLICATION_ERROR(-20001, 'p_data is null');
     END IF;
-    
-    logger.fb('length=' || DBMS_LOB.GETLENGTH(p_data));
-    
+
+    dbms_output.put_line('length=' || DBMS_LOB.GETLENGTH(p_data));
+
     RETURN 'ok';
 
   END;
-  
+
   function get_clob
   return CLOB
   is
     l_clob clob;
   begin
     dbms_lob.createtemporary(l_clob, false);
-    
+
     return l_clob;
-    
+
   end;
-  
+
   FUNCTION f_CLOB(
     p_data IN CLOB
   )
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_CLOB');
+    dbms_output.put_line('f_CLOB');
 
     IF (p_data IS NULL)
     THEN
       RAISE_APPLICATION_ERROR(-20001, 'p_data is null');
     END IF;
-    
-    logger.fb('(expect testClobStringThatsNotVeryLarge) p_data=' || p_data);
-    
+
+    dbms_output.put_line('(expect testClobStringThatsNotVeryLarge) p_data=' || p_data);
+
     RETURN 'ok';
 
   END;
@@ -586,7 +586,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_SYS_REFCURSOR');
+    dbms_output.put_line('f_SYS_REFCURSOR');
 
     IF (p_data IS NULL)
     THEN
@@ -603,7 +603,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_BOOLEAN');
+    dbms_output.put_line('f_BOOLEAN');
 
     IF (p_data IS NULL)
     THEN
@@ -620,7 +620,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_DBMS_SQL_VARCHAR2_TABLE');
+    dbms_output.put_line('f_DBMS_SQL_VARCHAR2_TABLE');
 
     IF (p_data.LAST IS NULL)
     THEN
@@ -637,7 +637,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_DBMS_SQL_NUMBER_TABLE');
+    dbms_output.put_line('f_DBMS_SQL_NUMBER_TABLE');
 
     IF (p_data.LAST IS NULL)
     THEN
@@ -647,20 +647,20 @@ is
     RETURN 'ok';
 
   END;
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
   FUNCTION f_BINARY_DOUBLE(
     p_data IN BINARY_DOUBLE
   )
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_BINARY_DOUBLE');
+    dbms_output.put_line('f_BINARY_DOUBLE');
 
     IF (p_data IS NULL)
     THEN
@@ -677,7 +677,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_BINARY_FLOAT');
+    dbms_output.put_line('f_BINARY_FLOAT');
 
     IF (p_data IS NULL)
     THEN
@@ -694,7 +694,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_BINARY_INTEGER');
+    dbms_output.put_line('f_BINARY_INTEGER');
 
     IF (p_data IS NULL)
     THEN
@@ -711,7 +711,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_DEC');
+    dbms_output.put_line('f_DEC');
 
     IF (p_data IS NULL)
     THEN
@@ -728,7 +728,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_DECIMAL');
+    dbms_output.put_line('f_DECIMAL');
 
     IF (p_data IS NULL)
     THEN
@@ -745,7 +745,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_FLOAT');
+    dbms_output.put_line('f_FLOAT');
 
     IF (p_data IS NULL)
     THEN
@@ -762,7 +762,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_INT');
+    dbms_output.put_line('f_INT');
 
     IF (p_data IS NULL)
     THEN
@@ -779,7 +779,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_NUMERIC');
+    dbms_output.put_line('f_NUMERIC');
 
     IF (p_data IS NULL)
     THEN
@@ -796,7 +796,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_PLS_INTEGER');
+    dbms_output.put_line('f_PLS_INTEGER');
 
     IF (p_data IS NULL)
     THEN
@@ -813,7 +813,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_POSITIVE');
+    dbms_output.put_line('f_POSITIVE');
 
     IF (p_data IS NULL)
     THEN
@@ -830,7 +830,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_SMALLINT');
+    dbms_output.put_line('f_SMALLINT');
 
     IF (p_data IS NULL)
     THEN
@@ -847,7 +847,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_CHARACTER');
+    dbms_output.put_line('f_CHARACTER');
 
     IF (p_data IS NULL)
     THEN
@@ -864,7 +864,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_NCHAR');
+    dbms_output.put_line('f_NCHAR');
 
     IF (p_data IS NULL)
     THEN
@@ -881,7 +881,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_NVARCHAR2');
+    dbms_output.put_line('f_NVARCHAR2');
 
     IF (p_data IS NULL)
     THEN
@@ -898,15 +898,15 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_ROWID');
+    dbms_output.put_line('f_ROWID');
 
     IF (p_data IS NULL)
     THEN
       RAISE_APPLICATION_ERROR(-20001, 'p_data is null');
     END IF;
-    
-    logger.fb('p_data=' || p_data);
-    
+
+    dbms_output.put_line('p_data=' || p_data);
+
     RETURN 'ok';
 
   END;
@@ -917,7 +917,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_STRING');
+    dbms_output.put_line('f_STRING');
 
     IF (p_data IS NULL)
     THEN
@@ -934,14 +934,14 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_UROWID');
+    dbms_output.put_line('f_UROWID');
 
     IF (p_data IS NULL)
     THEN
       RAISE_APPLICATION_ERROR(-20001, 'p_data is null');
     END IF;
 
-    logger.fb('p_data=' || p_data);
+    dbms_output.put_line('p_data=' || p_data);
 
     RETURN 'ok';
 
@@ -953,7 +953,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('f_VARCHAR');
+    dbms_output.put_line('f_VARCHAR');
 
     IF (p_data IS NULL)
     THEN
@@ -964,15 +964,15 @@ is
 
   END;
 
-  
-  
-  
-  
+
+
+
+
   FUNCTION get_CHAR
   RETURN CHAR
   IS
   BEGIN
-    logger.entering('get_CHAR');
+    dbms_output.put_line('get_CHAR');
 
     RETURN 78;
 
@@ -982,7 +982,7 @@ is
   RETURN VARCHAR2
   IS
   BEGIN
-    logger.entering('get_VARCHAR2');
+    dbms_output.put_line('get_VARCHAR2');
 
     RETURN 78;
 
@@ -992,7 +992,7 @@ is
   RETURN NUMBER
   IS
   BEGIN
-    logger.entering('get_NUMBER');
+    dbms_output.put_line('get_NUMBER');
 
     RETURN 78;
 
@@ -1002,7 +1002,7 @@ is
   RETURN INTEGER
   IS
   BEGIN
-    logger.entering('get_INTEGER');
+    dbms_output.put_line('get_INTEGER');
 
     RETURN 78;
 
@@ -1012,7 +1012,7 @@ is
   RETURN RAW
   IS
   BEGIN
-    logger.entering('get_RAW');
+    dbms_output.put_line('get_RAW');
 
     RETURN '0708';
 
@@ -1023,7 +1023,7 @@ is
   RETURN DATE
   IS
   BEGIN
-    logger.entering('get_DATE');
+    dbms_output.put_line('get_DATE');
 
     RETURN to_date('23dec1845 23:05:11', 'ddmonyyyy hh24:mi:ss');
 
@@ -1033,7 +1033,7 @@ is
   RETURN TIMESTAMP
   IS
   BEGIN
-    logger.entering('get_TIMESTAMP');
+    dbms_output.put_line('get_TIMESTAMP');
 
     RETURN to_date('23dec1845 23:05:11', 'ddmonyyyy hh24:mi:ss');
 
@@ -1044,29 +1044,29 @@ is
   RETURN varchar2
   IS
   BEGIN
-    logger.entering('get_BOOLEAN');
+    dbms_output.put_line('get_BOOLEAN');
 
     RETURN 'y';
 
   END;
 
-  
+
 
   FUNCTION get_BINARY_DOUBLE
   RETURN BINARY_DOUBLE
   IS
   BEGIN
-    logger.entering('get_BINARY_DOUBLE');
+    dbms_output.put_line('get_BINARY_DOUBLE');
 
     RETURN 78;
 
   END;
-  
+
   FUNCTION get_BINARY_DOUBLE_null
   RETURN BINARY_DOUBLE
   IS
   BEGIN
-    logger.entering('get_BINARY_DOUBLE_null');
+    dbms_output.put_line('get_BINARY_DOUBLE_null');
 
     RETURN null;
 
@@ -1076,27 +1076,27 @@ is
   RETURN BINARY_FLOAT
   IS
   BEGIN
-    logger.entering('get_BINARY_FLOAT');
+    dbms_output.put_line('get_BINARY_FLOAT');
 
     RETURN 78;
 
   END;
-  
+
   FUNCTION get_BINARY_FLOAT_null
   RETURN BINARY_FLOAT
   IS
   BEGIN
-    logger.entering('get_BINARY_FLOAT_null');
+    dbms_output.put_line('get_BINARY_FLOAT_null');
 
     RETURN null;
 
   END;
-  
+
   FUNCTION get_BINARY_INTEGER
   RETURN BINARY_INTEGER
   IS
   BEGIN
-    logger.entering('get_BINARY_INTEGER');
+    dbms_output.put_line('get_BINARY_INTEGER');
 
     RETURN 78;
 
@@ -1106,7 +1106,7 @@ is
   RETURN DEC
   IS
   BEGIN
-    logger.entering('get_DEC');
+    dbms_output.put_line('get_DEC');
 
     RETURN 78;
 
@@ -1116,7 +1116,7 @@ is
   RETURN DECIMAL
   IS
   BEGIN
-    logger.entering('get_DECIMAL');
+    dbms_output.put_line('get_DECIMAL');
 
     RETURN 78;
 
@@ -1126,7 +1126,7 @@ is
   RETURN FLOAT
   IS
   BEGIN
-    logger.entering('get_FLOAT');
+    dbms_output.put_line('get_FLOAT');
 
     RETURN 78;
 
@@ -1136,7 +1136,7 @@ is
   RETURN INT
   IS
   BEGIN
-    logger.entering('get_INT');
+    dbms_output.put_line('get_INT');
 
     RETURN 78;
 
@@ -1146,7 +1146,7 @@ is
   RETURN NUMERIC
   IS
   BEGIN
-    logger.entering('get_NUMERIC');
+    dbms_output.put_line('get_NUMERIC');
 
     RETURN 78;
 
@@ -1156,7 +1156,7 @@ is
   RETURN PLS_INTEGER
   IS
   BEGIN
-    logger.entering('get_PLS_INTEGER');
+    dbms_output.put_line('get_PLS_INTEGER');
 
     RETURN 78;
 
@@ -1166,7 +1166,7 @@ is
   RETURN POSITIVE
   IS
   BEGIN
-    logger.entering('get_POSITIVE');
+    dbms_output.put_line('get_POSITIVE');
 
     RETURN 78;
 
@@ -1176,7 +1176,7 @@ is
   RETURN SMALLINT
   IS
   BEGIN
-    logger.entering('get_SMALLINT');
+    dbms_output.put_line('get_SMALLINT');
 
     RETURN 78;
 
@@ -1186,7 +1186,7 @@ is
   RETURN CHARACTER
   IS
   BEGIN
-    logger.entering('get_CHARACTER');
+    dbms_output.put_line('get_CHARACTER');
 
     RETURN 78;
 
@@ -1196,7 +1196,7 @@ is
   RETURN NCHAR
   IS
   BEGIN
-    logger.entering('get_NCHAR');
+    dbms_output.put_line('get_NCHAR');
 
     RETURN 78;
 
@@ -1206,7 +1206,7 @@ is
   RETURN NVARCHAR2
   IS
   BEGIN
-    logger.entering('get_NVARCHAR2');
+    dbms_output.put_line('get_NVARCHAR2');
 
     RETURN 78;
 
@@ -1217,7 +1217,7 @@ is
   IS
     l_result rowid;
   BEGIN
-    logger.entering('get_ROWID');
+    dbms_output.put_line('get_ROWID');
 
     select rowid into l_result from dual;
     RETURN l_result;
@@ -1228,7 +1228,7 @@ is
   RETURN STRING
   IS
   BEGIN
-    logger.entering('get_STRING');
+    dbms_output.put_line('get_STRING');
 
     RETURN 78;
 
@@ -1239,7 +1239,7 @@ is
   IS
     l_result urowid;
   BEGIN
-    logger.entering('get_UROWID');
+    dbms_output.put_line('get_UROWID');
 
     select rowid into l_result from dual;
     RETURN l_result;
@@ -1250,17 +1250,17 @@ is
   RETURN VARCHAR
   IS
   BEGIN
-    logger.entering('get_VARCHAR');
+    dbms_output.put_line('get_VARCHAR');
 
     RETURN 78;
 
   END;
 
-  
-  
-  
-  
-  
+
+
+
+
+
 
   function data_types(
     p_CHAR IN char,
@@ -1303,7 +1303,7 @@ is
     THEN
       RAISE_APPLICATION_ERROR(-20001, 'p_raw is null');
     END IF;
-    
+
     IF (p_date IS NULL)
     THEN
       RAISE_APPLICATION_ERROR(-20001, 'p_date is null');
@@ -1318,7 +1318,7 @@ is
     THEN
       RAISE_APPLICATION_ERROR(-20001, 'p_blob is null');
     END IF;
-    
+
     IF (p_clob IS NULL)
     THEN
       RAISE_APPLICATION_ERROR(-20001, 'p_clob is null');
@@ -1343,10 +1343,10 @@ is
 
   END data_types;
 
-  
+
   function get_from_test_table
   return sys_refcursor
-  is 
+  is
     l_result sys_refcursor;
   begin
     open l_result for
@@ -1356,7 +1356,7 @@ is
 
   function get_one_of_each_sql_type
   return sys_refcursor
-  is 
+  is
     l_result sys_refcursor;
   begin
     open l_result for

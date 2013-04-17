@@ -1,4 +1,4 @@
-CREATE OR REPLACE PACKAGE user_defined_collections 
+CREATE OR REPLACE PACKAGE user_defined_collections
 IS
   function get_null
   return number_table;
@@ -11,12 +11,12 @@ IS
     p_data in number_table
   )
   return number_table;
-  
+
   function format_number_table(
     p_data in number_table
   )
   return varchar2;
-  
+
   procedure simple_in_out(
     p_data in out varchar_table
   );
@@ -29,7 +29,7 @@ IS
 
 END user_defined_collections;
 /
-CREATE OR REPLACE PACKAGE BODY user_defined_collections 
+CREATE OR REPLACE PACKAGE BODY user_defined_collections
 IS
   function get_null
   return number_table
@@ -52,26 +52,26 @@ IS
   return number_table
   is
   begin
-    logger.entering('echo_number_table');
+    dbms_output.put_line('echo_number_table');
     if (p_data is null)
     then
-      logger.fb('p_data is null');
+      dbms_output.put_line('p_data is null');
     else
-      logger.fb('p_data is not null. last=' || p_data.last);
+      dbms_output.put_line('p_data is not null. last=' || p_data.last);
     end if;
     return p_data;
   end;
-  
+
   function format_number_table(
     p_data in number_table
   )
   return varchar2
   is
     l_result varchar2(32767);
-    
+
   begin
-    logger.entering('format_number_table');
-    
+    dbms_output.put_line('format_number_table');
+
     for i in p_data.first .. p_data.last
     loop
       if (i = p_data.first)
@@ -81,25 +81,25 @@ IS
         l_result := l_result || ', ' || p_data(i);
       end if;
     end loop;
-    
+
     return l_result;
-    
+
   end;
-  
+
   procedure simple_in_out(
     p_data in out varchar_table
   )
   is
   begin
-    logger.entering('simple_in_out');
+    dbms_output.put_line('simple_in_out');
     if (p_data is null)
     then
-      logger.fb('p_data is null');
+      dbms_output.put_line('p_data is null');
     else
-      logger.fb('p_data is not null. last=' || p_data.last);
+      dbms_output.put_line('p_data is not null. last=' || p_data.last);
     end if;
   end;
-  
+
   function how_long(
     p_data in varchar_table,
     p_results out varchar_table
@@ -114,16 +114,16 @@ IS
       for i in p_data.first .. p_data.last
       loop
         p_results(i) := length(p_data(i));
-        
+
       end loop;
-    
+
       return 'notnull';
-    
+
     end if;
-    
+
     return 'null';
-    
+
   end;
-  
+
 END user_defined_collections;
 /

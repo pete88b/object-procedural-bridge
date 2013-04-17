@@ -3,7 +3,7 @@ For testing passing long strings.
 */
 create or replace package long_strings
 is
-  
+
   function how_long(
     p_data in varchar2
   )
@@ -16,7 +16,7 @@ is
     p_how_long in integer
   )
   return varchar2;
-  
+
 end long_strings;
 /
 create or replace package body long_strings
@@ -28,10 +28,10 @@ is
   is
     l_result integer := length(p_data);
   begin
-    logger.exiting('how_long', l_result);
+    dbms_output.put_line('how_long; result=' || l_result);
     return l_result;
   end;
-  
+
   procedure in_out(
     p_data in out varchar2)
   is
@@ -51,7 +51,7 @@ is
     then
       raise_application_error(
         -20000,
-        'bad result length. requested=' || p_how_long || 
+        'bad result length. requested=' || p_how_long ||
         ', actual=' || length(l_result));
     end if;
     return l_result;

@@ -44,7 +44,7 @@ p_data in types.integer_table);
 */
 procedure y(
   p_data IN extra_ibt_type);
-  
+
 /*opb
   param
     name=p_data
@@ -103,7 +103,7 @@ begin
   then
     for i in p_data.first .. p_data.last
     loop
-      logger.fb('a (' || i || ') ' || p_data(i));
+      dbms_output.put_line('a (' || i || ') ' || p_data(i));
     end loop;
   end if;
 end;
@@ -117,7 +117,7 @@ begin
   then
     for i in p_data.first .. p_data.last
     loop
-      logger.fb('a2 (' || i || ') ' || p_data(i));
+      dbms_output.put_line('a2 (' || i || ') ' || p_data(i));
     end loop;
   end if;
 end;
@@ -130,7 +130,7 @@ begin
   then
     for i in p_data.first .. p_data.last
     loop
-      logger.fb('a3 (' || i || ') ' || p_data(i));
+      dbms_output.put_line('a3 (' || i || ') ' || p_data(i));
     end loop;
   end if;
 end;
@@ -143,7 +143,7 @@ begin
   then
     for i in p_data.first .. p_data.last
     loop
-      logger.fb('x (' || i || ') ' || p_data(i));
+      dbms_output.put_line('x (' || i || ') ' || SUBSTR(p_data(i), 1, 200));
     end loop;
   end if;
 end;
@@ -156,7 +156,7 @@ begin
   then
     for i in p_data.first .. p_data.last
     loop
-      logger.fb('x2 (' || i || ') ' || p_data(i));
+      dbms_output.put_line('x2 (' || i || ') ' || p_data(i));
     end loop;
   end if;
 end;
@@ -169,7 +169,7 @@ begin
   then
     for i in p_data.first .. p_data.last
     loop
-      logger.fb('x3 (' || i || ') ' || p_data(i));
+      dbms_output.put_line('x3 (' || i || ') ' || p_data(i));
     end loop;
   end if;
 end;
@@ -177,7 +177,7 @@ end;
 procedure y(
   p_data IN extra_ibt_type)
 IS BEGIN null; END;
-  
+
 /*opb
   param
     name=p_data
@@ -192,7 +192,7 @@ begin
   then
     for i in p_data.first .. p_data.last
     loop
-      logger.fb('x3 (' || i || ') ' || p_data(i));
+      dbms_output.put_line('x3 (' || i || ') ' || p_data(i));
     end loop;
   end if;
 end;

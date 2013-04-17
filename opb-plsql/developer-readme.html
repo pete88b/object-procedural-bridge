@@ -1,6 +1,6 @@
 <html>
   <body>
-    <h3>Database set-up for opb-core</h3>
+    <h3>Database set-up for opb-plsql</h3>
 
     To run the unit tests, you need to set-up a database account;
 
@@ -20,6 +20,19 @@
                 </li>
             </ul>
         </li>
+
+        <li>
+            Build the objects needed to test opb-plsql;
+            <ul>
+                <li>
+                    Run src/test/resources/plsql/build.sql from the opb-plsql project as opb_test.
+                </li>
+                <li>
+                    See <a href="#example">Example output from running test build.sql</a>
+                </li>
+            </ul>
+        </li>
+
     </ol>
 
     Database connection details for the test suite can be found in helpers.TestHelper.java.
@@ -35,6 +48,29 @@
     This URL will work if you have a local copy of Oracle XE running.
     <br/>
     If you would like to use a different URL or user, please edit helpers.TestHelper.
+
+    <h4>Using DBMS_OUTPUT in the tests</h4>
+
+    Some of the PL/SQL test code creates output via DBMS_OUTPUT.<br>
+    To see how we can read the DBMS_OUTPUT, please see;
+    com.butterfill.opb.plsql.translation.PlsqlTranslatorPart2Test#testDbmsOutput()
+
+    <h4 id="example">Example output from running test build.sql</h4>
+
+    <pre>
+        cd $PROJECT_HOME\object-procedural-bridge\trunk\opb-plsql\src\test\resources\plsql
+
+        $PROJECT_HOME\object-procedural-bridge\trunk\opb-plsql\src\test\resources\plsql>sqlplus opb_test/weak_pw
+
+        SQL*Plus: Release 10.2.0.1.0 - Production on Wed Apr 17 08:48:47 2013
+
+        Copyright (c) 1982, 2005, Oracle.  All rights reserved.
+
+        Connected to:
+        Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production
+
+        SQL> @build
+    </pre>
 
   </body>
 
