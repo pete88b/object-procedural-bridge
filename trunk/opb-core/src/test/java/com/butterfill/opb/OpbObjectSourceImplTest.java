@@ -27,7 +27,7 @@ import junit.framework.TestSuite;
  * @author Peter Butterfill
  */
 public class OpbObjectSourceImplTest extends TestCase {
-    
+
     public OpbObjectSourceImplTest(String testName) {
         super(testName);
     }
@@ -52,35 +52,40 @@ public class OpbObjectSourceImplTest extends TestCase {
      */
     public void testNewInstance() {
         System.out.println("newInstance");
-        
+
         OpbObjectSourceImpl instance = new OpbObjectSourceImpl();
         try {
             instance.newInstance(Object.class);
-            fail();
+            fail("There is no ObjectImpl class");
         } catch (OpbException ex) {
             assertTrue(ex.getMessage().indexOf("Class not found") != -1);
         }
-        
+
+        // get an instance of the TestInterface class
         TestInterface ti = instance.newInstance(TestInterface.class);
-        assertTrue(ti instanceof  TestInterfaceImpl);
-        
+        // check we have a not-null instance and check we got the correct implementation
+        assertTrue(ti instanceof TestInterfaceImpl);
+
         try {
             instance.newInstance(TestInterface2.class);
-            fail();
+            fail("TestInterface2Impl.class can be found but it doesn't implement TestInterface2");
         } catch (OpbException ex) {
             assertTrue(ex.getMessage().indexOf("does not implement") != -1);
         }
-        
+
+        // get an instance of the TestInterface3 class
         TestInterface3 ti3 = instance.newInstance(TestInterface3.class);
+        // check we have a not-null instance and check we got the correct implementation
+        // from the .ext package
         assertTrue(ti3 instanceof TestInterface3Impl);
-        
+
         try {
             instance.newInstance(TestInterface4.class);
-            fail();
+            fail("TestInterface4impl has a private constructor - so we should not have access");
         } catch (OpbException ex) {
             assertTrue(ex.getCause().getMessage().indexOf("can not access") != -1);
         }
-        
+
         // test the creation of a class with no package
         // this will fail because RootSuiteImpl does not exist
         try {
@@ -92,9 +97,9 @@ public class OpbObjectSourceImplTest extends TestCase {
                     "failed to create new instance of a RootSuiteImpl") != -1);
             assertTrue(ex.getMessage().indexOf("Class not found") != -1);
         } catch (ClassNotFoundException ex) {
-            throw new RuntimeException(ex);
+            throw new RuntimeException("failed to get class for RootSuite", ex);
         }
-        
+
     }
 
 }
