@@ -14,7 +14,8 @@
     </bean>
 
     <bean id="opbSession" scope="prototype"
-          class="com.butterfill.opb.plsql.session.OpbSessionPlsqlImpl">
+          class="com.butterfill.opb.plsql.session.OpbSessionPlsqlImpl"
+          destroy-method="releaseConnection">
         <constructor-arg ref="oracleDataSource"/>
         <constructor-arg>
             <bean class="com.butterfill.opb.data.OpbDataObjectSource">

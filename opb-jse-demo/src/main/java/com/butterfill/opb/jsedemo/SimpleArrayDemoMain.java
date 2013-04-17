@@ -91,7 +91,7 @@ public class SimpleArrayDemoMain {
          * from System.out
          */
 
-        session.getOpbConnectionProvider().releaseConnection();
+        // Note: Spring will release the connection held by our session via the destroy-method
 
     }
 
