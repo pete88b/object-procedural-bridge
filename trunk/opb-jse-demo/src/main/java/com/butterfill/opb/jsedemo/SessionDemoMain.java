@@ -64,11 +64,9 @@ public class SessionDemoMain {
 
         // output the values returned
         System.out.println("getLineResult=" + getLineResultWrapper.getValue());
-        System.out.println("getLineStatus=" + getLineStatusWrapper.getValue());
+//        System.out.println("getLineStatus=" + getLineStatusWrapper.getValue());
 
-        // release the connection help by our session
-        // (this would probably be in a finally block in production code)
-        session.getOpbConnectionProvider().releaseConnection();
+        // Note: Spring will release the connection held by our session via the destroy-method
 
     }
 
