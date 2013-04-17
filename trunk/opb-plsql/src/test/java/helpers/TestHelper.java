@@ -22,6 +22,8 @@ import com.butterfill.opb.data.OpbDataObjectSource;
 import com.butterfill.opb.plsql.session.OpbSessionPlsqlImpl;
 import com.butterfill.opb.session.OpbSession;
 import com.butterfill.opb.util.OpbScalarResultCache;
+import com.butterfill.opb.util.OpbValueWrapper;
+import com.butterfill.opb.util.OpbValueWrapperImpl;
 import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -149,6 +151,46 @@ public class TestHelper {
         } catch (Exception ex) {
             throw new RuntimeException("failed to invoke method; " + method);
         }
+
+    }
+
+    public static void enableDbmsOutput() {
+        getSharedOpbSession()
+                .getDataObjectSource()
+                .newInstance(DbmsOutput.class)
+                .enable(1000000L);
+    }
+
+    public static void printDbmsOutput() {
+        System.out.println("*** START OF DBMS_OUTPUT ***");
+
+        DbmsOutput dbmsOutput = TestHelper.getSharedOpbSession()
+                .getDataObjectSource()
+                .newInstance(DbmsOutput.class);
+
+        // get the DBMS_OUTPUT
+        // before we can make the GET_LINE call, we need a couple of wrappers to hold the value
+        // returned via the "line" parameter and
+        final OpbValueWrapper<String> getLineResultWrapper = new OpbValueWrapperImpl<String>();
+
+        // the value returned via the "status" parameter
+        final OpbValueWrapper<Long> getLineStatusWrapper = new OpbValueWrapperImpl<Long>();
+
+        // make the 1st GET_LINE call to get the data back
+        dbmsOutput.getLine(getLineResultWrapper, getLineStatusWrapper);
+
+        // if the status is 0, we got some data
+        while (getLineStatusWrapper.getValue().equals(0L)) {
+            // output the values returned
+            System.out.println(getLineResultWrapper.getValue());
+            // and see if we have some more data
+            dbmsOutput.getLine(getLineResultWrapper, getLineStatusWrapper);
+
+        }
+
+        dbmsOutput.disable();
+
+        System.out.println("*** END OF DBMS_OUTPUT ***");
 
     }
 

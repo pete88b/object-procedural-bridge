@@ -164,15 +164,14 @@ public class TestHelper {
         return _sharedSession;
     }
 
-    public static OpbSession getOpbSession() {
+    private static OpbSession getOpbSession() {
         return new OpbSessionPlsqlImpl(
                 _sharedOracleDataSource,
                 new OpbDataObjectSource(new OpbObjectSourceImpl()),
                 new OpbScalarResultCache());
     }
 
-    public static ResultSet getResultSet(String[] columns, int skipColumn) {
-
+    private static ResultSet getResultSet(String[] columns, int skipColumn) {
         try {
             Statement statement = _sharedConnection.createStatement();
             String sql = "SELECT ";
