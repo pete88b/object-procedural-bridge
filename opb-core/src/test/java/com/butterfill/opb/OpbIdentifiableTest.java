@@ -24,7 +24,7 @@ import junit.framework.*;
  * @author Peter Butterfill
  */
 public class OpbIdentifiableTest extends TestCase {
-    
+
     public OpbIdentifiableTest(String testName) {
         super(testName);
     }
@@ -37,35 +37,37 @@ public class OpbIdentifiableTest extends TestCase {
 
     public static Test suite() {
         TestSuite suite = new TestSuite(OpbIdentifiableTest.class);
-        
+
         return suite;
     }
 
     /**
-     * Test of getOpbId method, of class com.butterfill.opb.OpbIdentifiable.
+     * Simple test to for catching changes to interface.
      */
     public void testGetOpbId() {
         System.out.println("getOpbId");
-        
-        OpbIdentifiable instance = new OpbIdentifiableImpl();
-        
-        OpbId expResult = null;
+
+        OpbId expResult = new OpbId(1, 2, 3);
+        OpbIdentifiable instance = new OpbIdentifiableImpl(expResult);
         OpbId result = instance.getOpbId();
-        assertEquals(expResult, result);
-        
+        assertSame(expResult, result);
+
     }
 
     /**
-     * Generated implementation of abstract class com.butterfill.opb.OpbIdentifiable. Please fill dummy bodies of generated methods.
+     * A mock identifiable.
      */
     private class OpbIdentifiableImpl implements OpbIdentifiable {
+        OpbId id;
+
+        public OpbIdentifiableImpl(OpbId id) {
+            this.id = id;
+        }
 
         public com.butterfill.opb.OpbId getOpbId() {
-            
-            
-            return null;
+            return id;
         }
+
     }
 
-    
 }

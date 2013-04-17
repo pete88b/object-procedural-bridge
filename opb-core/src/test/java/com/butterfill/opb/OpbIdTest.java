@@ -18,6 +18,7 @@
 package com.butterfill.opb;
 
 import junit.framework.*;
+import static junit.framework.Assert.assertEquals;
 
 /**
  *
@@ -74,10 +75,10 @@ public class OpbIdTest extends TestCase {
         assertEquals(
                 "[x, " + o + ", " + o + ", 999]",
                 new OpbId("x", o, o, 999).toString());
-        
+
         o = new Object[]{"elem1", "elem2"};
         assertEquals(
-                "[[elem1, elem2]]", 
+                "[[elem1, elem2]]",
                 new OpbId(o).toString());
 
     }
@@ -88,6 +89,7 @@ public class OpbIdTest extends TestCase {
     public void testEquals() {
         System.out.println("equals");
 
+        // general purpose not-equals ID
         Object ne = new OpbId("a", 3, 9);
         Object nullRef = null;
 
@@ -95,7 +97,12 @@ public class OpbIdTest extends TestCase {
         Object y = new OpbId("a", 3);
         OpbId z = new OpbId("a", 3);
 
-        //repeat test to prove consitency
+        // make sure all 3 are equal orcording to JUnit
+        assertEquals(x, y);
+        assertEquals(x, z);
+        assertEquals(y, z);
+
+        //the following tests are repeated to prove consitency
         for (int i = 0; i < 9; i++) {
             x = new OpbId("a", i, 45);
             y = new OpbId("a", i, 45);
@@ -131,6 +138,10 @@ public class OpbIdTest extends TestCase {
         x = new OpbId(new String[] {"a", "b", "c"}, 3);
         y = new OpbId(new String[] {"a", "b", "c"}, 3);
         z = new OpbId(new String[] {"a", "b", "c"}, 3);
+
+        assertEquals(x, y);
+        assertEquals(x, z);
+        assertEquals(y, z);
 
         //repeat test to prove consitency
         for (int i = 0; i < 9; i++) {
@@ -220,14 +231,14 @@ public class OpbIdTest extends TestCase {
 
         // check id's with different numbers of values
         assertFalse(new OpbId(1).equals(new OpbId(1, 1)));
-        
+
         assertFalse(
                 new OpbId(new Object[]{null, null}).equals(
                 new OpbId(new Object[]{null, 2})));
         assertFalse(
                 new OpbId(null, new Object[]{null, null}).equals(
                 new OpbId(null, new Object[]{null, 2})));
-        
+
         // compare an id containing a single array with an id containing a
         // single non-array value
         assertFalse(arrayId.equals(new OpbId("notAnArray")));
@@ -239,7 +250,9 @@ public class OpbIdTest extends TestCase {
     public void testHashCode() {
         System.out.println("hashCode");
 
-        OpbId instance = new OpbId("fx", 9, new Object());
+        Object o = new Object();
+
+        OpbId instance = new OpbId("fx", 9, o);
 
         int result = instance.hashCode();
 
@@ -247,8 +260,18 @@ public class OpbIdTest extends TestCase {
             assertEquals(result, instance.hashCode());
         }
 
-        OpbId instance2 = null;
+        OpbId instance2 = new OpbId("fx", 9, o);
 
+        // quick check to make sure the 2 instance have the same hashcode
+        assertTrue(instance.hashCode() == instance2.hashCode());
+
+        instance2 = new OpbId("fx", 9, new Object());
+
+        // quick check to make sure the 2 instance don't have the same hashcode
+        assertTrue(instance.hashCode() != instance2.hashCode());
+
+        // run some repetitive tests
+        
         int equalsCount = 0;
         int nonEqualHashCount = 0;
 
