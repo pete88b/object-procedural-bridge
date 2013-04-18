@@ -10,7 +10,7 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * Demonstrates the use of the light Opb session - OpbSessionLightPlsqlImpl.
+ * Demonstrates the use of the Opb session - making multiple DB calls with a single connection.
  * <br/>
  * <b>Please refer to package.html for DB set-up details.</b>
  * <b>To run this demo;</b>
