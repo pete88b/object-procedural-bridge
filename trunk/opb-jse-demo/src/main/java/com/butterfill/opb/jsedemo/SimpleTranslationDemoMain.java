@@ -22,10 +22,15 @@ public class SimpleTranslationDemoMain {
      * Translates the PL/SQL package specifications in src/main/sql/
      * writing Java files to the com.butterfill.opb.jsedemo.data.
      *
+     * then
+     *
+     * Translates the PL/SQL package specifications in src/main/sql/object-graph
+     * writing Java files to the com.butterfill.opb.jsedemo.objectgraph.data.
+     *
      * @param args not used.
      */
     public static void main(String[] args) throws Exception {
-        
+
         PlsqlTranslator translator = new PlsqlTranslator();
 
         File[] sourceFiles =
@@ -39,6 +44,20 @@ public class SimpleTranslationDemoMain {
                 "src/main/java/com/butterfill/opb/jsedemo/data");
 
         translator.toJava(sourceFiles, outputDir, "com.butterfill.opb.jsedemo.data");
+
+        sourceFiles =
+                new File[] {
+                new File("src/main/sql/object-graph/address.spc"),
+                new File("src/main/sql/object-graph/addresses.spc"),
+                new File("src/main/sql/object-graph/city.spc"),
+                new File("src/main/sql/object-graph/cities.spc"),
+                new File("src/main/sql/object-graph/person.spc"),
+                new File("src/main/sql/object-graph/people.spc")};
+
+        outputDir = new File(
+                "src/main/java/com/butterfill/opb/jsedemo/objectgraph/data");
+
+        translator.toJava(sourceFiles, outputDir, "com.butterfill.opb.jsedemo.objectgraph.data");
 
     }
 
