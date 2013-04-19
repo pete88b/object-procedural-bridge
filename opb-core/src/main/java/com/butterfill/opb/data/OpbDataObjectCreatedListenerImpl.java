@@ -62,7 +62,8 @@ public class OpbDataObjectCreatedListenerImpl implements OpbDataObjectCreatedLis
      *   If any arguments are null.
      */
     public OpbDataObjectCreatedListenerImpl(
-            final OpbConnectionProvider connectionProvider, OpbScalarResultCache scalarResultCache)
+            final OpbConnectionProvider connectionProvider,
+            final OpbScalarResultCache scalarResultCache)
             throws NullPointerException {
         final String methodName = "OpbDataObjectCreatedListenerImpl";
 

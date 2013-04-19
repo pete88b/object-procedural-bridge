@@ -139,16 +139,16 @@ public class OpbObjectSourceImpl implements OpbObjectSource {
         } catch (ClassNotFoundException ex) {
             OpbExceptionHelper.throwException(
                     new OpbException(
-                    "failed to create new instance of a " + className +
-                    " which should implement " + interfaceName +
-                    ". Class not found: " + className),
+                    "failed to create new instance of a " + className
+                    + " which should implement " + interfaceName
+                    + ". Class not found: " + className),
                     logger, CLASS_NAME, methodName);
 
         } catch (Exception ex) {
             OpbExceptionHelper.throwException(
                     new OpbException(
-                    "failed to create new instance of a " + className +
-                    " which should implement " + interfaceName, ex),
+                    "failed to create new instance of a " + className
+                    + " which should implement " + interfaceName, ex),
                     logger, CLASS_NAME, methodName);
 
         }
@@ -157,9 +157,8 @@ public class OpbObjectSourceImpl implements OpbObjectSource {
         if (!interfaceOfInstance.isInstance(result)) {
             OpbExceptionHelper.throwException(
                     new OpbException(
-                    "failed to create new instance of a " +
-                    className + ". It does not implement " +
-                    interfaceName),
+                    "failed to create new instance of a " + className
+                    + ". It does not implement " + interfaceName),
                     logger, CLASS_NAME, methodName);
         }
 

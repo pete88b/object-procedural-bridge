@@ -29,7 +29,7 @@ public interface OpbDataObjectCreatedListener {
      * opbLoad(ResultSet) will have been called on the data object if it was
      * created as part of a "get result" operation.
      *
-     * @see OpbEntity#opbLoad(java.sql.ResultSet) 
+     * @see OpbEntity#opbLoad(java.sql.ResultSet)
      *
      * @param requestedType
      *   The type of data object requested.
@@ -38,7 +38,7 @@ public interface OpbDataObjectCreatedListener {
      * @param cached
      *   Will be true if the data object has been cached, false otherwise.
      */
-    void dataObjectCreated(Class requestedType, Object dataObject, 
+    void dataObjectCreated(Class requestedType, Object dataObject,
             boolean cached);
 
 }

@@ -326,8 +326,8 @@ public final class OpbSqlHelper {
             return result;
 
         } catch (SQLException ex) {
-            if (!failOnInvalidColumnName &&
-                    ex.getErrorCode() == INVALID_COLUMN_NAME_ERROR_CODE) {
+            if (!failOnInvalidColumnName
+                    && ex.getErrorCode() == INVALID_COLUMN_NAME_ERROR_CODE) {
                 logger.logp(Level.FINER, CLASS_NAME, methodName,
                         "Failed to get object from resultSet, returning dflt");
                 return dflt;
@@ -373,7 +373,7 @@ public final class OpbSqlHelper {
 
         logger.entering(CLASS_NAME, "getValue(Boolean ...");
 
-        Object value =
+        final Object value =
                 getObject(dflt, resultSet, columnName, failOnInvalidColumnName);
 
         if (value == null) {
@@ -384,15 +384,15 @@ public final class OpbSqlHelper {
             return (Boolean) value;
         }
 
-        String stringValue = value.toString();
+        final String stringValue = value.toString();
 
         try {
             return OpbBooleanHelper.toBoolean(stringValue);
 
         } catch (Exception ex) {
             throw new OpbDataAccessException(
-                    "Failed to convert column " + columnName +
-                    " to Boolean. value=" + stringValue, ex);
+                    "Failed to convert column " + columnName
+                    + " to Boolean. value=" + stringValue, ex);
 
         }
 
@@ -426,7 +426,7 @@ public final class OpbSqlHelper {
 
         logger.entering(CLASS_NAME, "getValue(Integer ...");
 
-        Object value =
+        final Object value =
                 getObject(dflt, resultSet, columnName, failOnInvalidColumnName);
 
         try {
@@ -440,8 +440,8 @@ public final class OpbSqlHelper {
 
             } catch (Exception ex) {
                 throw new OpbDataAccessException(
-                        "Failed to convert column " + columnName +
-                        " to Integer. value=" + stringValue);
+                        "Failed to convert column " + columnName
+                        + " to Integer. value=" + stringValue);
 
             }
 
@@ -477,7 +477,7 @@ public final class OpbSqlHelper {
 
         logger.entering(CLASS_NAME, "getValue(Long ...");
 
-        Object value =
+        final Object value =
                 getObject(dflt, resultSet, columnName, failOnInvalidColumnName);
 
         try {
@@ -491,8 +491,8 @@ public final class OpbSqlHelper {
 
             } catch (Exception ex) {
                 throw new OpbDataAccessException(
-                        "Failed to convert column " + columnName +
-                        " to Long. value=" + stringValue);
+                        "Failed to convert column " + columnName
+                        + " to Long. value=" + stringValue);
 
             }
 
@@ -529,7 +529,7 @@ public final class OpbSqlHelper {
 
         logger.entering(CLASS_NAME, methodName);
 
-        Object value =
+        final Object value =
                 getObject(dflt, resultSet, columnName, failOnInvalidColumnName);
 
         try {
@@ -537,8 +537,8 @@ public final class OpbSqlHelper {
 
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
-                    "Failed to cast column " + columnName +
-                    " to Double. value=" + value);
+                    "Failed to cast column " + columnName
+                    + " to Double. value=" + value);
 
         }
 
@@ -574,7 +574,7 @@ public final class OpbSqlHelper {
 
         logger.entering(CLASS_NAME, methodName);
 
-        Object value =
+        final Object value =
                 getObject(dflt, resultSet, columnName, failOnInvalidColumnName);
 
         try {
@@ -582,8 +582,8 @@ public final class OpbSqlHelper {
 
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
-                    "Failed to cast column " + columnName +
-                    " to Float. value=" + value);
+                    "Failed to cast column " + columnName
+                    + " to Float. value=" + value);
 
         }
 
@@ -627,15 +627,15 @@ public final class OpbSqlHelper {
             return resultSet.getTimestamp(columnName);
 
         } catch (SQLException ex) {
-            if (!failOnInvalidColumnName &&
-                    ex.getErrorCode() == INVALID_COLUMN_NAME_ERROR_CODE) {
+            if (!failOnInvalidColumnName
+                    && ex.getErrorCode() == INVALID_COLUMN_NAME_ERROR_CODE) {
                 return dflt;
 
             }
 
             throw new OpbDataAccessException(
-                    "Failed to get '" + columnName +
-                    "' from result set as Timestamp", ex);
+                    "Failed to get '" + columnName
+                    + "' from result set as Timestamp", ex);
 
         }
 
@@ -649,7 +649,7 @@ public final class OpbSqlHelper {
      * <br/>
      * The method will preserve the time component of the result.
      * <br/>
-     * This impementation retrieves the value of columnName as a java.sql.Timestamp.
+     * This implementation retrieves the value of columnName as a java.sql.Timestamp.
      *
      * @param dflt
      *   Default return value. Also used for method overloading.
@@ -680,7 +680,7 @@ public final class OpbSqlHelper {
                 "resultSet", resultSet);
 
         try {
-            java.sql.Timestamp timestamp = resultSet.getTimestamp(columnName);
+            final java.sql.Timestamp timestamp = resultSet.getTimestamp(columnName);
 
             if (timestamp == null) {
                 return null;
@@ -689,15 +689,15 @@ public final class OpbSqlHelper {
             return new java.util.Date(timestamp.getTime());
 
         } catch (SQLException ex) {
-            if (!failOnInvalidColumnName &&
-                    ex.getErrorCode() == INVALID_COLUMN_NAME_ERROR_CODE) {
+            if (!failOnInvalidColumnName
+                    && ex.getErrorCode() == INVALID_COLUMN_NAME_ERROR_CODE) {
                 return dflt;
 
             }
 
             throw new OpbDataAccessException(
-                    "Failed to get '" + columnName +
-                    "' from result set as java.util.Date", ex);
+                    "Failed to get '" + columnName
+                    + "' from result set as java.util.Date", ex);
 
         }
 
@@ -733,7 +733,7 @@ public final class OpbSqlHelper {
 
         logger.entering(CLASS_NAME, "getValue(String ...");
 
-        Object value =
+        final Object value =
                 getObject(dflt, resultSet, columnName, failOnInvalidColumnName);
 
         try {
@@ -741,8 +741,8 @@ public final class OpbSqlHelper {
 
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
-                    "Failed to cast column " + columnName +
-                    " to String. value=" + value);
+                    "Failed to cast column " + columnName
+                    + " to String. value=" + value);
 
         }
 
@@ -776,7 +776,7 @@ public final class OpbSqlHelper {
 
         logger.entering(CLASS_NAME, "getValue(java.sql.Date ...");
 
-        Object value =
+        final Object value =
                 getObject(dflt, resultSet, columnName, failOnInvalidColumnName);
 
         try {
@@ -784,8 +784,8 @@ public final class OpbSqlHelper {
 
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
-                    "Failed to cast column " + columnName +
-                    " to java.sql.Date. value=" + value);
+                    "Failed to cast column " + columnName
+                    + " to java.sql.Date. value=" + value);
 
         }
 
@@ -819,7 +819,7 @@ public final class OpbSqlHelper {
 
         logger.entering(CLASS_NAME, "getValue(java.math.BigDecimal ...");
 
-        Object value =
+        final Object value =
                 getObject(dflt, resultSet, columnName, failOnInvalidColumnName);
 
         try {
@@ -827,8 +827,8 @@ public final class OpbSqlHelper {
 
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
-                    "Failed to cast column " + columnName +
-                    " to java.math.BigDecimal. value=" + value);
+                    "Failed to cast column " + columnName
+                    + " to java.math.BigDecimal. value=" + value);
 
         }
 
@@ -862,7 +862,7 @@ public final class OpbSqlHelper {
 
         logger.entering(CLASS_NAME, "getValue(byte[] ...");
 
-        Object value =
+        final Object value =
                 getObject(dflt, resultSet, columnName, failOnInvalidColumnName);
 
         try {
@@ -870,8 +870,8 @@ public final class OpbSqlHelper {
 
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
-                    "Failed to cast column " + columnName +
-                    " to byte[]. value=" + value);
+                    "Failed to cast column " + columnName
+                    + " to byte[]. value=" + value);
 
         }
 
@@ -905,7 +905,7 @@ public final class OpbSqlHelper {
 
         logger.entering(CLASS_NAME, "getValue(java.sql.Blob ...");
 
-        Object value =
+        final Object value =
                 getObject(dflt, resultSet, columnName, failOnInvalidColumnName);
 
         try {
@@ -913,8 +913,8 @@ public final class OpbSqlHelper {
 
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
-                    "Failed to cast column " + columnName +
-                    " to java.sql.Blob. value=" + value);
+                    "Failed to cast column " + columnName
+                    + " to java.sql.Blob. value=" + value);
 
         }
 
@@ -948,7 +948,7 @@ public final class OpbSqlHelper {
 
         logger.entering(CLASS_NAME, "getValue(java.sql.Clob ...");
 
-        Object value =
+        final Object value =
                 getObject(dflt, resultSet, columnName, failOnInvalidColumnName);
 
         try {
@@ -956,8 +956,8 @@ public final class OpbSqlHelper {
 
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
-                    "Failed to cast column " + columnName +
-                    " to java.sql.Clob. value=" + value);
+                    "Failed to cast column " + columnName
+                    + " to java.sql.Clob. value=" + value);
 
         }
 

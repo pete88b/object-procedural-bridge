@@ -20,7 +20,7 @@ package com.butterfill.opb.util;
  * Provides access to a wrapped value.
  *
  * @author Peter Butterfill
- * 
+ *
  * @param <E>
  *   The type of object to wrap.
  */

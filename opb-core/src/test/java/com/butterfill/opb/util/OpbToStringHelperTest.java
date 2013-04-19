@@ -252,8 +252,6 @@ public class OpbToStringHelperTest extends TestCase {
         OpbToStringHelper.toString(TestHelper.getOracleDataSource());
         OpbToStringHelper.toString(TestHelper.getResultSet("select * from dual"));
         OpbToStringHelper.toString(TestHelper.getSharedOpbSession().getOpbConnectionProvider());
-        OpbToStringHelper.toString(
-                TestHelper.getSharedOpbSession().getOpbConnectionProvider().getConnection());
         OpbToStringHelper.toString(new TestObjectForToStringReturnNull());
         Object o = new Object[] {
             1, "2", 3.0, "four",
