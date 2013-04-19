@@ -33,16 +33,16 @@ import org.antlr.stringtemplate.StringTemplateGroup;
 /**
  * Provides methods to translate PL/SQL package source into Java files.
  * <p>
- * Please refer to the {@link com.butterfill.opb.plsql.translation} package 
- * documentation for complete details of how a PL/SQL package is translated 
+ * Please refer to the {@link com.butterfill.opb.plsql.translation} package
+ * documentation for complete details of how a PL/SQL package is translated
  * to Java.
  * </p>
  * <p>
  * For all toJava methods of this class;
  * <ul>
- * <li>The PL/SQL package source files are expected to start with a package 
+ * <li>The PL/SQL package source files are expected to start with a package
  * specification.
- * Anything in the source file after the first package specification will be 
+ * Anything in the source file after the first package specification will be
  * ignored.
  * </li>
  * <li>
@@ -50,36 +50,36 @@ import org.antlr.stringtemplate.StringTemplateGroup;
  * </li>
  * </ul>
  * </p>
- * 
+ *
  * @author Peter Butterfill
  */
 public class PlsqlTranslator {
-    
+
     /**
      * The name of this class.
      */
     public static final String CLASS_NAME = PlsqlTranslator.class.getName();
-    
+
     /**
      * The logger for this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
-    
+
     /**
      * The string template group used to create Java interfaces.
      */
     private StringTemplateGroup opbJavaStg;
-    
+
     /**
      * The string template group used to create Java classes.
      */
     private StringTemplateGroup opbJavaImplStg;
-    
+
     /**
      * Flag to include/exclude PL/SQL comments from generated Java code.
      */
     private boolean includePlsqlComments = true;
-    
+
     /**
      * Creates a new PlsqlTranslator.
      * <br/>
@@ -88,29 +88,29 @@ public class PlsqlTranslator {
      */
     public PlsqlTranslator() {
         final String methodName = "PlsqlTranslator()";
-        
+
         logger.entering(CLASS_NAME, methodName);
-        
+
         try {
             opbJavaStg = new StringTemplateGroup(new InputStreamReader(
-                    getClass().getResourceAsStream("OpbJava.stg")));
-            
+                    getClass().getResourceAsStream("OpbJava.stg"), "UTF-8"));
+
             opbJavaImplStg = new StringTemplateGroup(new InputStreamReader(
-                    getClass().getResourceAsStream("OpbJavaImpl.stg")));
-            
+                    getClass().getResourceAsStream("OpbJavaImpl.stg"), "UTF-8"));
+
         } catch (Exception ex) {
             OpbExceptionHelper.throwException(
                     new RuntimeException(
-                    "Failed to load string template group files", ex), 
+                    "Failed to load string template group files", ex),
                     logger, CLASS_NAME, methodName);
-            
+
         }
 
     }
-    
+
     /**
      * Translates the specified PL/SQL package to Java.
-     * 
+     *
      * @param plsqlPackageSourceFile
      *   The PL/SQL package source file to be translated.
      * @param outputDir
@@ -120,36 +120,36 @@ public class PlsqlTranslator {
      * @throws java.lang.Exception
      *   If the translation fails.
      */
-    public void toJava(final File plsqlPackageSourceFile, final File outputDir, 
-            final String javaPackageName) 
+    public void toJava(final File plsqlPackageSourceFile, final File outputDir,
+            final String javaPackageName)
             throws Exception {
         final String methodName = "toJava(String, File, String)";
-        
+
         logger.entering(CLASS_NAME, methodName);
-        
-        OpbAssert.notNull(logger, CLASS_NAME, methodName, 
+
+        OpbAssert.notNull(logger, CLASS_NAME, methodName,
                 "plsqlPackageSourceFile", plsqlPackageSourceFile);
-        
+
         OpbAssert.notNull(logger, CLASS_NAME, methodName,
                 "outputDir", outputDir);
-        
-        OpbAssert.notNull(logger, CLASS_NAME, methodName, 
+
+        OpbAssert.notNull(logger, CLASS_NAME, methodName,
                 "javaPackageName", javaPackageName);
-        
-        
-        String plsqlPackageSourceFileName = 
+
+
+        String plsqlPackageSourceFileName =
                 plsqlPackageSourceFile.getCanonicalPath();
-        
+
         // tell the user which file we are about to process
-        logger.logp(Level.INFO, CLASS_NAME, methodName, 
+        logger.logp(Level.INFO, CLASS_NAME, methodName,
                 "Processing source file {0}", plsqlPackageSourceFileName);
-        
-        logger.logp(Level.FINER, CLASS_NAME, methodName, 
+
+        logger.logp(Level.FINER, CLASS_NAME, methodName,
                 "outputDir={0}", outputDir.getAbsolutePath());
-        
-        logger.logp(Level.FINER, CLASS_NAME, methodName, 
+
+        logger.logp(Level.FINER, CLASS_NAME, methodName,
                 "javaPackageName={0}", javaPackageName);
-        
+
         // parse the PL/SQL source
         ANTLRFileStream in = new ANTLRFileStream(plsqlPackageSourceFileName);
         PlsqlLexer lexer = new PlsqlLexer(in);
@@ -157,45 +157,46 @@ public class PlsqlTranslator {
         PlsqlParser parser = new PlsqlParser(tokens);
         PlsqlParser.startRule_return parserResult = parser.startRule();
         Tree tree = (Tree) parserResult.getTree();
-        
+
         logger.fine(tree.toStringTree());
-        
+
         // parse the AST
         CommonTreeNodeStream nodes = new CommonTreeNodeStream(tree);
         // tell it where it can find the token objects
         nodes.setTokenStream(tokens);
         // create the tree parser
-        PlsqlTreeParser treeParser = new PlsqlTreeParser(nodes); 
+        PlsqlTreeParser treeParser = new PlsqlTreeParser(nodes);
         // pass our value for include PL/SQL comments
         treeParser.setIncludePlsqlComments(includePlsqlComments);
         // set the java package name
         treeParser.setJavaPackageName(javaPackageName);
         // invoke the start rule rule
         treeParser.startRule();
-        
+
         // get the PL/SQL package from the parser and validate it
         PlsqlPackage plsqlPackage = treeParser.getPlsqlPackage();
         plsqlPackage.validate();
-        
+
         // write the Java interface to file
         StringTemplate template = opbJavaStg.getInstanceOf("javaFile");
         template.setAttribute("plsqlPackage", plsqlPackage);
 
         PrintWriter writer = new PrintWriter(
-                outputDir.getPath() + File.separator + 
-                treeParser.getPlsqlPackage().getJavaInterfaceName() + ".java");
-        
+                outputDir.getPath() + File.separator +
+                treeParser.getPlsqlPackage().getJavaInterfaceName() + ".java",
+                "UTF-8");
+
         writer.write(template.toString());
         writer.close();
-        
+
         // if the only translatable elements are constants, do not create the
         // Java class file
         if (plsqlPackage.isOnlyConstants()) {
             // tell the user if the Java class won't be created
-            logger.logp(Level.INFO, CLASS_NAME, methodName, 
+            logger.logp(Level.INFO, CLASS_NAME, methodName,
                     "PL/SQL package has no fields, functions or procedures. " +
                     "Java class will NOT be created");
-            
+
         } else {
             // write the Java class to file
             template = opbJavaImplStg.getInstanceOf("javaFile");
@@ -203,25 +204,26 @@ public class PlsqlTranslator {
 
             // write the output to a file
             writer = new PrintWriter(
-                    outputDir.getPath() + File.separator + 
-                    treeParser.getPlsqlPackage().getJavaClassName() + ".java");
+                    outputDir.getPath() + File.separator +
+                    treeParser.getPlsqlPackage().getJavaClassName() + ".java",
+                    "UTF-8");
 
             writer.write(template.toString());
             writer.close();
-            
+
         }
-        
+
         // tell the user we're done
-        logger.logp(Level.INFO, CLASS_NAME, methodName, 
-                "Processing source file {0} complete\n", 
+        logger.logp(Level.INFO, CLASS_NAME, methodName,
+                "Processing source file {0} complete\n",
                 plsqlPackageSourceFileName);
-        
+
     }
-    
+
     /**
-     * Transalates the specified set of PL/SQL packages to Java.
+     * Translates the specified set of PL/SQL packages to Java.
      * <p>
-     * This method calls toJava(File, File, String) for every file in 
+     * This method calls toJava(File, File, String) for every file in
      * plsqlPackageSourceFiles.
      * </p>
      * @param plsqlPackageSourceFiles
@@ -233,8 +235,8 @@ public class PlsqlTranslator {
      * @throws java.lang.Exception
      *   If translation fails.
      */
-    public void toJava(final File[] plsqlPackageSourceFiles, 
-            final File outputDir, final String javaPackageName) 
+    public void toJava(final File[] plsqlPackageSourceFiles,
+            final File outputDir, final String javaPackageName)
             throws Exception {
         for (File file : plsqlPackageSourceFiles) {
             toJava(file, outputDir, javaPackageName);
@@ -242,7 +244,7 @@ public class PlsqlTranslator {
     }
 
     /**
-     * Returns true if PL/SQL comments should be used in generated Java code, 
+     * Returns true if PL/SQL comments should be used in generated Java code,
      * false otherwise.
      * The default is true.
      * @return true if PL/SQL comments should be used in generated Java code.
@@ -252,13 +254,13 @@ public class PlsqlTranslator {
     }
 
     /**
-     * Pass true if PL/SQL comments should be used in generated Java code, 
+     * Pass true if PL/SQL comments should be used in generated Java code,
      * false otherwise.
-     * @param includePlsqlComments 
+     * @param includePlsqlComments
      *   true if PL/SQL comments should be used in generated Java code.
      */
     public void setIncludePlsqlComments(final boolean includePlsqlComments) {
         this.includePlsqlComments = includePlsqlComments;
     }
-    
+
 }
