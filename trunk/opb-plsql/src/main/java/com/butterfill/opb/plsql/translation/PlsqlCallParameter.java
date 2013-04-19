@@ -24,130 +24,130 @@ import java.util.logging.Logger;
  * parameter or a function return value.
  * <br/>
  * This class is not intended for use outside the translation package.
- * 
+ *
  * @author Peter Butterfill
  */
 class PlsqlCallParameter {
-    
+
     /**
      * The name of this class.
      */
     public static final String CLASS_NAME = PlsqlCallParameter.class.getName();
-    
+
     /**
      * The logger for this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
-    
+
     /**
      * The index of the parameter. e.g. 1 for function return or the first
      * parameter of a procedure.
      */
     private int index;
-    
+
     /**
      * The SQL name of this parameter.
      */
     private String sqlName;
-    
+
     /**
      * The Java name of this parameter.
      */
     private String name;
-    
+
     /**
      * The name of the field that this parameter is mapped to.
      * This will be the Java property name in Java class name format so that
      * getters and setters can be created by prepending get or set.
      */
     private String mappedTo;
-    
+
     /**
      * The name of the Java property that this parameter is mapped to.
      */
     private String mappedToProperty;
-    
+
     /**
      * The SQL datatype of this parameter. This may be set in the Opb comment
      * for the call.
      */
     private String sqlDatatype;
-    
+
     /**
      * The actual SQL datatype of this parameter. This will not be overridden
      * by the Opb comment.
      */
     private String originalSqlDatatype;
-    
+
     /**
      * The Java datatype of this parameter.
      */
     private String datatype;
-    
+
     /**
      * The type of element contained in the collection - if the datatype of this
      * parameter is of collection type.
      */
     private String elementTypeOfDatatype;
-    
+
     /**
      * The JDBC type of this parameter.
      */
     private String jdbcType;
-    
+
     /**
-     * Out parameters will be wrapped. This will hold the datatype wrapped by 
+     * Out parameters will be wrapped. This will hold the datatype wrapped by
      * the value wrapper.
      */
     private String wrappedDatatype;
-    
+
     /**
      * Set to true of this parameter is a JDBC ARRAY.
      */
     private boolean array;
-    
+
     /**
      * Set to true if this parameter is a cursor.
      */
     private boolean cursor;
-    
+
     /**
      * Set to true if this parameter is a PL/SQL index-by table.
      */
     private boolean plsqlTable;
-    
+
     /**
      * Set to true if this is an IN parameter.
      */
     private boolean  in;
-    
+
     /**
      * Set to true if this is an OUT parameter.
      */
     private boolean  out;
-    
+
     /**
      * Set to true if this parameter should use the data object cache.
      */
     private Boolean useDataObjectCache;
-    
+
     /**
      * Set to true if this parameter should use the result cache.
      */
     private Boolean useResultCache;
-    
+
     /**
      * Set to true if this parameter should use the scalar result cache.
      */
     private Boolean useScalarResultCache;
-    
+
     /**
      * The translation helper used by this class.
      */
-    private final PlsqlTranslationHelper translationHelper = 
+    private final PlsqlTranslationHelper translationHelper =
             new PlsqlTranslationHelper();
-    
-    
+
+
     /**
      * Creates a new PlsqlCallParameter.
      * @param sqlName
@@ -160,18 +160,18 @@ class PlsqlCallParameter {
      * @param out
      *   Pass true if this is an OUT parameter, false otherwise.
      */
-    public PlsqlCallParameter(final String sqlName, final String sqlDatatype, 
+    public PlsqlCallParameter(final String sqlName, final String sqlDatatype,
             final boolean in, final boolean out) {
         this.sqlName = sqlName;
         name = translationHelper.toJavaMemberName(sqlName);
-        
+
         this.in = in;
         this.out = out;
-        
+
         originalSqlDatatype = sqlDatatype;
-        
+
         opb_datatype(sqlDatatype);
-        
+
     }
 
     /**
@@ -191,7 +191,7 @@ class PlsqlCallParameter {
     public boolean isReturn() {
         return "RETURN".equalsIgnoreCase(sqlName);
     }
-    
+
     /**
      * Sets the name property of this parameter.
      * <br/>
@@ -201,7 +201,7 @@ class PlsqlCallParameter {
      */
     public void opb_name(final String s) {
     }
-    
+
     /**
      * Sets the datatype property of this parameter.
      * @param s The value of the property.
@@ -218,9 +218,9 @@ class PlsqlCallParameter {
         array = translationHelper.isArrayType(sqlDatatype);
         cursor = translationHelper.isCursorType(sqlDatatype);
         plsqlTable = translationHelper.isPlsqlIndexTableType(sqlDatatype);
-        
+
     }
-    
+
     /**
      * Sets the field property of this parameter.
      * @param s The value of the property.
@@ -230,7 +230,7 @@ class PlsqlCallParameter {
         mappedTo = translationHelper.toJavaClassName(s);
         mappedToProperty = translationHelper.toJavaMemberName(s);
     }
-    
+
     /**
      * Sets the use_result_cache property of this parameter.
      * @param s The value of the property.
@@ -239,28 +239,28 @@ class PlsqlCallParameter {
     public void opb_use_result_cache(final String s) {
         useResultCache = translationHelper.toBoolean(s, useResultCache);
     }
-    
+
     /**
      * Sets the use_scalar_result_cache property of this parameter.
      * @param s The value of the property.
      * @see OpbComment#applyElement(Map, Object)
      */
     public void opb_use_scalar_result_cache(final String s) {
-        useScalarResultCache = 
+        useScalarResultCache =
                 translationHelper.toBoolean(s, useScalarResultCache);
-        
+
     }
-    
+
     /**
      * Sets the use_data_object_cache property of this parameter.
      * @param s The value of the property.
      * @see OpbComment#applyElement(Map, Object)
      */
     public void opb_use_data_object_cache(final String s) {
-        useDataObjectCache = 
+        useDataObjectCache =
                 translationHelper.toBoolean(s, useDataObjectCache);
     }
-    
+
     /**
      * Returns the index of this parameter.
      * @return The index of this parameter.
@@ -300,7 +300,7 @@ class PlsqlCallParameter {
     public String getSqlDatatype() {
         return sqlDatatype;
     }
-    
+
     /**
      * Returns the Java datatype of this parameter.
      * @return The Java datatype of this parameter.
@@ -316,7 +316,7 @@ class PlsqlCallParameter {
     public boolean getIn() {
         return in;
     }
-    
+
     /**
      * Returns the true if this is an OUT parameter, false otherwise.
      * @return true if this is an OUT parameter.
@@ -327,12 +327,12 @@ class PlsqlCallParameter {
 
     /**
      * Returns true if this parameter has been configured to use the data object
-     * cache, false if this parameter has been configured to not use the data 
+     * cache, false if this parameter has been configured to not use the data
      * object cache, null otherwise.
-     * 
-     * @return 
+     *
+     * @return
      *   true if this parameter has been configured to use the data object
-     *   cache, false if this parameter has been configured to not use the data 
+     *   cache, false if this parameter has been configured to not use the data
      *   object cache, null otherwise.
      */
     public Boolean isUseDataObjectCache() {
@@ -347,13 +347,13 @@ class PlsqlCallParameter {
     void setUseDataObjectCache(final boolean value) {
         this.useDataObjectCache = value;
     }
-    
+
     /**
      * Returns true if this parameter has been configured to use the result
      * cache, false if this parameter has been configured to not use the result
      * cache, null otherwise.
-     * 
-     * @return 
+     *
+     * @return
      *   true if this parameter has been configured to use the result cache,
      *   false if this parameter has been configured to not use the result
      *   cache, null otherwise.
@@ -370,19 +370,19 @@ class PlsqlCallParameter {
     void setUseResultCache(final boolean value) {
         this.useResultCache = value;
     }
-    
+
     /**
-     * Returns true if this parameter has been configured to use the scalar 
-     * result cache, 
+     * Returns true if this parameter has been configured to use the scalar
+     * result cache,
      * false if this parameter has been configured to not use the scalar result
-     * cache, 
+     * cache,
      * null otherwise.
-     * 
-     * @return 
-     *   true if this parameter has been configured to use the scalar result 
+     *
+     * @return
+     *   true if this parameter has been configured to use the scalar result
      *   cache,
-     *   false if this parameter has been configured to not use the scalar 
-     *   result cache, 
+     *   false if this parameter has been configured to not use the scalar
+     *   result cache,
      *   null otherwise.
      */
     public Boolean isUseScalarResultCache() {
@@ -397,7 +397,7 @@ class PlsqlCallParameter {
     void setUseScalarResultCache(final boolean value) {
         this.useScalarResultCache = value;
     }
-    
+
     /**
      * Returns the wrapped datatype of this parameter.
      * @return The wrapped datatype of this parameter.
@@ -431,7 +431,7 @@ class PlsqlCallParameter {
     public String getMappedToProperty() {
         return mappedToProperty;
     }
-    
+
     /**
      * Returns the element type of this parameter.
      * @return The element type of this parameter.
@@ -447,7 +447,7 @@ class PlsqlCallParameter {
     public boolean isArray() {
         return array;
     }
-    
+
     /**
      * Returns true if this parameter is of cursor type, false otherwise.
      * @return true if this parameter is of cursor type.
@@ -457,14 +457,14 @@ class PlsqlCallParameter {
     }
 
     /**
-     * Returns true if this parameter is of PL/SQL index-by table type, false 
+     * Returns true if this parameter is of PL/SQL index-by table type, false
      * otherwise.
      * @return true if this parameter is of PL/SQL index-by table type.
      */
     public boolean isPlsqlIndexTable() {
         return plsqlTable;
     }
-    
+
     /**
      * Returns the SQL datatype of this parameter as set by the constructor.
      * This value will not be overridden by the Opb comment of the call.
@@ -473,5 +473,5 @@ class PlsqlCallParameter {
     public String getOriginalSqlDatatype() {
         return originalSqlDatatype;
     }
-    
+
 }

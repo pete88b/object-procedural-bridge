@@ -28,112 +28,112 @@ import java.util.logging.Logger;
  * Represents a PL/SQL call.
  * <br/>
  * This class is not intended for use outside the translation package.
- * 
+ *
  * @author Peter Butterfill
  */
 class PlsqlCall {
-    
+
     /**
      * The name of this class.
      */
     public static final String CLASS_NAME = PlsqlCall.class.getName();
-    
+
     /**
      * The logger for this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
-    
+
     /**
      * The translastion helper used by this class.
      */
     private final PlsqlTranslationHelper translationHelper =
             new PlsqlTranslationHelper();
-    
+
     /**
      * The Opb comment associated with this call.
      */
     private OpbComment opbComment;
-    
+
     /**
      * The comment for this call.
      */
     private List<String> commentLines;
-    
+
     /**
      * The Java name of this call.
      */
     private String name;
-    
+
     /**
      * The SQL name of this call.
      */
     private String sqlName;
-    
+
     /**
      * Set to true if this call is a function.
      */
     private boolean function;
-    
+
     /**
      * Set to true if this call is a procedure.
      */
     private boolean procedure;
-    
+
     /**
      * The parameters of this call.
      * The return parameter will never be in this list.
      */
-    private final List<PlsqlCallParameter> params = 
+    private final List<PlsqlCallParameter> params =
             new ArrayList<PlsqlCallParameter>();
-    
+
     /**
      * The return value.
      */
     private PlsqlCallParameter returnValue;
-    
+
     /**
      * Set to true if we should clear all cached data objects following a
-     * successfull call.
+     * successful call.
      */
     private boolean clearCachedAll;
-    
+
     /**
      * Set to true if we should clear this object from cache following a
-     * successfull call.
+     * successful call.
      */
     private boolean clearCachedThis;
-    
+
     /**
      * List of classes we should clear from cache following a
-     * successfull call.
+     * successful call.
      */
     private final List<String> clearCached = new ArrayList<String>();
-    
+
     /**
      * Set to true if we should invalidate all cached data objects following a
-     * successfull call.
+     * successful call.
      */
     private boolean invalidateCachedAll;
-    
+
     /**
      * Set to true if we should invalidate this object following a
-     * successfull call.
+     * successful call.
      */
     private boolean invalidateCachedThis;
-    
+
     /**
      * List of classes we should invalidate following a
-     * successfull call.
+     * successful call.
      */
     private final List<String> invalidateCached = new ArrayList<String>();
-    
-    
+
+
     /**
      * Creates a new PlsqlCall.
      */
     public PlsqlCall() {
     }
-    
+
     /**
      * Returns a String representation of this PlsqlCall and it's values.
      * @return String representation of this PlsqlCall
@@ -142,7 +142,7 @@ class PlsqlCall {
     public String toString() {
         return OpbToStringHelper.toString(this);
     }
-    
+
     /**
      * Sets the Opb comment for this call.
      * @param comment An Opb comment.
@@ -150,7 +150,7 @@ class PlsqlCall {
     public void setOpbComment(final OpbComment comment) {
         this.opbComment = comment;
     }
-    
+
     /**
      * Returns the comment for this call.
      * @return The comment for this call.
@@ -166,7 +166,7 @@ class PlsqlCall {
     public void setCommentLines(final List<String> commentLines) {
         this.commentLines = commentLines;
     }
-    
+
     /**
      * Returns the Java name of this call.
      * @return the Java name of this call.
@@ -191,16 +191,16 @@ class PlsqlCall {
         final String methodName = "setSqlName(String)";
 
         logger.entering(CLASS_NAME, methodName);
-        
+
         logger.logp(Level.FINER, CLASS_NAME, methodName, "sqlName={0}", sqlName);
 
         this.sqlName = sqlName;
         this.name = translationHelper.toJavaMemberName(sqlName);
-        
+
     }
-    
+
     /**
-     * Returns true if this call is a function, false otehrwise.
+     * Returns true if this call is a function, false otherwise.
      * @return true if this call is a function.
      */
     public boolean isFunction() {
@@ -208,7 +208,7 @@ class PlsqlCall {
     }
 
     /**
-     * Set to true if this call is a function, false otehrwise.
+     * Set to true if this call is a function, false otherwise.
      * @param function true if this call is a function.
      */
     public void setFunction(final boolean function) {
@@ -216,7 +216,7 @@ class PlsqlCall {
     }
 
     /**
-     * Returns true if this call is a procedure, false otehrwise.
+     * Returns true if this call is a procedure, false otherwise.
      * @return true if this call is a procedure.
      */
     public boolean isProcedure() {
@@ -224,13 +224,13 @@ class PlsqlCall {
     }
 
     /**
-     * Set to true if this call is a procedure, false otehrwise.
+     * Set to true if this call is a procedure, false otherwise.
      * @param procedure true if this call is a procedure.
      */
     public void setProcedure(final boolean procedure) {
         this.procedure = procedure;
     }
-    
+
     /**
      * Returns the return parameter of this call.
      * @return The return parameter of this call.
@@ -238,7 +238,7 @@ class PlsqlCall {
     public PlsqlCallParameter getReturn() {
         return returnValue;
     }
-    
+
     /**
      * Returns the parameters of this call.
      * @return The parameters of this call.
@@ -246,14 +246,14 @@ class PlsqlCall {
     public List<PlsqlCallParameter> getParams() {
         return params;
     }
-    
+
     /**
      * Returns the parameters of this call that have been mapped (by Opb comment
      * information).
      * @return The parameters of this call that have been mapped.
      */
     public List<PlsqlCallParameter> getMappedParams() {
-        List<PlsqlCallParameter> result = new ArrayList<PlsqlCallParameter>();
+        final List<PlsqlCallParameter> result = new ArrayList<PlsqlCallParameter>();
         for (PlsqlCallParameter p : params) {
             if (p.getMappedTo() != null) {
                 result.add(p);
@@ -261,13 +261,13 @@ class PlsqlCall {
         }
         return result;
     }
-    
+
     /**
      * Returns the parameters of this call that have not been mapped .
      * @return The parameters of this call that have not been mapped.
      */
     public List<PlsqlCallParameter> getUnMappedParams() {
-        List<PlsqlCallParameter> result = new ArrayList<PlsqlCallParameter>();
+        final List<PlsqlCallParameter> result = new ArrayList<PlsqlCallParameter>();
         for (PlsqlCallParameter p : params) {
             if (p.getMappedTo() == null) {
                 result.add(p);
@@ -275,9 +275,9 @@ class PlsqlCall {
         }
         return result;
     }
-    
+
     /**
-     * Returns true if at least one parameter has been mapped 
+     * Returns true if at least one parameter has been mapped
      * (by Opb comment information), false otherwise.
      * @return true if at least one parameter has been mapped.
      */
@@ -289,7 +289,7 @@ class PlsqlCall {
         }
         return function && returnValue.getMappedTo() != null;
     }
-    
+
     /**
      * Completes the configuration of the specified parameter.
      * This includes setting the Java name of the parameter and other attributes
@@ -298,13 +298,13 @@ class PlsqlCall {
      */
     private void processParam(final PlsqlCallParameter p) {
         final String methodName = "processParam(PlsqlCallParameter)";
-        
+
         logger.entering(CLASS_NAME, methodName);
-        
+
         if (opbComment == null) {
             return;
         }
-        
+
         for (Map<String, String> map : opbComment.getElements()) {
             String type = map.get(OPB_COMMENT_ELEMENT_TYPE_KEY);
             String paramName = map.get("name");
@@ -314,22 +314,22 @@ class PlsqlCall {
             }
 
         }
-        
+
     } // End of _processParam(PlsqlCallParameter)
-    
+
     /**
      * Adds a parameter to this call.
      * @param p The parameter to add.
      */
     public void addParameter(final PlsqlCallParameter p) {
         params.add(p);
-        
+
         p.setIndex(params.size() + ((function) ? 1 : 0));
-        
+
         processParam(p);
-        
+
     }
-    
+
     /**
      * Creates a parameter to hold return value information and sets it's type.
      * @param sqlReturnType The SQL type returned by this function.
@@ -339,23 +339,23 @@ class PlsqlCall {
 
         logger.entering(CLASS_NAME, methodName);
 
-        logger.logp(Level.FINER, CLASS_NAME, methodName, 
+        logger.logp(Level.FINER, CLASS_NAME, methodName,
                 "sqlReturnType={0}", sqlReturnType);
-        
+
         returnValue = new PlsqlCallParameter("RETURN", sqlReturnType, false, false);
-        
+
         returnValue.setIndex(1);
-        
+
         processParam(returnValue);
-        
+
     } // End of setSqlReturnType(String)
 
     /**
      * Returns true if we should clear all cached data objects following a
-     * successfull call.
+     * successful call.
      *
      * @return true if we should clear all cached data objects following a
-     * successfull call.
+     * successful call.
      */
     public boolean isClearCachedAll() {
         return clearCachedAll;
@@ -363,10 +363,10 @@ class PlsqlCall {
 
     /**
      * Returns true if we should clear this object from cache following a
-     * successfull call.
-     * 
+     * successful call.
+     *
      * @return true if we should clear this object from cache following a
-     * successfull call.
+     * successful call.
      */
     public boolean isClearCachedThis() {
         return !isClearCachedAll() && clearCachedThis;
@@ -374,10 +374,10 @@ class PlsqlCall {
 
     /**
      * Returns classes we should clear from cache following a
-     * successfull call.
-     * 
+     * successful call.
+     *
      * @return Classes we should clear from cache following a
-     * successfull call.
+     * successful call.
      */
     public List<String> getClearCached() {
         return (isClearCachedAll()) ? null : clearCached;
@@ -385,10 +385,10 @@ class PlsqlCall {
 
     /**
      * Returns true if we should invalidate all cached data objects following a
-     * successfull call.
+     * successful call.
      *
      * @return true if we should invalidate all cached data objects following a
-     * successfull call.
+     * successful call.
      */
     public boolean isInvalidateCachedAll() {
         return !isClearCachedAll() && invalidateCachedAll;
@@ -396,33 +396,32 @@ class PlsqlCall {
 
     /**
      * Returns true if we should invalidate this object following a
-     * successfull call.
-     * 
+     * successful call.
+     *
      * @return true if we should invalidate this object following a
-     * successfull call.
+     * successful call.
      */
     public boolean isInvalidateCachedThis() {
-        return !isInvalidateCachedAll() && 
-                !isClearCachedThis() && 
-                invalidateCachedThis;
+        return !isInvalidateCachedAll()
+                && !isClearCachedThis()
+                && invalidateCachedThis;
     }
 
     /**
      * Returns classes we should invalidate following a
-     * successfull call.
-     * 
+     * successful call.
+     *
      * @return Classes we should invalidate following a
-     * successfull call.
+     * successful call.
      */
     public List<String> getInvalidateCached() {
-        return (isClearCachedAll() || isInvalidateCachedAll()) ? 
-            null : invalidateCached;
+        return (isClearCachedAll() || isInvalidateCachedAll()) ? null : invalidateCached;
     }
-    
+
     /**
-     * Returns true if this call has at least one out parameter, false 
+     * Returns true if this call has at least one out parameter, false
      * otherwise.
-     * @return true if this call has at least one out parameter, false 
+     * @return true if this call has at least one out parameter, false
      * otherwise.
      */
     private boolean isAnyParamOut() {
@@ -433,10 +432,10 @@ class PlsqlCall {
         }
         return false;
     }
-    
+
     /**
      * Validate the use of the data object cache for the specified parameter.
-     * This method applies default values if use data object cache has not yet 
+     * This method applies default values if use data object cache has not yet
      * been set.
      * @param param A parameter of this call (could be RETURN).
      */
@@ -444,46 +443,46 @@ class PlsqlCall {
         final String methodName = "validateUseDataObjectCache(PlsqlCallParameter)";
 
         logger.entering(CLASS_NAME, methodName);
-        
+
         if (param.isUseDataObjectCache() == null) {
             // if use data object cache is null, apply default value
             param.setUseDataObjectCache(
-                    param.isCursor() && 
-                    param.getSqlDatatype().indexOf("?") != -1);
+                    param.isCursor()
+                    && param.getSqlDatatype().indexOf("?") != -1);
 
         } else if (param.isUseDataObjectCache()) {
             // check that data object cache use is valid
             if (!param.isCursor()) {
                 param.setUseDataObjectCache(false);
 
-                logger.logp(Level.SEVERE, CLASS_NAME, methodName, 
-                        "Non-cursor results cannot use the data object " +
-                        "cache. Parameter '" + param.getSqlName() + 
-                        "' of call '" + sqlName + 
-                        "' will not use the data object cache");
+                logger.logp(Level.SEVERE, CLASS_NAME, methodName,
+                        "Non-cursor results cannot use the data object "
+                        + "cache. Parameter '" + param.getSqlName()
+                        + "' of call '" + sqlName
+                        + "' will not use the data object cache");
 
             } else {
                 if (param.getSqlDatatype().indexOf("?") == -1) {
                     param.setUseDataObjectCache(false);
 
-                    logger.logp(Level.SEVERE, CLASS_NAME, methodName, 
-                            "Cursor results that do not specify which " +
-                            "type of object the cursor will contain " +
-                            "cannot use the data object cache. Parameter '" + 
-                            param.getSqlName() +  "' of call '" + sqlName + 
-                            "' will not use the data object cache");
-                    
+                    logger.logp(Level.SEVERE, CLASS_NAME, methodName,
+                            "Cursor results that do not specify which "
+                            + "type of object the cursor will contain "
+                            + "cannot use the data object cache. Parameter '"
+                            + param.getSqlName() +  "' of call '" + sqlName
+                            + "' will not use the data object cache");
+
                 }
 
             }
 
-        } 
-        
+        }
+
     } // End of _validateUseDataObjectCache(PlsqlCallParameter)
-    
+
     /**
      * Validate the use of the result cache for the specified parameter.
-     * This method applies default values if use result cache has not yet 
+     * This method applies default values if use result cache has not yet
      * been set.
      * @param param A parameter of this call (could be RETURN).
      */
@@ -491,52 +490,52 @@ class PlsqlCall {
         final String methodName = "validateUseResultCache(PlsqlCallParameter)";
 
         logger.entering(CLASS_NAME, methodName);
-        
+
         if (param.isUseResultCache() == null) {
             // if use result cache is null, apply default value
             param.setUseResultCache(
-                    param.isCursor() && 
-                    param.isReturn() &&
-                    !isAnyParamOut());
-            
+                    param.isCursor()
+                    && param.isReturn()
+                    && !isAnyParamOut());
+
         } else if (param.isUseResultCache()) {
             if (param.isReturn()) {
                 if (!param.isCursor()) {
                     param.setUseResultCache(false);
-                    
-                    logger.logp(Level.SEVERE, CLASS_NAME, methodName, 
-                            "The return value of '" + sqlName + 
-                            "' cannot use the result cache as it is not of " +
-                            "cursor type");
+
+                    logger.logp(Level.SEVERE, CLASS_NAME, methodName,
+                            "The return value of '" + sqlName
+                            + "' cannot use the result cache as it is not of "
+                            + "cursor type");
                 }
-                
+
                 if (isAnyParamOut()) {
                     param.setUseResultCache(false);
 
-                    logger.logp(Level.SEVERE, CLASS_NAME, methodName, 
-                            "Functions that use OUT parameters cannot use the" +
-                            " result cache. The return value of '" + sqlName + 
-                            "' will not use the result cache");
+                    logger.logp(Level.SEVERE, CLASS_NAME, methodName,
+                            "Functions that use OUT parameters cannot use the"
+                            + " result cache. The return value of '" + sqlName
+                            + "' will not use the result cache");
                 }
-                
+
             } else {
                 param.setUseResultCache(false);
-                
-                logger.logp(Level.SEVERE, CLASS_NAME, methodName, 
-                        "Parameter '" + param.getSqlName() + "' of call '" +
-                        sqlName + "' is configured to use the result cache." +
-                        " Only RETURN can use the result cache. This " +
-                        "parameter will not use the result cache");
-                
+
+                logger.logp(Level.SEVERE, CLASS_NAME, methodName,
+                        "Parameter '" + param.getSqlName() + "' of call '"
+                        + sqlName + "' is configured to use the result cache."
+                        + " Only RETURN can use the result cache. This "
+                        + "parameter will not use the result cache");
+
             }
-            
+
         }
-        
+
     } // End of _validateUseResultCache(PlsqlCallParameter)
-    
+
     /**
      * Validate the use of the scalar result cache for the specified parameter.
-     * This method applies default values if use scalar result cache has not yet 
+     * This method applies default values if use scalar result cache has not yet
      * been set.
      * @param param A parameter of this call (could be RETURN).
      */
@@ -544,46 +543,46 @@ class PlsqlCall {
         final String methodName = "validateUseScalarResultCache(PlsqlCallParameter)";
 
         logger.entering(CLASS_NAME, methodName);
-        
+
         if (param.isUseScalarResultCache() == null) {
             // if use scalar result cache is null, apply default value
             param.setUseScalarResultCache(false);
-            
+
         } else if (param.isUseScalarResultCache()) {
             if (param.isReturn()) {
                 if (param.isCursor()) {
                     param.setUseScalarResultCache(false);
-                    
-                    logger.logp(Level.SEVERE, CLASS_NAME, methodName, 
-                            "The return value of '" + sqlName + 
-                            "' cannot use the scalar result cache as it is " +
-                            "a cursor");
+
+                    logger.logp(Level.SEVERE, CLASS_NAME, methodName,
+                            "The return value of '" + sqlName
+                            + "' cannot use the scalar result cache as it is "
+                            + "a cursor");
                 }
-                
+
                 if (isAnyParamOut()) {
                     param.setUseScalarResultCache(false);
 
-                    logger.logp(Level.SEVERE, CLASS_NAME, methodName, 
-                            "Functions that use OUT parameters cannot use the" +
-                            " scalar result cache. The return value of '" + 
-                            sqlName + "' will not use the scalar result cache");
+                    logger.logp(Level.SEVERE, CLASS_NAME, methodName,
+                            "Functions that use OUT parameters cannot use the"
+                            + " scalar result cache. The return value of '"
+                            + sqlName + "' will not use the scalar result cache");
                 }
-                
+
             } else {
                 param.setUseScalarResultCache(false);
-                
-                logger.logp(Level.SEVERE, CLASS_NAME, methodName, 
-                        "Parameter '" + param.getSqlName() + "' of call '" +
-                        sqlName + "' is configured to use the scalar result " +
-                        "cache. Only RETURN can use the scalar result cache. " +
-                        "This parameter will not use the scalar result cache");
-                
+
+                logger.logp(Level.SEVERE, CLASS_NAME, methodName,
+                        "Parameter '" + param.getSqlName() + "' of call '"
+                        + sqlName + "' is configured to use the scalar result "
+                        + "cache. Only RETURN can use the scalar result cache. "
+                        + "This parameter will not use the scalar result cache");
+
             }
-            
+
         }
-        
+
     } // End of _validateUseScalarResultCache(PlsqlCallParameter)
-    
+
     /**
      * Validates the datatype of a parameter, returning true if the parameter
      * is ok, false otherwise.
@@ -594,7 +593,7 @@ class PlsqlCall {
         final String methodName = "validateDatatype(PlsqlCallParameter)";
 
         logger.entering(CLASS_NAME, methodName);
-        
+
         // if we couldn't translate the datatype, it'll be null
         if (param.getDatatype() == null ||
                     (param.getOut() && param.getWrappedDatatype() == null)) {
@@ -615,15 +614,15 @@ class PlsqlCall {
             sb.append("This call will be ignored");
             // warn the user
             logger.logp(Level.SEVERE, CLASS_NAME, methodName, sb.toString());
-            
+
             return false;
-            
+
         } // End of if (param.getDatatype() == null || ...
-        
+
         return true;
-        
+
     } // End of _validateDatatype(PlsqlCallParameter)
-    
+
     /**
      * Validates this call returning false if this call is not valid.
      * <br/>
@@ -634,12 +633,12 @@ class PlsqlCall {
      * <li>Cursors are not used as in parameters,</li>
      * <li>Arrays are not used as out parameters unless they are passing
      * binary data,</li>
-     * <li>The element types of the Opb comment are valid (clear_cached, 
+     * <li>The element types of the Opb comment are valid (clear_cached,
      * invalidate_cached or param) and</li>
-     * <li>All parameter mappings in the Opb comment have a corresponding 
+     * <li>All parameter mappings in the Opb comment have a corresponding
      * parameter in this call.</li>
      * </ul>
-     * 
+     *
      * @return true If this call is valid, false otherwise.
      */
     public boolean validate() {
@@ -649,82 +648,82 @@ class PlsqlCall {
 
         // unless we find something wrong, this call is ok
         boolean result = true;
-        
+
         //make sure return is valid
         if (function) {
             if (!validateDatatype(returnValue)) {
                 // this is so bad we'll stop validation here
                 return false;
             }
-            
+
             if (returnValue.isPlsqlIndexTable()) {
                 result = false;
-                
-                logger.logp(Level.SEVERE, CLASS_NAME, methodName, 
-                        "PL/SQL index-by tables cannot be used as function " +
-                        "return values. Function '" + sqlName + "' will be ignored");
+
+                logger.logp(Level.SEVERE, CLASS_NAME, methodName,
+                        "PL/SQL index-by tables cannot be used as function "
+                        + "return values. Function '" + sqlName + "' will be ignored");
             }
-            
+
             validateUseDataObjectCache(returnValue);
             validateUseResultCache(returnValue);
             validateUseScalarResultCache(returnValue);
-            
+
             if (returnValue.isCursor() && returnValue.isUseScalarResultCache()) {
                 returnValue.setUseScalarResultCache(false);
-                
-                logger.logp(Level.SEVERE, CLASS_NAME, methodName, 
-                        "Non-scalar results cannot use the scalar result " +
-                        "cache. Function '" + sqlName + 
-                        "' will not use the scalar result cache.");
+
+                logger.logp(Level.SEVERE, CLASS_NAME, methodName,
+                        "Non-scalar results cannot use the scalar result "
+                        + "cache. Function '" + sqlName
+                        + "' will not use the scalar result cache.");
             }
-            
+
         }
-        
+
         // make sure all parameters are valid
         for (PlsqlCallParameter p : params) {
             if (!validateDatatype(p)) {
                 // this is so bad we'll stop validation here
                 return false;
             }
-            
+
             validateUseDataObjectCache(p);
             validateUseResultCache(p);
             validateUseScalarResultCache(p);
-            
+
             // cursors can't be used as in parameters
             if (p.isCursor() && p.getIn()) {
                 result = false;
-                
-                logger.logp(Level.SEVERE, CLASS_NAME, methodName, 
-                        "Cursors cannot be used as IN parameters. Found '" +
-                        p.getSqlName() + "' in '" + sqlName +
-                        "'. This call will be ignored");
+
+                logger.logp(Level.SEVERE, CLASS_NAME, methodName,
+                        "Cursors cannot be used as IN parameters. Found '"
+                        + p.getSqlName() + "' in '" + sqlName
+                        + "'. This call will be ignored");
             }
-            
-            // PL/SQL index-by tables can't be used as out parameters 
+
+            // PL/SQL index-by tables can't be used as out parameters
             if (p.getOut() && p.isPlsqlIndexTable()) {
                 result = false;
-                
-                logger.logp(Level.SEVERE, CLASS_NAME, methodName, 
-                        "PL/SQL index-by tables cannot be used as out " +
-                        "parameters. Found '" + p.getSqlName() + "' in '" + 
-                        sqlName + "'. This call will be ignored");
+
+                logger.logp(Level.SEVERE, CLASS_NAME, methodName,
+                        "PL/SQL index-by tables cannot be used as out "
+                        + "parameters. Found '" + p.getSqlName() + "' in '"
+                        + sqlName + "'. This call will be ignored");
             }
-            
+
         }
-        
+
         // If we've got no Opb comment, we're done
         if (opbComment == null) {
-            logger.logp(Level.FINER, CLASS_NAME, methodName, 
+            logger.logp(Level.FINER, CLASS_NAME, methodName,
                     "call has no Opb comment. returning");
             return result;
         }
-        
+
         // If we have an Opb comment, check that it contains only valid elements
         opbComment.checkElementTypes(
                 new String[]{"clear_cached", "invalidate_cached", "param"});
 
-        // process the Opb comment 
+        // process the Opb comment
         for (Map<String, String> element : opbComment.getElements()) {
             String type = element.get(OPB_COMMENT_ELEMENT_TYPE_KEY);
             String paramName = element.get("name");
@@ -758,11 +757,11 @@ class PlsqlCall {
             }
 
         } // End of for (Map<String, String> element : _opbComment.get...
-        
-        
+
+
         // Look for any param mappings for parameters that do not exist
         List<String> mappedParamNames = new ArrayList<String>();
-        
+
         for (Map<String, String> map : opbComment.getElements()) {
             String type = map.get(OPB_COMMENT_ELEMENT_TYPE_KEY);
             if ("param".equals(type)) {
@@ -773,34 +772,34 @@ class PlsqlCall {
                 mappedParamNames.add(paramName);
             }
         }
-        
+
         List<String> paramNames = new ArrayList<String>();
-        
+
         for (PlsqlCallParameter p : params) {
             paramNames.add(p.getSqlName());
         }
-        
-        logger.logp(Level.FINER, CLASS_NAME, methodName, 
+
+        logger.logp(Level.FINER, CLASS_NAME, methodName,
                 "pre-remove mappedParamNames={0}", mappedParamNames);
-        
-        logger.logp(Level.FINER, CLASS_NAME, methodName, 
+
+        logger.logp(Level.FINER, CLASS_NAME, methodName,
                 "paramNames={0}", paramNames);
-        
+
         mappedParamNames.removeAll(paramNames);
-        
-        logger.logp(Level.FINER, CLASS_NAME, methodName, 
+
+        logger.logp(Level.FINER, CLASS_NAME, methodName,
                 "post-remove mappedParamNames={0}", mappedParamNames);
-                
+
         for (String paramName : mappedParamNames) {
-            logger.logp(Level.WARNING, CLASS_NAME, methodName, 
+            logger.logp(Level.WARNING, CLASS_NAME, methodName,
                     "{0} {1} but {2} does not have a parameter called {1}",
                     new Object[]{
-                    "Found param mapping for", paramName, 
+                    "Found param mapping for", paramName,
                     ((sqlName == null) ? "this call" : sqlName)});
         }
-        
+
         return result;
-        
+
     } // End of validate()
 
 }

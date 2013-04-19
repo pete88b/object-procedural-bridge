@@ -169,8 +169,6 @@ public class OpbConnectionProviderPlsqlImpl implements OpbConnectionProvider {
      * <p>
      *   The test query is <code>SELECT 1 FROM DUAL</code>.
      * </p>
-     * @param dataSource
-     *   The data source to test.
      */
     private void runTestQueryPrivate() {
         final String methodName = "runTestQueryPrivate()";
@@ -336,7 +334,7 @@ public class OpbConnectionProviderPlsqlImpl implements OpbConnectionProvider {
 
     /**
      * Releases the connection being used by this connection provider.
-     * <br/>
+     * <ul>
      * <li>If a connection is held by this instance, this method;
      *   <ul>
      *     <li>Closes the connection held by this instance</li>

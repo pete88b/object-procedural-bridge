@@ -412,8 +412,7 @@ public final class DatatypeMap {
 
         logger.entering(CLASS_NAME, methodName);
 
-        sqlType = (sqlType == null) ?
-                OpbConstants.DEFAULT_DATATYPE : sqlType;
+        sqlType = (sqlType == null) ? OpbConstants.DEFAULT_DATATYPE : sqlType;
 
         SqlJdbcJavaMap map = getSqlJdbcJavaMapBySql(sqlType);
         logger.logp(Level.FINEST, CLASS_NAME, methodName, "map={0}", map);
@@ -450,8 +449,7 @@ public final class DatatypeMap {
 
         logger.entering(CLASS_NAME, methodName);
 
-        sqlType = (sqlType == null) ?
-                OpbConstants.DEFAULT_DATATYPE : sqlType;
+        sqlType = (sqlType == null) ? OpbConstants.DEFAULT_DATATYPE : sqlType;
 
         final SqlJdbcJavaMap map = getSqlJdbcJavaMapBySql(sqlType);
         logger.logp(Level.FINEST, CLASS_NAME, methodName, "map={0}", map);
@@ -493,8 +491,7 @@ public final class DatatypeMap {
 
         logger.entering(CLASS_NAME, methodName);
 
-        sqlType = (sqlType == null) ?
-                OpbConstants.DEFAULT_DATATYPE : sqlType;
+        sqlType = (sqlType == null) ? OpbConstants.DEFAULT_DATATYPE : sqlType;
 
         OpbAssert.notNull(
                 logger,
@@ -548,15 +545,14 @@ public final class DatatypeMap {
 
         logger.entering(CLASS_NAME, methodName);
 
-        sqlType = (sqlType == null) ?
-                OpbConstants.DEFAULT_DATATYPE : sqlType;
+        sqlType = (sqlType == null) ? OpbConstants.DEFAULT_DATATYPE : sqlType;
 
         sqlType = sqlType.toUpperCase();
 
         boolean result = plsqlIndexTableTypes.contains(sqlType);
 
         if (!result) {
-            PlsqlSqlMap map = getPlsqlSqlMapByPlsql(sqlType);
+            final PlsqlSqlMap map = getPlsqlSqlMapByPlsql(sqlType);
             if (map != null) {
                 result = plsqlIndexTableTypes.contains(map.sql);
             }
