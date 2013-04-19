@@ -179,8 +179,6 @@ public class OpbPlsqlCallHelper {
      *   A connection. Must not be null.
      * @param sqlCall
      *   The SQL call that this helper will help to make.
-     * @param eventName
-     *   An event name for this call.
      *
      * @throws com.butterfill.opb.data.OpbDataAccessException
      *   If we fail to prepare the call.
@@ -213,8 +211,6 @@ public class OpbPlsqlCallHelper {
      *   A connection provider. Must not be null.
      * @param sqlCall
      *   The SQL call that this helper will help to make.
-     * @param eventName
-     *   An event name for this call.
      *
      * @throws com.butterfill.opb.data.OpbDataAccessException
      *   If we fail to prepare the call.

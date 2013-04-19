@@ -3,24 +3,19 @@
     <Match>
         <Class name="com.butterfill.opb.plsql.translation.PlsqlLexer"/>
     </Match>
-    
+
     <Match>
         <Class name="com.butterfill.opb.plsql.translation.PlsqlParser"/>
     </Match>
-    
+
     <Match>
         <Class name="com.butterfill.opb.plsql.translation.PlsqlTreeParser"/>
     </Match>
-    
+
     <Match>
         <Class name="com.butterfill.opb.plsql.translation.PlsqlTranslator"/>
         <Method name="&lt;init&gt;"/>
         <BugCode name="UI"/>
-    </Match>
-    
-    <Match>
-        <Class name="com.butterfill.opb.plsql.messages.OpbMessageImpl"/>
-        <BugCode name="UrF"/>
     </Match>
     
      <Match>
@@ -28,11 +23,11 @@
         <Method name="opb_datatype"/>
         <BugCode name="NP"/>
     </Match>
-    
+
     <Match>
         <Class name="com.butterfill.opb.plsql.translation.OpbComment"/>
         <Method name="applyElement"/>
         <BugCode name="WMI"/>
     </Match>
-    
+
 </FindBugsFilter>

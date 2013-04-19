@@ -24,6 +24,7 @@ import com.butterfill.opb.util.OpbToStringHelper;
 import com.butterfill.opb.util.OpbExceptionHelper;
 import java.lang.ref.WeakReference;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -178,6 +179,7 @@ public class OpbConnectionProviderPlsqlImpl implements OpbConnectionProvider {
 
         Connection connection = null;
         Statement statement = null;
+        ResultSet resultSet = null;
 
         try {
             connection = dataSource.getConnection();
@@ -187,7 +189,14 @@ public class OpbConnectionProviderPlsqlImpl implements OpbConnectionProvider {
             logger.logp(Level.FINER, CLASS_NAME, methodName,
                     "trying SELECT 1 FROM DUAL");
 
-            statement.executeQuery("SELECT 1 FROM DUAL");
+            resultSet = statement.executeQuery("SELECT 1 FROM DUAL");
+
+            if (!resultSet.next()) {
+                throw OpbExceptionHelper.throwException(
+                        new OpbDataAccessException(
+                        "Failed to get 1st row from test query (SELECT 1 FROM DUAL)"),
+                        logger, CLASS_NAME, methodName);
+            }
 
             logger.logp(Level.FINER, CLASS_NAME, methodName,
                     "data source is ok. SELECT 1 FROM DUAL ran without error");
@@ -195,11 +204,12 @@ public class OpbConnectionProviderPlsqlImpl implements OpbConnectionProvider {
         } catch (Exception ex) {
             throw OpbExceptionHelper.throwException(
                     new OpbDataAccessException(
-                    "Can't query data source. " +
-                    "Failed to execute test query (SELECT 1 FROM DUAL)", ex),
+                    "Can't query data source. "
+                    + "Failed to execute test query (SELECT 1 FROM DUAL)", ex),
                     logger, CLASS_NAME, methodName);
 
         } finally {
+            OpbSqlHelper.close(logger, CLASS_NAME, methodName, resultSet);
             OpbSqlHelper.close(logger, CLASS_NAME, methodName, statement);
             OpbSqlHelper.close(logger, CLASS_NAME, methodName, connection);
 
