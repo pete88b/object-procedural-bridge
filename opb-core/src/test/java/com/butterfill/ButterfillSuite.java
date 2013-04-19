@@ -46,12 +46,8 @@ public class ButterfillSuite extends TestCase {
         suite.addTest(com.butterfill.opb.OpbSuite.suite());
         suite.addTest(com.butterfill.opb.util.UtilSuite.suite());
         suite.addTest(com.butterfill.opb.data.DataSuite.suite());
-
-        // keep the context tests last
-        // they break the context of TestSuiteHelper
-        suite.addTest(com.butterfill.opb.context.ContextSuite.suite());
-
         return suite;
+        
     }
 
 }
