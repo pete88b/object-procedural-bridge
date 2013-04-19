@@ -27,54 +27,54 @@ import java.util.logging.Logger;
  * @author Peter Butterfill
  */
 class PlsqlPackageConstant {
-    
+
     /**
      * The name of this class.
      */
-    public static final String CLASS_NAME = 
+    public static final String CLASS_NAME =
             PlsqlPackageConstant.class.getName();
-    
+
     /**
      * The logger for this class.
      */
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
-    
+
     /**
-     * The translastion helper used by this class.
+     * The translation helper used by this class.
      */
     private final PlsqlTranslationHelper translationHelper =
             new PlsqlTranslationHelper();
-    
+
     /**
      * The SQL name of this constant.
      */
     private final String sqlName;
-    
+
     /**
      * The Java name of this constant.
      */
     private final String name;
-    
+
     /**
      * The SQL datatype of this constant.
      */
     private final String sqlDatatype;
-    
+
     /**
      * The Java datatype of this constant.
      */
     private final String datatype;
-    
+
     /**
      * The SQL value of this constant.
      */
     private final String sqlValue;
-    
+
     /**
      * The Java value of this constant.
      */
     private final String value;
-    
+
     /**
      * The comment for this constant.
      */
@@ -87,7 +87,7 @@ class PlsqlPackageConstant {
      * @param sqlValue The SQL value of this constant.
      * @param commentLines The comment for this constant.
      */
-    public PlsqlPackageConstant(final String sqlName, final String sqlDatatype, 
+    public PlsqlPackageConstant(final String sqlName, final String sqlDatatype,
             final String sqlValue, final List<String> commentLines) {
         final String methodName = "PlsqlPackageConstant(String, String, String, List<String>)";
 
@@ -95,15 +95,15 @@ class PlsqlPackageConstant {
 
         this.sqlName = sqlName;
         this.name = translationHelper.toJavaConstantName(sqlName);
-        
+
         this.sqlDatatype = sqlDatatype;
         this.datatype = translationHelper.toJavaDatatype(sqlDatatype);
-        
+
         this.sqlValue = sqlValue;
         this.value = translationHelper.toJavaLiteral(sqlValue, sqlDatatype);
-        
+
         this.commentLines = commentLines;
-        
+
     }
 
     /**
@@ -153,7 +153,7 @@ class PlsqlPackageConstant {
     public String getValue() {
         return value;
     }
-    
+
     /**
      * Reurns the comment for this constant.
      * @return The comment for of this constant.
@@ -161,7 +161,7 @@ class PlsqlPackageConstant {
     public List<String> getCommentLines() {
         return commentLines;
     }
-    
+
     /**
      * Validates this constant returning true if this constant is valid.
      * This implementation returns true if the Java datatype is not null.
@@ -170,5 +170,5 @@ class PlsqlPackageConstant {
     public boolean validate() {
         return datatype != null;
     }
-    
+
 }
