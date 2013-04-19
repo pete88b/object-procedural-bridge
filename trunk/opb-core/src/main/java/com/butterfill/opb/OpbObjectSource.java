@@ -29,7 +29,7 @@ public interface OpbObjectSource {
 
     /**
      * Returns a new instance of the specified class.
-     * 
+     *
      * @param <T>
      *   The type of object to return.
      * @param interfaceOfInstance

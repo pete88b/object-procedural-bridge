@@ -65,7 +65,7 @@ public abstract class OpbWorkingObjectListWrapper<T> {
      * Implement this method to return the list to be wrapped.
      * <br/>
      * The list returned by this method does not have to be the same list
-     * accross multiple invocations of this method.
+     * across multiple invocations of this method.
      * <br/>
      * The list returned by this method can be modified between invocations of
      * this method.
@@ -147,10 +147,9 @@ public abstract class OpbWorkingObjectListWrapper<T> {
     public boolean isListNotEmpty() throws OpbException {
         logger.entering(CLASS_NAME, "isListNotEmpty()");
 
-        List<T> list = getList();
+        final List<T> list = getList();
 
-        return list != null &&
-                list.size() > 0;
+        return list != null && list.size() > 0;
     }
 
     /**
@@ -174,10 +173,9 @@ public abstract class OpbWorkingObjectListWrapper<T> {
     public T getWorkingObject() throws OpbException {
         logger.entering(CLASS_NAME, "getWorkingObject()");
 
-        List<T> list = getList();
+        final List<T> list = getList();
 
-        if (list == null ||
-                list.size() == 0) {
+        if (list == null || list.isEmpty()) {
             workingObjectIndex = 0;
             return null;
         }
@@ -235,10 +233,9 @@ public abstract class OpbWorkingObjectListWrapper<T> {
     public String last() throws OpbException {
         logger.entering(CLASS_NAME, "last()");
 
-        List<T> list = getList();
+        final List<T> list = getList();
 
-        if (list == null ||
-                list.size() == 0) {
+        if (list == null || list.isEmpty()) {
             workingObjectIndex = 0;
 
         } else {
@@ -263,11 +260,11 @@ public abstract class OpbWorkingObjectListWrapper<T> {
     public boolean isWorkingObjectLast() throws OpbException {
         logger.entering(CLASS_NAME, "isWorkingObjectLast()");
 
-        List<T> list = getList();
+        final List<T> list = getList();
 
-        return list != null &&
-                workingObjectIndex >= (list.size() - 1) &&
-                list.size() > 0;
+        return list != null
+                && workingObjectIndex >= (list.size() - 1)
+                && list.size() > 0;
     }
 
     /**
@@ -284,11 +281,11 @@ public abstract class OpbWorkingObjectListWrapper<T> {
     public boolean isWorkingObjectFirst() throws OpbException {
         logger.entering(CLASS_NAME, "isWorkingObjectFirst()");
 
-        List<T> list = getList();
+        final List<T> list = getList();
 
-        return list != null &&
-                workingObjectIndex <= 0 &&
-                list.size() > 0;
+        return list != null
+                && workingObjectIndex <= 0
+                && list.size() > 0;
     }
 
 } // End of class OpbWorkingObjectListWrapper

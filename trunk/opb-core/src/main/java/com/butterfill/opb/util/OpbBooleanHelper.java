@@ -36,7 +36,7 @@ public final class OpbBooleanHelper {
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
     /**
-     * Controlls case sensitive behaviour of the methods in this class.
+     * Controls case sensitive behaviour of the methods in this class.
      */
     private static boolean ignoreCase = true;
 
@@ -69,8 +69,8 @@ public final class OpbBooleanHelper {
      *   true if a and b are the same.
      */
     private static boolean equals(final String a, final String b) {
-
         if (a == b) {
+            // if a and b are the same object, or both null, return true
             return true;
         }
 
@@ -91,7 +91,7 @@ public final class OpbBooleanHelper {
      * Returns true if the methods of this class are not case sensitive,
      * false otherwise.
      * <br/>
-     * <stong>true is the default</stong>
+     * <strong>true is the default</strong>
      *
      * @return
      *   true if the methods of this class are not case sensitive.
@@ -126,7 +126,7 @@ public final class OpbBooleanHelper {
      *   If the current value for false is the same as valueForTrue.
      */
     public static void setValueForTrue(final String newValueForTrue)
-    throws IllegalArgumentException {
+            throws IllegalArgumentException {
         final String methodName = "setValueForTrue(String)";
 
         logger.entering(CLASS_NAME, methodName);
@@ -134,10 +134,10 @@ public final class OpbBooleanHelper {
         if (equals(valueForFalse, newValueForTrue)) {
             OpbExceptionHelper.throwException(
                     new IllegalArgumentException(
-                    "You can't make the values for true and false the same" +
-                    ". current value for false=" + valueForFalse +
-                    ". input value for true=" + newValueForTrue +
-                    ". ignore case=" + ignoreCase),
+                    "You can't make the values for true and false the same"
+                    + ". current value for false=" + valueForFalse
+                    + ". input value for true=" + newValueForTrue
+                    + ". ignore case=" + ignoreCase),
                     logger, CLASS_NAME, methodName);
         }
 
@@ -170,10 +170,10 @@ public final class OpbBooleanHelper {
         if (equals(valueForTrue, newValueForFalse)) {
             OpbExceptionHelper.throwException(
                     new IllegalArgumentException(
-                    "You can't make the values for true and false the same" +
-                    ". current value for true=" + valueForTrue +
-                    ". input value for false=" + newValueForFalse +
-                    ". ignore case=" + ignoreCase),
+                    "You can't make the values for true and false the same"
+                    + ". current value for true=" + valueForTrue
+                    + ". input value for false=" + newValueForFalse
+                    + ". ignore case=" + ignoreCase),
                     logger, CLASS_NAME, methodName);
         }
 
@@ -203,24 +203,22 @@ public final class OpbBooleanHelper {
 
         if (value == null) {
             return null;
-        }
 
-        if (equals(value, valueForTrue)) {
+        } else if (equals(value, valueForTrue)) {
             return Boolean.TRUE;
 
         } else if (equals(value, valueForFalse)) {
             return Boolean.FALSE;
 
-        } else {
-            throw OpbExceptionHelper.throwException(
-                    new IllegalArgumentException(
-                    "Failed to convert " + value +
-                    " to Boolean. value for true=" + getValueForTrue() +
-                    ". value for false=" + getValueForFalse() +
-                    ". ignore case=" + ignoreCase),
-                    logger, CLASS_NAME, methodName);
-
         }
+
+        throw OpbExceptionHelper.throwException(
+                new IllegalArgumentException(
+                "Failed to convert " + value
+                + " to Boolean. value for true=" + getValueForTrue()
+                + ". value for false=" + getValueForFalse()
+                + ". ignore case=" + ignoreCase),
+                logger, CLASS_NAME, methodName);
 
     } // End of toBoolean(String)
 

@@ -395,8 +395,7 @@ public class OpbDataObjectSource {
      *   The object to add to the list of invalid objects.
      */
     private void addToListOfInvalidObjects(final Object o) {
-        if (o != null &&
-                !listOfInvalidObjects.contains(o)) {
+        if (o != null && !listOfInvalidObjects.contains(o)) {
             listOfInvalidObjects.add(o);
         }
     }

@@ -25,7 +25,7 @@ import java.util.RandomAccess;
 /**
  * Resizable-array implementation of the <tt>List</tt> interface that considers
  * objects to be equal only if they are the same instance (for all object
- * comparissons).
+ * comparisons).
  * Implements all optional list operations, and permits all elements, including
  * <tt>null</tt>. In addition to implementing the <tt>List</tt> interface,
  * this class provides methods to manipulate the size of the array that is
@@ -54,17 +54,17 @@ import java.util.RandomAccess;
  * <tt>listIterator</tt> methods are <i>fail-fast</i>: if the list is
  * structurally modified at any time after the iterator is created, in any way
  * except through the iterator's own <tt>remove</tt> or <tt>add</tt> methods,
- * the iterator will throw a ConcurrentModificationException. 
- * Thus, in the face of concurrent modification, the iterator fails quickly and 
- * cleanly, rather than risking arbitrary, non-deterministic behavior at an 
+ * the iterator will throw a ConcurrentModificationException.
+ * Thus, in the face of concurrent modification, the iterator fails quickly and
+ * cleanly, rather than risking arbitrary, non-deterministic behaviour at an
  * undetermined time in the future.<p>
  *
- * Note that the fail-fast behavior of an iterator cannot be guaranteed
+ * Note that the fail-fast behaviour of an iterator cannot be guaranteed
  * as it is, generally speaking, impossible to make any hard guarantees in the
  * presence of unsynchronized concurrent modification. Fail-fast iterators
  * throw <tt>ConcurrentModificationException</tt> on a best-effort basis.
  * Therefore, it would be wrong to write a program that depended on this
- * exception for its correctness: <i>the fail-fast behavior of iterators
+ * exception for its correctness: <i>the fail-fast behaviour of iterators
  * should be used only to detect bugs.</i><p>
  *
  * @param <E> The type of element in this list.
@@ -88,7 +88,7 @@ implements List<E>, RandomAccess {
     /**
      * Constructs an empty list with the specified initial capacity.
      *
-     * @param initialCapacity 
+     * @param initialCapacity
      *   The initial capacity of the list.
      * @throws IllegalArgumentException
      *   If the specified initial capacity is negative.
@@ -129,11 +129,11 @@ implements List<E>, RandomAccess {
         // c.toArray might (incorrectly) not return Object[]
         if (elementData.getClass() != Object[].class) {
             Object[] elementDataTemp = new Object[size];
-            
+
             System.arraycopy(elementData, 0, elementDataTemp, 0, size);
-            
+
             elementData = elementDataTemp;
-            
+
         }
 
     }
@@ -150,7 +150,7 @@ implements List<E>, RandomAccess {
             Object[] elementDataTemp = new Object[size];
             System.arraycopy(elementData, 0, elementDataTemp, 0, size);
             elementData = elementDataTemp;
-            
+
         }
 
     }
@@ -181,9 +181,9 @@ implements List<E>, RandomAccess {
             final Object[] elementDataTemp = new Object[newCapacity];
 
             System.arraycopy(elementData, 0, elementDataTemp, 0, size);
-            
+
             elementData = elementDataTemp;
-            
+
         }
 
     }
@@ -191,7 +191,7 @@ implements List<E>, RandomAccess {
     /**
      * Returns the number of elements in this list.
      *
-     * @return 
+     * @return
      *   The number of elements in this list.
      */
     public int size() {
@@ -213,9 +213,9 @@ implements List<E>, RandomAccess {
      * More formally, returns <tt>true</tt> if and only if this list contains
      * at least one element <tt>e</tt> such that <tt>(o == e)</tt>.
      *
-     * @param o 
+     * @param o
      *   Element whose presence in this list is to be tested.
-     * @return 
+     * @return
      *   <tt>true</tt> if this list contains the specified element.
      */
     @Override
@@ -228,11 +228,11 @@ implements List<E>, RandomAccess {
      * in this list, or -1 if this list does not contain the element.
      * More formally, returns the lowest index <tt>i</tt> such that
      * <tt>(o == get(i))</tt>, or -1 if there is no such index.
-     * 
+     *
      * @param o
      *   The specified element.
      * @return
-     *   The index of the first occurrence of the specified element in this 
+     *   The index of the first occurrence of the specified element in this
      *   list.
      */
     @Override
@@ -250,7 +250,7 @@ implements List<E>, RandomAccess {
      * in this list, or -1 if this list does not contain the element.
      * More formally, returns the highest index <tt>i</tt> such that
      * <tt>(o == get(i))</tt>, or -1 if there is no such index.
-     * 
+     *
      * @param o
      *   The specified element.
      * @return
@@ -272,20 +272,20 @@ implements List<E>, RandomAccess {
      *
      * <p>The returned array will be "safe" in that no references to it are
      * maintained by this list.  (In other words, this method must allocate
-     * a new array). 
+     * a new array).
      * The caller is thus free to modify the returned array.
      * <p>
-     * 
+     *
      * @return
-     *   An array containing all of the elements in this list in proper 
+     *   An array containing all of the elements in this list in proper
      *   sequence.
      */
     @Override
     public Object[] toArray() {
         Object[] elementDataTemp = new Object[size];
-        
+
         System.arraycopy(elementData, 0, elementDataTemp, 0, size);
-        
+
         return elementDataTemp;
 
     }
@@ -305,23 +305,23 @@ implements List<E>, RandomAccess {
      * list <i>only</i> if the caller knows that the list does not contain
      * any null elements.)
      *
-     * @param <T> 
+     * @param <T>
      *   The component type of the array that is returned.
-     * @param a 
-     *   The array into which the elements of the list are to be stored, if it 
-     *   is big enough; otherwise, a new array of the same runtime type is 
+     * @param a
+     *   The array into which the elements of the list are to be stored, if it
+     *   is big enough; otherwise, a new array of the same runtime type is
      *   allocated for this purpose.
-     * @return 
+     * @return
      *   An array containing the elements of the list.
-     * @throws ArrayStoreException 
-     *   If the runtime type of the specified array is not a supertype of the 
+     * @throws ArrayStoreException
+     *   If the runtime type of the specified array is not a super type of the
      *   runtime type of every element in this list.
-     * @throws NullPointerException 
+     * @throws NullPointerException
      *   If the specified array is null.
      */
     @SuppressWarnings("unchecked")
     @Override
-    public <T> T[] toArray(T[] a) throws ArrayStoreException, 
+    public <T> T[] toArray(T[] a) throws ArrayStoreException,
             NullPointerException {
         if (a.length < size) {
             // If a is not big enough to hold all elements of this list,
@@ -330,11 +330,11 @@ implements List<E>, RandomAccess {
         }
 
         System.arraycopy(elementData, 0, a, 0, size);
-        
+
         if (a.length > size) {
             a[size] = null;
         }
-        
+
         return a;
     }
 
@@ -372,14 +372,14 @@ implements List<E>, RandomAccess {
      */
     @SuppressWarnings("unchecked")
     @Override
-    public E set(final int index, final E element) throws 
+    public E set(final int index, final E element) throws
             IndexOutOfBoundsException {
         assertIndexInBounds(index);
 
         E oldValue = (E) elementData[index];
-        
+
         elementData[index] = element;
-        
+
         return oldValue;
     }
 
@@ -388,15 +388,15 @@ implements List<E>, RandomAccess {
      *
      * @param e
      *   The element to be appended to this list.
-     * @return 
+     * @return
      *   <tt>true</tt> if the element is added.
      */
     @Override
     public boolean add(final E e) {
         ensureCapacity(size + 1);  // Increments modCount
-        
+
         elementData[size++] = e;
-        
+
         return true;
     }
 
@@ -413,17 +413,17 @@ implements List<E>, RandomAccess {
      *   If index is out of range (index &lt; 0 || index &gt;= size()).
      */
     @Override
-    public void add(final int index, final E element) throws 
+    public void add(final int index, final E element) throws
             IndexOutOfBoundsException {
         assertIndexInBounds(index);
-        
+
         ensureCapacity(size + 1);  // Increments modCount
-        
+
         System.arraycopy(
                 elementData, index, elementData, index + 1, size - index);
-        
+
         elementData[index] = element;
-        
+
         size++;
     }
 
@@ -432,9 +432,9 @@ implements List<E>, RandomAccess {
      * Shifts any subsequent elements to the left (subtracts one from their
      * indices).
      *
-     * @return 
+     * @return
      *   The element that was removed from the list.
-     * @param index 
+     * @param index
      *   The index of the element to be removed.
      * @throws IndexOutOfBoundsException
      *   If index is out of range (index &lt; 0 || index &gt;= size()).
@@ -463,8 +463,8 @@ implements List<E>, RandomAccess {
 
     /**
      * Removes the first occurrence of the specified element from this list,
-     * if it is present.  
-     * If the list does not contain the element, it is unchanged.  
+     * if it is present.
+     * If the list does not contain the element, it is unchanged.
      * More formally, removes the element with the lowest index
      * <tt>i</tt> such that <tt>(o == get(i))</tt> (if such an element exists).
      * Returns <tt>true</tt> if this list contained the specified element
@@ -472,7 +472,7 @@ implements List<E>, RandomAccess {
      *
      * @param o
      *   The element to be removed from this list, if present.
-     * @return 
+     * @return
      *   <tt>true</tt> If this list contained the specified element.
      */
     @Override
@@ -481,7 +481,7 @@ implements List<E>, RandomAccess {
             if (o == elementData[i]) {
                 modCount++;
 
-                // if we removed the last element, we don't need to shift 
+                // if we removed the last element, we don't need to shift
                 // anything
                 int numMoved = size - i - 1;
                 if (numMoved > 0) {
@@ -490,7 +490,7 @@ implements List<E>, RandomAccess {
                 }
 
                 elementData[--size] = null;
-                
+
                 return true;
             }
         }
@@ -498,7 +498,7 @@ implements List<E>, RandomAccess {
     }
 
     /**
-     * Removes all of the elements from this list.  
+     * Removes all of the elements from this list.
      * The list will be empty after this call returns.
      */
     @Override
@@ -517,8 +517,8 @@ implements List<E>, RandomAccess {
      * this list, in the order that they are returned by the
      * specified collection's Iterator.  The behavior of this operation is
      * undefined if the specified collection is modified while the operation
-     * is in progress.  
-     * (This implies that the behavior of this call is undefined if the 
+     * is in progress.
+     * (This implies that the behavior of this call is undefined if the
      * specified collection is this list, and this list is nonempty.)
      *
      * @param c
@@ -532,13 +532,13 @@ implements List<E>, RandomAccess {
     public boolean addAll(final Collection<? extends E> c)
             throws NullPointerException {
         Object[] a = c.toArray();
-        
+
         ensureCapacity(size + a.length);  // Increments modCount
-        
+
         System.arraycopy(a, 0, elementData, size, a.length);
-        
+
         size += a.length;
-        
+
         return a.length != 0;
     }
 
@@ -568,7 +568,7 @@ implements List<E>, RandomAccess {
         assertIndexInBounds(index);
 
         Object[] a = c.toArray();
-        
+
         ensureCapacity(size + a.length);  // Increments modCount
 
         int numMoved = size - index;
@@ -576,9 +576,9 @@ implements List<E>, RandomAccess {
                 elementData, index, elementData, (index + a.length), numMoved);
 
         System.arraycopy(a, 0, elementData, index, a.length);
-        
+
         size += a.length;
-        
+
         return a.length != 0;
 
     }
@@ -602,16 +602,16 @@ implements List<E>, RandomAccess {
     protected void removeRange(final int fromIndex, final int toIndex)
             throws IndexOutOfBoundsException {
         assertIndexInBounds(fromIndex);
-        
+
         modCount++;
-        
+
         int numMoved = size - toIndex;
-        
+
         System.arraycopy(
                 elementData, toIndex, elementData, fromIndex, numMoved);
 
         int newSize = size - (toIndex - fromIndex);
-        
+
         while (size != newSize) {
             elementData[--size] = null;
         }
@@ -621,13 +621,13 @@ implements List<E>, RandomAccess {
     /**
      * Checks if the given index is in range.
      * If not, throws an IndexOutOfBoundsException.
-     * 
+     *
      * @param index
      *   The index of the element to remove.
      * @throws IndexOutOfBoundsException
      *   If the given index is not in range.
      */
-    private void assertIndexInBounds(final int index) throws 
+    private void assertIndexInBounds(final int index) throws
             IndexOutOfBoundsException {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException(

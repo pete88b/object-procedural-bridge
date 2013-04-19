@@ -110,9 +110,9 @@ public class OpbScalarResultCache {
         } catch (ClassCastException ex) {
             throw OpbExceptionHelper.throwException(
                     new ClassCastException(
-                    "Failed to get cached result. required=" +
-                    classOfObject.getName() + ". found=" +
-                    resultMap.get(key).getClass().getName()),
+                    "Failed to get cached result. required="
+                    + classOfObject.getName() + ". found="
+                    + resultMap.get(key).getClass().getName()),
                     logger, CLASS_NAME, methodName);
 
         }

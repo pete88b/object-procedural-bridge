@@ -29,7 +29,7 @@ public interface OpbConnectionProvider {
      * <br/>
      * <em>Do not call close() on a connection returned by a connection provider.</em>
      *
-     * @see #releaseConnection() 
+     * @see #releaseConnection()
      * @throws OpbDataAccessException If we fail to get a connection.
      * @return A connection.
      */
