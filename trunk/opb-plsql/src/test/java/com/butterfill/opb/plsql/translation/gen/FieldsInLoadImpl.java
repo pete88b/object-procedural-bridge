@@ -86,11 +86,11 @@ public class FieldsInLoadImpl implements FieldsInLoad {
 
         // set all fields to their initial values
         fDefault = null;
-        
+
         fOptional = null;
-        
+
         fIgnored = null;
-        
+
 
     } // End of opbClearState()
 
@@ -104,7 +104,6 @@ public class FieldsInLoadImpl implements FieldsInLoad {
      * <ul>
      * <li>f_default is <em>mandatory</em></li>
      * <li>f_optional is optional</li>
-     * 
      * </ul>
      *
      * @param resultSet The result set from which this instance should be loaded.
@@ -128,12 +127,12 @@ public class FieldsInLoadImpl implements FieldsInLoad {
             fDefault = OpbSqlHelper.getValue(
                     fDefault, resultSet,
                     "f_default", true);
-            
+
             // load fOptional from column f_optional
             fOptional = OpbSqlHelper.getValue(
                     fOptional, resultSet,
                     "f_optional", false);
-            
+
 
         } catch (Exception ex) {
             OpbExceptionHelper.throwException(
@@ -152,7 +151,7 @@ public class FieldsInLoadImpl implements FieldsInLoad {
      * Derived from an opb-package field.
      */
     private String fDefault = null;
-    
+
     /**
      * Returns the value of fDefault.
      * @return The value of fDefault.
@@ -160,7 +159,7 @@ public class FieldsInLoadImpl implements FieldsInLoad {
     public String getFDefault() {
         return fDefault;
     }
-    
+
     /**
      * Sets the value of fDefault.
      * @param a The new value for fDefault.
@@ -168,12 +167,12 @@ public class FieldsInLoadImpl implements FieldsInLoad {
     private void setFDefault(final String a) {
         this.fDefault = a;
     }
-    
+
     /**
      * Derived from an opb-package field.
      */
     private String fOptional = null;
-    
+
     /**
      * Returns the value of fOptional.
      * @return The value of fOptional.
@@ -181,7 +180,7 @@ public class FieldsInLoadImpl implements FieldsInLoad {
     public String getFOptional() {
         return fOptional;
     }
-    
+
     /**
      * Sets the value of fOptional.
      * @param a The new value for fOptional.
@@ -189,12 +188,12 @@ public class FieldsInLoadImpl implements FieldsInLoad {
     private void setFOptional(final String a) {
         this.fOptional = a;
     }
-    
+
     /**
      * Derived from an opb-package field.
      */
     private String fIgnored = null;
-    
+
     /**
      * Returns the value of fIgnored.
      * @return The value of fIgnored.
@@ -202,7 +201,7 @@ public class FieldsInLoadImpl implements FieldsInLoad {
     public String getFIgnored() {
         return fIgnored;
     }
-    
+
     /**
      * Sets the value of fIgnored.
      * @param a The new value for fIgnored.
@@ -210,6 +209,6 @@ public class FieldsInLoadImpl implements FieldsInLoad {
     private void setFIgnored(final String a) {
         this.fIgnored = a;
     }
-    
+
 
 }

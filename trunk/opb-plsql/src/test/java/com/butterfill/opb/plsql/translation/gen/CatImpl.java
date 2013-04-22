@@ -89,14 +89,14 @@ public class CatImpl implements Cat {
 
         // set all fields to their initial values
         name = null;
-        
+
         type = null;
-        
+
         lastChanged = null;
-        
+
         description = null;
         descriptionDataSourceValue = null;
-        
+
 
     } // End of opbClearState()
 
@@ -156,24 +156,24 @@ public class CatImpl implements Cat {
             name = OpbSqlHelper.getValue(
                     name, resultSet,
                     "name", true);
-            
+
             // load type from column type
             type = OpbSqlHelper.getValue(
                     type, resultSet,
                     "type", true);
-            
+
             // load lastChanged from column last_changed
             lastChanged = OpbSqlHelper.getValue(
                     lastChanged, resultSet,
                     "last_changed", true);
-            
+
             // load description from column description
             description = OpbSqlHelper.getValue(
                     description, resultSet,
                     "description", true);
             // save the value we just loaded as the datasource value
             descriptionDataSourceValue = description;
-            
+
 
             // create the id
             opbId = new OpbId(name,
@@ -196,7 +196,7 @@ public class CatImpl implements Cat {
      * Derived from an opb-package field.
      */
     private String name = null;
-    
+
     /**
      * Returns the value of name.
      * @return The value of name.
@@ -204,7 +204,7 @@ public class CatImpl implements Cat {
     public String getName() {
         return name;
     }
-    
+
     /**
      * Sets the value of name.
      * @param a The new value for name.
@@ -212,12 +212,12 @@ public class CatImpl implements Cat {
     private void setName(final String a) {
         this.name = a;
     }
-    
+
     /**
      * Derived from an opb-package field.
      */
     private Long type = null;
-    
+
     /**
      * Returns the value of type.
      * @return The value of type.
@@ -225,7 +225,7 @@ public class CatImpl implements Cat {
     public Long getType() {
         return type;
     }
-    
+
     /**
      * Sets the value of type.
      * @param a The new value for type.
@@ -233,12 +233,12 @@ public class CatImpl implements Cat {
     private void setType(final Long a) {
         this.type = a;
     }
-    
+
     /**
      * Derived from an opb-package field.
      */
     private java.util.Date lastChanged = null;
-    
+
     /**
      * Returns the value of lastChanged.
      * @return The value of lastChanged.
@@ -246,7 +246,7 @@ public class CatImpl implements Cat {
     public java.util.Date getLastChanged() {
         return lastChanged;
     }
-    
+
     /**
      * Sets the value of lastChanged.
      * @param a The new value for lastChanged.
@@ -254,12 +254,12 @@ public class CatImpl implements Cat {
     private void setLastChanged(final java.util.Date a) {
         this.lastChanged = a;
     }
-    
+
     /**
      * Derived from an opb-package field.
      */
     private String description = null;
-    
+
     /**
      * Returns the value of description.
      * @return The value of description.
@@ -267,7 +267,7 @@ public class CatImpl implements Cat {
     public String getDescription() {
         return description;
     }
-    
+
     /**
      * Sets the value of description.
      * @param a The new value for description.
@@ -275,12 +275,12 @@ public class CatImpl implements Cat {
     public void setDescription(final String a) {
         this.description = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private String descriptionDataSourceValue = null;
-    
+
     /**
      * Returns the value of descriptionDataSourceValue.
      * This is the last value returned by the data source for description.
@@ -289,7 +289,7 @@ public class CatImpl implements Cat {
     public String getDescriptionDataSourceValue() {
         return descriptionDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of description
      * is different to the value that was loaded from the data source,
@@ -313,34 +313,34 @@ public class CatImpl implements Cat {
             final String pDescription)
             throws OpbDataAccessException {
         final String methodName = "updateDescription(String, Long, String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN cat.update_description(?, ?, ?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.VARCHAR, pName);
-        
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BIGINT, pType);
-        
+
         opbCallHelper.setObject(
                 3, java.sql.Types.VARCHAR, pDescription);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbDataObjectSource.invalidateCached(Cat.class, getOpbId());
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * Calls updateDescription using mapped parameters.
      * <ul>
@@ -354,15 +354,15 @@ public class CatImpl implements Cat {
     public void updateDescription()
             throws OpbDataAccessException {
         final String methodName = "updateDescription()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         updateDescription(getName(),
                     getType(),
                     getDescription());
-    
+
     }
-    
+
     /**
      * clear this instance when delete_cat is called.
      * Calls the database procedure delete_cat.
@@ -373,31 +373,31 @@ public class CatImpl implements Cat {
             final Long pType)
             throws OpbDataAccessException {
         final String methodName = "deleteCat(String, Long)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN cat.delete_cat(?, ?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.VARCHAR, pName);
-        
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BIGINT, pType);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbDataObjectSource.clearCached(Cat.class, getOpbId());
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * Calls deleteCat using mapped parameters.
      * <ul>
@@ -410,14 +410,14 @@ public class CatImpl implements Cat {
     public void deleteCat()
             throws OpbDataAccessException {
         final String methodName = "deleteCat()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         deleteCat(getName(),
                     getType());
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure clear_cached_all.
@@ -427,24 +427,24 @@ public class CatImpl implements Cat {
     public void clearCachedAll()
             throws OpbDataAccessException {
         final String methodName = "clearCachedAll()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN cat.clear_cached_all(); END;");
-    
+
         opbCallHelper.execute();
-    
+
         opbDataObjectSource.clearCached();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure invalidate_cached_all.
@@ -454,24 +454,24 @@ public class CatImpl implements Cat {
     public void invalidateCachedAll()
             throws OpbDataAccessException {
         final String methodName = "invalidateCachedAll()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN cat.invalidate_cached_all(); END;");
-    
+
         opbCallHelper.execute();
-    
+
         opbDataObjectSource.invalidateCached();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure clear_cached_cats.
@@ -481,24 +481,24 @@ public class CatImpl implements Cat {
     public void clearCachedCats()
             throws OpbDataAccessException {
         final String methodName = "clearCachedCats()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN cat.clear_cached_cats(); END;");
-    
+
         opbCallHelper.execute();
-    
+
         opbDataObjectSource.clearCached(Cat.class);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure invalidate_cached_cats.
@@ -508,23 +508,23 @@ public class CatImpl implements Cat {
     public void invalidateCachedCats()
             throws OpbDataAccessException {
         final String methodName = "invalidateCachedCats()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN cat.invalidate_cached_cats(); END;");
-    
+
         opbCallHelper.execute();
-    
+
         opbDataObjectSource.invalidateCached(Cat.class);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
 
 }

@@ -25,7 +25,7 @@ public interface ArraysIn
      */
     void testOne(String[] pArray)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure test_two.
@@ -34,6 +34,6 @@ public interface ArraysIn
      */
     void testTwo(java.math.BigDecimal[] pArray)
             throws OpbDataAccessException;
-    
+
 
 }

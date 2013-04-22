@@ -87,21 +87,21 @@ public class FieldsImpl implements Fields {
         // set all fields to their initial values
         a = null;
         aDataSourceValue = null;
-        
+
         aVarchar = null;
         aVarcharDataSourceValue = null;
-        
+
         aNumber = null;
         aNumberDataSourceValue = null;
-        
+
         aInteger = 8L;
         aIntegerDataSourceValue = 8L;
-        
+
         aDate = null;
         aDateDataSourceValue = null;
-        
+
         aRo = null;
-        
+
 
     } // End of opbClearState()
 
@@ -144,40 +144,40 @@ public class FieldsImpl implements Fields {
                     "a", true);
             // save the value we just loaded as the datasource value
             aDataSourceValue = a;
-            
+
             // load aVarchar from column a_varchar
             aVarchar = OpbSqlHelper.getValue(
                     aVarchar, resultSet,
                     "a_varchar", true);
             // save the value we just loaded as the datasource value
             aVarcharDataSourceValue = aVarchar;
-            
+
             // load aNumber from column a_number
             aNumber = OpbSqlHelper.getValue(
                     aNumber, resultSet,
                     "a_number", true);
             // save the value we just loaded as the datasource value
             aNumberDataSourceValue = aNumber;
-            
+
             // load aInteger from column a_integer
             aInteger = OpbSqlHelper.getValue(
                     aInteger, resultSet,
                     "a_integer", true);
             // save the value we just loaded as the datasource value
             aIntegerDataSourceValue = aInteger;
-            
+
             // load aDate from column a_date
             aDate = OpbSqlHelper.getValue(
                     aDate, resultSet,
                     "a_date", true);
             // save the value we just loaded as the datasource value
             aDateDataSourceValue = aDate;
-            
+
             // load aRo from column a_ro
             aRo = OpbSqlHelper.getValue(
                     aRo, resultSet,
                     "a_ro", true);
-            
+
 
         } catch (Exception ex) {
             OpbExceptionHelper.throwException(
@@ -196,7 +196,7 @@ public class FieldsImpl implements Fields {
      * Derived from an opb-package field.
      */
     private String a = null;
-    
+
     /**
      * Returns the value of a.
      * @return The value of a.
@@ -204,7 +204,7 @@ public class FieldsImpl implements Fields {
     public String getA() {
         return a;
     }
-    
+
     /**
      * Sets the value of a.
      * Calls aChanged()
@@ -219,12 +219,12 @@ public class FieldsImpl implements Fields {
             aChanged();
         }
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private String aDataSourceValue = null;
-    
+
     /**
      * Returns the value of aDataSourceValue.
      * This is the last value returned by the data source for a.
@@ -233,7 +233,7 @@ public class FieldsImpl implements Fields {
     public String getADataSourceValue() {
         return aDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of a
      * is different to the value that was loaded from the data source,
@@ -249,7 +249,7 @@ public class FieldsImpl implements Fields {
      * Derived from an opb-package field.
      */
     private String aVarchar = null;
-    
+
     /**
      * Returns the value of aVarchar.
      * @return The value of aVarchar.
@@ -257,7 +257,7 @@ public class FieldsImpl implements Fields {
     public String getAVarchar() {
         return aVarchar;
     }
-    
+
     /**
      * Sets the value of aVarchar.
      * @param a The new value for aVarchar.
@@ -265,12 +265,12 @@ public class FieldsImpl implements Fields {
     public void setAVarchar(final String a) {
         this.aVarchar = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private String aVarcharDataSourceValue = null;
-    
+
     /**
      * Returns the value of aVarcharDataSourceValue.
      * This is the last value returned by the data source for aVarchar.
@@ -279,7 +279,7 @@ public class FieldsImpl implements Fields {
     public String getAVarcharDataSourceValue() {
         return aVarcharDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aVarchar
      * is different to the value that was loaded from the data source,
@@ -295,7 +295,7 @@ public class FieldsImpl implements Fields {
      * Derived from an opb-package field.
      */
     private java.math.BigDecimal aNumber = null;
-    
+
     /**
      * Returns the value of aNumber.
      * @return The value of aNumber.
@@ -303,7 +303,7 @@ public class FieldsImpl implements Fields {
     public java.math.BigDecimal getANumber() {
         return aNumber;
     }
-    
+
     /**
      * Sets the value of aNumber.
      * @param a The new value for aNumber.
@@ -311,12 +311,12 @@ public class FieldsImpl implements Fields {
     public void setANumber(final java.math.BigDecimal a) {
         this.aNumber = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private java.math.BigDecimal aNumberDataSourceValue = null;
-    
+
     /**
      * Returns the value of aNumberDataSourceValue.
      * This is the last value returned by the data source for aNumber.
@@ -325,7 +325,7 @@ public class FieldsImpl implements Fields {
     public java.math.BigDecimal getANumberDataSourceValue() {
         return aNumberDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aNumber
      * is different to the value that was loaded from the data source,
@@ -341,7 +341,7 @@ public class FieldsImpl implements Fields {
      * Derived from an opb-package field.
      */
     private Long aInteger = 8L;
-    
+
     /**
      * Returns the value of aInteger.
      * @return The value of aInteger.
@@ -349,7 +349,7 @@ public class FieldsImpl implements Fields {
     public Long getAInteger() {
         return aInteger;
     }
-    
+
     /**
      * Sets the value of aInteger.
      * @param a The new value for aInteger.
@@ -357,12 +357,12 @@ public class FieldsImpl implements Fields {
     public void setAInteger(final Long a) {
         this.aInteger = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private Long aIntegerDataSourceValue = 8L;
-    
+
     /**
      * Returns the value of aIntegerDataSourceValue.
      * This is the last value returned by the data source for aInteger.
@@ -371,7 +371,7 @@ public class FieldsImpl implements Fields {
     public Long getAIntegerDataSourceValue() {
         return aIntegerDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aInteger
      * is different to the value that was loaded from the data source,
@@ -387,7 +387,7 @@ public class FieldsImpl implements Fields {
      * Derived from an opb-package field.
      */
     private java.util.Date aDate = null;
-    
+
     /**
      * Returns the value of aDate.
      * @return The value of aDate.
@@ -395,7 +395,7 @@ public class FieldsImpl implements Fields {
     public java.util.Date getADate() {
         return aDate;
     }
-    
+
     /**
      * Sets the value of aDate.
      * @param a The new value for aDate.
@@ -403,12 +403,12 @@ public class FieldsImpl implements Fields {
     public void setADate(final java.util.Date a) {
         this.aDate = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private java.util.Date aDateDataSourceValue = null;
-    
+
     /**
      * Returns the value of aDateDataSourceValue.
      * This is the last value returned by the data source for aDate.
@@ -417,7 +417,7 @@ public class FieldsImpl implements Fields {
     public java.util.Date getADateDataSourceValue() {
         return aDateDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aDate
      * is different to the value that was loaded from the data source,
@@ -433,7 +433,7 @@ public class FieldsImpl implements Fields {
      * Derived from an opb-package field.
      */
     private String aRo = null;
-    
+
     /**
      * Returns the value of aRo.
      * @return The value of aRo.
@@ -441,7 +441,7 @@ public class FieldsImpl implements Fields {
     public String getARo() {
         return aRo;
     }
-    
+
     /**
      * Sets the value of aRo.
      * @param a The new value for aRo.
@@ -449,7 +449,7 @@ public class FieldsImpl implements Fields {
     private void setARo(final String a) {
         this.aRo = a;
     }
-    
+
 
     /**
      * dummy procedure so that a method is created that will be called when a
@@ -461,21 +461,21 @@ public class FieldsImpl implements Fields {
     public void aChanged()
             throws OpbDataAccessException {
         final String methodName = "aChanged()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN fields.a_changed(); END;");
-    
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
 
 }

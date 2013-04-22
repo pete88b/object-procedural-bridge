@@ -20,36 +20,36 @@ public interface Constants {
      * 
      */
     String C_VARCHAR_NULL = null;
-    
+
     /**
      * 
      */
     String C_VARCHAR_NULL2 = null;
-    
+
     /**
      * 
      */
     String C_VARCHAR = "c_varchar_value";
-    
+
     /**
      * 
      */
     java.math.BigDecimal C_NUMBER_NULL = null;
-    
+
     /**
      * 
      */
     java.math.BigDecimal C_NUMBER = java.math.BigDecimal.valueOf(3.2);
-    
+
     /**
      * 
      */
     Long C_INTEGER_NULL = null;
-    
+
     /**
      * 
      */
     Long C_INTEGER = 7L;
-    
+
 
 }

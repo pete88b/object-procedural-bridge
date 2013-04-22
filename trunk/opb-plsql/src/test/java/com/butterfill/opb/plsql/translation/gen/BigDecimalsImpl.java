@@ -87,16 +87,16 @@ public class BigDecimalsImpl implements BigDecimals {
         // set all fields to their initial values
         aNumberNoInitial = null;
         aNumberNoInitialDataSourceValue = null;
-        
+
         aNumberWithInitial = java.math.BigDecimal.valueOf(323);
         aNumberWithInitialDataSourceValue = java.math.BigDecimal.valueOf(323);
-        
+
         aNumberWithInitial2 = java.math.BigDecimal.valueOf(3239898);
         aNumberWithInitial2DataSourceValue = java.math.BigDecimal.valueOf(3239898);
-        
+
         aNumberWithInitial3 = java.math.BigDecimal.valueOf(32.3457234);
         aNumberWithInitial3DataSourceValue = java.math.BigDecimal.valueOf(32.3457234);
-        
+
 
     } // End of opbClearState()
 
@@ -137,28 +137,28 @@ public class BigDecimalsImpl implements BigDecimals {
                     "a_number_no_initial", true);
             // save the value we just loaded as the datasource value
             aNumberNoInitialDataSourceValue = aNumberNoInitial;
-            
+
             // load aNumberWithInitial from column a_number_with_initial
             aNumberWithInitial = OpbSqlHelper.getValue(
                     aNumberWithInitial, resultSet,
                     "a_number_with_initial", true);
             // save the value we just loaded as the datasource value
             aNumberWithInitialDataSourceValue = aNumberWithInitial;
-            
+
             // load aNumberWithInitial2 from column a_number_with_initial2
             aNumberWithInitial2 = OpbSqlHelper.getValue(
                     aNumberWithInitial2, resultSet,
                     "a_number_with_initial2", true);
             // save the value we just loaded as the datasource value
             aNumberWithInitial2DataSourceValue = aNumberWithInitial2;
-            
+
             // load aNumberWithInitial3 from column a_number_with_initial3
             aNumberWithInitial3 = OpbSqlHelper.getValue(
                     aNumberWithInitial3, resultSet,
                     "a_number_with_initial3", true);
             // save the value we just loaded as the datasource value
             aNumberWithInitial3DataSourceValue = aNumberWithInitial3;
-            
+
 
         } catch (Exception ex) {
             OpbExceptionHelper.throwException(
@@ -177,7 +177,7 @@ public class BigDecimalsImpl implements BigDecimals {
      * Derived from an opb-package field.
      */
     private java.math.BigDecimal aNumberNoInitial = null;
-    
+
     /**
      * Returns the value of aNumberNoInitial.
      * @return The value of aNumberNoInitial.
@@ -185,7 +185,7 @@ public class BigDecimalsImpl implements BigDecimals {
     public java.math.BigDecimal getANumberNoInitial() {
         return aNumberNoInitial;
     }
-    
+
     /**
      * Sets the value of aNumberNoInitial.
      * @param a The new value for aNumberNoInitial.
@@ -193,12 +193,12 @@ public class BigDecimalsImpl implements BigDecimals {
     public void setANumberNoInitial(final java.math.BigDecimal a) {
         this.aNumberNoInitial = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private java.math.BigDecimal aNumberNoInitialDataSourceValue = null;
-    
+
     /**
      * Returns the value of aNumberNoInitialDataSourceValue.
      * This is the last value returned by the data source for aNumberNoInitial.
@@ -207,7 +207,7 @@ public class BigDecimalsImpl implements BigDecimals {
     public java.math.BigDecimal getANumberNoInitialDataSourceValue() {
         return aNumberNoInitialDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aNumberNoInitial
      * is different to the value that was loaded from the data source,
@@ -223,7 +223,7 @@ public class BigDecimalsImpl implements BigDecimals {
      * Derived from an opb-package field.
      */
     private java.math.BigDecimal aNumberWithInitial = java.math.BigDecimal.valueOf(323);
-    
+
     /**
      * Returns the value of aNumberWithInitial.
      * @return The value of aNumberWithInitial.
@@ -231,7 +231,7 @@ public class BigDecimalsImpl implements BigDecimals {
     public java.math.BigDecimal getANumberWithInitial() {
         return aNumberWithInitial;
     }
-    
+
     /**
      * Sets the value of aNumberWithInitial.
      * @param a The new value for aNumberWithInitial.
@@ -239,12 +239,12 @@ public class BigDecimalsImpl implements BigDecimals {
     public void setANumberWithInitial(final java.math.BigDecimal a) {
         this.aNumberWithInitial = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private java.math.BigDecimal aNumberWithInitialDataSourceValue = java.math.BigDecimal.valueOf(323);
-    
+
     /**
      * Returns the value of aNumberWithInitialDataSourceValue.
      * This is the last value returned by the data source for aNumberWithInitial.
@@ -253,7 +253,7 @@ public class BigDecimalsImpl implements BigDecimals {
     public java.math.BigDecimal getANumberWithInitialDataSourceValue() {
         return aNumberWithInitialDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aNumberWithInitial
      * is different to the value that was loaded from the data source,
@@ -269,7 +269,7 @@ public class BigDecimalsImpl implements BigDecimals {
      * Derived from an opb-package field.
      */
     private java.math.BigDecimal aNumberWithInitial2 = java.math.BigDecimal.valueOf(3239898);
-    
+
     /**
      * Returns the value of aNumberWithInitial2.
      * @return The value of aNumberWithInitial2.
@@ -277,7 +277,7 @@ public class BigDecimalsImpl implements BigDecimals {
     public java.math.BigDecimal getANumberWithInitial2() {
         return aNumberWithInitial2;
     }
-    
+
     /**
      * Sets the value of aNumberWithInitial2.
      * @param a The new value for aNumberWithInitial2.
@@ -285,12 +285,12 @@ public class BigDecimalsImpl implements BigDecimals {
     public void setANumberWithInitial2(final java.math.BigDecimal a) {
         this.aNumberWithInitial2 = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private java.math.BigDecimal aNumberWithInitial2DataSourceValue = java.math.BigDecimal.valueOf(3239898);
-    
+
     /**
      * Returns the value of aNumberWithInitial2DataSourceValue.
      * This is the last value returned by the data source for aNumberWithInitial2.
@@ -299,7 +299,7 @@ public class BigDecimalsImpl implements BigDecimals {
     public java.math.BigDecimal getANumberWithInitial2DataSourceValue() {
         return aNumberWithInitial2DataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aNumberWithInitial2
      * is different to the value that was loaded from the data source,
@@ -315,7 +315,7 @@ public class BigDecimalsImpl implements BigDecimals {
      * Derived from an opb-package field.
      */
     private java.math.BigDecimal aNumberWithInitial3 = java.math.BigDecimal.valueOf(32.3457234);
-    
+
     /**
      * Returns the value of aNumberWithInitial3.
      * @return The value of aNumberWithInitial3.
@@ -323,7 +323,7 @@ public class BigDecimalsImpl implements BigDecimals {
     public java.math.BigDecimal getANumberWithInitial3() {
         return aNumberWithInitial3;
     }
-    
+
     /**
      * Sets the value of aNumberWithInitial3.
      * @param a The new value for aNumberWithInitial3.
@@ -331,12 +331,12 @@ public class BigDecimalsImpl implements BigDecimals {
     public void setANumberWithInitial3(final java.math.BigDecimal a) {
         this.aNumberWithInitial3 = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private java.math.BigDecimal aNumberWithInitial3DataSourceValue = java.math.BigDecimal.valueOf(32.3457234);
-    
+
     /**
      * Returns the value of aNumberWithInitial3DataSourceValue.
      * This is the last value returned by the data source for aNumberWithInitial3.
@@ -345,7 +345,7 @@ public class BigDecimalsImpl implements BigDecimals {
     public java.math.BigDecimal getANumberWithInitial3DataSourceValue() {
         return aNumberWithInitial3DataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aNumberWithInitial3
      * is different to the value that was loaded from the data source,

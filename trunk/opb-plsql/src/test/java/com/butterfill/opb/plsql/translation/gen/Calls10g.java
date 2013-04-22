@@ -25,7 +25,7 @@ public interface Calls10g
      */
     String echo(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_CHAR.
@@ -34,7 +34,7 @@ public interface Calls10g
      */
     String fChar(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_VARCHAR2.
@@ -43,7 +43,7 @@ public interface Calls10g
      */
     String fVarchar2(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_NUMBER.
@@ -52,7 +52,7 @@ public interface Calls10g
      */
     String fNumber(java.math.BigDecimal pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_INTEGER.
@@ -61,7 +61,7 @@ public interface Calls10g
      */
     String fInteger(Long pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_RAW.
@@ -70,7 +70,7 @@ public interface Calls10g
      */
     String fRaw(byte[] pData)
             throws OpbDataAccessException;
-    
+
     /**
      * FUNCTION f_LONGRAW (
      * p_data IN LONGRAW
@@ -82,7 +82,7 @@ public interface Calls10g
      */
     String fDate(java.util.Date pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_TIMESTAMP.
@@ -91,7 +91,7 @@ public interface Calls10g
      */
     String fTimestamp(java.sql.Timestamp pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_blob.
@@ -100,7 +100,7 @@ public interface Calls10g
      */
     java.sql.Blob getBlob()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_BLOB.
@@ -109,7 +109,7 @@ public interface Calls10g
      */
     String fBlob(java.sql.Blob pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_clob.
@@ -118,7 +118,7 @@ public interface Calls10g
      */
     java.sql.Clob getClob()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_CLOB.
@@ -127,7 +127,7 @@ public interface Calls10g
      */
     String fClob(java.sql.Clob pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_BOOLEAN.
@@ -136,7 +136,7 @@ public interface Calls10g
      */
     String fBoolean(Boolean pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_DBMS_SQL_VARCHAR2_TABLE.
@@ -145,7 +145,7 @@ public interface Calls10g
      */
     String fDbmsSqlVarchar2Table(String[] pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_DBMS_SQL_NUMBER_TABLE.
@@ -154,7 +154,7 @@ public interface Calls10g
      */
     String fDbmsSqlNumberTable(java.math.BigDecimal[] pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_BINARY_DOUBLE.
@@ -163,7 +163,7 @@ public interface Calls10g
      */
     String fBinaryDouble(Double pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_BINARY_FLOAT.
@@ -172,7 +172,7 @@ public interface Calls10g
      */
     String fBinaryFloat(Float pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_BINARY_INTEGER.
@@ -181,7 +181,7 @@ public interface Calls10g
      */
     String fBinaryInteger(Long pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_DEC.
@@ -190,7 +190,7 @@ public interface Calls10g
      */
     String fDec(java.math.BigDecimal pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_DECIMAL.
@@ -199,7 +199,7 @@ public interface Calls10g
      */
     String fDecimal(java.math.BigDecimal pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_FLOAT.
@@ -208,7 +208,7 @@ public interface Calls10g
      */
     String fFloat(java.math.BigDecimal pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_INT.
@@ -217,7 +217,7 @@ public interface Calls10g
      */
     String fInt(Long pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_NUMERIC.
@@ -226,7 +226,7 @@ public interface Calls10g
      */
     String fNumeric(java.math.BigDecimal pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_PLS_INTEGER.
@@ -235,7 +235,7 @@ public interface Calls10g
      */
     String fPlsInteger(Long pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_POSITIVE.
@@ -244,7 +244,7 @@ public interface Calls10g
      */
     String fPositive(java.math.BigDecimal pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_SMALLINT.
@@ -253,7 +253,7 @@ public interface Calls10g
      */
     String fSmallint(Long pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_CHARACTER.
@@ -262,7 +262,7 @@ public interface Calls10g
      */
     String fCharacter(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_NCHAR.
@@ -271,7 +271,7 @@ public interface Calls10g
      */
     String fNchar(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_NVARCHAR2.
@@ -280,7 +280,7 @@ public interface Calls10g
      */
     String fNvarchar2(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_ROWID.
@@ -289,7 +289,7 @@ public interface Calls10g
      */
     String fRowid(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_STRING.
@@ -298,7 +298,7 @@ public interface Calls10g
      */
     String fString(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_UROWID.
@@ -307,7 +307,7 @@ public interface Calls10g
      */
     String fUrowid(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_VARCHAR.
@@ -316,7 +316,7 @@ public interface Calls10g
      */
     String fVarchar(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_CHAR.
@@ -325,7 +325,7 @@ public interface Calls10g
      */
     String getChar()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_VARCHAR2.
@@ -334,7 +334,7 @@ public interface Calls10g
      */
     String getVarchar2()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_NUMBER.
@@ -343,7 +343,7 @@ public interface Calls10g
      */
     java.math.BigDecimal getNumber()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_INTEGER.
@@ -352,7 +352,7 @@ public interface Calls10g
      */
     Long getInteger()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_RAW.
@@ -361,7 +361,7 @@ public interface Calls10g
      */
     byte[] getRaw()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_DATE.
@@ -370,7 +370,7 @@ public interface Calls10g
      */
     java.util.Date getDate()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_TIMESTAMP.
@@ -379,7 +379,7 @@ public interface Calls10g
      */
     java.sql.Timestamp getTimestamp()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_BOOLEAN.
@@ -388,7 +388,7 @@ public interface Calls10g
      */
     Boolean getBoolean()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_BINARY_DOUBLE.
@@ -397,7 +397,7 @@ public interface Calls10g
      */
     Double getBinaryDouble()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_BINARY_DOUBLE_null.
@@ -406,7 +406,7 @@ public interface Calls10g
      */
     Double getBinaryDoubleNull()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_BINARY_FLOAT.
@@ -415,7 +415,7 @@ public interface Calls10g
      */
     Float getBinaryFloat()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_BINARY_FLOAT_null.
@@ -424,7 +424,7 @@ public interface Calls10g
      */
     Float getBinaryFloatNull()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_BINARY_INTEGER.
@@ -433,7 +433,7 @@ public interface Calls10g
      */
     Long getBinaryInteger()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_DEC.
@@ -442,7 +442,7 @@ public interface Calls10g
      */
     java.math.BigDecimal getDec()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_DECIMAL.
@@ -451,7 +451,7 @@ public interface Calls10g
      */
     java.math.BigDecimal getDecimal()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_FLOAT.
@@ -460,7 +460,7 @@ public interface Calls10g
      */
     java.math.BigDecimal getFloat()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_INT.
@@ -469,7 +469,7 @@ public interface Calls10g
      */
     Long getInt()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_NUMERIC.
@@ -478,7 +478,7 @@ public interface Calls10g
      */
     java.math.BigDecimal getNumeric()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_PLS_INTEGER.
@@ -487,7 +487,7 @@ public interface Calls10g
      */
     Long getPlsInteger()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_POSITIVE.
@@ -496,7 +496,7 @@ public interface Calls10g
      */
     java.math.BigDecimal getPositive()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_SMALLINT.
@@ -505,7 +505,7 @@ public interface Calls10g
      */
     Long getSmallint()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_CHARACTER.
@@ -514,7 +514,7 @@ public interface Calls10g
      */
     String getCharacter()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_NCHAR.
@@ -523,7 +523,7 @@ public interface Calls10g
      */
     String getNchar()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_NVARCHAR2.
@@ -532,7 +532,7 @@ public interface Calls10g
      */
     String getNvarchar2()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_ROWID.
@@ -541,7 +541,7 @@ public interface Calls10g
      */
     String getRowid()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_STRING.
@@ -550,7 +550,7 @@ public interface Calls10g
      */
     String getString()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_UROWID.
@@ -559,7 +559,7 @@ public interface Calls10g
      */
     String getUrowid()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_VARCHAR.
@@ -568,7 +568,7 @@ public interface Calls10g
      */
     String getVarchar()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function data_types.
@@ -588,7 +588,7 @@ public interface Calls10g
             String[] pVarchar2Array,
             java.math.BigDecimal[] pNumberArray)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_from_test_table.
@@ -597,7 +597,7 @@ public interface Calls10g
      */
     java.util.List<OpbDynamicDataView> getFromTestTable()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_one_of_each_sql_type.
@@ -606,7 +606,7 @@ public interface Calls10g
      */
     java.util.List<OneOfEachSqlType> getOneOfEachSqlType()
             throws OpbDataAccessException;
-    
+
 
     /**
      * 
@@ -617,6 +617,6 @@ public interface Calls10g
     void echo(String pData,
             OpbValueWrapper<String> pResult)
             throws OpbDataAccessException;
-    
+
 
 }

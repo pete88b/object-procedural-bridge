@@ -87,7 +87,7 @@ public class EmbeddedCommentsImpl implements EmbeddedComments {
         // set all fields to their initial values
         include = null;
         includeDataSourceValue = null;
-        
+
 
     } // End of opbClearState()
 
@@ -125,7 +125,7 @@ public class EmbeddedCommentsImpl implements EmbeddedComments {
                     "include", true);
             // save the value we just loaded as the datasource value
             includeDataSourceValue = include;
-            
+
 
         } catch (Exception ex) {
             OpbExceptionHelper.throwException(
@@ -144,7 +144,7 @@ public class EmbeddedCommentsImpl implements EmbeddedComments {
      * Derived from an opb-package field.
      */
     private String include = null;
-    
+
     /**
      * Returns the value of include.
      * @return The value of include.
@@ -152,7 +152,7 @@ public class EmbeddedCommentsImpl implements EmbeddedComments {
     public String getInclude() {
         return include;
     }
-    
+
     /**
      * Sets the value of include.
      * @param a The new value for include.
@@ -160,12 +160,12 @@ public class EmbeddedCommentsImpl implements EmbeddedComments {
     public void setInclude(final String a) {
         this.include = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private String includeDataSourceValue = null;
-    
+
     /**
      * Returns the value of includeDataSourceValue.
      * This is the last value returned by the data source for include.
@@ -174,7 +174,7 @@ public class EmbeddedCommentsImpl implements EmbeddedComments {
     public String getIncludeDataSourceValue() {
         return includeDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of include
      * is different to the value that was loaded from the data source,
@@ -197,25 +197,25 @@ public class EmbeddedCommentsImpl implements EmbeddedComments {
     public void a(final java.math.BigDecimal pData)
             throws OpbDataAccessException {
         final String methodName = "a(java.math.BigDecimal)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN embedded_comments.a(?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.DECIMAL, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
 
 }

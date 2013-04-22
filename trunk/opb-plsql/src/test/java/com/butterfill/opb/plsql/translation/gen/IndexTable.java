@@ -27,25 +27,25 @@ public interface IndexTable
      * @return The value of numberArray.
      */
     java.math.BigDecimal[] getNumberArray();
-    
+
     /**
      * Sets the value of numberArray.
      * @param a The new value for numberArray.
      */
     void setNumberArray(java.math.BigDecimal[] a);
-    
+
     /**
      * Returns the value of varcharArray.
      * @return The value of varcharArray.
      */
     String[] getVarcharArray();
-    
+
     /**
      * Sets the value of varcharArray.
      * @param a The new value for varcharArray.
      */
     void setVarcharArray(String[] a);
-    
+
 
     /**
      * 
@@ -55,7 +55,7 @@ public interface IndexTable
      */
     void a(String[] pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure a2.
@@ -64,7 +64,7 @@ public interface IndexTable
      */
     void a2(java.math.BigDecimal[] pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure a3.
@@ -73,7 +73,7 @@ public interface IndexTable
      */
     void a3(Long[] pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure x.
@@ -82,7 +82,7 @@ public interface IndexTable
      */
     void x(String[] pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure x2.
@@ -91,7 +91,7 @@ public interface IndexTable
      */
     void x2(java.math.BigDecimal[] pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure x3.
@@ -100,7 +100,7 @@ public interface IndexTable
      */
     void x3(Long[] pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure y2.
@@ -109,7 +109,7 @@ public interface IndexTable
      */
     void y2(String[] pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure z.
@@ -120,6 +120,6 @@ public interface IndexTable
             Long[] pData2,
             String[] pData3)
             throws OpbDataAccessException;
-    
+
 
 }
