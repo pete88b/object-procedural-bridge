@@ -330,8 +330,8 @@ public class OpbPlsqlCallHelper {
 
         } catch (Exception ex) {
             throwException(
-                    "failed to register out array " + parameterIndex +
-                    " as '" + sqlTypeName + "'", ex);
+                    "failed to register out array " + parameterIndex
+                    + " as '" + sqlTypeName + "'", ex);
 
         }
 
@@ -360,8 +360,8 @@ public class OpbPlsqlCallHelper {
 
         } catch (Exception ex) {
             throwException(
-                    "failed to register out parameter " + parameterIndex +
-                    " as " + sqlType, ex);
+                    "failed to register out parameter " + parameterIndex
+                    + " as " + sqlType, ex);
 
         }
 
@@ -411,9 +411,9 @@ public class OpbPlsqlCallHelper {
 
         } catch (Exception ex) {
             throwException(
-                    "failed to set array at " + parameterIndex +
-                    ". sqlTypeName=" + sqlTypeName +
-                    ". value=" + OpbToStringHelper.toStringFull(value), ex);
+                    "failed to set array at " + parameterIndex
+                    + ". sqlTypeName=" + sqlTypeName
+                    + ". value=" + OpbToStringHelper.toStringFull(value), ex);
 
         }
 
@@ -496,9 +496,9 @@ public class OpbPlsqlCallHelper {
 
         } catch (Exception ex) {
             throwException(
-                    "failed to set value for parameter " + parameterIndex +
-                    ". sqlType=" + sqlType +
-                    ". value=" + value, ex);
+                    "failed to set value for parameter " + parameterIndex
+                    + ". sqlType=" + sqlType
+                    + ". value=" + value, ex);
 
         }
 
@@ -571,9 +571,9 @@ public class OpbPlsqlCallHelper {
 
         } catch (Exception ex) {
             throwException(
-                    "failed to set PL/SQL index table at " + parameterIndex +
-                    ". sqlType=" + sqlType +
-                    ". value=" + OpbToStringHelper.toStringFull(value), ex);
+                    "failed to set PL/SQL index table at " + parameterIndex
+                    + ". sqlType=" + sqlType
+                    + ". value=" + OpbToStringHelper.toStringFull(value), ex);
 
         }
 
@@ -653,8 +653,8 @@ public class OpbPlsqlCallHelper {
 
         } catch (Exception ex) {
             throw throwException(
-                    "Failed to get array " + classOfObject.getName() +
-                    " at index " + parameterIndex, ex);
+                    "Failed to get array " + classOfObject.getName()
+                    + " at index " + parameterIndex, ex);
 
         }
 
@@ -723,8 +723,8 @@ public class OpbPlsqlCallHelper {
 
         } catch (Exception ex) {
             throw throwException(
-                    "Failed to get " + classOfObject.getName() +
-                    " at index " + parameterIndex, ex);
+                    "Failed to get " + classOfObject.getName()
+                    + " at index " + parameterIndex, ex);
 
         }
 
