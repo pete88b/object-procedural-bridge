@@ -1,15 +1,35 @@
 <?xml version="1.0"?>
 <FindBugsFilter>
+    <!--
+        return type is Boolean and this method might return null.
+        this is absolutley intended
+    -->
     <Match>
-        <Class name="com.butterfill.opb.OpbId"/>
-        <Method name="&lt;init&gt;"/>
-        <BugCode name="EI2"/>
+        <Class name="com.butterfill.opb.data.OpbSqlHelper"/>
+        <Method name="getValue"
+                params="java.lang.Boolean, java.sql.ResultSet, java.lang.String, boolean"
+                returns="java.lang.Boolean"/>
+        <BugCode name="NP"/>
     </Match>
-    
+
+    <!--
+        compare string using ==
+        this is so we can quickly return true if a and b are the same object, or both are null
+    -->
     <Match>
         <Class name="com.butterfill.opb.util.OpbBooleanHelper"/>
         <Method name="equals"/>
+        <BugCode name="ES"/>
+    </Match>
+
+    <!--
+        return type is Boolean and this method might return null.
+        this is absolutley intended
+    -->
+    <Match>
+        <Class name="com.butterfill.opb.util.OpbBooleanHelper"/>
+        <Method name="toBoolean"/>
         <BugCode name="NP"/>
     </Match>
-    
+
 </FindBugsFilter>

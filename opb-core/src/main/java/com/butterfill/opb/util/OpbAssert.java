@@ -192,7 +192,7 @@ public final class OpbAssert {
         // if the two args are equal
         if (OpbComparisonHelper.isEqual(arg, arg2)) {
             // throw an illegal argument exception
-            StringBuilder sb = new StringBuilder();
+            final StringBuilder sb = new StringBuilder();
             sb.append(formatArgName(argName));
             sb.append(" should not equal ");
             sb.append(arg2Name);
@@ -246,7 +246,7 @@ public final class OpbAssert {
         // if the two args are not equal
         if (!OpbComparisonHelper.isEqual(arg, arg2)) {
             // throw an illegal argument exception
-            StringBuilder sb = new StringBuilder();
+            final StringBuilder sb = new StringBuilder();
             sb.append(formatArgName(argName));
             sb.append(" should equal ");
             sb.append(arg2Name);

@@ -18,7 +18,6 @@
 package com.butterfill.opb.util;
 
 import junit.framework.*;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -26,7 +25,7 @@ import java.util.logging.Logger;
  * @author Peter Butterfill
  */
 public class OpbAssertTest extends TestCase {
-    
+
     public OpbAssertTest(String testName) {
         super(testName);
     }
@@ -39,7 +38,7 @@ public class OpbAssertTest extends TestCase {
 
     public static Test suite() {
         TestSuite suite = new TestSuite(OpbAssertTest.class);
-        
+
         return suite;
     }
 
@@ -48,35 +47,37 @@ public class OpbAssertTest extends TestCase {
      */
     public void testNotNull() {
         System.out.println("notNull");
-        
+
         Logger logger = null;
         String className = null;
         String methodName = null;
         String argName = null;
         Object arg = null;
-        
+
         try {
             OpbAssert.notNull(logger, className, methodName, argName, arg);
-            fail("a null pointer ex should be thrown when arg is null");
+            fail("a null pointer ex should only be thrown when arg is null");
         } catch (NullPointerException ex) {
             //ok
         }
+        // a null pointer ex should not be thrown when arg is not null
         arg = "";
         OpbAssert.notNull(logger, className, methodName, argName, arg);
-        
+
         className = "";
         methodName = "";
         argName = "";
         arg = null;
         try {
             OpbAssert.notNull(logger, className, methodName, argName, arg);
-            fail("a null pointer ex should be thrown when arg is null");
+            fail("a null pointer ex should only be thrown when arg is null");
         } catch (NullPointerException ex) {
             //ok
         }
+        // a null pointer ex should not be thrown when arg is not null
         arg = 1;
         OpbAssert.notNull(logger, className, methodName, argName, arg);
-        
+
         arg = null;
         logger = Logger.getLogger("TestClass");
         className = "TestClass";
@@ -86,7 +87,7 @@ public class OpbAssertTest extends TestCase {
         } catch (NullPointerException ex) {
             //ok
         }
-        
+
         methodName = "testMethod()";
         try {
             OpbAssert.notNull(logger, className, methodName, argName, arg);
@@ -94,7 +95,7 @@ public class OpbAssertTest extends TestCase {
         } catch (NullPointerException ex) {
             //ok
         }
-        
+
         argName = "testArg";
         try {
             OpbAssert.notNull(logger, className, methodName, argName, arg);
@@ -102,25 +103,25 @@ public class OpbAssertTest extends TestCase {
         } catch (NullPointerException ex) {
             //ok
         }
-        
+
         arg = new Object();
         OpbAssert.notNull(logger, className, methodName, argName, arg);
-        
+
         try {
             OpbAssert.notNull(logger, className, methodName, argName, null);
             fail("a null pointer ex should be thrown when arg is null");
         } catch (NullPointerException ex) {
             //ok
         }
-        
+
         OpbAssert.notNull(logger, className, methodName, argName, "arg");
-        
+
         logger = null;
         className = null;
         methodName = null;
         argName = null;
         arg = null;
-        
+
         try {
             OpbAssert.notNull(logger, className, methodName, argName, arg, "extra message info");
             fail("a null pointer ex should be thrown when arg is null");
@@ -129,7 +130,7 @@ public class OpbAssertTest extends TestCase {
         }
         arg = "";
         OpbAssert.notNull(logger, className, methodName, argName, arg, "extra message info");
-        
+
         className = "";
         methodName = "";
         argName = "";
@@ -142,7 +143,7 @@ public class OpbAssertTest extends TestCase {
         }
         arg = 1;
         OpbAssert.notNull(logger, className, methodName, argName, arg, "extra message info");
-        
+
         arg = null;
         logger = Logger.getLogger("TestClass");
         try {
@@ -151,7 +152,7 @@ public class OpbAssertTest extends TestCase {
         } catch (NullPointerException ex) {
             //ok
         }
-        
+
         className = "TestClass";
         try {
             OpbAssert.notNull(logger, className, methodName, argName, arg, "extra message info");
@@ -159,7 +160,7 @@ public class OpbAssertTest extends TestCase {
         } catch (NullPointerException ex) {
             //ok
         }
-        
+
         methodName = "testMethod()";
         try {
             OpbAssert.notNull(logger, className, methodName, argName, arg, "extra message info");
@@ -167,7 +168,7 @@ public class OpbAssertTest extends TestCase {
         } catch (NullPointerException ex) {
             //ok
         }
-        
+
         argName = "testArg";
         try {
             OpbAssert.notNull(logger, className, methodName, argName, arg, "extra message info");
@@ -175,19 +176,19 @@ public class OpbAssertTest extends TestCase {
         } catch (NullPointerException ex) {
             //ok
         }
-        
+
         arg = new Object();
         OpbAssert.notNull(logger, className, methodName, argName, arg, "extra message info");
-        
+
         try {
             OpbAssert.notNull(logger, className, methodName, argName, null, "extra message info");
             fail("a null pointer ex should be thrown when arg is null");
         } catch (NullPointerException ex) {
             //ok
         }
-        
+
         OpbAssert.notNull(logger, className, methodName, argName, "arg", "extra message info");
-        
+
     }
 
     /**
@@ -195,29 +196,30 @@ public class OpbAssertTest extends TestCase {
      */
     public void testIsNull() {
         System.out.println("isNull");
-        
+
         Logger logger = null;
         String className = null;
         String methodName = null;
         String argName = null;
         Object arg = null;
-        
+
+        // ex should not be thrown when arg is null
         OpbAssert.isNull(logger, className, methodName, argName, arg, "extra message info");
-        
+
         arg = "";
         try {
             OpbAssert.isNull(logger, className, methodName, argName, arg, "extra message info");
-            fail("ex should be thrown when arg is not null");
+            fail("ex should be thrown only when arg is not null");
         } catch (IllegalArgumentException ex) {
             //ok
         }
-        
+
         className = "";
         methodName = "";
         argName = "";
         arg = null;
         OpbAssert.isNull(logger, className, methodName, argName, arg, "extra message info");
-        
+
         arg = 2;
         try {
             OpbAssert.isNull(logger, className, methodName, argName, arg, "extra message info");
@@ -225,11 +227,11 @@ public class OpbAssertTest extends TestCase {
         } catch (IllegalArgumentException ex) {
             //ok
         }
-        
+
         arg = null;
         logger = Logger.getLogger("TestClass");
         OpbAssert.isNull(logger, className, methodName, argName, arg, "extra message info");
-        
+
         arg = "";
         try {
             OpbAssert.isNull(logger, className, methodName, argName, arg, "extra message info");
@@ -237,11 +239,11 @@ public class OpbAssertTest extends TestCase {
         } catch (IllegalArgumentException ex) {
             //ok
         }
-        
+
         arg = null;
         className = "TestClass";
         OpbAssert.isNull(logger, className, methodName, argName, arg, "extra message info");
-        
+
         arg = "";
         try {
             OpbAssert.isNull(logger, className, methodName, argName, arg, "extra message info");
@@ -249,11 +251,11 @@ public class OpbAssertTest extends TestCase {
         } catch (IllegalArgumentException ex) {
             //ok
         }
-        
+
         arg = null;
         methodName = "testMethod()";
         OpbAssert.isNull(logger, className, methodName, argName, arg, "extra message info");
-        
+
         arg = "";
         try {
             OpbAssert.isNull(logger, className, methodName, argName, arg, "extra message info");
@@ -261,11 +263,11 @@ public class OpbAssertTest extends TestCase {
         } catch (IllegalArgumentException ex) {
             //ok
         }
-        
+
         arg = null;
         argName = "testArg";
         OpbAssert.isNull(logger, className, methodName, argName, arg, "extra message info");
-        
+
         arg = "";
         try {
             OpbAssert.isNull(logger, className, methodName, argName, arg, "extra message info");
@@ -273,9 +275,9 @@ public class OpbAssertTest extends TestCase {
         } catch (IllegalArgumentException ex) {
             //ok
         }
-        
+
         arg = new Object();
-        
+
         arg = "";
         try {
             OpbAssert.isNull(logger, className, methodName, argName, arg, "extra message info");
@@ -283,15 +285,15 @@ public class OpbAssertTest extends TestCase {
         } catch (IllegalArgumentException ex) {
             //ok
         }
-        
+
     }
-    
+
     /**
      * Test of notEqual method, of class com.butterfill.opb.util.OpbAssert.
      */
     public void testNotEqual() {
         System.out.println("notEqual");
-        
+
         for (int i = 0; i < 2; i++) {
             Logger logger = null;
             String className = "";
@@ -301,7 +303,7 @@ public class OpbAssertTest extends TestCase {
             String arg2Name = "";
             Object arg2 = null;
             String message = null;
-            
+
             if (i == 1) {
                 message = "xtr message";
             }
@@ -396,7 +398,7 @@ public class OpbAssertTest extends TestCase {
      */
     public void testIsEqual() {
         System.out.println("equal");
-        
+
         for (int i = 0; i < 2; i++) {
             Logger logger = null;
             String className = "";
@@ -406,17 +408,17 @@ public class OpbAssertTest extends TestCase {
             String arg2Name = "";
             Object arg2 = null;
             String message = null;
-            
+
             if (i == 1) {
                 message = "xtr message";
             }
 
             OpbAssert.isEqual(logger, className, methodName, argName, arg, arg2Name, arg2, message);
-            
+
             arg = "";
             arg2 = arg;
             OpbAssert.isEqual(logger, className, methodName, argName, arg, arg2Name, arg2, message);
-            
+
             arg2 = new Object();
             try {
                 OpbAssert.isEqual(logger, className, methodName, argName, arg, arg2Name, arg2, message);
@@ -424,10 +426,10 @@ public class OpbAssertTest extends TestCase {
             } catch (IllegalArgumentException ex) {
                 // ok
             }
-            
+
             arg = arg2;
             OpbAssert.isEqual(logger, className, methodName, argName, arg, arg2Name, arg2, message);
-            
+
             arg = null;
             try {
                 OpbAssert.isEqual(logger, className, methodName, argName, arg, arg2Name, arg2, message);
@@ -435,7 +437,7 @@ public class OpbAssertTest extends TestCase {
             } catch (IllegalArgumentException ex) {
                 // ok
             }
-            
+
             arg = new Object();
             arg2 = null;
             try {
@@ -444,7 +446,7 @@ public class OpbAssertTest extends TestCase {
             } catch (IllegalArgumentException ex) {
                 // ok
             }
-            
+
             arg = "x";
             arg2 = "X";
             try {
@@ -453,28 +455,28 @@ public class OpbAssertTest extends TestCase {
             } catch (IllegalArgumentException ex) {
                 // ok
             }
-            
+
             arg = 9999;
             arg2 = 9999;
             assertTrue(arg != arg2);
             OpbAssert.isEqual(logger, className, methodName, argName, arg, arg2Name, arg2, message);
-            
+
             logger = Logger.getLogger("TestClass");
             OpbAssert.isEqual(logger, className, methodName, argName, arg, arg2Name, arg2, message);
-            
+
             className = "TestClass";
             OpbAssert.isEqual(logger, className, methodName, argName, arg, arg2Name, arg2, message);
-            
+
             methodName = "testMethod()";
             OpbAssert.isEqual(logger, className, methodName, argName, arg, arg2Name, arg2, message);
-            
+
             argName = "a";
             OpbAssert.isEqual(logger, className, methodName, argName, arg, arg2Name, arg2, message);
-            
+
             arg2Name = "a2";
             OpbAssert.isEqual(logger, className, methodName, argName, arg, arg2Name, arg2, message);
-            
+
         }
     }
-    
+
 }

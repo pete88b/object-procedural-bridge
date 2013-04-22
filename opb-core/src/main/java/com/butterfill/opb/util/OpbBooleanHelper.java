@@ -75,10 +75,10 @@ public final class OpbBooleanHelper {
         }
 
         if (ignoreCase) {
-            return (a != null) ? a.equalsIgnoreCase(b) : b.equalsIgnoreCase(a);
+            return a != null && a.equalsIgnoreCase(b);
 
         } else {
-            return (a != null) ? a.equals(b) : b.equals(a);
+            return a != null && a.equals(b);
 
         }
 
