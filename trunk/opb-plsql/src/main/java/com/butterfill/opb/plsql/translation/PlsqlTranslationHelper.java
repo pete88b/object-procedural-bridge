@@ -88,9 +88,9 @@ class PlsqlTranslationHelper {
      *   true if the specified type will be converted to a loadable Java type.
      */
     boolean isLoadableType(final String sqlType) {
-        return !isPlsqlIndexTableType(sqlType) &&
-                !isCursorType(sqlType) &&
-                !isArrayType(sqlType);
+        return !isPlsqlIndexTableType(sqlType)
+                && !isCursorType(sqlType)
+                && !isArrayType(sqlType);
     }
 
     /**
@@ -106,14 +106,13 @@ class PlsqlTranslationHelper {
      *   A Java name for the specified SQL name.
      */
     private String toJavaName(String sqlName, final boolean firstCharLower) {
-        if (sqlName.startsWith("\"") &&
-                sqlName.endsWith("\"")) {
+        if (sqlName.startsWith("\"") && sqlName.endsWith("\"")) {
             sqlName = sqlName.substring(1, sqlName.length() - 1);
         }
 
-        String[] nameBits = sqlName.toLowerCase().split("_");
+        final String[] nameBits = sqlName.toLowerCase().split("_");
 
-        StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
 
         boolean firstBit = true;
 
@@ -166,8 +165,7 @@ class PlsqlTranslationHelper {
      *   A Java constant name.
      */
     String toJavaConstantName(String sqlName) {
-        if (sqlName.startsWith("\"") &&
-                sqlName.endsWith("\"")) {
+        if (sqlName.startsWith("\"") && sqlName.endsWith("\"")) {
             sqlName = sqlName.substring(1, sqlName.length() - 1);
         }
         return sqlName.toUpperCase();
@@ -196,37 +194,31 @@ class PlsqlTranslationHelper {
         }
 
         // get the Java type for the given SQL type
-        String datatype = toJavaDatatype(sqlDatatype);
+        final String datatype = toJavaDatatype(sqlDatatype);
 
-        String result;
+        final String result;
 
-        if ("String".equals(datatype) ||
-                "java.lang.String".equals(datatype)) {
+        if ("String".equals(datatype) || "java.lang.String".equals(datatype)) {
 
             String s = sqlLiteral;
 
-            if (sqlLiteral.startsWith("'") &&
-                    sqlLiteral.endsWith("'")) {
+            if (sqlLiteral.startsWith("'") && sqlLiteral.endsWith("'")) {
                 s = sqlLiteral.substring(1, sqlLiteral.length() - 1);
 
             }
 
             result = "\"" + s.replaceAll("\"", "\\\\\"") + "\"";
 
-        } else if ("Long".equals(datatype) ||
-                "java.lang.Long".equals(datatype)) {
+        } else if ("Long".equals(datatype) || "java.lang.Long".equals(datatype)) {
             result = sqlLiteral + "L";
 
-        } else if ("Float".equals(datatype) ||
-                "java.lang.Float".equals(datatype)) {
+        } else if ("Float".equals(datatype) || "java.lang.Float".equals(datatype)) {
             result = sqlLiteral + "F";
 
-        } else if ("BigDecimal".equals(datatype) ||
-                "java.math.BigDecimal".equals(datatype)) {
+        } else if ("BigDecimal".equals(datatype) || "java.math.BigDecimal".equals(datatype)) {
             result = "java.math.BigDecimal.valueOf(" + sqlLiteral + ")";
 
-        } else if ("Boolean".equals(datatype) ||
-                "java.lang.Boolean".equals(datatype)) {
+        } else if ("Boolean".equals(datatype) || "java.lang.Boolean".equals(datatype)) {
             result = sqlLiteral.toLowerCase();
 
         } else {
@@ -251,14 +243,14 @@ class PlsqlTranslationHelper {
      *   The type of element of the Java collection.
      */
     String getElementType(String sqlDatatype) {
-        DatatypeMap datatypeMap = DatatypeMap.getInstance();
+        final DatatypeMap datatypeMap = DatatypeMap.getInstance();
 
         if (sqlDatatype == null) {
             sqlDatatype = OpbConstants.DEFAULT_DATATYPE;
         }
 
         if (datatypeMap.isCursorType(sqlDatatype)) {
-            int delimPos = sqlDatatype.indexOf("?");
+            final int delimPos = sqlDatatype.indexOf("?");
 
             if (delimPos == -1) {
                 return OpbConstants
@@ -292,13 +284,13 @@ class PlsqlTranslationHelper {
         logger.logp(Level.FINEST, CLASS_NAME, methodName,
                 "sqlDatatype={0}", sqlDatatype);
 
-        DatatypeMap datatypeMap = DatatypeMap.getInstance();
+        final DatatypeMap datatypeMap = DatatypeMap.getInstance();
 
         if (sqlDatatype == null) {
             sqlDatatype = OpbConstants.DEFAULT_DATATYPE;
 
         } else {
-            int delimPos = sqlDatatype.indexOf("?");
+            final int delimPos = sqlDatatype.indexOf("?");
 
             if (delimPos != -1) {
                 sqlDatatype = sqlDatatype.substring(0, delimPos);
@@ -323,14 +315,14 @@ class PlsqlTranslationHelper {
      *   The Java type of the specified SQL type.
      */
     String toJavaDatatype(String sqlDatatype) {
-        DatatypeMap datatypeMap = DatatypeMap.getInstance();
+        final DatatypeMap datatypeMap = DatatypeMap.getInstance();
 
         if (sqlDatatype == null) {
             sqlDatatype = OpbConstants.DEFAULT_DATATYPE;
         }
 
         if (datatypeMap.isCursorType(sqlDatatype)) {
-            StringBuilder sb = new StringBuilder();
+            final StringBuilder sb = new StringBuilder();
 
             int delimPos = sqlDatatype.indexOf("?");
 
@@ -343,7 +335,7 @@ class PlsqlTranslationHelper {
                 sb.append(">");
 
             } else {
-                String[] bits = new String[2];
+                final String[] bits = new String[2];
                 bits[0] = sqlDatatype.substring(0, delimPos);
                 bits[1] = sqlDatatype.substring(delimPos + 1);
                 sb.append(datatypeMap.sqlToJava(bits[0]));
@@ -411,8 +403,7 @@ class PlsqlTranslationHelper {
 
         logger.entering(CLASS_NAME, methodName);
 
-        if ("Y".equalsIgnoreCase(yOrN) ||
-                "N".equalsIgnoreCase(yOrN)) {
+        if ("Y".equalsIgnoreCase(yOrN) || "N".equalsIgnoreCase(yOrN)) {
             return "Y".equalsIgnoreCase(yOrN);
         }
 

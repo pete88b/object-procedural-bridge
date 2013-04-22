@@ -595,9 +595,9 @@ class PlsqlCall {
         logger.entering(CLASS_NAME, methodName);
 
         // if we couldn't translate the datatype, it'll be null
-        if (param.getDatatype() == null ||
-                    (param.getOut() && param.getWrappedDatatype() == null)) {
-            StringBuilder sb = new StringBuilder();
+        if (param.getDatatype() == null
+                || (param.getOut() && param.getWrappedDatatype() == null)) {
+            final StringBuilder sb = new StringBuilder();
             sb.append("Failed to translate datatype '");
             sb.append(param.getSqlDatatype());
             sb.append("' of '");
@@ -658,7 +658,6 @@ class PlsqlCall {
 
             if (returnValue.isPlsqlIndexTable()) {
                 result = false;
-
                 logger.logp(Level.SEVERE, CLASS_NAME, methodName,
                         "PL/SQL index-by tables cannot be used as function "
                         + "return values. Function '" + sqlName + "' will be ignored");
@@ -670,11 +669,9 @@ class PlsqlCall {
 
             if (returnValue.isCursor() && returnValue.isUseScalarResultCache()) {
                 returnValue.setUseScalarResultCache(false);
-
                 logger.logp(Level.SEVERE, CLASS_NAME, methodName,
-                        "Non-scalar results cannot use the scalar result "
-                        + "cache. Function '" + sqlName
-                        + "' will not use the scalar result cache.");
+                        "Non-scalar results cannot use the scalar result cache. Function '"
+                        + sqlName + "' will not use the scalar result cache.");
             }
 
         }
@@ -693,21 +690,17 @@ class PlsqlCall {
             // cursors can't be used as in parameters
             if (p.isCursor() && p.getIn()) {
                 result = false;
-
                 logger.logp(Level.SEVERE, CLASS_NAME, methodName,
-                        "Cursors cannot be used as IN parameters. Found '"
-                        + p.getSqlName() + "' in '" + sqlName
-                        + "'. This call will be ignored");
+                        "Cursors cannot be used as IN parameters. Found '" + p.getSqlName()
+                        + "' in '" + sqlName + "'. This call will be ignored");
             }
 
             // PL/SQL index-by tables can't be used as out parameters
             if (p.getOut() && p.isPlsqlIndexTable()) {
                 result = false;
-
                 logger.logp(Level.SEVERE, CLASS_NAME, methodName,
-                        "PL/SQL index-by tables cannot be used as out "
-                        + "parameters. Found '" + p.getSqlName() + "' in '"
-                        + sqlName + "'. This call will be ignored");
+                        "PL/SQL index-by tables cannot be used as out parameters. Found '"
+                        + p.getSqlName() + "' in '" + sqlName + "'. This call will be ignored");
             }
 
         }
@@ -720,13 +713,12 @@ class PlsqlCall {
         }
 
         // If we have an Opb comment, check that it contains only valid elements
-        opbComment.checkElementTypes(
-                new String[]{"clear_cached", "invalidate_cached", "param"});
+        opbComment.checkElementTypes(new String[]{"clear_cached", "invalidate_cached", "param"});
 
         // process the Opb comment
         for (Map<String, String> element : opbComment.getElements()) {
-            String type = element.get(OPB_COMMENT_ELEMENT_TYPE_KEY);
-            String paramName = element.get("name");
+            final String type = element.get(OPB_COMMENT_ELEMENT_TYPE_KEY);
+            final String paramName = element.get("name");
 
             if ("clear_cached".equals(type)) {
                 if ("all".equalsIgnoreCase(paramName)) {
@@ -736,8 +728,7 @@ class PlsqlCall {
                     clearCachedThis = true;
 
                 } else {
-                    clearCached.add(
-                            translationHelper.toJavaClassName(paramName));
+                    clearCached.add(translationHelper.toJavaClassName(paramName));
 
                 }
 
@@ -749,8 +740,7 @@ class PlsqlCall {
                     invalidateCachedThis = true;
 
                 } else {
-                    invalidateCached.add(
-                            translationHelper.toJavaClassName(paramName));
+                    invalidateCached.add(translationHelper.toJavaClassName(paramName));
 
                 }
 
@@ -760,12 +750,12 @@ class PlsqlCall {
 
 
         // Look for any param mappings for parameters that do not exist
-        List<String> mappedParamNames = new ArrayList<String>();
+        final List<String> mappedParamNames = new ArrayList<String>();
 
         for (Map<String, String> map : opbComment.getElements()) {
-            String type = map.get(OPB_COMMENT_ELEMENT_TYPE_KEY);
+            final String type = map.get(OPB_COMMENT_ELEMENT_TYPE_KEY);
             if ("param".equals(type)) {
-                String paramName = map.get("name");
+                final String paramName = map.get("name");
                 if (function && "RETURN".equalsIgnoreCase(paramName)) {
                     continue;
                 }
@@ -773,7 +763,7 @@ class PlsqlCall {
             }
         }
 
-        List<String> paramNames = new ArrayList<String>();
+        final List<String> paramNames = new ArrayList<String>();
 
         for (PlsqlCallParameter p : params) {
             paramNames.add(p.getSqlName());

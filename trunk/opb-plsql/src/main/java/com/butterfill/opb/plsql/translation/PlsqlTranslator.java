@@ -137,7 +137,7 @@ public class PlsqlTranslator {
                 "javaPackageName", javaPackageName);
 
 
-        String plsqlPackageSourceFileName =
+        final String plsqlPackageSourceFileName =
                 plsqlPackageSourceFile.getCanonicalPath();
 
         // tell the user which file we are about to process
@@ -151,21 +151,21 @@ public class PlsqlTranslator {
                 "javaPackageName={0}", javaPackageName);
 
         // parse the PL/SQL source
-        ANTLRFileStream in = new ANTLRFileStream(plsqlPackageSourceFileName);
-        PlsqlLexer lexer = new PlsqlLexer(in);
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        PlsqlParser parser = new PlsqlParser(tokens);
+        final ANTLRFileStream in = new ANTLRFileStream(plsqlPackageSourceFileName);
+        final PlsqlLexer lexer = new PlsqlLexer(in);
+        final CommonTokenStream tokens = new CommonTokenStream(lexer);
+        final PlsqlParser parser = new PlsqlParser(tokens);
         PlsqlParser.startRule_return parserResult = parser.startRule();
-        Tree tree = (Tree) parserResult.getTree();
+        final Tree tree = (Tree) parserResult.getTree();
 
         logger.fine(tree.toStringTree());
 
         // parse the AST
-        CommonTreeNodeStream nodes = new CommonTreeNodeStream(tree);
+        final CommonTreeNodeStream nodes = new CommonTreeNodeStream(tree);
         // tell it where it can find the token objects
         nodes.setTokenStream(tokens);
         // create the tree parser
-        PlsqlTreeParser treeParser = new PlsqlTreeParser(nodes);
+        final PlsqlTreeParser treeParser = new PlsqlTreeParser(nodes);
         // pass our value for include PL/SQL comments
         treeParser.setIncludePlsqlComments(includePlsqlComments);
         // set the java package name
@@ -174,7 +174,7 @@ public class PlsqlTranslator {
         treeParser.startRule();
 
         // get the PL/SQL package from the parser and validate it
-        PlsqlPackage plsqlPackage = treeParser.getPlsqlPackage();
+        final PlsqlPackage plsqlPackage = treeParser.getPlsqlPackage();
         plsqlPackage.validate();
 
         // write the Java interface to file
@@ -182,8 +182,8 @@ public class PlsqlTranslator {
         template.setAttribute("plsqlPackage", plsqlPackage);
 
         PrintWriter writer = new PrintWriter(
-                outputDir.getPath() + File.separator +
-                treeParser.getPlsqlPackage().getJavaInterfaceName() + ".java",
+                outputDir.getPath() + File.separator
+                + treeParser.getPlsqlPackage().getJavaInterfaceName() + ".java",
                 "UTF-8");
 
         writer.write(template.toString());
@@ -194,8 +194,8 @@ public class PlsqlTranslator {
         if (plsqlPackage.isOnlyConstants()) {
             // tell the user if the Java class won't be created
             logger.logp(Level.INFO, CLASS_NAME, methodName,
-                    "PL/SQL package has no fields, functions or procedures. " +
-                    "Java class will NOT be created");
+                    "PL/SQL package has no fields, functions or procedures. "
+                    + "Java class will NOT be created");
 
         } else {
             // write the Java class to file
@@ -204,8 +204,8 @@ public class PlsqlTranslator {
 
             // write the output to a file
             writer = new PrintWriter(
-                    outputDir.getPath() + File.separator +
-                    treeParser.getPlsqlPackage().getJavaClassName() + ".java",
+                    outputDir.getPath() + File.separator
+                    + treeParser.getPlsqlPackage().getJavaClassName() + ".java",
                     "UTF-8");
 
             writer.write(template.toString());

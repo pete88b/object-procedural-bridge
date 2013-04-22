@@ -24,6 +24,9 @@ import java.util.logging.Logger;
  * parameter or a function return value.
  * <br/>
  * This class is not intended for use outside the translation package.
+ * <br/>
+ * The constructor of this class calls {@link #opb_datatype(java.lang.String) },
+ * please consider this if you override opb_datatype.
  *
  * @author Peter Butterfill
  */
@@ -204,11 +207,13 @@ class PlsqlCallParameter {
 
     /**
      * Sets the datatype property of this parameter.
+     * <br/>
+     * <strong>This method is called by the constructor - take care if overriding.</strong>
      * @param s The value of the property.
      * @see OpbComment#applyElement(Map, Object)
      */
     public void opb_datatype(final String s) {
-        sqlDatatype = (s == null) ? s : s.toUpperCase();
+        sqlDatatype = (s == null) ? null : s.toUpperCase();
         datatype = translationHelper.toJavaDatatype(sqlDatatype, out);
         jdbcType = translationHelper.getJdbcType(sqlDatatype);
         if (out) {

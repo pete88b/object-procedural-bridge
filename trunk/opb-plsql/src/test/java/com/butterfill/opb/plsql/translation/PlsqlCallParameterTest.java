@@ -26,7 +26,7 @@ import junit.framework.TestSuite;
  * @author Peter Butterfill
  */
 public class PlsqlCallParameterTest extends TestCase {
-    
+
     public PlsqlCallParameterTest(String testName) {
         super(testName);
     }
@@ -37,7 +37,7 @@ public class PlsqlCallParameterTest extends TestCase {
     }
 
     PlsqlCallParameter instance;
-    
+
     @Override
     protected void setUp() throws Exception {
         super.setUp();
@@ -54,11 +54,11 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testToString() {
         System.out.println("toString");
-        
+
         String expResult = instance.toString();
         String result = instance.toString();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -66,7 +66,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testGetIndex() {
         System.out.println("getIndex");
-        
+
         int expResult = 0;
         int result = instance.getIndex();
         assertEquals(expResult, result);
@@ -78,7 +78,7 @@ public class PlsqlCallParameterTest extends TestCase {
     public void testSetIndex() {
         System.out.println("setIndex");
         int index = 1;
-        
+
         instance.setIndex(index);
         assertEquals(index, instance.getIndex());
     }
@@ -88,7 +88,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testGetSqlName() {
         System.out.println("getSqlName");
-        
+
         String expResult = "a";
         String result = instance.getSqlName();
         assertEquals(expResult, result);
@@ -99,7 +99,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testGetName() {
         System.out.println("getName");
-        
+
         String expResult = "a";
         String result = instance.getName();
         assertEquals(expResult, result);
@@ -110,11 +110,11 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testGetSqlDatatype() {
         System.out.println("getSqlDatatype");
-        
+
         String expResult = "INTEGER";
         String result = instance.getSqlDatatype();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -122,7 +122,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testGetDatatype() {
         System.out.println("getDatatype");
-        
+
         String expResult = "OpbValueWrapper";
         String result = instance.getDatatype();
         assertEquals(expResult, result);
@@ -133,7 +133,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testGetIn() {
         System.out.println("getIn");
-        
+
         boolean expResult = true;
         boolean result = instance.getIn();
         assertEquals(expResult, result);
@@ -144,7 +144,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testGetOut() {
         System.out.println("getOut");
-        
+
         boolean expResult = true;
         boolean result = instance.getOut();
         assertEquals(expResult, result);
@@ -155,7 +155,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testIsUseDataObjectCache() {
         System.out.println("isUseDataObjectCache");
-        
+
         assertNull(instance.isUseDataObjectCache());
     }
 
@@ -165,7 +165,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testIsUseResultCache() {
         System.out.println("isUseResultCache");
-        
+
         assertNull(instance.isUseResultCache());
     }
 
@@ -175,9 +175,9 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testIsUseScalarResultCache() {
         System.out.println("isUseScalarResultCache");
-        
+
        assertNull(instance.isUseScalarResultCache());
-        
+
     }
 
 
@@ -186,7 +186,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testGetWrappedDatatype() {
         System.out.println("getWrappedDatatype");
-        
+
         String expResult = "Long";
         String result = instance.getWrappedDatatype();
         assertEquals(expResult, result);
@@ -198,7 +198,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testGetJdbcType() {
         System.out.println("getJdbcType");
-        
+
         String expResult = "java.sql.Types.BIGINT";
         String result = instance.getJdbcType();
         assertEquals(expResult, result);
@@ -209,7 +209,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testGetMappedTo() {
         System.out.println("getMappedTo");
-        
+
         String expResult = null;
         String result = instance.getMappedTo();
         assertEquals(expResult, result);
@@ -220,7 +220,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testGetMappedToProperty() {
         System.out.println("getMappedToProperty");
-        
+
         String expResult = null;
         String result = instance.getMappedToProperty();
         assertEquals(expResult, result);
@@ -231,11 +231,11 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testGetElementTypeOfDatatype() {
         System.out.println("getElementTypeOfDatatype");
-        
+
         String expResult = null;
         String result = instance.getElementTypeOfDatatype();
         assertEquals(expResult, result);
-        
+
     }
 
 
@@ -244,7 +244,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testIsCursor() {
         System.out.println("isCursor");
-        
+
         boolean expResult = false;
         boolean result = instance.isCursor();
         assertEquals(expResult, result);
@@ -256,7 +256,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testGetOriginalSqlDatatype() {
         System.out.println("getOriginalSqlDatatype");
-        
+
         String expResult = "integer";
         assertEquals(expResult, instance.getOriginalSqlDatatype());
         instance.opb_datatype("varchar");
@@ -268,7 +268,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testOpb_name() {
         System.out.println("opb_name");
-        
+
         instance.opb_name("b");
         assertEquals("a", instance.getSqlName());
     }
@@ -278,7 +278,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testOpb_datatype() {
         System.out.println("opb_datatype");
-        
+
         instance.opb_datatype("number");
         assertEquals("NUMBER", instance.getSqlDatatype());
         assertEquals("OpbValueWrapper", instance.getDatatype());
@@ -291,7 +291,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testOpb_field() {
         System.out.println("opb_field");
-        
+
         instance.opb_field("K_y");
         assertEquals("KY", instance.getMappedTo());
         assertEquals("kY", instance.getMappedToProperty());
@@ -302,7 +302,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testOpb_use_result_cache() {
         System.out.println("opb_use_result_cache");
-        
+
         assertNull(instance.isUseResultCache());
         instance.opb_use_result_cache("y");
         assertTrue(instance.isUseResultCache());
@@ -312,7 +312,7 @@ public class PlsqlCallParameterTest extends TestCase {
         assertTrue(instance.isUseResultCache());
         instance.opb_use_result_cache("N");
         assertFalse(instance.isUseResultCache());
-        
+
     }
 
     /**
@@ -320,7 +320,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testOpb_use_scalar_result_cache() {
         System.out.println("opb_use_scalar_result_cache");
-        
+
         assertNull(instance.isUseScalarResultCache());
         instance.opb_use_scalar_result_cache("y");
         assertTrue(instance.isUseScalarResultCache());
@@ -330,8 +330,8 @@ public class PlsqlCallParameterTest extends TestCase {
         assertTrue(instance.isUseScalarResultCache());
         instance.opb_use_scalar_result_cache("N");
         assertFalse(instance.isUseScalarResultCache());
-        
-        
+
+
     }
 
     /**
@@ -339,7 +339,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testOpb_use_data_object_cache() {
         System.out.println("opb_use_data_object_cache");
-        
+
         assertNull(instance.isUseDataObjectCache());
         instance.opb_use_data_object_cache("y");
         assertTrue(instance.isUseDataObjectCache());
@@ -356,7 +356,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testIsPlsqlIndexTable() {
         System.out.println("isPlsqlIndexTable");
-        
+
         assertFalse(instance.isPlsqlIndexTable());
     }
 
@@ -365,7 +365,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testIsReturn() {
         System.out.println("isReturn");
-        
+
         assertFalse(instance.isReturn());
     }
 
@@ -374,7 +374,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testSetUseDataObjectCache() {
         System.out.println("setUseDataObjectCache");
-        
+
         instance.setUseDataObjectCache(true);
         instance.setUseDataObjectCache(false);
     }
@@ -384,7 +384,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testSetUseResultCache() {
         System.out.println("setUseResultCache");
-        
+
         instance.setUseResultCache(true);
         instance.setUseResultCache(false);
     }
@@ -394,7 +394,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testSetUseScalarResultCache() {
         System.out.println("setUseScalarResultCache");
-        
+
         instance.setUseScalarResultCache(true);
         instance.setUseScalarResultCache(false);
     }
@@ -404,7 +404,7 @@ public class PlsqlCallParameterTest extends TestCase {
      */
     public void testIsArray() {
         System.out.println("isArray");
-        
+
         assertFalse(instance.isArray());
     }
 

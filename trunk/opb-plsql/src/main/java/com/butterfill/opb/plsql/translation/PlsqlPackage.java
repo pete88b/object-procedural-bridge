@@ -323,9 +323,7 @@ class PlsqlPackage {
      * @return true if this package has no fields, functions or procedures.
      */
     public boolean isOnlyConstants() {
-        return fields.isEmpty() &&
-                functions.isEmpty() &&
-                procedures.isEmpty();
+        return fields.isEmpty() && functions.isEmpty() && procedures.isEmpty();
     }
 
     /**

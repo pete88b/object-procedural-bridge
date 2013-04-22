@@ -276,12 +276,12 @@ class OpbComment {
         OpbAssert.notNull(logger, CLASS_NAME, methodName, "element", element);
         OpbAssert.notNull(logger, CLASS_NAME, methodName, "target", target);
 
-        if (element.size() == 0) {
+        if (element.isEmpty()) {
             logger.logp(Level.WARNING, CLASS_NAME, methodName,
                     "element has no properties");
         }
 
-        Class targetClass = target.getClass();
+        final Class targetClass = target.getClass();
 
         // try to set properties on the target class
         for (String key : element.keySet()) {
@@ -290,7 +290,7 @@ class OpbComment {
             }
 
             try {
-                Method m = targetClass.getMethod("opb_" + key, String.class);
+                final Method m = targetClass.getMethod("opb_" + key, String.class);
                 m.invoke(target, element.get(key));
 
             } catch (NoSuchMethodException ex) {
@@ -311,7 +311,7 @@ class OpbComment {
         }
 
         try {
-            Method m = targetClass.getMethod("opb_applyElementComplete");
+            final Method m = targetClass.getMethod("opb_applyElementComplete");
             m.invoke(target);
 
         } catch (NoSuchMethodException ex) {

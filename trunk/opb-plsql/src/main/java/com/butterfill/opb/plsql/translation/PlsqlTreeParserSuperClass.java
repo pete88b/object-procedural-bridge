@@ -162,7 +162,7 @@ class PlsqlTreeParserSuperClass extends TreeParser {
         }
 
         // create a new OpbComment using the given text
-        OpbComment opbComment = new OpbComment(s);
+        final OpbComment opbComment = new OpbComment(s);
 
         if (opbComment.isOpbPackage()) {
             // if this is an opb package comment, create an OpbField for each
@@ -197,7 +197,7 @@ class PlsqlTreeParserSuperClass extends TreeParser {
      * @return The last comment text broken into separate lines.
      */
     private List<String> getLastCommentLines() {
-        List<String> result = new ArrayList<String>();
+        final List<String> result = new ArrayList<String>();
 
         if (lastCommentText == null) {
             return result;
@@ -354,9 +354,9 @@ class PlsqlTreeParserSuperClass extends TreeParser {
      *   A one part SQL datatype.
      */
     private String toSqlDatatype(final String sqlDatatypeA, final String sqlDatatypeB) {
-        return (sqlDatatypeA != null) ?
-                sqlDatatypeA + "." + sqlDatatypeB :
-                sqlDatatypeB;
+        return (sqlDatatypeA != null)
+                ? sqlDatatypeA + "." + sqlDatatypeB
+                : sqlDatatypeB;
     }
 
 }
