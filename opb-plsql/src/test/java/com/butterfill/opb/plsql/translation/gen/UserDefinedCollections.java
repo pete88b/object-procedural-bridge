@@ -25,7 +25,7 @@ public interface UserDefinedCollections
      */
     java.math.BigDecimal[] getNull()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function echo_number_table.
@@ -34,7 +34,7 @@ public interface UserDefinedCollections
      */
     java.math.BigDecimal[] echoNumberTable(Object[] pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function format_number_table.
@@ -43,7 +43,7 @@ public interface UserDefinedCollections
      */
     String formatNumberTable(Object[] pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function how_long.
@@ -53,7 +53,7 @@ public interface UserDefinedCollections
     String howLong(Object[] pData,
             OpbValueWrapper<String[]> pResults)
             throws OpbDataAccessException;
-    
+
 
     /**
      * 
@@ -63,7 +63,7 @@ public interface UserDefinedCollections
      */
     void getNullProc(OpbValueWrapper<java.math.BigDecimal[]> pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure simple_in_out.
@@ -72,6 +72,6 @@ public interface UserDefinedCollections
      */
     void simpleInOut(OpbValueWrapper<String[]> pData)
             throws OpbDataAccessException;
-    
+
 
 }

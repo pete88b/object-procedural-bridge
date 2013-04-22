@@ -25,7 +25,7 @@ public interface LongStrings
      */
     Long howLong(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_long.
@@ -34,7 +34,7 @@ public interface LongStrings
      */
     String getLong(Long pHowLong)
             throws OpbDataAccessException;
-    
+
 
     /**
      * 
@@ -44,6 +44,6 @@ public interface LongStrings
      */
     void inOut(OpbValueWrapper<String> pData)
             throws OpbDataAccessException;
-    
+
 
 }

@@ -27,7 +27,7 @@ public interface ParamCache2
      */
     java.util.List<OpbDynamicDataView> useResultCacheB(Long pKey)
             throws OpbDataAccessException;
-    
+
     /**
      * explicitly use the result cache.
      * Calls the database function use_result_cache_b2.
@@ -36,7 +36,7 @@ public interface ParamCache2
      */
     java.util.List<OpbDynamicDataView> useResultCacheB2(Long pKey)
             throws OpbDataAccessException;
-    
+
     /**
      * do not use the scalar result cache.
      * Calls the database function use_result_cache_b3.
@@ -45,7 +45,7 @@ public interface ParamCache2
      */
     java.util.List<OpbDynamicDataView> useResultCacheB3(Long pKey)
             throws OpbDataAccessException;
-    
+
     /**
      * functions do not use the scalar result cache by default.
      * Calls the database function use_scalar_result_cache_b.
@@ -54,7 +54,7 @@ public interface ParamCache2
      */
     Long useScalarResultCacheB(Long pKey)
             throws OpbDataAccessException;
-    
+
     /**
      * explicitly use the scalar result cache.
      * Calls the database function use_scalar_result_cache_b2.
@@ -63,7 +63,7 @@ public interface ParamCache2
      */
     Long useScalarResultCacheB2(Long pKey)
             throws OpbDataAccessException;
-    
+
     /**
      * do not use the scalar result cache.
      * Calls the database function use_scalar_result_cache_b3.
@@ -72,7 +72,7 @@ public interface ParamCache2
      */
     Long useScalarResultCacheB3(Long pKey)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function use_data_object_cache_b.
@@ -81,7 +81,7 @@ public interface ParamCache2
      */
     java.util.List<FieldsId> useDataObjectCacheB(Long pKey)
             throws OpbDataAccessException;
-    
+
     /**
      * do not use data object cache.
      * Calls the database function use_data_object_cache_b2.
@@ -90,7 +90,7 @@ public interface ParamCache2
      */
     java.util.List<FieldsId> useDataObjectCacheB2(Long pKey)
             throws OpbDataAccessException;
-    
+
 
     /**
      * out params can't use the result cache.
@@ -101,7 +101,7 @@ public interface ParamCache2
     void useResultCacheA(OpbValueWrapper<java.util.List<OpbDynamicDataView>> pData,
             String pKey)
             throws OpbDataAccessException;
-    
+
     /**
      * out params can't use the scalar result cache.
      * Calls the database procedure use_scalar_result_cache_a.
@@ -111,7 +111,7 @@ public interface ParamCache2
     void useScalarResultCacheA(OpbValueWrapper<Long> pData,
             Long pKey)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure use_data_object_cache_a.
@@ -121,6 +121,6 @@ public interface ParamCache2
     void useDataObjectCacheA(OpbValueWrapper<java.util.List<FieldsId>> pResult,
             Long pKey)
             throws OpbDataAccessException;
-    
+
 
 }

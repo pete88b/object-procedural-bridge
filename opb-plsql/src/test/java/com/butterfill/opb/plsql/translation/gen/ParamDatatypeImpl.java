@@ -86,31 +86,31 @@ public class ParamDatatypeImpl implements ParamDatatype {
             invalid1()
             throws OpbDataAccessException {
         final String methodName = "invalid1()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         java.math.BigDecimal result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_datatype.invalid_1(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.DECIMAL);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(java.math.BigDecimal.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
 
     /**
      * 
@@ -121,26 +121,26 @@ public class ParamDatatypeImpl implements ParamDatatype {
     public void invalid2(final java.math.BigDecimal p1)
             throws OpbDataAccessException {
         final String methodName = "invalid2(java.math.BigDecimal)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN param_datatype.invalid_2(?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.DECIMAL, p1);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure dodgy.
@@ -151,45 +151,45 @@ public class ParamDatatypeImpl implements ParamDatatype {
             final OpbValueWrapper<Long> p2)
             throws OpbDataAccessException {
         final String methodName = "dodgy(OpbValueWrapper, OpbValueWrapper)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "p1", p1);
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "p2", p2);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN param_datatype.dodgy(?, ?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.BIGINT, p1.getValue());
-        
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BIGINT);
-        
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BIGINT, p2.getValue());
-        
+
         opbCallHelper.registerOutParameter(
                 2, java.sql.Types.BIGINT);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         p1.setValue(opbCallHelper.get(Long.class, 1));
         p2.setValue(opbCallHelper.get(Long.class, 2));
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure a.
@@ -200,28 +200,28 @@ public class ParamDatatypeImpl implements ParamDatatype {
             final Long p2)
             throws OpbDataAccessException {
         final String methodName = "a(Long, Long)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN param_datatype.a(?, ?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.BIGINT, p1);
-        
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BIGINT, p2);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
 
 }

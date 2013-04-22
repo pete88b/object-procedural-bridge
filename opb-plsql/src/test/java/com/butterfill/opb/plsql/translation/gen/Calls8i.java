@@ -25,7 +25,7 @@ public interface Calls8i
      */
     String echo(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_CHAR.
@@ -34,7 +34,7 @@ public interface Calls8i
      */
     String fChar(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_VARCHAR2.
@@ -43,7 +43,7 @@ public interface Calls8i
      */
     String fVarchar2(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_NUMBER.
@@ -52,7 +52,7 @@ public interface Calls8i
      */
     String fNumber(java.math.BigDecimal pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_INTEGER.
@@ -61,7 +61,7 @@ public interface Calls8i
      */
     String fInteger(Long pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_RAW.
@@ -70,7 +70,7 @@ public interface Calls8i
      */
     String fRaw(byte[] pData)
             throws OpbDataAccessException;
-    
+
     /**
      * FUNCTION f_LONGRAW (
      * p_data IN LONGRAW
@@ -82,7 +82,7 @@ public interface Calls8i
      */
     String fDate(java.util.Date pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_blob.
@@ -91,7 +91,7 @@ public interface Calls8i
      */
     java.sql.Blob getBlob()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_BLOB.
@@ -100,7 +100,7 @@ public interface Calls8i
      */
     String fBlob(java.sql.Blob pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_clob.
@@ -109,7 +109,7 @@ public interface Calls8i
      */
     java.sql.Clob getClob()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_CLOB.
@@ -118,7 +118,7 @@ public interface Calls8i
      */
     String fClob(java.sql.Clob pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_BOOLEAN.
@@ -127,7 +127,7 @@ public interface Calls8i
      */
     String fBoolean(Boolean pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_DBMS_SQL_VARCHAR2_TABLE.
@@ -136,7 +136,7 @@ public interface Calls8i
      */
     String fDbmsSqlVarchar2Table(String[] pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_DBMS_SQL_NUMBER_TABLE.
@@ -145,7 +145,7 @@ public interface Calls8i
      */
     String fDbmsSqlNumberTable(java.math.BigDecimal[] pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_BINARY_INTEGER.
@@ -154,7 +154,7 @@ public interface Calls8i
      */
     String fBinaryInteger(Long pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_DEC.
@@ -163,7 +163,7 @@ public interface Calls8i
      */
     String fDec(java.math.BigDecimal pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_DECIMAL.
@@ -172,7 +172,7 @@ public interface Calls8i
      */
     String fDecimal(java.math.BigDecimal pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_FLOAT.
@@ -181,7 +181,7 @@ public interface Calls8i
      */
     String fFloat(java.math.BigDecimal pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_INT.
@@ -190,7 +190,7 @@ public interface Calls8i
      */
     String fInt(Long pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_NUMERIC.
@@ -199,7 +199,7 @@ public interface Calls8i
      */
     String fNumeric(java.math.BigDecimal pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_PLS_INTEGER.
@@ -208,7 +208,7 @@ public interface Calls8i
      */
     String fPlsInteger(Long pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_POSITIVE.
@@ -217,7 +217,7 @@ public interface Calls8i
      */
     String fPositive(java.math.BigDecimal pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_SMALLINT.
@@ -226,7 +226,7 @@ public interface Calls8i
      */
     String fSmallint(Long pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_CHARACTER.
@@ -235,7 +235,7 @@ public interface Calls8i
      */
     String fCharacter(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_NCHAR.
@@ -244,7 +244,7 @@ public interface Calls8i
      */
     String fNchar(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_NVARCHAR2.
@@ -253,7 +253,7 @@ public interface Calls8i
      */
     String fNvarchar2(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_ROWID.
@@ -262,7 +262,7 @@ public interface Calls8i
      */
     String fRowid(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_STRING.
@@ -271,7 +271,7 @@ public interface Calls8i
      */
     String fString(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_UROWID.
@@ -280,7 +280,7 @@ public interface Calls8i
      */
     String fUrowid(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function f_VARCHAR.
@@ -289,7 +289,7 @@ public interface Calls8i
      */
     String fVarchar(String pData)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_CHAR.
@@ -298,7 +298,7 @@ public interface Calls8i
      */
     String getChar()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_VARCHAR2.
@@ -307,7 +307,7 @@ public interface Calls8i
      */
     String getVarchar2()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_NUMBER.
@@ -316,7 +316,7 @@ public interface Calls8i
      */
     java.math.BigDecimal getNumber()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_INTEGER.
@@ -325,7 +325,7 @@ public interface Calls8i
      */
     Long getInteger()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_RAW.
@@ -334,7 +334,7 @@ public interface Calls8i
      */
     byte[] getRaw()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_DATE.
@@ -343,7 +343,7 @@ public interface Calls8i
      */
     java.util.Date getDate()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_BOOLEAN.
@@ -352,7 +352,7 @@ public interface Calls8i
      */
     Boolean getBoolean()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_BINARY_INTEGER.
@@ -361,7 +361,7 @@ public interface Calls8i
      */
     Long getBinaryInteger()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_DEC.
@@ -370,7 +370,7 @@ public interface Calls8i
      */
     java.math.BigDecimal getDec()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_DECIMAL.
@@ -379,7 +379,7 @@ public interface Calls8i
      */
     java.math.BigDecimal getDecimal()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_FLOAT.
@@ -388,7 +388,7 @@ public interface Calls8i
      */
     java.math.BigDecimal getFloat()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_INT.
@@ -397,7 +397,7 @@ public interface Calls8i
      */
     Long getInt()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_NUMERIC.
@@ -406,7 +406,7 @@ public interface Calls8i
      */
     java.math.BigDecimal getNumeric()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_PLS_INTEGER.
@@ -415,7 +415,7 @@ public interface Calls8i
      */
     Long getPlsInteger()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_POSITIVE.
@@ -424,7 +424,7 @@ public interface Calls8i
      */
     java.math.BigDecimal getPositive()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_SMALLINT.
@@ -433,7 +433,7 @@ public interface Calls8i
      */
     Long getSmallint()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_CHARACTER.
@@ -442,7 +442,7 @@ public interface Calls8i
      */
     String getCharacter()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_NCHAR.
@@ -451,7 +451,7 @@ public interface Calls8i
      */
     String getNchar()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_NVARCHAR2.
@@ -460,7 +460,7 @@ public interface Calls8i
      */
     String getNvarchar2()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_ROWID.
@@ -469,7 +469,7 @@ public interface Calls8i
      */
     String getRowid()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_STRING.
@@ -478,7 +478,7 @@ public interface Calls8i
      */
     String getString()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_UROWID.
@@ -487,7 +487,7 @@ public interface Calls8i
      */
     String getUrowid()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_VARCHAR.
@@ -496,7 +496,7 @@ public interface Calls8i
      */
     String getVarchar()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function data_types.
@@ -515,7 +515,7 @@ public interface Calls8i
             String[] pVarchar2Array,
             java.math.BigDecimal[] pNumberArray)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_from_test_table.
@@ -524,7 +524,7 @@ public interface Calls8i
      */
     java.util.List<OpbDynamicDataView> getFromTestTable()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function get_one_of_each_sql_type.
@@ -533,7 +533,7 @@ public interface Calls8i
      */
     java.util.List<OneOfEachSqlType> getOneOfEachSqlType()
             throws OpbDataAccessException;
-    
+
 
     /**
      * 
@@ -544,6 +544,6 @@ public interface Calls8i
     void echo(String pData,
             OpbValueWrapper<String> pResult)
             throws OpbDataAccessException;
-    
+
 
 }

@@ -89,12 +89,12 @@ public class FieldsIdImpl implements FieldsId {
 
         // set all fields to their initial values
         pk = null;
-        
+
         pk2 = null;
         pk2DataSourceValue = null;
-        
+
         a = null;
-        
+
 
     } // End of opbClearState()
 
@@ -153,19 +153,19 @@ public class FieldsIdImpl implements FieldsId {
             pk = OpbSqlHelper.getValue(
                     pk, resultSet,
                     "pk", true);
-            
+
             // load pk2 from column pk2
             pk2 = OpbSqlHelper.getValue(
                     pk2, resultSet,
                     "pk2", true);
             // save the value we just loaded as the datasource value
             pk2DataSourceValue = pk2;
-            
+
             // load a from column a
             a = OpbSqlHelper.getValue(
                     a, resultSet,
                     "a", true);
-            
+
 
             // create the id
             opbId = new OpbId(pk,
@@ -188,7 +188,7 @@ public class FieldsIdImpl implements FieldsId {
      * Derived from an opb-package field.
      */
     private String pk = null;
-    
+
     /**
      * Returns the value of pk.
      * @return The value of pk.
@@ -196,7 +196,7 @@ public class FieldsIdImpl implements FieldsId {
     public String getPk() {
         return pk;
     }
-    
+
     /**
      * Sets the value of pk.
      * @param a The new value for pk.
@@ -204,12 +204,12 @@ public class FieldsIdImpl implements FieldsId {
     private void setPk(final String a) {
         this.pk = a;
     }
-    
+
     /**
      * Derived from an opb-package field.
      */
     private String pk2 = null;
-    
+
     /**
      * Returns the value of pk2.
      * @return The value of pk2.
@@ -217,7 +217,7 @@ public class FieldsIdImpl implements FieldsId {
     public String getPk2() {
         return pk2;
     }
-    
+
     /**
      * Sets the value of pk2.
      * @param a The new value for pk2.
@@ -225,12 +225,12 @@ public class FieldsIdImpl implements FieldsId {
     public void setPk2(final String a) {
         this.pk2 = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private String pk2DataSourceValue = null;
-    
+
     /**
      * Returns the value of pk2DataSourceValue.
      * This is the last value returned by the data source for pk2.
@@ -239,7 +239,7 @@ public class FieldsIdImpl implements FieldsId {
     public String getPk2DataSourceValue() {
         return pk2DataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of pk2
      * is different to the value that was loaded from the data source,
@@ -255,7 +255,7 @@ public class FieldsIdImpl implements FieldsId {
      * Derived from an opb-package field.
      */
     private String a = null;
-    
+
     /**
      * Returns the value of a.
      * @return The value of a.
@@ -263,7 +263,7 @@ public class FieldsIdImpl implements FieldsId {
     public String getA() {
         return a;
     }
-    
+
     /**
      * Sets the value of a.
      * @param a The new value for a.
@@ -271,6 +271,6 @@ public class FieldsIdImpl implements FieldsId {
     private void setA(final String a) {
         this.a = a;
     }
-    
+
 
 }

@@ -86,9 +86,9 @@ public class IndexTableImpl implements IndexTable {
 
         // set all fields to their initial values
         numberArray = null;
-        
+
         varcharArray = null;
-        
+
 
     } // End of opbClearState()
 
@@ -96,7 +96,7 @@ public class IndexTableImpl implements IndexTable {
      * Derived from an opb-package field.
      */
     private java.math.BigDecimal[] numberArray = null;
-    
+
     /**
      * Returns the value of numberArray.
      * @return The value of numberArray.
@@ -104,7 +104,7 @@ public class IndexTableImpl implements IndexTable {
     public java.math.BigDecimal[] getNumberArray() {
         return numberArray;
     }
-    
+
     /**
      * Sets the value of numberArray.
      * @param a The new value for numberArray.
@@ -112,12 +112,12 @@ public class IndexTableImpl implements IndexTable {
     public void setNumberArray(final java.math.BigDecimal[] a) {
         this.numberArray = a;
     }
-    
+
     /**
      * Derived from an opb-package field.
      */
     private String[] varcharArray = null;
-    
+
     /**
      * Returns the value of varcharArray.
      * @return The value of varcharArray.
@@ -125,7 +125,7 @@ public class IndexTableImpl implements IndexTable {
     public String[] getVarcharArray() {
         return varcharArray;
     }
-    
+
     /**
      * Sets the value of varcharArray.
      * @param a The new value for varcharArray.
@@ -133,7 +133,7 @@ public class IndexTableImpl implements IndexTable {
     public void setVarcharArray(final String[] a) {
         this.varcharArray = a;
     }
-    
+
 
     /**
      * 
@@ -144,31 +144,31 @@ public class IndexTableImpl implements IndexTable {
     public void a(final String[] pData)
             throws OpbDataAccessException {
         final String methodName = "a(String[])";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN index_table.a(?); END;");
-    
+
         opbCallHelper.setPlsqlIndexTable(
                 1, java.sql.Types.VARCHAR, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure a2.
@@ -178,31 +178,31 @@ public class IndexTableImpl implements IndexTable {
     public void a2(final java.math.BigDecimal[] pData)
             throws OpbDataAccessException {
         final String methodName = "a2(java.math.BigDecimal[])";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN index_table.a2(?); END;");
-    
+
         opbCallHelper.setPlsqlIndexTable(
                 1, java.sql.Types.DECIMAL, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure a3.
@@ -212,31 +212,31 @@ public class IndexTableImpl implements IndexTable {
     public void a3(final Long[] pData)
             throws OpbDataAccessException {
         final String methodName = "a3(Long[])";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN index_table.a3(?); END;");
-    
+
         opbCallHelper.setPlsqlIndexTable(
                 1, java.sql.Types.BIGINT, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure x.
@@ -246,31 +246,31 @@ public class IndexTableImpl implements IndexTable {
     public void x(final String[] pData)
             throws OpbDataAccessException {
         final String methodName = "x(String[])";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN index_table.x(?); END;");
-    
+
         opbCallHelper.setPlsqlIndexTable(
                 1, java.sql.Types.VARCHAR, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure x2.
@@ -280,31 +280,31 @@ public class IndexTableImpl implements IndexTable {
     public void x2(final java.math.BigDecimal[] pData)
             throws OpbDataAccessException {
         final String methodName = "x2(java.math.BigDecimal[])";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN index_table.x2(?); END;");
-    
+
         opbCallHelper.setPlsqlIndexTable(
                 1, java.sql.Types.DECIMAL, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure x3.
@@ -314,31 +314,31 @@ public class IndexTableImpl implements IndexTable {
     public void x3(final Long[] pData)
             throws OpbDataAccessException {
         final String methodName = "x3(Long[])";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN index_table.x3(?); END;");
-    
+
         opbCallHelper.setPlsqlIndexTable(
                 1, java.sql.Types.BIGINT, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure y2.
@@ -348,31 +348,31 @@ public class IndexTableImpl implements IndexTable {
     public void y2(final String[] pData)
             throws OpbDataAccessException {
         final String methodName = "y2(String[])";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN index_table.y2(?); END;");
-    
+
         opbCallHelper.setPlsqlIndexTable(
                 1, java.sql.Types.VARCHAR, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure z.
@@ -384,9 +384,9 @@ public class IndexTableImpl implements IndexTable {
             final String[] pData3)
             throws OpbDataAccessException {
         final String methodName = "z(String[], Long[], String[])";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pData", pData,
@@ -399,29 +399,29 @@ public class IndexTableImpl implements IndexTable {
                 logger, CLASS_NAME, methodName,
                 "pData3", pData3,
                 "PL/SQL index-by tables cannot be set to null");
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN index_table.z(?, ?, ?); END;");
-    
+
         opbCallHelper.setPlsqlIndexTable(
                 1, java.sql.Types.VARCHAR, pData);
-        
+
         opbCallHelper.setPlsqlIndexTable(
                 2, java.sql.Types.BIGINT, pData2);
-        
+
         opbCallHelper.setPlsqlIndexTable(
                 3, java.sql.Types.VARCHAR, pData3);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
 
 }

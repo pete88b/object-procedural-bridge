@@ -87,40 +87,40 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
         // set all fields to their initial values
         aBinaryDouble = null;
         aBinaryDoubleDataSourceValue = null;
-        
+
         aBinaryFloat = null;
         aBinaryFloatDataSourceValue = null;
-        
+
         aBlob = null;
         aBlobDataSourceValue = null;
-        
+
         aChar = null;
         aCharDataSourceValue = null;
-        
+
         aClob = null;
         aClobDataSourceValue = null;
-        
+
         aDate = null;
         aDateDataSourceValue = null;
-        
+
         aNclob = null;
         aNclobDataSourceValue = null;
-        
+
         aNumber = null;
         aNumberDataSourceValue = null;
-        
+
         aNvarchar2 = null;
         aNvarchar2DataSourceValue = null;
-        
+
         aRaw = null;
         aRawDataSourceValue = null;
-        
+
         aTimestamp = null;
         aTimestampDataSourceValue = null;
-        
+
         aVarchar2 = null;
         aVarchar2DataSourceValue = null;
-        
+
 
     } // End of opbClearState()
 
@@ -169,84 +169,84 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
                     "a_binary_double", false);
             // save the value we just loaded as the datasource value
             aBinaryDoubleDataSourceValue = aBinaryDouble;
-            
+
             // load aBinaryFloat from column a_binary_float
             aBinaryFloat = OpbSqlHelper.getValue(
                     aBinaryFloat, resultSet,
                     "a_binary_float", false);
             // save the value we just loaded as the datasource value
             aBinaryFloatDataSourceValue = aBinaryFloat;
-            
+
             // load aBlob from column a_blob
             aBlob = OpbSqlHelper.getValue(
                     aBlob, resultSet,
                     "a_blob", true);
             // save the value we just loaded as the datasource value
             aBlobDataSourceValue = aBlob;
-            
+
             // load aChar from column a_char
             aChar = OpbSqlHelper.getValue(
                     aChar, resultSet,
                     "a_char", true);
             // save the value we just loaded as the datasource value
             aCharDataSourceValue = aChar;
-            
+
             // load aClob from column a_clob
             aClob = OpbSqlHelper.getValue(
                     aClob, resultSet,
                     "a_clob", true);
             // save the value we just loaded as the datasource value
             aClobDataSourceValue = aClob;
-            
+
             // load aDate from column a_date
             aDate = OpbSqlHelper.getValue(
                     aDate, resultSet,
                     "a_date", true);
             // save the value we just loaded as the datasource value
             aDateDataSourceValue = aDate;
-            
+
             // load aNclob from column a_nclob
             aNclob = OpbSqlHelper.getValue(
                     aNclob, resultSet,
                     "a_nclob", true);
             // save the value we just loaded as the datasource value
             aNclobDataSourceValue = aNclob;
-            
+
             // load aNumber from column a_number
             aNumber = OpbSqlHelper.getValue(
                     aNumber, resultSet,
                     "a_number", true);
             // save the value we just loaded as the datasource value
             aNumberDataSourceValue = aNumber;
-            
+
             // load aNvarchar2 from column a_nvarchar2
             aNvarchar2 = OpbSqlHelper.getValue(
                     aNvarchar2, resultSet,
                     "a_nvarchar2", true);
             // save the value we just loaded as the datasource value
             aNvarchar2DataSourceValue = aNvarchar2;
-            
+
             // load aRaw from column a_raw
             aRaw = OpbSqlHelper.getValue(
                     aRaw, resultSet,
                     "a_raw", true);
             // save the value we just loaded as the datasource value
             aRawDataSourceValue = aRaw;
-            
+
             // load aTimestamp from column a_timestamp
             aTimestamp = OpbSqlHelper.getValue(
                     aTimestamp, resultSet,
                     "a_timestamp", false);
             // save the value we just loaded as the datasource value
             aTimestampDataSourceValue = aTimestamp;
-            
+
             // load aVarchar2 from column a_varchar2
             aVarchar2 = OpbSqlHelper.getValue(
                     aVarchar2, resultSet,
                     "a_varchar2", true);
             // save the value we just loaded as the datasource value
             aVarchar2DataSourceValue = aVarchar2;
-            
+
 
         } catch (Exception ex) {
             OpbExceptionHelper.throwException(
@@ -265,7 +265,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
      * Derived from an opb-package field.
      */
     private Double aBinaryDouble = null;
-    
+
     /**
      * Returns the value of aBinaryDouble.
      * @return The value of aBinaryDouble.
@@ -273,7 +273,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public Double getABinaryDouble() {
         return aBinaryDouble;
     }
-    
+
     /**
      * Sets the value of aBinaryDouble.
      * @param a The new value for aBinaryDouble.
@@ -281,12 +281,12 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public void setABinaryDouble(final Double a) {
         this.aBinaryDouble = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private Double aBinaryDoubleDataSourceValue = null;
-    
+
     /**
      * Returns the value of aBinaryDoubleDataSourceValue.
      * This is the last value returned by the data source for aBinaryDouble.
@@ -295,7 +295,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public Double getABinaryDoubleDataSourceValue() {
         return aBinaryDoubleDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aBinaryDouble
      * is different to the value that was loaded from the data source,
@@ -311,7 +311,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
      * Derived from an opb-package field.
      */
     private Float aBinaryFloat = null;
-    
+
     /**
      * Returns the value of aBinaryFloat.
      * @return The value of aBinaryFloat.
@@ -319,7 +319,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public Float getABinaryFloat() {
         return aBinaryFloat;
     }
-    
+
     /**
      * Sets the value of aBinaryFloat.
      * @param a The new value for aBinaryFloat.
@@ -327,12 +327,12 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public void setABinaryFloat(final Float a) {
         this.aBinaryFloat = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private Float aBinaryFloatDataSourceValue = null;
-    
+
     /**
      * Returns the value of aBinaryFloatDataSourceValue.
      * This is the last value returned by the data source for aBinaryFloat.
@@ -341,7 +341,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public Float getABinaryFloatDataSourceValue() {
         return aBinaryFloatDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aBinaryFloat
      * is different to the value that was loaded from the data source,
@@ -357,7 +357,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
      * Derived from an opb-package field.
      */
     private java.sql.Blob aBlob = null;
-    
+
     /**
      * Returns the value of aBlob.
      * @return The value of aBlob.
@@ -365,7 +365,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public java.sql.Blob getABlob() {
         return aBlob;
     }
-    
+
     /**
      * Sets the value of aBlob.
      * @param a The new value for aBlob.
@@ -373,12 +373,12 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public void setABlob(final java.sql.Blob a) {
         this.aBlob = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private java.sql.Blob aBlobDataSourceValue = null;
-    
+
     /**
      * Returns the value of aBlobDataSourceValue.
      * This is the last value returned by the data source for aBlob.
@@ -387,7 +387,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public java.sql.Blob getABlobDataSourceValue() {
         return aBlobDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aBlob
      * is different to the value that was loaded from the data source,
@@ -403,7 +403,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
      * Derived from an opb-package field.
      */
     private String aChar = null;
-    
+
     /**
      * Returns the value of aChar.
      * @return The value of aChar.
@@ -411,7 +411,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public String getAChar() {
         return aChar;
     }
-    
+
     /**
      * Sets the value of aChar.
      * @param a The new value for aChar.
@@ -419,12 +419,12 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public void setAChar(final String a) {
         this.aChar = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private String aCharDataSourceValue = null;
-    
+
     /**
      * Returns the value of aCharDataSourceValue.
      * This is the last value returned by the data source for aChar.
@@ -433,7 +433,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public String getACharDataSourceValue() {
         return aCharDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aChar
      * is different to the value that was loaded from the data source,
@@ -449,7 +449,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
      * Derived from an opb-package field.
      */
     private java.sql.Clob aClob = null;
-    
+
     /**
      * Returns the value of aClob.
      * @return The value of aClob.
@@ -457,7 +457,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public java.sql.Clob getAClob() {
         return aClob;
     }
-    
+
     /**
      * Sets the value of aClob.
      * @param a The new value for aClob.
@@ -465,12 +465,12 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public void setAClob(final java.sql.Clob a) {
         this.aClob = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private java.sql.Clob aClobDataSourceValue = null;
-    
+
     /**
      * Returns the value of aClobDataSourceValue.
      * This is the last value returned by the data source for aClob.
@@ -479,7 +479,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public java.sql.Clob getAClobDataSourceValue() {
         return aClobDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aClob
      * is different to the value that was loaded from the data source,
@@ -495,7 +495,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
      * Derived from an opb-package field.
      */
     private java.util.Date aDate = null;
-    
+
     /**
      * Returns the value of aDate.
      * @return The value of aDate.
@@ -503,7 +503,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public java.util.Date getADate() {
         return aDate;
     }
-    
+
     /**
      * Sets the value of aDate.
      * @param a The new value for aDate.
@@ -511,12 +511,12 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public void setADate(final java.util.Date a) {
         this.aDate = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private java.util.Date aDateDataSourceValue = null;
-    
+
     /**
      * Returns the value of aDateDataSourceValue.
      * This is the last value returned by the data source for aDate.
@@ -525,7 +525,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public java.util.Date getADateDataSourceValue() {
         return aDateDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aDate
      * is different to the value that was loaded from the data source,
@@ -541,7 +541,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
      * Derived from an opb-package field.
      */
     private java.sql.Clob aNclob = null;
-    
+
     /**
      * Returns the value of aNclob.
      * @return The value of aNclob.
@@ -549,7 +549,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public java.sql.Clob getANclob() {
         return aNclob;
     }
-    
+
     /**
      * Sets the value of aNclob.
      * @param a The new value for aNclob.
@@ -557,12 +557,12 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public void setANclob(final java.sql.Clob a) {
         this.aNclob = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private java.sql.Clob aNclobDataSourceValue = null;
-    
+
     /**
      * Returns the value of aNclobDataSourceValue.
      * This is the last value returned by the data source for aNclob.
@@ -571,7 +571,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public java.sql.Clob getANclobDataSourceValue() {
         return aNclobDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aNclob
      * is different to the value that was loaded from the data source,
@@ -587,7 +587,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
      * Derived from an opb-package field.
      */
     private java.math.BigDecimal aNumber = null;
-    
+
     /**
      * Returns the value of aNumber.
      * @return The value of aNumber.
@@ -595,7 +595,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public java.math.BigDecimal getANumber() {
         return aNumber;
     }
-    
+
     /**
      * Sets the value of aNumber.
      * @param a The new value for aNumber.
@@ -603,12 +603,12 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public void setANumber(final java.math.BigDecimal a) {
         this.aNumber = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private java.math.BigDecimal aNumberDataSourceValue = null;
-    
+
     /**
      * Returns the value of aNumberDataSourceValue.
      * This is the last value returned by the data source for aNumber.
@@ -617,7 +617,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public java.math.BigDecimal getANumberDataSourceValue() {
         return aNumberDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aNumber
      * is different to the value that was loaded from the data source,
@@ -633,7 +633,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
      * Derived from an opb-package field.
      */
     private String aNvarchar2 = null;
-    
+
     /**
      * Returns the value of aNvarchar2.
      * @return The value of aNvarchar2.
@@ -641,7 +641,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public String getANvarchar2() {
         return aNvarchar2;
     }
-    
+
     /**
      * Sets the value of aNvarchar2.
      * @param a The new value for aNvarchar2.
@@ -649,12 +649,12 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public void setANvarchar2(final String a) {
         this.aNvarchar2 = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private String aNvarchar2DataSourceValue = null;
-    
+
     /**
      * Returns the value of aNvarchar2DataSourceValue.
      * This is the last value returned by the data source for aNvarchar2.
@@ -663,7 +663,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public String getANvarchar2DataSourceValue() {
         return aNvarchar2DataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aNvarchar2
      * is different to the value that was loaded from the data source,
@@ -679,7 +679,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
      * Derived from an opb-package field.
      */
     private byte[] aRaw = null;
-    
+
     /**
      * Returns the value of aRaw.
      * @return The value of aRaw.
@@ -687,7 +687,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public byte[] getARaw() {
         return aRaw;
     }
-    
+
     /**
      * Sets the value of aRaw.
      * @param a The new value for aRaw.
@@ -695,12 +695,12 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public void setARaw(final byte[] a) {
         this.aRaw = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private byte[] aRawDataSourceValue = null;
-    
+
     /**
      * Returns the value of aRawDataSourceValue.
      * This is the last value returned by the data source for aRaw.
@@ -709,7 +709,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public byte[] getARawDataSourceValue() {
         return aRawDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aRaw
      * is different to the value that was loaded from the data source,
@@ -725,7 +725,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
      * Derived from an opb-package field.
      */
     private java.sql.Timestamp aTimestamp = null;
-    
+
     /**
      * Returns the value of aTimestamp.
      * @return The value of aTimestamp.
@@ -733,7 +733,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public java.sql.Timestamp getATimestamp() {
         return aTimestamp;
     }
-    
+
     /**
      * Sets the value of aTimestamp.
      * @param a The new value for aTimestamp.
@@ -741,12 +741,12 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public void setATimestamp(final java.sql.Timestamp a) {
         this.aTimestamp = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private java.sql.Timestamp aTimestampDataSourceValue = null;
-    
+
     /**
      * Returns the value of aTimestampDataSourceValue.
      * This is the last value returned by the data source for aTimestamp.
@@ -755,7 +755,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public java.sql.Timestamp getATimestampDataSourceValue() {
         return aTimestampDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aTimestamp
      * is different to the value that was loaded from the data source,
@@ -771,7 +771,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
      * Derived from an opb-package field.
      */
     private String aVarchar2 = null;
-    
+
     /**
      * Returns the value of aVarchar2.
      * @return The value of aVarchar2.
@@ -779,7 +779,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public String getAVarchar2() {
         return aVarchar2;
     }
-    
+
     /**
      * Sets the value of aVarchar2.
      * @param a The new value for aVarchar2.
@@ -787,12 +787,12 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public void setAVarchar2(final String a) {
         this.aVarchar2 = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private String aVarchar2DataSourceValue = null;
-    
+
     /**
      * Returns the value of aVarchar2DataSourceValue.
      * This is the last value returned by the data source for aVarchar2.
@@ -801,7 +801,7 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
     public String getAVarchar2DataSourceValue() {
         return aVarchar2DataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of aVarchar2
      * is different to the value that was loaded from the data source,

@@ -27,20 +27,20 @@ public interface Dates
      * @return The value of aDate.
      */
     java.util.Date getADate();
-    
+
     /**
      * Sets the value of aDate.
      * @param a The new value for aDate.
      */
     void setADate(java.util.Date a);
-    
+
     /**
      * Returns the value of aDateDataSourceValue.
      * This is the last value returned by the data source for aDate.
      * @return The value of aDateDataSourceValue.
      */
     java.util.Date getADateDataSourceValue();
-    
+
     /**
      * Returns true if the value of aDate
      * is different to the value that was loaded from the data source,
@@ -48,26 +48,26 @@ public interface Dates
      * @return true if aDate has changed since it was loaded.
      */
     boolean getADateChanged();
-    
+
     /**
      * Returns the value of bDate.
      * @return The value of bDate.
      */
     java.util.Date getBDate();
-    
+
     /**
      * Sets the value of bDate.
      * @param a The new value for bDate.
      */
     void setBDate(java.util.Date a);
-    
+
     /**
      * Returns the value of bDateDataSourceValue.
      * This is the last value returned by the data source for bDate.
      * @return The value of bDateDataSourceValue.
      */
     java.util.Date getBDateDataSourceValue();
-    
+
     /**
      * Returns true if the value of bDate
      * is different to the value that was loaded from the data source,
@@ -75,7 +75,7 @@ public interface Dates
      * @return true if bDate has changed since it was loaded.
      */
     boolean getBDateChanged();
-    
+
 
     /**
      * 
@@ -85,7 +85,7 @@ public interface Dates
      */
     java.util.Date addOneDay(java.util.Date pDate)
             throws OpbDataAccessException;
-    
+
     /**
      * Calls addOneDay using mapped parameters.
      * <ul>
@@ -96,7 +96,7 @@ public interface Dates
      */
     java.util.Date addOneDay()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database function today.
@@ -105,7 +105,7 @@ public interface Dates
      */
     java.util.Date today()
             throws OpbDataAccessException;
-    
+
 
     /**
      * 
@@ -115,7 +115,7 @@ public interface Dates
      */
     void dateInOut(OpbValueWrapper<java.util.Date> pDate)
             throws OpbDataAccessException;
-    
+
     /**
      * Calls dateInOut using mapped parameters.
      * <ul>
@@ -126,6 +126,6 @@ public interface Dates
      */
     void dateInOut()
             throws OpbDataAccessException;
-    
+
 
 }

@@ -85,31 +85,31 @@ public class ArraysInImpl implements ArraysIn {
     public void testOne(final String[] pArray)
             throws OpbDataAccessException {
         final String methodName = "testOne(String[])";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pArray", pArray,
                 "PL/SQL index-by tables cannot be set to null");
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN arrays_in.test_one(?); END;");
-    
+
         opbCallHelper.setPlsqlIndexTable(
                 1, java.sql.Types.VARCHAR, pArray);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure test_two.
@@ -119,30 +119,30 @@ public class ArraysInImpl implements ArraysIn {
     public void testTwo(final java.math.BigDecimal[] pArray)
             throws OpbDataAccessException {
         final String methodName = "testTwo(java.math.BigDecimal[])";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pArray", pArray,
                 "PL/SQL index-by tables cannot be set to null");
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN arrays_in.test_two(?); END;");
-    
+
         opbCallHelper.setPlsqlIndexTable(
                 1, java.sql.Types.DECIMAL, pArray);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
 
 }

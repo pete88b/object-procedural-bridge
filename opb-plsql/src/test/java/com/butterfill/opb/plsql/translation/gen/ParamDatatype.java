@@ -25,7 +25,7 @@ public interface ParamDatatype
      */
     java.math.BigDecimal invalid1()
             throws OpbDataAccessException;
-    
+
 
     /**
      * 
@@ -35,7 +35,7 @@ public interface ParamDatatype
      */
     void invalid2(java.math.BigDecimal p1)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure dodgy.
@@ -45,7 +45,7 @@ public interface ParamDatatype
     void dodgy(OpbValueWrapper<Long> p1,
             OpbValueWrapper<Long> p2)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure a.
@@ -55,6 +55,6 @@ public interface ParamDatatype
     void a(Long p1,
             Long p2)
             throws OpbDataAccessException;
-    
+
 
 }

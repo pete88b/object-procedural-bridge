@@ -25,6 +25,6 @@ public interface Cats
      */
     java.util.List<Cat> getCats()
             throws OpbDataAccessException;
-    
+
 
 }

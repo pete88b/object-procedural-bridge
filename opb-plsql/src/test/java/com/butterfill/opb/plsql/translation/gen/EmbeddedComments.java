@@ -27,20 +27,20 @@ public interface EmbeddedComments
      * @return The value of include.
      */
     String getInclude();
-    
+
     /**
      * Sets the value of include.
      * @param a The new value for include.
      */
     void setInclude(String a);
-    
+
     /**
      * Returns the value of includeDataSourceValue.
      * This is the last value returned by the data source for include.
      * @return The value of includeDataSourceValue.
      */
     String getIncludeDataSourceValue();
-    
+
     /**
      * Returns true if the value of include
      * is different to the value that was loaded from the data source,
@@ -48,7 +48,7 @@ public interface EmbeddedComments
      * @return true if include has changed since it was loaded.
      */
     boolean getIncludeChanged();
-    
+
 
     /**
      * if the param element wasn't commented, this call would not be translated as
@@ -59,6 +59,6 @@ public interface EmbeddedComments
      */
     void a(java.math.BigDecimal pData)
             throws OpbDataAccessException;
-    
+
 
 }

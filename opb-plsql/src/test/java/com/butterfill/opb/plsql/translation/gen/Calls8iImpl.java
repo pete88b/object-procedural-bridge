@@ -86,35 +86,35 @@ public class Calls8iImpl implements Calls8i {
             echo(final String pData)
             throws OpbDataAccessException {
         final String methodName = "echo(String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.echo(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_CHAR.
@@ -125,35 +125,35 @@ public class Calls8iImpl implements Calls8i {
             fChar(final String pData)
             throws OpbDataAccessException {
         final String methodName = "fChar(String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_CHAR(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.CHAR, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_VARCHAR2.
@@ -164,35 +164,35 @@ public class Calls8iImpl implements Calls8i {
             fVarchar2(final String pData)
             throws OpbDataAccessException {
         final String methodName = "fVarchar2(String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_VARCHAR2(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_NUMBER.
@@ -203,35 +203,35 @@ public class Calls8iImpl implements Calls8i {
             fNumber(final java.math.BigDecimal pData)
             throws OpbDataAccessException {
         final String methodName = "fNumber(java.math.BigDecimal)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_NUMBER(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.DECIMAL, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_INTEGER.
@@ -242,35 +242,35 @@ public class Calls8iImpl implements Calls8i {
             fInteger(final Long pData)
             throws OpbDataAccessException {
         final String methodName = "fInteger(Long)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_INTEGER(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BIGINT, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_RAW.
@@ -281,35 +281,35 @@ public class Calls8iImpl implements Calls8i {
             fRaw(final byte[] pData)
             throws OpbDataAccessException {
         final String methodName = "fRaw(byte[])";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_RAW(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BINARY, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * FUNCTION f_LONGRAW (
      * p_data IN LONGRAW
@@ -323,35 +323,35 @@ public class Calls8iImpl implements Calls8i {
             fDate(final java.util.Date pData)
             throws OpbDataAccessException {
         final String methodName = "fDate(java.util.Date)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_DATE(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.TIMESTAMP, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_blob.
@@ -362,31 +362,31 @@ public class Calls8iImpl implements Calls8i {
             getBlob()
             throws OpbDataAccessException {
         final String methodName = "getBlob()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         java.sql.Blob result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_blob(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BLOB);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(java.sql.Blob.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_BLOB.
@@ -397,35 +397,35 @@ public class Calls8iImpl implements Calls8i {
             fBlob(final java.sql.Blob pData)
             throws OpbDataAccessException {
         final String methodName = "fBlob(java.sql.Blob)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_BLOB(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BLOB, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_clob.
@@ -436,31 +436,31 @@ public class Calls8iImpl implements Calls8i {
             getClob()
             throws OpbDataAccessException {
         final String methodName = "getClob()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         java.sql.Clob result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_clob(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.CLOB);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(java.sql.Clob.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_CLOB.
@@ -471,35 +471,35 @@ public class Calls8iImpl implements Calls8i {
             fClob(final java.sql.Clob pData)
             throws OpbDataAccessException {
         final String methodName = "fClob(java.sql.Clob)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_CLOB(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.CLOB, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_BOOLEAN.
@@ -510,35 +510,35 @@ public class Calls8iImpl implements Calls8i {
             fBoolean(final Boolean pData)
             throws OpbDataAccessException {
         final String methodName = "fBoolean(Boolean)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_BOOLEAN(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_DBMS_SQL_VARCHAR2_TABLE.
@@ -549,40 +549,40 @@ public class Calls8iImpl implements Calls8i {
             fDbmsSqlVarchar2Table(final String[] pData)
             throws OpbDataAccessException {
         final String methodName = "fDbmsSqlVarchar2Table(String[])";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_DBMS_SQL_VARCHAR2_TABLE(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setPlsqlIndexTable(
                 2, java.sql.Types.VARCHAR, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_DBMS_SQL_NUMBER_TABLE.
@@ -593,40 +593,40 @@ public class Calls8iImpl implements Calls8i {
             fDbmsSqlNumberTable(final java.math.BigDecimal[] pData)
             throws OpbDataAccessException {
         final String methodName = "fDbmsSqlNumberTable(java.math.BigDecimal[])";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_DBMS_SQL_NUMBER_TABLE(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setPlsqlIndexTable(
                 2, java.sql.Types.DECIMAL, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_BINARY_INTEGER.
@@ -637,35 +637,35 @@ public class Calls8iImpl implements Calls8i {
             fBinaryInteger(final Long pData)
             throws OpbDataAccessException {
         final String methodName = "fBinaryInteger(Long)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_BINARY_INTEGER(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BIGINT, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_DEC.
@@ -676,35 +676,35 @@ public class Calls8iImpl implements Calls8i {
             fDec(final java.math.BigDecimal pData)
             throws OpbDataAccessException {
         final String methodName = "fDec(java.math.BigDecimal)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_DEC(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.DECIMAL, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_DECIMAL.
@@ -715,35 +715,35 @@ public class Calls8iImpl implements Calls8i {
             fDecimal(final java.math.BigDecimal pData)
             throws OpbDataAccessException {
         final String methodName = "fDecimal(java.math.BigDecimal)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_DECIMAL(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.DECIMAL, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_FLOAT.
@@ -754,35 +754,35 @@ public class Calls8iImpl implements Calls8i {
             fFloat(final java.math.BigDecimal pData)
             throws OpbDataAccessException {
         final String methodName = "fFloat(java.math.BigDecimal)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_FLOAT(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.DECIMAL, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_INT.
@@ -793,35 +793,35 @@ public class Calls8iImpl implements Calls8i {
             fInt(final Long pData)
             throws OpbDataAccessException {
         final String methodName = "fInt(Long)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_INT(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BIGINT, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_NUMERIC.
@@ -832,35 +832,35 @@ public class Calls8iImpl implements Calls8i {
             fNumeric(final java.math.BigDecimal pData)
             throws OpbDataAccessException {
         final String methodName = "fNumeric(java.math.BigDecimal)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_NUMERIC(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.DECIMAL, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_PLS_INTEGER.
@@ -871,35 +871,35 @@ public class Calls8iImpl implements Calls8i {
             fPlsInteger(final Long pData)
             throws OpbDataAccessException {
         final String methodName = "fPlsInteger(Long)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_PLS_INTEGER(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BIGINT, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_POSITIVE.
@@ -910,35 +910,35 @@ public class Calls8iImpl implements Calls8i {
             fPositive(final java.math.BigDecimal pData)
             throws OpbDataAccessException {
         final String methodName = "fPositive(java.math.BigDecimal)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_POSITIVE(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.DECIMAL, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_SMALLINT.
@@ -949,35 +949,35 @@ public class Calls8iImpl implements Calls8i {
             fSmallint(final Long pData)
             throws OpbDataAccessException {
         final String methodName = "fSmallint(Long)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_SMALLINT(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BIGINT, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_CHARACTER.
@@ -988,35 +988,35 @@ public class Calls8iImpl implements Calls8i {
             fCharacter(final String pData)
             throws OpbDataAccessException {
         final String methodName = "fCharacter(String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_CHARACTER(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.CHAR, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_NCHAR.
@@ -1027,35 +1027,35 @@ public class Calls8iImpl implements Calls8i {
             fNchar(final String pData)
             throws OpbDataAccessException {
         final String methodName = "fNchar(String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_NCHAR(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_NVARCHAR2.
@@ -1066,35 +1066,35 @@ public class Calls8iImpl implements Calls8i {
             fNvarchar2(final String pData)
             throws OpbDataAccessException {
         final String methodName = "fNvarchar2(String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_NVARCHAR2(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_ROWID.
@@ -1105,35 +1105,35 @@ public class Calls8iImpl implements Calls8i {
             fRowid(final String pData)
             throws OpbDataAccessException {
         final String methodName = "fRowid(String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_ROWID(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_STRING.
@@ -1144,35 +1144,35 @@ public class Calls8iImpl implements Calls8i {
             fString(final String pData)
             throws OpbDataAccessException {
         final String methodName = "fString(String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_STRING(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_UROWID.
@@ -1183,35 +1183,35 @@ public class Calls8iImpl implements Calls8i {
             fUrowid(final String pData)
             throws OpbDataAccessException {
         final String methodName = "fUrowid(String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_UROWID(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function f_VARCHAR.
@@ -1222,35 +1222,35 @@ public class Calls8iImpl implements Calls8i {
             fVarchar(final String pData)
             throws OpbDataAccessException {
         final String methodName = "fVarchar(String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_VARCHAR(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_CHAR.
@@ -1261,31 +1261,31 @@ public class Calls8iImpl implements Calls8i {
             getChar()
             throws OpbDataAccessException {
         final String methodName = "getChar()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_CHAR(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.CHAR);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_VARCHAR2.
@@ -1296,31 +1296,31 @@ public class Calls8iImpl implements Calls8i {
             getVarchar2()
             throws OpbDataAccessException {
         final String methodName = "getVarchar2()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_VARCHAR2(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_NUMBER.
@@ -1331,31 +1331,31 @@ public class Calls8iImpl implements Calls8i {
             getNumber()
             throws OpbDataAccessException {
         final String methodName = "getNumber()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         java.math.BigDecimal result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_NUMBER(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.DECIMAL);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(java.math.BigDecimal.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_INTEGER.
@@ -1366,31 +1366,31 @@ public class Calls8iImpl implements Calls8i {
             getInteger()
             throws OpbDataAccessException {
         final String methodName = "getInteger()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         Long result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_INTEGER(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BIGINT);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(Long.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_RAW.
@@ -1401,31 +1401,31 @@ public class Calls8iImpl implements Calls8i {
             getRaw()
             throws OpbDataAccessException {
         final String methodName = "getRaw()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         byte[] result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_RAW(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BINARY);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(byte[].class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_DATE.
@@ -1436,31 +1436,31 @@ public class Calls8iImpl implements Calls8i {
             getDate()
             throws OpbDataAccessException {
         final String methodName = "getDate()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         java.util.Date result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_DATE(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.TIMESTAMP);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(java.util.Date.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_BOOLEAN.
@@ -1471,31 +1471,31 @@ public class Calls8iImpl implements Calls8i {
             getBoolean()
             throws OpbDataAccessException {
         final String methodName = "getBoolean()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         Boolean result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_BOOLEAN(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(Boolean.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_BINARY_INTEGER.
@@ -1506,31 +1506,31 @@ public class Calls8iImpl implements Calls8i {
             getBinaryInteger()
             throws OpbDataAccessException {
         final String methodName = "getBinaryInteger()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         Long result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_BINARY_INTEGER(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BIGINT);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(Long.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_DEC.
@@ -1541,31 +1541,31 @@ public class Calls8iImpl implements Calls8i {
             getDec()
             throws OpbDataAccessException {
         final String methodName = "getDec()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         java.math.BigDecimal result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_DEC(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.DECIMAL);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(java.math.BigDecimal.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_DECIMAL.
@@ -1576,31 +1576,31 @@ public class Calls8iImpl implements Calls8i {
             getDecimal()
             throws OpbDataAccessException {
         final String methodName = "getDecimal()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         java.math.BigDecimal result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_DECIMAL(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.DECIMAL);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(java.math.BigDecimal.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_FLOAT.
@@ -1611,31 +1611,31 @@ public class Calls8iImpl implements Calls8i {
             getFloat()
             throws OpbDataAccessException {
         final String methodName = "getFloat()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         java.math.BigDecimal result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_FLOAT(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.DECIMAL);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(java.math.BigDecimal.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_INT.
@@ -1646,31 +1646,31 @@ public class Calls8iImpl implements Calls8i {
             getInt()
             throws OpbDataAccessException {
         final String methodName = "getInt()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         Long result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_INT(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BIGINT);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(Long.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_NUMERIC.
@@ -1681,31 +1681,31 @@ public class Calls8iImpl implements Calls8i {
             getNumeric()
             throws OpbDataAccessException {
         final String methodName = "getNumeric()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         java.math.BigDecimal result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_NUMERIC(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.DECIMAL);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(java.math.BigDecimal.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_PLS_INTEGER.
@@ -1716,31 +1716,31 @@ public class Calls8iImpl implements Calls8i {
             getPlsInteger()
             throws OpbDataAccessException {
         final String methodName = "getPlsInteger()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         Long result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_PLS_INTEGER(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BIGINT);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(Long.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_POSITIVE.
@@ -1751,31 +1751,31 @@ public class Calls8iImpl implements Calls8i {
             getPositive()
             throws OpbDataAccessException {
         final String methodName = "getPositive()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         java.math.BigDecimal result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_POSITIVE(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.DECIMAL);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(java.math.BigDecimal.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_SMALLINT.
@@ -1786,31 +1786,31 @@ public class Calls8iImpl implements Calls8i {
             getSmallint()
             throws OpbDataAccessException {
         final String methodName = "getSmallint()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         Long result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_SMALLINT(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BIGINT);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(Long.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_CHARACTER.
@@ -1821,31 +1821,31 @@ public class Calls8iImpl implements Calls8i {
             getCharacter()
             throws OpbDataAccessException {
         final String methodName = "getCharacter()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_CHARACTER(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.CHAR);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_NCHAR.
@@ -1856,31 +1856,31 @@ public class Calls8iImpl implements Calls8i {
             getNchar()
             throws OpbDataAccessException {
         final String methodName = "getNchar()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_NCHAR(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_NVARCHAR2.
@@ -1891,31 +1891,31 @@ public class Calls8iImpl implements Calls8i {
             getNvarchar2()
             throws OpbDataAccessException {
         final String methodName = "getNvarchar2()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_NVARCHAR2(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_ROWID.
@@ -1926,31 +1926,31 @@ public class Calls8iImpl implements Calls8i {
             getRowid()
             throws OpbDataAccessException {
         final String methodName = "getRowid()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_ROWID(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_STRING.
@@ -1961,31 +1961,31 @@ public class Calls8iImpl implements Calls8i {
             getString()
             throws OpbDataAccessException {
         final String methodName = "getString()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_STRING(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_UROWID.
@@ -1996,31 +1996,31 @@ public class Calls8iImpl implements Calls8i {
             getUrowid()
             throws OpbDataAccessException {
         final String methodName = "getUrowid()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_UROWID(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_VARCHAR.
@@ -2031,31 +2031,31 @@ public class Calls8iImpl implements Calls8i {
             getVarchar()
             throws OpbDataAccessException {
         final String methodName = "getVarchar()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_VARCHAR(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function data_types.
@@ -2076,11 +2076,11 @@ public class Calls8iImpl implements Calls8i {
             final java.math.BigDecimal[] pNumberArray)
             throws OpbDataAccessException {
         final String methodName = "dataTypes(String, String, java.math.BigDecimal, Long, byte[], java.util.Date, java.sql.Blob, java.sql.Clob, Boolean, String[], java.math.BigDecimal[])";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pVarchar2Array", pVarchar2Array,
@@ -2089,61 +2089,61 @@ public class Calls8iImpl implements Calls8i {
                 logger, CLASS_NAME, methodName,
                 "pNumberArray", pNumberArray,
                 "PL/SQL index-by tables cannot be set to null");
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.data_types(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.CHAR, pChar);
-        
+
         opbCallHelper.setObject(
                 3, java.sql.Types.VARCHAR, pVarchar2);
-        
+
         opbCallHelper.setObject(
                 4, java.sql.Types.DECIMAL, pNumber);
-        
+
         opbCallHelper.setObject(
                 5, java.sql.Types.BIGINT, pInteger);
-        
+
         opbCallHelper.setObject(
                 6, java.sql.Types.BINARY, pRaw);
-        
+
         opbCallHelper.setObject(
                 7, java.sql.Types.TIMESTAMP, pDate);
-        
+
         opbCallHelper.setObject(
                 8, java.sql.Types.BLOB, pBlob);
-        
+
         opbCallHelper.setObject(
                 9, java.sql.Types.CLOB, pClob);
-        
+
         opbCallHelper.setObject(
                 10, java.sql.Types.VARCHAR, pBoolean);
-        
+
         opbCallHelper.setPlsqlIndexTable(
                 11, java.sql.Types.VARCHAR, pVarchar2Array);
-        
+
         opbCallHelper.setPlsqlIndexTable(
                 12, java.sql.Types.DECIMAL, pNumberArray);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_from_test_table.
@@ -2154,48 +2154,48 @@ public class Calls8iImpl implements Calls8i {
             getFromTestTable()
             throws OpbDataAccessException {
         final String methodName = "getFromTestTable()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "DataObjectSource", opbDataObjectSource);
-    
+
         OpbId keyToResult = new OpbId(
                 "calls8i.get_from_test_table");
-    
+
         java.util.List<OpbDynamicDataView> result =
                 opbDataObjectSource.getCachedResult(
                 OpbDynamicDataView.class, keyToResult);
-    
+
         if (result != null) {
             logger.logp(Level.FINER, CLASS_NAME, methodName,
                     "cached result found. returning");
             return result;
         }
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_from_test_table(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, oracle.jdbc.OracleTypes.CURSOR);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbDataObjectSource.getResult(
                 OpbDynamicDataView.class,
                 opbCallHelper.get(java.sql.ResultSet.class, 1), keyToResult);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_one_of_each_sql_type.
@@ -2206,48 +2206,48 @@ public class Calls8iImpl implements Calls8i {
             getOneOfEachSqlType()
             throws OpbDataAccessException {
         final String methodName = "getOneOfEachSqlType()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "DataObjectSource", opbDataObjectSource);
-    
+
         OpbId keyToResult = new OpbId(
                 "calls8i.get_one_of_each_sql_type");
-    
+
         java.util.List<OneOfEachSqlType> result =
                 opbDataObjectSource.getCachedResult(
                 OneOfEachSqlType.class, keyToResult);
-    
+
         if (result != null) {
             logger.logp(Level.FINER, CLASS_NAME, methodName,
                     "cached result found. returning");
             return result;
         }
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_one_of_each_sql_type(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, oracle.jdbc.OracleTypes.CURSOR);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbDataObjectSource.getResult(
                 OneOfEachSqlType.class,
                 opbCallHelper.get(java.sql.ResultSet.class, 1), keyToResult);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
 
     /**
      * 
@@ -2259,34 +2259,34 @@ public class Calls8iImpl implements Calls8i {
             final OpbValueWrapper<String> pResult)
             throws OpbDataAccessException {
         final String methodName = "echo(String, OpbValueWrapper)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pResult", pResult);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN calls8i.echo(?, ?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.VARCHAR, pData);
-        
+
         opbCallHelper.registerOutParameter(
                 2, java.sql.Types.VARCHAR);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         pResult.setValue(opbCallHelper.get(String.class, 2));
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
 
 }

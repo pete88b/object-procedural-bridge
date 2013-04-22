@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.antlr.runtime.RecognizerSharedState;
 import org.antlr.runtime.tree.TreeNodeStream;
 import org.antlr.runtime.tree.TreeParser;
 
@@ -75,6 +76,15 @@ class PlsqlTreeParserSuperClass extends TreeParser {
         super(input);
     }
 
+    /**
+     * Creates a new parser by calling super(TreeNodeStream, RecognizerSharedState).
+     * @param input The tree to parse.
+     * @param state The shared state.
+     */
+    public PlsqlTreeParserSuperClass(
+            final TreeNodeStream input, final RecognizerSharedState state) {
+        super(input, state);
+    }
 
     /**
      * Returns true if PL/SQL comments should be used in generated Java code,

@@ -86,35 +86,35 @@ public class LongStringsImpl implements LongStrings {
             howLong(final String pData)
             throws OpbDataAccessException {
         final String methodName = "howLong(String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         Long result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := long_strings.how_long(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BIGINT);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pData);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(Long.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * 
      * Calls the database function get_long.
@@ -125,35 +125,35 @@ public class LongStringsImpl implements LongStrings {
             getLong(final Long pHowLong)
             throws OpbDataAccessException {
         final String methodName = "getLong(Long)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         String result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := long_strings.get_long(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BIGINT, pHowLong);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(String.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
 
     /**
      * 
@@ -164,34 +164,34 @@ public class LongStringsImpl implements LongStrings {
     public void inOut(final OpbValueWrapper<String> pData)
             throws OpbDataAccessException {
         final String methodName = "inOut(OpbValueWrapper)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pData", pData);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN long_strings.in_out(?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.VARCHAR, pData.getValue());
-        
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         pData.setValue(opbCallHelper.get(String.class, 1));
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
 
 }

@@ -27,18 +27,18 @@ public interface FieldsInLoad
      * @return The value of fDefault.
      */
     String getFDefault();
-    
+
     /**
      * Returns the value of fOptional.
      * @return The value of fOptional.
      */
     String getFOptional();
-    
+
     /**
      * Returns the value of fIgnored.
      * @return The value of fIgnored.
      */
     String getFIgnored();
-    
+
 
 }
