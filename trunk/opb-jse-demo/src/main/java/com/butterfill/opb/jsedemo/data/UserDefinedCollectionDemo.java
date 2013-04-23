@@ -25,6 +25,6 @@ public interface UserDefinedCollectionDemo
      */
     java.math.BigDecimal[] echo(Object[] pData)
             throws OpbDataAccessException;
-    
+
 
 }

@@ -27,37 +27,37 @@ public interface Addresses
      * @return The value of cityId.
      */
     String getCityId();
-    
+
     /**
      * Sets the value of cityId.
      * @param a The new value for cityId.
      */
     void setCityId(String a);
-    
+
     /**
      * Returns the value of line1.
      * @return The value of line1.
      */
     String getLine1();
-    
+
     /**
      * Sets the value of line1.
      * @param a The new value for line1.
      */
     void setLine1(String a);
-    
+
     /**
      * Returns the value of line2.
      * @return The value of line2.
      */
     String getLine2();
-    
+
     /**
      * Sets the value of line2.
      * @param a The new value for line2.
      */
     void setLine2(String a);
-    
+
 
     /**
      * Returns all addresses that meet the search criteria.
@@ -69,7 +69,7 @@ public interface Addresses
             String pLine1,
             String pLine2)
             throws OpbDataAccessException;
-    
+
     /**
      * Calls getFiltered using mapped parameters.
      * <ul>
@@ -82,6 +82,6 @@ public interface Addresses
      */
     java.util.List<Address> getFiltered()
             throws OpbDataAccessException;
-    
+
 
 }

@@ -27,26 +27,26 @@ public interface Person
      * @return The value of personId.
      */
     Long getPersonId();
-    
+
     /**
      * Returns the value of lastName.
      * @return The value of lastName.
      */
     String getLastName();
-    
+
     /**
      * Sets the value of lastName.
      * @param a The new value for lastName.
      */
     void setLastName(String a);
-    
+
     /**
      * Returns the value of lastNameDataSourceValue.
      * This is the last value returned by the data source for lastName.
      * @return The value of lastNameDataSourceValue.
      */
     String getLastNameDataSourceValue();
-    
+
     /**
      * Returns true if the value of lastName
      * is different to the value that was loaded from the data source,
@@ -54,26 +54,26 @@ public interface Person
      * @return true if lastName has changed since it was loaded.
      */
     boolean getLastNameChanged();
-    
+
     /**
      * Returns the value of addressId.
      * @return The value of addressId.
      */
     Long getAddressId();
-    
+
     /**
      * Sets the value of addressId.
      * @param a The new value for addressId.
      */
     void setAddressId(Long a);
-    
+
     /**
      * Returns the value of addressIdDataSourceValue.
      * This is the last value returned by the data source for addressId.
      * @return The value of addressIdDataSourceValue.
      */
     Long getAddressIdDataSourceValue();
-    
+
     /**
      * Returns true if the value of addressId
      * is different to the value that was loaded from the data source,
@@ -81,26 +81,26 @@ public interface Person
      * @return true if addressId has changed since it was loaded.
      */
     boolean getAddressIdChanged();
-    
+
     /**
      * Returns the value of firstName.
      * @return The value of firstName.
      */
     String getFirstName();
-    
+
     /**
      * Sets the value of firstName.
      * @param a The new value for firstName.
      */
     void setFirstName(String a);
-    
+
     /**
      * Returns the value of firstNameDataSourceValue.
      * This is the last value returned by the data source for firstName.
      * @return The value of firstNameDataSourceValue.
      */
     String getFirstNameDataSourceValue();
-    
+
     /**
      * Returns true if the value of firstName
      * is different to the value that was loaded from the data source,
@@ -108,19 +108,19 @@ public interface Person
      * @return true if firstName has changed since it was loaded.
      */
     boolean getFirstNameChanged();
-    
+
     /**
      * Returns the value of addressLabel.
      * @return The value of addressLabel.
      */
     String getAddressLabel();
-    
+
     /**
      * Returns the value of cityLabel.
      * @return The value of cityLabel.
      */
     String getCityLabel();
-    
+
 
     /**
      * Returns the address of this person.
@@ -130,7 +130,7 @@ public interface Person
      */
     java.util.List<Address> getAddress(Long pAddressId)
             throws OpbDataAccessException;
-    
+
     /**
      * Calls getAddress using mapped parameters.
      * <ul>
@@ -141,7 +141,7 @@ public interface Person
      */
     java.util.List<Address> getAddress()
             throws OpbDataAccessException;
-    
+
 
     /**
      * Deletes a Person by primary key.
@@ -154,7 +154,7 @@ public interface Person
             Long pOldAddressId,
             String pOldFirstName)
             throws OpbDataAccessException;
-    
+
     /**
      * Calls del using mapped parameters.
      * <ul>
@@ -168,7 +168,7 @@ public interface Person
      */
     void del()
             throws OpbDataAccessException;
-    
+
     /**
      * Creates a Person returning it's new primary key value(s).
      * Calls the database procedure ins.
@@ -180,7 +180,7 @@ public interface Person
             Long pAddressId,
             String pFirstName)
             throws OpbDataAccessException;
-    
+
     /**
      * Calls ins using mapped parameters.
      * <ul>
@@ -194,7 +194,7 @@ public interface Person
      */
     void ins()
             throws OpbDataAccessException;
-    
+
     /**
      * Updates a Person by primary key.
      * Calls the database procedure upd.
@@ -209,7 +209,7 @@ public interface Person
             Long pOldAddressId,
             String pOldFirstName)
             throws OpbDataAccessException;
-    
+
     /**
      * Calls upd using mapped parameters.
      * <ul>
@@ -226,6 +226,6 @@ public interface Person
      */
     void upd()
             throws OpbDataAccessException;
-    
+
 
 }

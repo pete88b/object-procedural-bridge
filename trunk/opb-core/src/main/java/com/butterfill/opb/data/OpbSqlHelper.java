@@ -320,7 +320,7 @@ public final class OpbSqlHelper {
                 new Object[]{columnName, dflt, failOnInvalidColumnName});
 
         try {
-            Object result = resultSet.getObject(columnName);
+            final Object result = resultSet.getObject(columnName);
             logger.logp(Level.FINEST, CLASS_NAME, methodName,
                     "Got object from resultSet. returning {0}", result);
             return result;
@@ -538,7 +538,7 @@ public final class OpbSqlHelper {
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
                     "Failed to cast column " + columnName
-                    + " to Double. value=" + value);
+                    + " to Double. value=" + value, ex);
 
         }
 
@@ -583,7 +583,7 @@ public final class OpbSqlHelper {
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
                     "Failed to cast column " + columnName
-                    + " to Float. value=" + value);
+                    + " to Float. value=" + value, ex);
 
         }
 
@@ -703,7 +703,6 @@ public final class OpbSqlHelper {
 
     } // End of getValue(java.util.Date ...
 
-    // <editor-fold defaultstate="collapsed" desc="generated section">
 
     /**
      * Returns the value of columnName in the current row of resultSet
@@ -742,12 +741,13 @@ public final class OpbSqlHelper {
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
                     "Failed to cast column " + columnName
-                    + " to String. value=" + value);
+                    + " to String. value=" + value, ex);
 
         }
 
     } // End of getValue(String ...
 
+    // TODO: xxx use or remove
     /**
      * Returns the value of columnName in the current row of resultSet
      * as a java.sql.Date.
@@ -768,7 +768,7 @@ public final class OpbSqlHelper {
      *   If failOnInvalidColumnName is true and columnName cannot be found in
      *   resultSet, or if we fail to get columnName from resultSet,
      *   or the value of columnName cannot be cast to java.sql.Date.
-     */
+     *
     public static java.sql.Date getValue(
             final java.sql.Date dflt, final ResultSet resultSet,
             final String columnName, final boolean failOnInvalidColumnName)
@@ -785,11 +785,12 @@ public final class OpbSqlHelper {
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
                     "Failed to cast column " + columnName
-                    + " to java.sql.Date. value=" + value);
+                    + " to java.sql.Date. value=" + value, ex);
 
         }
 
     } // End of getValue(java.sql.Date ...
+    */
 
     /**
      * Returns the value of columnName in the current row of resultSet
@@ -828,7 +829,7 @@ public final class OpbSqlHelper {
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
                     "Failed to cast column " + columnName
-                    + " to java.math.BigDecimal. value=" + value);
+                    + " to java.math.BigDecimal. value=" + value, ex);
 
         }
 
@@ -871,7 +872,7 @@ public final class OpbSqlHelper {
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
                     "Failed to cast column " + columnName
-                    + " to byte[]. value=" + value);
+                    + " to byte[]. value=" + value, ex);
 
         }
 
@@ -914,7 +915,7 @@ public final class OpbSqlHelper {
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
                     "Failed to cast column " + columnName
-                    + " to java.sql.Blob. value=" + value);
+                    + " to java.sql.Blob. value=" + value, ex);
 
         }
 
@@ -957,14 +958,11 @@ public final class OpbSqlHelper {
         } catch (ClassCastException ex) {
             throw new OpbDataAccessException(
                     "Failed to cast column " + columnName
-                    + " to java.sql.Clob. value=" + value);
+                    + " to java.sql.Clob. value=" + value, ex);
 
         }
 
     } // End of getValue(java.sql.Clob ...
-
-
-    // </editor-fold> End of generated Section
 
 
     // </editor-fold> End of get value Section

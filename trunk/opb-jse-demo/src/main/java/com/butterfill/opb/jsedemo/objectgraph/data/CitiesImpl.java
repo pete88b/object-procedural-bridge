@@ -86,7 +86,7 @@ public class CitiesImpl implements Cities {
 
         // set all fields to their initial values
         cityName = null;
-        
+
 
     } // End of opbClearState()
 
@@ -94,7 +94,7 @@ public class CitiesImpl implements Cities {
      * Derived from an opb-package field.
      */
     private String cityName = null;
-    
+
     /**
      * Returns the value of cityName.
      * @return The value of cityName.
@@ -102,7 +102,7 @@ public class CitiesImpl implements Cities {
     public String getCityName() {
         return cityName;
     }
-    
+
     /**
      * Sets the value of cityName.
      * @param a The new value for cityName.
@@ -110,7 +110,7 @@ public class CitiesImpl implements Cities {
     public void setCityName(final String a) {
         this.cityName = a;
     }
-    
+
 
     /**
      * Returns all cities that meet the search criteria.
@@ -122,53 +122,53 @@ public class CitiesImpl implements Cities {
             getFiltered(final String pCityName)
             throws OpbDataAccessException {
         final String methodName = "getFiltered(String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "DataObjectSource", opbDataObjectSource);
-    
+
         OpbId keyToResult = new OpbId(
                 "cities.get_filtered",
                 pCityName);
-    
+
         java.util.List<City> result =
                 opbDataObjectSource.getCachedResult(
                 City.class, keyToResult);
-    
+
         if (result != null) {
             logger.logp(Level.FINER, CLASS_NAME, methodName,
                     "cached result found. returning");
             return result;
         }
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := cities.get_filtered(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, oracle.jdbc.OracleTypes.CURSOR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pCityName);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbDataObjectSource.getResult(
                 City.class,
                 opbCallHelper.get(java.sql.ResultSet.class, 1), keyToResult, true);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * Calls getFiltered using mapped parameters.
      * <ul>
@@ -181,16 +181,16 @@ public class CitiesImpl implements Cities {
             getFiltered()
             throws OpbDataAccessException {
         final String methodName = "getFiltered()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         java.util.List<City> result = getFiltered(
                 getCityName());
-    
-    
+
+
         return result;
     }
-    
+
     /**
      * Returns the ID of the specified city.
      * Calls the database function get_city_id.
@@ -201,34 +201,34 @@ public class CitiesImpl implements Cities {
             getCityId(final String pCityName)
             throws OpbDataAccessException {
         final String methodName = "getCityId(String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         Long result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := cities.get_city_id(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BIGINT);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pCityName);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(Long.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
 
 }

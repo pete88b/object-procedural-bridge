@@ -25,7 +25,7 @@ public interface DbmsOutput
      */
     void enable(Long bufferSize)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure disable.
@@ -34,7 +34,7 @@ public interface DbmsOutput
      */
     void disable()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure put.
@@ -43,7 +43,7 @@ public interface DbmsOutput
      */
     void put(String a)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure put_line.
@@ -52,7 +52,7 @@ public interface DbmsOutput
      */
     void putLine(String a)
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure new_line.
@@ -61,7 +61,7 @@ public interface DbmsOutput
      */
     void newLine()
             throws OpbDataAccessException;
-    
+
     /**
      * 
      * Calls the database procedure get_line.
@@ -71,6 +71,6 @@ public interface DbmsOutput
     void getLine(OpbValueWrapper<String> line,
             OpbValueWrapper<Long> status)
             throws OpbDataAccessException;
-    
+
 
 }

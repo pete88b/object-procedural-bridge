@@ -89,16 +89,16 @@ public class AddressImpl implements Address {
 
         // set all fields to their initial values
         addressId = null;
-        
+
         cityId = null;
         cityIdDataSourceValue = null;
-        
+
         line1 = null;
         line1DataSourceValue = null;
-        
+
         line2 = null;
         line2DataSourceValue = null;
-        
+
 
     } // End of opbClearState()
 
@@ -157,28 +157,28 @@ public class AddressImpl implements Address {
             addressId = OpbSqlHelper.getValue(
                     addressId, resultSet,
                     "address_id", true);
-            
+
             // load cityId from column city_id
             cityId = OpbSqlHelper.getValue(
                     cityId, resultSet,
                     "city_id", true);
             // save the value we just loaded as the datasource value
             cityIdDataSourceValue = cityId;
-            
+
             // load line1 from column line_1
             line1 = OpbSqlHelper.getValue(
                     line1, resultSet,
                     "line_1", true);
             // save the value we just loaded as the datasource value
             line1DataSourceValue = line1;
-            
+
             // load line2 from column line_2
             line2 = OpbSqlHelper.getValue(
                     line2, resultSet,
                     "line_2", true);
             // save the value we just loaded as the datasource value
             line2DataSourceValue = line2;
-            
+
 
             // create the id
             opbId = new OpbId(addressId);
@@ -200,7 +200,7 @@ public class AddressImpl implements Address {
      * Derived from an opb-package field.
      */
     private Long addressId = null;
-    
+
     /**
      * Returns the value of addressId.
      * @return The value of addressId.
@@ -208,7 +208,7 @@ public class AddressImpl implements Address {
     public Long getAddressId() {
         return addressId;
     }
-    
+
     /**
      * Sets the value of addressId.
      * @param a The new value for addressId.
@@ -216,12 +216,12 @@ public class AddressImpl implements Address {
     private void setAddressId(final Long a) {
         this.addressId = a;
     }
-    
+
     /**
      * Derived from an opb-package field.
      */
     private Long cityId = null;
-    
+
     /**
      * Returns the value of cityId.
      * @return The value of cityId.
@@ -229,7 +229,7 @@ public class AddressImpl implements Address {
     public Long getCityId() {
         return cityId;
     }
-    
+
     /**
      * Sets the value of cityId.
      * @param a The new value for cityId.
@@ -237,12 +237,12 @@ public class AddressImpl implements Address {
     public void setCityId(final Long a) {
         this.cityId = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private Long cityIdDataSourceValue = null;
-    
+
     /**
      * Returns the value of cityIdDataSourceValue.
      * This is the last value returned by the data source for cityId.
@@ -251,7 +251,7 @@ public class AddressImpl implements Address {
     public Long getCityIdDataSourceValue() {
         return cityIdDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of cityId
      * is different to the value that was loaded from the data source,
@@ -267,7 +267,7 @@ public class AddressImpl implements Address {
      * Derived from an opb-package field.
      */
     private String line1 = null;
-    
+
     /**
      * Returns the value of line1.
      * @return The value of line1.
@@ -275,7 +275,7 @@ public class AddressImpl implements Address {
     public String getLine1() {
         return line1;
     }
-    
+
     /**
      * Sets the value of line1.
      * @param a The new value for line1.
@@ -283,12 +283,12 @@ public class AddressImpl implements Address {
     public void setLine1(final String a) {
         this.line1 = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private String line1DataSourceValue = null;
-    
+
     /**
      * Returns the value of line1DataSourceValue.
      * This is the last value returned by the data source for line1.
@@ -297,7 +297,7 @@ public class AddressImpl implements Address {
     public String getLine1DataSourceValue() {
         return line1DataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of line1
      * is different to the value that was loaded from the data source,
@@ -313,7 +313,7 @@ public class AddressImpl implements Address {
      * Derived from an opb-package field.
      */
     private String line2 = null;
-    
+
     /**
      * Returns the value of line2.
      * @return The value of line2.
@@ -321,7 +321,7 @@ public class AddressImpl implements Address {
     public String getLine2() {
         return line2;
     }
-    
+
     /**
      * Sets the value of line2.
      * @param a The new value for line2.
@@ -329,12 +329,12 @@ public class AddressImpl implements Address {
     public void setLine2(final String a) {
         this.line2 = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private String line2DataSourceValue = null;
-    
+
     /**
      * Returns the value of line2DataSourceValue.
      * This is the last value returned by the data source for line2.
@@ -343,7 +343,7 @@ public class AddressImpl implements Address {
     public String getLine2DataSourceValue() {
         return line2DataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of line2
      * is different to the value that was loaded from the data source,
@@ -366,53 +366,53 @@ public class AddressImpl implements Address {
             getPeople(final Long pAddressId)
             throws OpbDataAccessException {
         final String methodName = "getPeople(Long)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "DataObjectSource", opbDataObjectSource);
-    
+
         OpbId keyToResult = new OpbId(
                 "address.get_people",
                 pAddressId);
-    
+
         java.util.List<Person> result =
                 opbDataObjectSource.getCachedResult(
                 Person.class, keyToResult);
-    
+
         if (result != null) {
             logger.logp(Level.FINER, CLASS_NAME, methodName,
                     "cached result found. returning");
             return result;
         }
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := address.get_people(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, oracle.jdbc.OracleTypes.CURSOR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BIGINT, pAddressId);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbDataObjectSource.getResult(
                 Person.class,
                 opbCallHelper.get(java.sql.ResultSet.class, 1), keyToResult, true);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * Calls getPeople using mapped parameters.
      * <ul>
@@ -425,16 +425,16 @@ public class AddressImpl implements Address {
             getPeople()
             throws OpbDataAccessException {
         final String methodName = "getPeople()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         java.util.List<Person> result = getPeople(
                 getAddressId());
-    
-    
+
+
         return result;
     }
-    
+
 
     /**
      * Deletes a Address by primary key.
@@ -448,37 +448,37 @@ public class AddressImpl implements Address {
             final String pOldLine2)
             throws OpbDataAccessException {
         final String methodName = "del(Long, Long, String, String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN address.del(?, ?, ?, ?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.BIGINT, pAddressId);
-        
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BIGINT, pOldCityId);
-        
+
         opbCallHelper.setObject(
                 3, java.sql.Types.VARCHAR, pOldLine1);
-        
+
         opbCallHelper.setObject(
                 4, java.sql.Types.VARCHAR, pOldLine2);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbDataObjectSource.clearCached(Address.class, getOpbId());
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * Calls del using mapped parameters.
      * <ul>
@@ -493,16 +493,16 @@ public class AddressImpl implements Address {
     public void del()
             throws OpbDataAccessException {
         final String methodName = "del()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         del(getAddressId(),
                     getCityIdDataSourceValue(),
                     getLine1DataSourceValue(),
                     getLine2DataSourceValue());
-    
+
     }
-    
+
     /**
      * Creates a Address returning it's new primary key value(s).
      * Calls the database procedure ins.
@@ -515,43 +515,43 @@ public class AddressImpl implements Address {
             final String pLine2)
             throws OpbDataAccessException {
         final String methodName = "ins(OpbValueWrapper, Long, String, String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pAddressId", pAddressId);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN address.ins(?, ?, ?, ?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BIGINT);
-        
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BIGINT, pCityId);
-        
+
         opbCallHelper.setObject(
                 3, java.sql.Types.VARCHAR, pLine1);
-        
+
         opbCallHelper.setObject(
                 4, java.sql.Types.VARCHAR, pLine2);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         pAddressId.setValue(opbCallHelper.get(Long.class, 1));
-    
+
         opbDataObjectSource.invalidateCached(Address.class, getOpbId());
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * Calls ins using mapped parameters.
      * <ul>
@@ -566,23 +566,23 @@ public class AddressImpl implements Address {
     public void ins()
             throws OpbDataAccessException {
         final String methodName = "ins()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbValueWrapper<Long> pAddressIdValueWrapper =
                 new OpbValueWrapperImpl<Long>();
-        
-    
+
+
         ins(pAddressIdValueWrapper,
                     getCityId(),
                     getLine1(),
                     getLine2());
-    
+
         setAddressId(pAddressIdValueWrapper.getValue());
-        
-    
+
+
     }
-    
+
     /**
      * Updates a Address by primary key.
      * Calls the database procedure upd.
@@ -598,46 +598,46 @@ public class AddressImpl implements Address {
             final String pOldLine2)
             throws OpbDataAccessException {
         final String methodName = "upd(Long, Long, String, String, Long, String, String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN address.upd(?, ?, ?, ?, ?, ?, ?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.BIGINT, pAddressId);
-        
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BIGINT, pCityId);
-        
+
         opbCallHelper.setObject(
                 3, java.sql.Types.VARCHAR, pLine1);
-        
+
         opbCallHelper.setObject(
                 4, java.sql.Types.VARCHAR, pLine2);
-        
+
         opbCallHelper.setObject(
                 5, java.sql.Types.BIGINT, pOldCityId);
-        
+
         opbCallHelper.setObject(
                 6, java.sql.Types.VARCHAR, pOldLine1);
-        
+
         opbCallHelper.setObject(
                 7, java.sql.Types.VARCHAR, pOldLine2);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbDataObjectSource.invalidateCached(Address.class, getOpbId());
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * Calls upd using mapped parameters.
      * <ul>
@@ -655,9 +655,9 @@ public class AddressImpl implements Address {
     public void upd()
             throws OpbDataAccessException {
         final String methodName = "upd()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         upd(getAddressId(),
                     getCityId(),
                     getLine1(),
@@ -665,8 +665,8 @@ public class AddressImpl implements Address {
                     getCityIdDataSourceValue(),
                     getLine1DataSourceValue(),
                     getLine2DataSourceValue());
-    
+
     }
-    
+
 
 }

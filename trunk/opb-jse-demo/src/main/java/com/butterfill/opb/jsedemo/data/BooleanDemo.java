@@ -25,6 +25,6 @@ public interface BooleanDemo
      */
     Boolean getTrue()
             throws OpbDataAccessException;
-    
+
 
 }

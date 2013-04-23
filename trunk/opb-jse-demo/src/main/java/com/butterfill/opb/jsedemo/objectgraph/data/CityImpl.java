@@ -89,10 +89,10 @@ public class CityImpl implements City {
 
         // set all fields to their initial values
         cityId = null;
-        
+
         cityName = null;
         cityNameDataSourceValue = null;
-        
+
 
     } // End of opbClearState()
 
@@ -149,14 +149,14 @@ public class CityImpl implements City {
             cityId = OpbSqlHelper.getValue(
                     cityId, resultSet,
                     "city_id", true);
-            
+
             // load cityName from column city_name
             cityName = OpbSqlHelper.getValue(
                     cityName, resultSet,
                     "city_name", true);
             // save the value we just loaded as the datasource value
             cityNameDataSourceValue = cityName;
-            
+
 
             // create the id
             opbId = new OpbId(cityId);
@@ -178,7 +178,7 @@ public class CityImpl implements City {
      * Derived from an opb-package field.
      */
     private Long cityId = null;
-    
+
     /**
      * Returns the value of cityId.
      * @return The value of cityId.
@@ -186,7 +186,7 @@ public class CityImpl implements City {
     public Long getCityId() {
         return cityId;
     }
-    
+
     /**
      * Sets the value of cityId.
      * @param a The new value for cityId.
@@ -194,12 +194,12 @@ public class CityImpl implements City {
     private void setCityId(final Long a) {
         this.cityId = a;
     }
-    
+
     /**
      * Derived from an opb-package field.
      */
     private String cityName = null;
-    
+
     /**
      * Returns the value of cityName.
      * @return The value of cityName.
@@ -207,7 +207,7 @@ public class CityImpl implements City {
     public String getCityName() {
         return cityName;
     }
-    
+
     /**
      * Sets the value of cityName.
      * @param a The new value for cityName.
@@ -215,12 +215,12 @@ public class CityImpl implements City {
     public void setCityName(final String a) {
         this.cityName = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private String cityNameDataSourceValue = null;
-    
+
     /**
      * Returns the value of cityNameDataSourceValue.
      * This is the last value returned by the data source for cityName.
@@ -229,7 +229,7 @@ public class CityImpl implements City {
     public String getCityNameDataSourceValue() {
         return cityNameDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of cityName
      * is different to the value that was loaded from the data source,
@@ -252,53 +252,53 @@ public class CityImpl implements City {
             getAddresses(final Long pCityId)
             throws OpbDataAccessException {
         final String methodName = "getAddresses(Long)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "DataObjectSource", opbDataObjectSource);
-    
+
         OpbId keyToResult = new OpbId(
                 "city.get_addresses",
                 pCityId);
-    
+
         java.util.List<Address> result =
                 opbDataObjectSource.getCachedResult(
                 Address.class, keyToResult);
-    
+
         if (result != null) {
             logger.logp(Level.FINER, CLASS_NAME, methodName,
                     "cached result found. returning");
             return result;
         }
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := city.get_addresses(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, oracle.jdbc.OracleTypes.CURSOR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BIGINT, pCityId);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbDataObjectSource.getResult(
                 Address.class,
                 opbCallHelper.get(java.sql.ResultSet.class, 1), keyToResult, true);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * Calls getAddresses using mapped parameters.
      * <ul>
@@ -311,16 +311,16 @@ public class CityImpl implements City {
             getAddresses()
             throws OpbDataAccessException {
         final String methodName = "getAddresses()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         java.util.List<Address> result = getAddresses(
                 getCityId());
-    
-    
+
+
         return result;
     }
-    
+
 
     /**
      * Deletes a City by primary key.
@@ -332,31 +332,31 @@ public class CityImpl implements City {
             final String pOldCityName)
             throws OpbDataAccessException {
         final String methodName = "del(Long, String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN city.del(?, ?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.BIGINT, pCityId);
-        
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pOldCityName);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbDataObjectSource.clearCached(City.class, getOpbId());
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * Calls del using mapped parameters.
      * <ul>
@@ -369,14 +369,14 @@ public class CityImpl implements City {
     public void del()
             throws OpbDataAccessException {
         final String methodName = "del()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         del(getCityId(),
                     getCityNameDataSourceValue());
-    
+
     }
-    
+
     /**
      * Creates a City returning it's new primary key value(s).
      * Calls the database procedure ins.
@@ -387,37 +387,37 @@ public class CityImpl implements City {
             final String pCityName)
             throws OpbDataAccessException {
         final String methodName = "ins(OpbValueWrapper, String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pCityId", pCityId);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN city.ins(?, ?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BIGINT);
-        
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pCityName);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         pCityId.setValue(opbCallHelper.get(Long.class, 1));
-    
+
         opbDataObjectSource.invalidateCached(City.class, getOpbId());
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * Calls ins using mapped parameters.
      * <ul>
@@ -430,21 +430,21 @@ public class CityImpl implements City {
     public void ins()
             throws OpbDataAccessException {
         final String methodName = "ins()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbValueWrapper<Long> pCityIdValueWrapper =
                 new OpbValueWrapperImpl<Long>();
-        
-    
+
+
         ins(pCityIdValueWrapper,
                     getCityName());
-    
+
         setCityId(pCityIdValueWrapper.getValue());
-        
-    
+
+
     }
-    
+
     /**
      * Updates a City by primary key.
      * Calls the database procedure upd.
@@ -456,34 +456,34 @@ public class CityImpl implements City {
             final String pOldCityName)
             throws OpbDataAccessException {
         final String methodName = "upd(Long, String, String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN city.upd(?, ?, ?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.BIGINT, pCityId);
-        
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pCityName);
-        
+
         opbCallHelper.setObject(
                 3, java.sql.Types.VARCHAR, pOldCityName);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbDataObjectSource.invalidateCached(City.class, getOpbId());
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * Calls upd using mapped parameters.
      * <ul>
@@ -497,14 +497,14 @@ public class CityImpl implements City {
     public void upd()
             throws OpbDataAccessException {
         final String methodName = "upd()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         upd(getCityId(),
                     getCityName(),
                     getCityNameDataSourceValue());
-    
+
     }
-    
+
 
 }
