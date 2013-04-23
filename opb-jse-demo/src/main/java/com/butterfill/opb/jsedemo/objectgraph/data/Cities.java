@@ -27,13 +27,13 @@ public interface Cities
      * @return The value of cityName.
      */
     String getCityName();
-    
+
     /**
      * Sets the value of cityName.
      * @param a The new value for cityName.
      */
     void setCityName(String a);
-    
+
 
     /**
      * Returns all cities that meet the search criteria.
@@ -43,7 +43,7 @@ public interface Cities
      */
     java.util.List<City> getFiltered(String pCityName)
             throws OpbDataAccessException;
-    
+
     /**
      * Calls getFiltered using mapped parameters.
      * <ul>
@@ -54,7 +54,7 @@ public interface Cities
      */
     java.util.List<City> getFiltered()
             throws OpbDataAccessException;
-    
+
     /**
      * Returns the ID of the specified city.
      * Calls the database function get_city_id.
@@ -63,6 +63,6 @@ public interface Cities
      */
     Long getCityId(String pCityName)
             throws OpbDataAccessException;
-    
+
 
 }

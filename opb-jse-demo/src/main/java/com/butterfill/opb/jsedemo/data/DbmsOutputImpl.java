@@ -85,26 +85,26 @@ public class DbmsOutputImpl implements DbmsOutput {
     public void enable(final Long bufferSize)
             throws OpbDataAccessException {
         final String methodName = "enable(Long)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN dbms_output.enable(?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.BIGINT, bufferSize);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure disable.
@@ -114,22 +114,22 @@ public class DbmsOutputImpl implements DbmsOutput {
     public void disable()
             throws OpbDataAccessException {
         final String methodName = "disable()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN dbms_output.disable(); END;");
-    
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure put.
@@ -139,26 +139,26 @@ public class DbmsOutputImpl implements DbmsOutput {
     public void put(final String a)
             throws OpbDataAccessException {
         final String methodName = "put(String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN dbms_output.put(?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.VARCHAR, a);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure put_line.
@@ -168,26 +168,26 @@ public class DbmsOutputImpl implements DbmsOutput {
     public void putLine(final String a)
             throws OpbDataAccessException {
         final String methodName = "putLine(String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN dbms_output.put_line(?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.VARCHAR, a);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure new_line.
@@ -197,22 +197,22 @@ public class DbmsOutputImpl implements DbmsOutput {
     public void newLine()
             throws OpbDataAccessException {
         final String methodName = "newLine()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN dbms_output.new_line(); END;");
-    
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * 
      * Calls the database procedure get_line.
@@ -223,38 +223,38 @@ public class DbmsOutputImpl implements DbmsOutput {
             final OpbValueWrapper<Long> status)
             throws OpbDataAccessException {
         final String methodName = "getLine(OpbValueWrapper, OpbValueWrapper)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "line", line);
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "status", status);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN dbms_output.get_line(?, ?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-        
+
         opbCallHelper.registerOutParameter(
                 2, java.sql.Types.BIGINT);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         line.setValue(opbCallHelper.get(String.class, 1));
         status.setValue(opbCallHelper.get(Long.class, 2));
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
 
 }

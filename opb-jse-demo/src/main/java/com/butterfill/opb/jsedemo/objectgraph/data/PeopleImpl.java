@@ -86,11 +86,11 @@ public class PeopleImpl implements People {
 
         // set all fields to their initial values
         lastName = null;
-        
+
         addressId = null;
-        
+
         firstName = null;
-        
+
 
     } // End of opbClearState()
 
@@ -98,7 +98,7 @@ public class PeopleImpl implements People {
      * Derived from an opb-package field.
      */
     private String lastName = null;
-    
+
     /**
      * Returns the value of lastName.
      * @return The value of lastName.
@@ -106,7 +106,7 @@ public class PeopleImpl implements People {
     public String getLastName() {
         return lastName;
     }
-    
+
     /**
      * Sets the value of lastName.
      * @param a The new value for lastName.
@@ -114,12 +114,12 @@ public class PeopleImpl implements People {
     public void setLastName(final String a) {
         this.lastName = a;
     }
-    
+
     /**
      * Derived from an opb-package field.
      */
     private String addressId = null;
-    
+
     /**
      * Returns the value of addressId.
      * @return The value of addressId.
@@ -127,7 +127,7 @@ public class PeopleImpl implements People {
     public String getAddressId() {
         return addressId;
     }
-    
+
     /**
      * Sets the value of addressId.
      * @param a The new value for addressId.
@@ -135,12 +135,12 @@ public class PeopleImpl implements People {
     public void setAddressId(final String a) {
         this.addressId = a;
     }
-    
+
     /**
      * Derived from an opb-package field.
      */
     private String firstName = null;
-    
+
     /**
      * Returns the value of firstName.
      * @return The value of firstName.
@@ -148,7 +148,7 @@ public class PeopleImpl implements People {
     public String getFirstName() {
         return firstName;
     }
-    
+
     /**
      * Sets the value of firstName.
      * @param a The new value for firstName.
@@ -156,7 +156,7 @@ public class PeopleImpl implements People {
     public void setFirstName(final String a) {
         this.firstName = a;
     }
-    
+
 
     /**
      * Returns all people that meet the search criteria.
@@ -171,64 +171,64 @@ public class PeopleImpl implements People {
             final String pCity)
             throws OpbDataAccessException {
         final String methodName = "getFiltered(String, String, String, String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "DataObjectSource", opbDataObjectSource);
-    
+
         OpbId keyToResult = new OpbId(
                 "people.get_filtered",
                 pLastName,
                 pFirstName,
                 pAddress,
                 pCity);
-    
+
         java.util.List<Person> result =
                 opbDataObjectSource.getCachedResult(
                 Person.class, keyToResult);
-    
+
         if (result != null) {
             logger.logp(Level.FINER, CLASS_NAME, methodName,
                     "cached result found. returning");
             return result;
         }
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := people.get_filtered(?, ?, ?, ?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, oracle.jdbc.OracleTypes.CURSOR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pLastName);
-        
+
         opbCallHelper.setObject(
                 3, java.sql.Types.VARCHAR, pFirstName);
-        
+
         opbCallHelper.setObject(
                 4, java.sql.Types.VARCHAR, pAddress);
-        
+
         opbCallHelper.setObject(
                 5, java.sql.Types.VARCHAR, pCity);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbDataObjectSource.getResult(
                 Person.class,
                 opbCallHelper.get(java.sql.ResultSet.class, 1), keyToResult, true);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
 
 }

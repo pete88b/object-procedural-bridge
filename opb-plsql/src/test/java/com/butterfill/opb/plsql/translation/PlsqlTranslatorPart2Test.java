@@ -740,10 +740,11 @@ public class PlsqlTranslatorPart2Test extends TestCase {
         Double binaryDoubleExpected = 3.14159265358979;
         Float binaryFloatExpected = 3.14159274F;
         Calendar calendarExpected = Calendar.getInstance();
-        calendarExpected.set(0003, 01, 01, 0, 0, 0); // Note: zero time component
         calendarExpected.set(Calendar.MILLISECOND, 0);
-        Date dateExpected = new Date(calendarExpected.getTimeInMillis());
+        // Note: time component - 11g drivers map DATE to Timestamp
         calendarExpected.set(0003, 01, 01, 04, 05, 06);
+        Timestamp dateExpected = new Timestamp(calendarExpected.getTimeInMillis());
+
         TIMESTAMP timestampExpected =
                 new TIMESTAMP(new Timestamp(calendarExpected.getTimeInMillis()));
         BigDecimal numberExpected = BigDecimal.valueOf(3.14159265358979);
@@ -756,7 +757,7 @@ public class PlsqlTranslatorPart2Test extends TestCase {
                 timestampExpected.dateValue(),
                 ((TIMESTAMP)result.get("aTimestamp")).dateValue());
         assertEquals(
-                "3-2-1 4.5.6.7000",
+                "3-02-01 04:05:06.000007",
                 ((TIMESTAMP)result.get("aTimestamp")).stringValue());
         assertEquals(numberExpected, result.get("aNumber"));
         assertEquals("Pi", result.get("aNvarchar2"));
@@ -1297,10 +1298,11 @@ public class PlsqlTranslatorPart2Test extends TestCase {
         OpbDynamicDataView result = instance.getFromTestTable().get(0);
 
         Calendar calendarExpected = Calendar.getInstance();
-        calendarExpected.set(0003, 01, 01, 0, 0, 0); // Note: zero time component
         calendarExpected.set(Calendar.MILLISECOND, 0);
-        Date dateExpected = new Date(calendarExpected.getTimeInMillis());
+        // Note: time component - 11g drivers map DATE to Timestamp
         calendarExpected.set(0003, 01, 01, 04, 05, 06);
+        Timestamp dateExpected = new Timestamp(calendarExpected.getTimeInMillis());
+
         BigDecimal numberExpected = BigDecimal.valueOf(3.14159265358979);
 
         assertEquals("Pi        ", result.get("aChar"));

@@ -86,30 +86,30 @@ public class BooleanDemoImpl implements BooleanDemo {
             getTrue()
             throws OpbDataAccessException {
         final String methodName = "getTrue()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         Boolean result = null;
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := boolean_demo.get_true(); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.VARCHAR);
-    
+
         opbCallHelper.execute();
-    
+
         result = opbCallHelper.get(Boolean.class, 1);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
 
 }

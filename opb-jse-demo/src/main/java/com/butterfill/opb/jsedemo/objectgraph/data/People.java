@@ -27,37 +27,37 @@ public interface People
      * @return The value of lastName.
      */
     String getLastName();
-    
+
     /**
      * Sets the value of lastName.
      * @param a The new value for lastName.
      */
     void setLastName(String a);
-    
+
     /**
      * Returns the value of addressId.
      * @return The value of addressId.
      */
     String getAddressId();
-    
+
     /**
      * Sets the value of addressId.
      * @param a The new value for addressId.
      */
     void setAddressId(String a);
-    
+
     /**
      * Returns the value of firstName.
      * @return The value of firstName.
      */
     String getFirstName();
-    
+
     /**
      * Sets the value of firstName.
      * @param a The new value for firstName.
      */
     void setFirstName(String a);
-    
+
 
     /**
      * Returns all people that meet the search criteria.
@@ -70,6 +70,6 @@ public interface People
             String pAddress,
             String pCity)
             throws OpbDataAccessException;
-    
+
 
 }

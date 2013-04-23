@@ -1,5 +1,32 @@
 <html>
   <body>
+    <h3>JDBC setup</h3>
+    In order to test opb-core, you need the Oracle JDBC drivers in your local maven repository.
+    <ol>
+        <li>
+            <a href="http://www.oracle.com/technetwork/database/features/jdbc/index-091264.html">
+                Download the JDBC drivers
+            </a>
+            <ol>
+                <li>
+                    Oracle Database 11g Release 2 (11.2.0.3) JDBC Drivers for use with JDK 1.5
+                </li>
+            </ol>
+        </li>
+        <li>
+            Install the file into your local maven repository
+            <ol>
+                <li>
+                    Rename ojdbc5.jar to ojdbc5-11.2.0.3.jar
+                </li>
+                <li>
+                    mvn install:install-file -D"file=./ojdbc5-11.2.0.3.jar" -D"groupId=oracle"
+                    -D"artifactId=oracle-jdbc" -D"version=11.2.0.3" -D"packaging=jar"
+                </li>
+            </ol>
+        </li>
+    </ol>
+
     <h3>Database set-up for opb-core</h3>
 
     To run the unit tests, you need to set-up a database account;

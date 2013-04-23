@@ -86,11 +86,11 @@ public class AddressesImpl implements Addresses {
 
         // set all fields to their initial values
         cityId = null;
-        
+
         line1 = null;
-        
+
         line2 = null;
-        
+
 
     } // End of opbClearState()
 
@@ -98,7 +98,7 @@ public class AddressesImpl implements Addresses {
      * Derived from an opb-package field.
      */
     private String cityId = null;
-    
+
     /**
      * Returns the value of cityId.
      * @return The value of cityId.
@@ -106,7 +106,7 @@ public class AddressesImpl implements Addresses {
     public String getCityId() {
         return cityId;
     }
-    
+
     /**
      * Sets the value of cityId.
      * @param a The new value for cityId.
@@ -114,12 +114,12 @@ public class AddressesImpl implements Addresses {
     public void setCityId(final String a) {
         this.cityId = a;
     }
-    
+
     /**
      * Derived from an opb-package field.
      */
     private String line1 = null;
-    
+
     /**
      * Returns the value of line1.
      * @return The value of line1.
@@ -127,7 +127,7 @@ public class AddressesImpl implements Addresses {
     public String getLine1() {
         return line1;
     }
-    
+
     /**
      * Sets the value of line1.
      * @param a The new value for line1.
@@ -135,12 +135,12 @@ public class AddressesImpl implements Addresses {
     public void setLine1(final String a) {
         this.line1 = a;
     }
-    
+
     /**
      * Derived from an opb-package field.
      */
     private String line2 = null;
-    
+
     /**
      * Returns the value of line2.
      * @return The value of line2.
@@ -148,7 +148,7 @@ public class AddressesImpl implements Addresses {
     public String getLine2() {
         return line2;
     }
-    
+
     /**
      * Sets the value of line2.
      * @param a The new value for line2.
@@ -156,7 +156,7 @@ public class AddressesImpl implements Addresses {
     public void setLine2(final String a) {
         this.line2 = a;
     }
-    
+
 
     /**
      * Returns all addresses that meet the search criteria.
@@ -170,61 +170,61 @@ public class AddressesImpl implements Addresses {
             final String pLine2)
             throws OpbDataAccessException {
         final String methodName = "getFiltered(String, String, String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "DataObjectSource", opbDataObjectSource);
-    
+
         OpbId keyToResult = new OpbId(
                 "addresses.get_filtered",
                 pCityId,
                 pLine1,
                 pLine2);
-    
+
         java.util.List<Address> result =
                 opbDataObjectSource.getCachedResult(
                 Address.class, keyToResult);
-    
+
         if (result != null) {
             logger.logp(Level.FINER, CLASS_NAME, methodName,
                     "cached result found. returning");
             return result;
         }
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := addresses.get_filtered(?, ?, ?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, oracle.jdbc.OracleTypes.CURSOR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pCityId);
-        
+
         opbCallHelper.setObject(
                 3, java.sql.Types.VARCHAR, pLine1);
-        
+
         opbCallHelper.setObject(
                 4, java.sql.Types.VARCHAR, pLine2);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbDataObjectSource.getResult(
                 Address.class,
                 opbCallHelper.get(java.sql.ResultSet.class, 1), keyToResult, true);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * Calls getFiltered using mapped parameters.
      * <ul>
@@ -239,17 +239,17 @@ public class AddressesImpl implements Addresses {
             getFiltered()
             throws OpbDataAccessException {
         final String methodName = "getFiltered()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         java.util.List<Address> result = getFiltered(
                 getCityId(),
                 getLine1(),
                 getLine2());
-    
-    
+
+
         return result;
     }
-    
+
 
 }

@@ -25,6 +25,6 @@ public interface ArrayDemo
      */
     void demoOne(String[] pArray)
             throws OpbDataAccessException;
-    
+
 
 }

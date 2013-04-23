@@ -85,30 +85,30 @@ public class ArrayDemoImpl implements ArrayDemo {
     public void demoOne(final String[] pArray)
             throws OpbDataAccessException {
         final String methodName = "demoOne(String[])";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pArray", pArray,
                 "PL/SQL index-by tables cannot be set to null");
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN array_demo.demo_one(?); END;");
-    
+
         opbCallHelper.setPlsqlIndexTable(
                 1, java.sql.Types.VARCHAR, pArray);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
 
 }

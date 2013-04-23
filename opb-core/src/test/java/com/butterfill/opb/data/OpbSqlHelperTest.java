@@ -602,10 +602,10 @@ public class OpbSqlHelperTest extends TestCase {
         assertEquals(15, calendar.get(Calendar.DAY_OF_MONTH));
         assertEquals(1, calendar.get(Calendar.MONTH));
         assertEquals(2001, calendar.get(Calendar.YEAR));
-        // no time component with sql.Date
-        assertEquals(0, calendar.get(Calendar.HOUR));
-        assertEquals(0, calendar.get(Calendar.MINUTE));
-        assertEquals(0, calendar.get(Calendar.SECOND));
+        // 11g drivers map DATE to Timestamp so we do get the time component
+        assertEquals(11, calendar.get(Calendar.HOUR));
+        assertEquals(55, calendar.get(Calendar.MINUTE));
+        assertEquals(22, calendar.get(Calendar.SECOND));
 
         result = OpbSqlHelper.getValue(javaSqlTimestamp, resultSet, "dt", true);
 

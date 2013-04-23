@@ -27,26 +27,26 @@ public interface Address
      * @return The value of addressId.
      */
     Long getAddressId();
-    
+
     /**
      * Returns the value of cityId.
      * @return The value of cityId.
      */
     Long getCityId();
-    
+
     /**
      * Sets the value of cityId.
      * @param a The new value for cityId.
      */
     void setCityId(Long a);
-    
+
     /**
      * Returns the value of cityIdDataSourceValue.
      * This is the last value returned by the data source for cityId.
      * @return The value of cityIdDataSourceValue.
      */
     Long getCityIdDataSourceValue();
-    
+
     /**
      * Returns true if the value of cityId
      * is different to the value that was loaded from the data source,
@@ -54,26 +54,26 @@ public interface Address
      * @return true if cityId has changed since it was loaded.
      */
     boolean getCityIdChanged();
-    
+
     /**
      * Returns the value of line1.
      * @return The value of line1.
      */
     String getLine1();
-    
+
     /**
      * Sets the value of line1.
      * @param a The new value for line1.
      */
     void setLine1(String a);
-    
+
     /**
      * Returns the value of line1DataSourceValue.
      * This is the last value returned by the data source for line1.
      * @return The value of line1DataSourceValue.
      */
     String getLine1DataSourceValue();
-    
+
     /**
      * Returns true if the value of line1
      * is different to the value that was loaded from the data source,
@@ -81,26 +81,26 @@ public interface Address
      * @return true if line1 has changed since it was loaded.
      */
     boolean getLine1Changed();
-    
+
     /**
      * Returns the value of line2.
      * @return The value of line2.
      */
     String getLine2();
-    
+
     /**
      * Sets the value of line2.
      * @param a The new value for line2.
      */
     void setLine2(String a);
-    
+
     /**
      * Returns the value of line2DataSourceValue.
      * This is the last value returned by the data source for line2.
      * @return The value of line2DataSourceValue.
      */
     String getLine2DataSourceValue();
-    
+
     /**
      * Returns true if the value of line2
      * is different to the value that was loaded from the data source,
@@ -108,7 +108,7 @@ public interface Address
      * @return true if line2 has changed since it was loaded.
      */
     boolean getLine2Changed();
-    
+
 
     /**
      * Returns all people for the specified address.
@@ -118,7 +118,7 @@ public interface Address
      */
     java.util.List<Person> getPeople(Long pAddressId)
             throws OpbDataAccessException;
-    
+
     /**
      * Calls getPeople using mapped parameters.
      * <ul>
@@ -129,7 +129,7 @@ public interface Address
      */
     java.util.List<Person> getPeople()
             throws OpbDataAccessException;
-    
+
 
     /**
      * Deletes a Address by primary key.
@@ -142,7 +142,7 @@ public interface Address
             String pOldLine1,
             String pOldLine2)
             throws OpbDataAccessException;
-    
+
     /**
      * Calls del using mapped parameters.
      * <ul>
@@ -156,7 +156,7 @@ public interface Address
      */
     void del()
             throws OpbDataAccessException;
-    
+
     /**
      * Creates a Address returning it's new primary key value(s).
      * Calls the database procedure ins.
@@ -168,7 +168,7 @@ public interface Address
             String pLine1,
             String pLine2)
             throws OpbDataAccessException;
-    
+
     /**
      * Calls ins using mapped parameters.
      * <ul>
@@ -182,7 +182,7 @@ public interface Address
      */
     void ins()
             throws OpbDataAccessException;
-    
+
     /**
      * Updates a Address by primary key.
      * Calls the database procedure upd.
@@ -197,7 +197,7 @@ public interface Address
             String pOldLine1,
             String pOldLine2)
             throws OpbDataAccessException;
-    
+
     /**
      * Calls upd using mapped parameters.
      * <ul>
@@ -214,6 +214,6 @@ public interface Address
      */
     void upd()
             throws OpbDataAccessException;
-    
+
 
 }

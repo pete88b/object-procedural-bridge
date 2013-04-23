@@ -27,26 +27,26 @@ public interface City
      * @return The value of cityId.
      */
     Long getCityId();
-    
+
     /**
      * Returns the value of cityName.
      * @return The value of cityName.
      */
     String getCityName();
-    
+
     /**
      * Sets the value of cityName.
      * @param a The new value for cityName.
      */
     void setCityName(String a);
-    
+
     /**
      * Returns the value of cityNameDataSourceValue.
      * This is the last value returned by the data source for cityName.
      * @return The value of cityNameDataSourceValue.
      */
     String getCityNameDataSourceValue();
-    
+
     /**
      * Returns true if the value of cityName
      * is different to the value that was loaded from the data source,
@@ -54,7 +54,7 @@ public interface City
      * @return true if cityName has changed since it was loaded.
      */
     boolean getCityNameChanged();
-    
+
 
     /**
      * Returns all addresses of the specified city.
@@ -64,7 +64,7 @@ public interface City
      */
     java.util.List<Address> getAddresses(Long pCityId)
             throws OpbDataAccessException;
-    
+
     /**
      * Calls getAddresses using mapped parameters.
      * <ul>
@@ -75,7 +75,7 @@ public interface City
      */
     java.util.List<Address> getAddresses()
             throws OpbDataAccessException;
-    
+
 
     /**
      * Deletes a City by primary key.
@@ -86,7 +86,7 @@ public interface City
     void del(Long pCityId,
             String pOldCityName)
             throws OpbDataAccessException;
-    
+
     /**
      * Calls del using mapped parameters.
      * <ul>
@@ -98,7 +98,7 @@ public interface City
      */
     void del()
             throws OpbDataAccessException;
-    
+
     /**
      * Creates a City returning it's new primary key value(s).
      * Calls the database procedure ins.
@@ -108,7 +108,7 @@ public interface City
     void ins(OpbValueWrapper<Long> pCityId,
             String pCityName)
             throws OpbDataAccessException;
-    
+
     /**
      * Calls ins using mapped parameters.
      * <ul>
@@ -120,7 +120,7 @@ public interface City
      */
     void ins()
             throws OpbDataAccessException;
-    
+
     /**
      * Updates a City by primary key.
      * Calls the database procedure upd.
@@ -131,7 +131,7 @@ public interface City
             String pCityName,
             String pOldCityName)
             throws OpbDataAccessException;
-    
+
     /**
      * Calls upd using mapped parameters.
      * <ul>
@@ -144,6 +144,6 @@ public interface City
      */
     void upd()
             throws OpbDataAccessException;
-    
+
 
 }

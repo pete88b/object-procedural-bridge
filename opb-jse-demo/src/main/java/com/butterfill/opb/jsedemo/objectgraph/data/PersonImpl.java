@@ -89,20 +89,20 @@ public class PersonImpl implements Person {
 
         // set all fields to their initial values
         personId = null;
-        
+
         lastName = null;
         lastNameDataSourceValue = null;
-        
+
         addressId = null;
         addressIdDataSourceValue = null;
-        
+
         firstName = null;
         firstNameDataSourceValue = null;
-        
+
         addressLabel = null;
-        
+
         cityLabel = null;
-        
+
 
     } // End of opbClearState()
 
@@ -163,38 +163,38 @@ public class PersonImpl implements Person {
             personId = OpbSqlHelper.getValue(
                     personId, resultSet,
                     "person_id", true);
-            
+
             // load lastName from column last_name
             lastName = OpbSqlHelper.getValue(
                     lastName, resultSet,
                     "last_name", true);
             // save the value we just loaded as the datasource value
             lastNameDataSourceValue = lastName;
-            
+
             // load addressId from column address_id
             addressId = OpbSqlHelper.getValue(
                     addressId, resultSet,
                     "address_id", true);
             // save the value we just loaded as the datasource value
             addressIdDataSourceValue = addressId;
-            
+
             // load firstName from column first_name
             firstName = OpbSqlHelper.getValue(
                     firstName, resultSet,
                     "first_name", true);
             // save the value we just loaded as the datasource value
             firstNameDataSourceValue = firstName;
-            
+
             // load addressLabel from column address_label
             addressLabel = OpbSqlHelper.getValue(
                     addressLabel, resultSet,
                     "address_label", true);
-            
+
             // load cityLabel from column city_label
             cityLabel = OpbSqlHelper.getValue(
                     cityLabel, resultSet,
                     "city_label", true);
-            
+
 
             // create the id
             opbId = new OpbId(personId);
@@ -216,7 +216,7 @@ public class PersonImpl implements Person {
      * Derived from an opb-package field.
      */
     private Long personId = null;
-    
+
     /**
      * Returns the value of personId.
      * @return The value of personId.
@@ -224,7 +224,7 @@ public class PersonImpl implements Person {
     public Long getPersonId() {
         return personId;
     }
-    
+
     /**
      * Sets the value of personId.
      * @param a The new value for personId.
@@ -232,12 +232,12 @@ public class PersonImpl implements Person {
     private void setPersonId(final Long a) {
         this.personId = a;
     }
-    
+
     /**
      * Derived from an opb-package field.
      */
     private String lastName = null;
-    
+
     /**
      * Returns the value of lastName.
      * @return The value of lastName.
@@ -245,7 +245,7 @@ public class PersonImpl implements Person {
     public String getLastName() {
         return lastName;
     }
-    
+
     /**
      * Sets the value of lastName.
      * @param a The new value for lastName.
@@ -253,12 +253,12 @@ public class PersonImpl implements Person {
     public void setLastName(final String a) {
         this.lastName = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private String lastNameDataSourceValue = null;
-    
+
     /**
      * Returns the value of lastNameDataSourceValue.
      * This is the last value returned by the data source for lastName.
@@ -267,7 +267,7 @@ public class PersonImpl implements Person {
     public String getLastNameDataSourceValue() {
         return lastNameDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of lastName
      * is different to the value that was loaded from the data source,
@@ -283,7 +283,7 @@ public class PersonImpl implements Person {
      * Derived from an opb-package field.
      */
     private Long addressId = null;
-    
+
     /**
      * Returns the value of addressId.
      * @return The value of addressId.
@@ -291,7 +291,7 @@ public class PersonImpl implements Person {
     public Long getAddressId() {
         return addressId;
     }
-    
+
     /**
      * Sets the value of addressId.
      * @param a The new value for addressId.
@@ -299,12 +299,12 @@ public class PersonImpl implements Person {
     public void setAddressId(final Long a) {
         this.addressId = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private Long addressIdDataSourceValue = null;
-    
+
     /**
      * Returns the value of addressIdDataSourceValue.
      * This is the last value returned by the data source for addressId.
@@ -313,7 +313,7 @@ public class PersonImpl implements Person {
     public Long getAddressIdDataSourceValue() {
         return addressIdDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of addressId
      * is different to the value that was loaded from the data source,
@@ -329,7 +329,7 @@ public class PersonImpl implements Person {
      * Derived from an opb-package field.
      */
     private String firstName = null;
-    
+
     /**
      * Returns the value of firstName.
      * @return The value of firstName.
@@ -337,7 +337,7 @@ public class PersonImpl implements Person {
     public String getFirstName() {
         return firstName;
     }
-    
+
     /**
      * Sets the value of firstName.
      * @param a The new value for firstName.
@@ -345,12 +345,12 @@ public class PersonImpl implements Person {
     public void setFirstName(final String a) {
         this.firstName = a;
     }
-    
+
     /**
      * Derived from a read-write opb-package field.
      */
     private String firstNameDataSourceValue = null;
-    
+
     /**
      * Returns the value of firstNameDataSourceValue.
      * This is the last value returned by the data source for firstName.
@@ -359,7 +359,7 @@ public class PersonImpl implements Person {
     public String getFirstNameDataSourceValue() {
         return firstNameDataSourceValue;
     }
-    
+
     /**
      * Returns true if the value of firstName
      * is different to the value that was loaded from the data source,
@@ -375,7 +375,7 @@ public class PersonImpl implements Person {
      * Derived from an opb-package field.
      */
     private String addressLabel = null;
-    
+
     /**
      * Returns the value of addressLabel.
      * @return The value of addressLabel.
@@ -383,7 +383,7 @@ public class PersonImpl implements Person {
     public String getAddressLabel() {
         return addressLabel;
     }
-    
+
     /**
      * Sets the value of addressLabel.
      * @param a The new value for addressLabel.
@@ -391,12 +391,12 @@ public class PersonImpl implements Person {
     private void setAddressLabel(final String a) {
         this.addressLabel = a;
     }
-    
+
     /**
      * Derived from an opb-package field.
      */
     private String cityLabel = null;
-    
+
     /**
      * Returns the value of cityLabel.
      * @return The value of cityLabel.
@@ -404,7 +404,7 @@ public class PersonImpl implements Person {
     public String getCityLabel() {
         return cityLabel;
     }
-    
+
     /**
      * Sets the value of cityLabel.
      * @param a The new value for cityLabel.
@@ -412,7 +412,7 @@ public class PersonImpl implements Person {
     private void setCityLabel(final String a) {
         this.cityLabel = a;
     }
-    
+
 
     /**
      * Returns the address of this person.
@@ -424,53 +424,53 @@ public class PersonImpl implements Person {
             getAddress(final Long pAddressId)
             throws OpbDataAccessException {
         final String methodName = "getAddress(Long)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "DataObjectSource", opbDataObjectSource);
-    
+
         OpbId keyToResult = new OpbId(
                 "person.get_address",
                 pAddressId);
-    
+
         java.util.List<Address> result =
                 opbDataObjectSource.getCachedResult(
                 Address.class, keyToResult);
-    
+
         if (result != null) {
             logger.logp(Level.FINER, CLASS_NAME, methodName,
                     "cached result found. returning");
             return result;
         }
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := person.get_address(?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, oracle.jdbc.OracleTypes.CURSOR);
-    
+
         opbCallHelper.setObject(
                 2, java.sql.Types.BIGINT, pAddressId);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         result = opbDataObjectSource.getResult(
                 Address.class,
                 opbCallHelper.get(java.sql.ResultSet.class, 1), keyToResult, true);
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
         return result;
-    
+
     }
-    
+
     /**
      * Calls getAddress using mapped parameters.
      * <ul>
@@ -483,16 +483,16 @@ public class PersonImpl implements Person {
             getAddress()
             throws OpbDataAccessException {
         final String methodName = "getAddress()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         java.util.List<Address> result = getAddress(
                 getAddressId());
-    
-    
+
+
         return result;
     }
-    
+
 
     /**
      * Deletes a Person by primary key.
@@ -506,37 +506,37 @@ public class PersonImpl implements Person {
             final String pOldFirstName)
             throws OpbDataAccessException {
         final String methodName = "del(Long, String, Long, String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN person.del(?, ?, ?, ?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.BIGINT, pPersonId);
-        
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pOldLastName);
-        
+
         opbCallHelper.setObject(
                 3, java.sql.Types.BIGINT, pOldAddressId);
-        
+
         opbCallHelper.setObject(
                 4, java.sql.Types.VARCHAR, pOldFirstName);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbDataObjectSource.clearCached(Person.class, getOpbId());
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * Calls del using mapped parameters.
      * <ul>
@@ -551,16 +551,16 @@ public class PersonImpl implements Person {
     public void del()
             throws OpbDataAccessException {
         final String methodName = "del()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         del(getPersonId(),
                     getLastNameDataSourceValue(),
                     getAddressIdDataSourceValue(),
                     getFirstNameDataSourceValue());
-    
+
     }
-    
+
     /**
      * Creates a Person returning it's new primary key value(s).
      * Calls the database procedure ins.
@@ -573,43 +573,43 @@ public class PersonImpl implements Person {
             final String pFirstName)
             throws OpbDataAccessException {
         final String methodName = "ins(OpbValueWrapper, String, Long, String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName,
                 "pPersonId", pPersonId);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN person.ins(?, ?, ?, ?); END;");
-    
+
         opbCallHelper.registerOutParameter(
                 1, java.sql.Types.BIGINT);
-        
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pLastName);
-        
+
         opbCallHelper.setObject(
                 3, java.sql.Types.BIGINT, pAddressId);
-        
+
         opbCallHelper.setObject(
                 4, java.sql.Types.VARCHAR, pFirstName);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         pPersonId.setValue(opbCallHelper.get(Long.class, 1));
-    
+
         opbDataObjectSource.invalidateCached(Person.class, getOpbId());
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * Calls ins using mapped parameters.
      * <ul>
@@ -624,23 +624,23 @@ public class PersonImpl implements Person {
     public void ins()
             throws OpbDataAccessException {
         final String methodName = "ins()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbValueWrapper<Long> pPersonIdValueWrapper =
                 new OpbValueWrapperImpl<Long>();
-        
-    
+
+
         ins(pPersonIdValueWrapper,
                     getLastName(),
                     getAddressId(),
                     getFirstName());
-    
+
         setPersonId(pPersonIdValueWrapper.getValue());
-        
-    
+
+
     }
-    
+
     /**
      * Updates a Person by primary key.
      * Calls the database procedure upd.
@@ -656,46 +656,46 @@ public class PersonImpl implements Person {
             final String pOldFirstName)
             throws OpbDataAccessException {
         final String methodName = "upd(Long, String, Long, String, String, Long, String)";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN person.upd(?, ?, ?, ?, ?, ?, ?); END;");
-    
+
         opbCallHelper.setObject(
                 1, java.sql.Types.BIGINT, pPersonId);
-        
+
         opbCallHelper.setObject(
                 2, java.sql.Types.VARCHAR, pLastName);
-        
+
         opbCallHelper.setObject(
                 3, java.sql.Types.BIGINT, pAddressId);
-        
+
         opbCallHelper.setObject(
                 4, java.sql.Types.VARCHAR, pFirstName);
-        
+
         opbCallHelper.setObject(
                 5, java.sql.Types.VARCHAR, pOldLastName);
-        
+
         opbCallHelper.setObject(
                 6, java.sql.Types.BIGINT, pOldAddressId);
-        
+
         opbCallHelper.setObject(
                 7, java.sql.Types.VARCHAR, pOldFirstName);
-        
-    
+
+
         opbCallHelper.execute();
-    
+
         opbDataObjectSource.invalidateCached(Person.class, getOpbId());
-    
+
         opbCallHelper.callComplete();
-    
+
         logger.exiting(CLASS_NAME, methodName);
-    
+
     }
-    
+
     /**
      * Calls upd using mapped parameters.
      * <ul>
@@ -713,9 +713,9 @@ public class PersonImpl implements Person {
     public void upd()
             throws OpbDataAccessException {
         final String methodName = "upd()";
-    
+
         logger.entering(CLASS_NAME, methodName);
-    
+
         upd(getPersonId(),
                     getLastName(),
                     getAddressId(),
@@ -723,8 +723,8 @@ public class PersonImpl implements Person {
                     getLastNameDataSourceValue(),
                     getAddressIdDataSourceValue(),
                     getFirstNameDataSourceValue());
-    
+
     }
-    
+
 
 }
