@@ -21,8 +21,10 @@ import java.sql.SQLException;
 import junit.framework.*;
 import com.butterfill.opb.OpbId;
 import com.butterfill.opb.data.OpbCacheableEntity;
+import com.butterfill.opb.data.OpbConnectionProvider;
 import com.butterfill.opb.data.OpbDataAccessException;
 import com.butterfill.opb.data.OpbDataObjectSource;
+import com.butterfill.opb.plsql.data.OpbConnectionProviderPlsqlImpl;
 import com.butterfill.opb.session.*;
 import java.sql.ResultSet;
 import com.butterfill.opb.util.OpbScalarResultCache;
@@ -49,8 +51,10 @@ public class OpbSessionPlsqlImplTest extends TestCase {
         OracleDataSource dataSource = TestHelper.getSharedOracleDataSource();
         OpbDataObjectSource dataObjectSource = new TestDataObjectSource();
         OpbScalarResultCache scalarResultCache = new OpbScalarResultCache();
+        OpbConnectionProvider connectionProvider = new OpbConnectionProviderPlsqlImpl(dataSource);
 
-        instance = new OpbSessionPlsqlImpl(dataSource, dataObjectSource, scalarResultCache);
+        instance = new OpbSessionPlsqlImpl(
+                connectionProvider, dataObjectSource, scalarResultCache);
 
     }
 
@@ -68,6 +72,7 @@ public class OpbSessionPlsqlImplTest extends TestCase {
         OracleDataSource dataSource = TestHelper.getSharedOracleDataSource();
         OpbDataObjectSource dataObjectSource = new TestDataObjectSource();
         OpbScalarResultCache scalarResultCache = new OpbScalarResultCache();
+        OpbConnectionProvider connectionProvider = new OpbConnectionProviderPlsqlImpl(dataSource);
 
         try {
             new OpbSessionPlsqlImpl(null, dataObjectSource, scalarResultCache);
@@ -76,19 +81,19 @@ public class OpbSessionPlsqlImplTest extends TestCase {
         }
 
         try {
-            new OpbSessionPlsqlImpl(dataSource, null, scalarResultCache);
+            new OpbSessionPlsqlImpl(connectionProvider, null, scalarResultCache);
             fail();
         } catch (NullPointerException ex) {
         }
 
         try {
-            new OpbSessionPlsqlImpl(dataSource, dataObjectSource, null);
+            new OpbSessionPlsqlImpl(connectionProvider, dataObjectSource, null);
             fail();
         } catch (NullPointerException ex) {
         }
 
         OpbSession session = new OpbSessionPlsqlImpl(
-                dataSource, dataObjectSource, scalarResultCache);
+                connectionProvider, dataObjectSource, scalarResultCache);
 
     }
 

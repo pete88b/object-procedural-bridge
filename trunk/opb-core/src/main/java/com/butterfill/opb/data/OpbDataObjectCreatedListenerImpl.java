@@ -82,15 +82,6 @@ public class OpbDataObjectCreatedListenerImpl implements OpbDataObjectCreatedLis
     } // End of OpbConnectionProviderImpl
 
     /**
-     * Returns a String representation of this instance and it's values.
-     * @return String representation of this instance.
-     */
-    @Override
-    public String toString() {
-        return OpbToStringHelper.toString(this);
-    }
-
-    /**
      * Called when a data object is created by the data object source of this
      * session.
      * This method sets the following resources for the given data object;
@@ -142,5 +133,14 @@ public class OpbDataObjectCreatedListenerImpl implements OpbDataObjectCreatedLis
         }
 
     } // End of dataObjectCreated(Class, Object, boolean)
+
+    /**
+     * Returns a String representation of this instance and it's values.
+     * @return String representation of this instance.
+     */
+    @Override
+    public String toString() {
+        return OpbToStringHelper.toString(this);
+    }
 
 } // End of class OpbConnectionProviderImpl

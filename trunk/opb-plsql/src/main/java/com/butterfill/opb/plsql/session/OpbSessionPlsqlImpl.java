@@ -18,14 +18,12 @@ package com.butterfill.opb.plsql.session;
 
 import com.butterfill.opb.data.OpbConnectionProvider;
 import com.butterfill.opb.data.OpbDataObjectSource;
-import com.butterfill.opb.plsql.data.OpbConnectionProviderPlsqlImpl;
 import com.butterfill.opb.data.OpbDataObjectCreatedListenerImpl;
 import com.butterfill.opb.session.OpbSession;
 import com.butterfill.opb.util.OpbAssert;
 import com.butterfill.opb.util.OpbScalarResultCache;
 import com.butterfill.opb.util.OpbToStringHelper;
 import java.util.logging.Logger;
-import oracle.jdbc.pool.OracleDataSource;
 
 /**
  * The default implementation of an OpbSession for use with Oracle PL/SQL.
@@ -64,8 +62,8 @@ public class OpbSessionPlsqlImpl implements OpbSession {
     /**
      * Creates a new instance of an OpbSessionPlsqlImpl.
      *
-     * @param dataSource
-     *   The data source that this session should use.
+     * @param connectionProvider
+     *   The connection provider that this session should use.
      * @param dataObjectSource
      *   The data object source that this session should use.
      * @param scalarResultCache
@@ -73,16 +71,16 @@ public class OpbSessionPlsqlImpl implements OpbSession {
      * @throws NullPointerException
      *   If any arguments are null.
      */
-    public OpbSessionPlsqlImpl(final OracleDataSource dataSource,
+    public OpbSessionPlsqlImpl(final OpbConnectionProvider connectionProvider,
             final OpbDataObjectSource dataObjectSource,
             final OpbScalarResultCache scalarResultCache)
             throws NullPointerException {
-        final String methodName = "OpbSessionPlsqlImpl(OracleDataSource, ...)";
+        final String methodName = "OpbSessionPlsqlImpl(...)";
 
         logger.entering(CLASS_NAME, methodName);
 
         OpbAssert.notNull(logger, CLASS_NAME, methodName,
-                "dataSource", dataSource);
+                "connectionProvider", connectionProvider);
 
         OpbAssert.notNull(logger, CLASS_NAME, methodName,
                 "dataObjectSource", dataObjectSource);
@@ -90,7 +88,7 @@ public class OpbSessionPlsqlImpl implements OpbSession {
         OpbAssert.notNull(logger, CLASS_NAME, methodName,
                 "scalarResultCache", scalarResultCache);
 
-        this.connectionProvider = new OpbConnectionProviderPlsqlImpl(dataSource);
+        this.connectionProvider = connectionProvider;
 
         this.dataObjectSource = dataObjectSource;
 
@@ -132,21 +130,6 @@ public class OpbSessionPlsqlImpl implements OpbSession {
      */
     public OpbDataObjectSource getDataObjectSource() {
         return dataObjectSource;
-    }
-
-    /**
-     * Calls {@link OpbConnectionProvider#releaseConnection() }.
-     * <br/>
-     * This method is here to simplify connection releasing when using a
-     * dependency injection container such as Spring.
-     * <br/>
-     * With Spring; you could configure a request scoped bean of this class, setting
-     * destroy-method="releaseConnection" -
-     * So the connection would be opened as it's needed but always closed at the end
-     * of the request.
-     */
-    public void releaseConnection() {
-        connectionProvider.releaseConnection();
     }
 
 } // End of class OpbSessionPlsqlImpl

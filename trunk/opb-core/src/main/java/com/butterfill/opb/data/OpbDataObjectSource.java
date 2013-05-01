@@ -330,7 +330,7 @@ public class OpbDataObjectSource {
 
 
     /**
-     * Returns a newley created, partially configured data object instance for
+     * Returns a newly created, partially configured data object instance for
      * use by the newInstance, getInstance and the getResult methods.
      * Note: This method does not notify data object lifecycle listeners.
      *
@@ -340,7 +340,7 @@ public class OpbDataObjectSource {
      *   The requested type. The instance returned by this method will
      *   implement the requested type.
      * @return
-     *   A newley created, partially configured data object.
+     *   A newly created, partially configured data object.
      * @throws OpbException
      *   If we can't create a new instance of the specified type.
      */
