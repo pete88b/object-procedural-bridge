@@ -19,6 +19,7 @@ package helpers;
 
 import com.butterfill.opb.OpbObjectSourceImpl;
 import com.butterfill.opb.data.OpbDataObjectSource;
+import com.butterfill.opb.plsql.data.OpbConnectionProviderPlsqlImpl;
 import com.butterfill.opb.plsql.session.OpbSessionPlsqlImpl;
 import com.butterfill.opb.session.OpbSession;
 import com.butterfill.opb.util.OpbScalarResultCache;
@@ -89,7 +90,7 @@ public class TestHelper {
 
     public static OpbSession getOpbSession() {
         return new OpbSessionPlsqlImpl(
-                _sharedOracleDataSource,
+                new OpbConnectionProviderPlsqlImpl(_sharedOracleDataSource),
                 new OpbDataObjectSource(new OpbObjectSourceImpl()),
                 new OpbScalarResultCache());
     }

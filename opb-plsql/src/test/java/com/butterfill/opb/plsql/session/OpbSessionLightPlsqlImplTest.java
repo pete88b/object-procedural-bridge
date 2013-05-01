@@ -5,7 +5,9 @@
 
 package com.butterfill.opb.plsql.session;
 
+import com.butterfill.opb.data.OpbConnectionProvider;
 import com.butterfill.opb.data.OpbDataObjectSource;
+import com.butterfill.opb.plsql.data.OpbConnectionProviderPlsqlImpl;
 import com.butterfill.opb.plsql.session.OpbSessionPlsqlImplTest.TestDataObjectSource;
 import com.butterfill.opb.util.OpbScalarResultCache;
 import helpers.TestHelper;
@@ -22,6 +24,7 @@ public class OpbSessionLightPlsqlImplTest extends TestCase {
     OracleDataSource dataSource;
     OpbDataObjectSource dataObjectSource;
     OpbScalarResultCache scalarResultCache;
+    OpbConnectionProvider connectionProvider;
 
     OpbSessionPlsqlImpl instance;
 
@@ -36,15 +39,17 @@ public class OpbSessionLightPlsqlImplTest extends TestCase {
         dataSource = TestHelper.getSharedOracleDataSource();
         dataObjectSource = new TestDataObjectSource();
         scalarResultCache = new OpbScalarResultCache();
+        connectionProvider = new OpbConnectionProviderPlsqlImpl(dataSource);
 
         instance = new OpbSessionPlsqlImpl(
-                dataSource, dataObjectSource, scalarResultCache);
+                connectionProvider, dataObjectSource, scalarResultCache);
 
     }
 
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();
+        connectionProvider.releaseConnection();
     }
 
     /**
