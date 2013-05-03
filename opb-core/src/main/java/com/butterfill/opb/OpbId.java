@@ -82,7 +82,7 @@ public class OpbId {
     /**
      * Returns a String representation of this OpbId and it's values.
      * The string representation consists of a list of the id's values in the
-     * order they were passed to the construnctor, enclosed in square brackets.
+     * order they were passed to the constructor, enclosed in square brackets.
      * Adjacent elements are separated by the characters ", " (comma and space).
      * <br/>
      * Values are converted to strings by passing them to
