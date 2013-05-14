@@ -58,7 +58,7 @@ import java.util.logging.Logger;
  * </p>
  *
  * <p>
- * <em>For all methds of this class:</em>
+ * <em>For all methods of this class:</em>
  * <br/>
  * The actual argument for the parameter <code>classOfObject</code> should be an
  * interface.
@@ -281,7 +281,7 @@ public class OpbDataObjectSource {
 
     /**
      * Un-registers an objects interest in data object life cycle events.
-     * If the specified listener is not currently registed, this is a no-op.
+     * If the specified listener is not currently registered, this is a no-op.
      *
      * @param lsnr A data object listener.
      */
@@ -352,7 +352,7 @@ public class OpbDataObjectSource {
         logger.entering(CLASS_NAME, methodName);
 
         // get a new instance from the object source
-        T dataObject = objectSource.newInstance(c);
+        final T dataObject = objectSource.newInstance(c);
 
         // if it's an active object, set this as the data object source
         if (dataObject instanceof OpbActiveDataObject) {
@@ -571,7 +571,7 @@ public class OpbDataObjectSource {
 
         // Remove the object from it's cache.
         // Note: dataObject will be null if the specified object was not cached
-        T dataObject = dataObjectMap(classOfObject).remove(id);
+        final T dataObject = dataObjectMap(classOfObject).remove(id);
 
         // remove the object from the invalid list.
         listOfInvalidObjects.remove(dataObject);
@@ -826,11 +826,10 @@ public class OpbDataObjectSource {
                 "classOfObject={0}", classOfObject.getName());
 
         try {
-            List<T> result = new ArrayList<T>();
-            T dataObject = null;
+            final List<T> result = new ArrayList<T>();
 
             while (resultSet.next()) {
-                dataObject = rawInstance(classOfObject);
+                final T dataObject = rawInstance(classOfObject);
                 dataObject.opbLoad(resultSet);
                 notifyListenersDataObjectCreated(
                         classOfObject, dataObject, false);
@@ -907,18 +906,17 @@ public class OpbDataObjectSource {
                 "resultSet", resultSet);
 
         try {
-            List<T> result = new ArrayList<T>();
-            T dataObject = rawInstance(classOfObject);
-            T cachedDataObject = null;
-            Map<OpbId, T> dataObjectMap = dataObjectMap(classOfObject);
+            final List<T> result = new ArrayList<T>();
+            final Map<OpbId, T> dataObjectMap = dataObjectMap(classOfObject);
 
             while (resultSet.next()) {
+                final T dataObject = rawInstance(classOfObject);
                 dataObject.opbLoad(resultSet);
                 if (useDataObjectCache) {
                     if (dataObjectMap.containsKey(dataObject.getOpbId())) {
                         // if we're using the data object cache and the object
                         // we need is cached, get it from the cache
-                        cachedDataObject =
+                        final T cachedDataObject =
                                 dataObjectMap.get(dataObject.getOpbId());
 
                         if (listOfInvalidObjects.remove(cachedDataObject)) {
@@ -939,8 +937,6 @@ public class OpbDataObjectSource {
                                 classOfObject, dataObject, true);
                         // add it to the result (list of data objects)
                         result.add(dataObject);
-                        // create a new instance for the next row in resultSet
-                        dataObject = rawInstance(classOfObject);
 
                     }
 
@@ -951,8 +947,6 @@ public class OpbDataObjectSource {
                             classOfObject, dataObject, false);
                     // add it to the result (list of data objects)
                     result.add(dataObject);
-                    // and create a new instance for the next row in resultSet
-                    dataObject = rawInstance(classOfObject);
 
                 }
 
@@ -1026,7 +1020,7 @@ public class OpbDataObjectSource {
 
         logger.logp(Level.FINEST, CLASS_NAME, methodName, "key={0}", key);
 
-        List<T> result = getResult(classOfObject, resultSet);
+        final List<T> result = getResult(classOfObject, resultSet);
 
         resultMap(classOfObject).put(key, result);
 
@@ -1094,7 +1088,7 @@ public class OpbDataObjectSource {
         logger.logp(Level.FINEST, CLASS_NAME, methodName,
                 "useDataObjectCache={0}", useDataObjectCache);
 
-        List<T> result =
+        final List<T> result =
                 getResult(classOfObject, resultSet, useDataObjectCache);
 
         resultMap(classOfObject).put(key, result);
@@ -1148,7 +1142,7 @@ public class OpbDataObjectSource {
      * data source).
      * If the object is an active data object, it will be configured with this
      * as it's data object source.
-     * Data object lifecyle listeners will get a 'new data object created'
+     * Data object life-cycle listeners will get a 'new data object created'
      * notification indicating that this data object has not been cached.
      *
      * @param <T>
@@ -1173,7 +1167,7 @@ public class OpbDataObjectSource {
         logger.logp(Level.FINEST, CLASS_NAME, methodName,
                 "classOfObject={0}", classOfObject.getName());
 
-        T dataObject = rawInstance(classOfObject);
+        final T dataObject = rawInstance(classOfObject);
 
         notifyListenersDataObjectCreated(classOfObject, dataObject, false);
 
@@ -1220,7 +1214,7 @@ public class OpbDataObjectSource {
                 "classOfObject={0}", classOfObject.getName());
         logger.logp(Level.FINEST, CLASS_NAME, methodName, "key={0}", key);
 
-        Map<String, T> map = newDataObjectMap(classOfObject);
+        final Map<String, T> map = newDataObjectMap(classOfObject);
         if (!map.containsKey(key)) {
             // Note: newInstance handles object configuration
             map.put(key, newInstance(classOfObject));
