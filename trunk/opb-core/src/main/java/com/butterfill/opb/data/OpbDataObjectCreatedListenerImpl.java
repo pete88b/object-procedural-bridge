@@ -103,7 +103,7 @@ public class OpbDataObjectCreatedListenerImpl implements OpbDataObjectCreatedLis
      * @param cached
      *   Pass true to indicate dataObject has been cached, false otherwise.
      * @throws NullPointerException
-     *   If requestedType or dataObject are null.
+     *   If dataObject is null.
      */
     public void dataObjectCreated(final Class requestedType,
             final Object dataObject, final boolean cached)
@@ -111,9 +111,6 @@ public class OpbDataObjectCreatedListenerImpl implements OpbDataObjectCreatedLis
         final String methodName = "dataObjectCreated(Class, Object, boolean)";
 
         logger.entering(CLASS_NAME, methodName);
-
-        OpbAssert.notNull(
-                logger, CLASS_NAME, methodName, "requestedType", requestedType);
 
         OpbAssert.notNull(
                 logger, CLASS_NAME, methodName, "dataObject", dataObject);
