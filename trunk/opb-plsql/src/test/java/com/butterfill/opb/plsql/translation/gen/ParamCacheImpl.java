@@ -88,6 +88,7 @@ public class ParamCacheImpl implements ParamCache {
         this.opbScalarResultCache = cache;
     }
 
+
     /**
      * functions that return cursors use the result cache by default -
      * use_data_object_cache=Y will be ignored
@@ -120,7 +121,7 @@ public class ParamCacheImpl implements ParamCache {
             return result;
         }
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache.use_result_cache_b(); END;");
@@ -172,7 +173,7 @@ public class ParamCacheImpl implements ParamCache {
             return result;
         }
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache.use_result_cache_b2(); END;");
@@ -213,7 +214,7 @@ public class ParamCacheImpl implements ParamCache {
 
         java.util.List<OpbDynamicDataView> result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache.use_result_cache_b3(); END;");
@@ -250,7 +251,7 @@ public class ParamCacheImpl implements ParamCache {
 
         Long result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache.use_scalar_result_cache_b(); END;");
@@ -298,7 +299,7 @@ public class ParamCacheImpl implements ParamCache {
 
         Long result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache.use_scalar_result_cache_b2(); END;");
@@ -335,7 +336,7 @@ public class ParamCacheImpl implements ParamCache {
 
         Long result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache.use_scalar_result_cache_b3(); END;");
@@ -385,7 +386,7 @@ public class ParamCacheImpl implements ParamCache {
             return result;
         }
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache.use_data_object_cache_b(); END;");
@@ -437,7 +438,7 @@ public class ParamCacheImpl implements ParamCache {
             return result;
         }
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache.use_data_object_cache_b2(); END;");
@@ -476,7 +477,7 @@ public class ParamCacheImpl implements ParamCache {
                 logger, CLASS_NAME, methodName,
                 "pData", pData);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN param_cache.use_result_cache_a(?); END;");
@@ -513,7 +514,7 @@ public class ParamCacheImpl implements ParamCache {
                 logger, CLASS_NAME, methodName,
                 "pData", pData);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN param_cache.use_scalar_result_cache_a(?); END;");
@@ -548,7 +549,7 @@ public class ParamCacheImpl implements ParamCache {
                 logger, CLASS_NAME, methodName,
                 "pResult", pResult);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN param_cache.use_data_object_cache_a(?); END;");

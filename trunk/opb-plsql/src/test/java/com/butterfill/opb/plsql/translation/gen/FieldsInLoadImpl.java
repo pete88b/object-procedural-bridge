@@ -144,8 +144,58 @@ public class FieldsInLoadImpl implements FieldsInLoad {
 
         }
 
-    } // End of opbLoad(ResultSet resultSet)
+    } // End of opbLoad(ResultSet)
 
+
+    /**
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
+     * the value object.
+     *
+     * @param valueObject The value object from which this instance should be loaded.
+     */
+    public void opbLoad(final FieldsInLoadValueObject valueObject) {
+        final String methodName = "opbLoad(FieldsInLoadValueObject)";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        // Clear all field values
+        opbClearState();
+
+        // Make sure valueObject is not null
+        OpbAssert.notNull(logger, CLASS_NAME, methodName, "valueObject", valueObject);
+
+        // Get field values from valueObject
+        fDefault = valueObject.fDefault;
+
+        fOptional = valueObject.fOptional;
+
+        fIgnored = valueObject.fIgnored;
+
+
+    } // End of opbLoad(FieldsInLoadValueObject)
+
+    /**
+     * Returns a value object for this instance.
+     * @return A value object for this FieldsInLoadImpl.
+     */
+    public FieldsInLoadValueObject opbToValueObject() {
+        final String methodName = "opbToValueObject()";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        final FieldsInLoadValueObject valueObject = new FieldsInLoadValueObject();
+
+        valueObject.fDefault = fDefault;
+
+        valueObject.fOptional = fOptional;
+
+        valueObject.fIgnored = fIgnored;
+
+
+        return valueObject;
+
+    } // End of opbToValueObject()
 
     /**
      * Derived from an opb-package field.

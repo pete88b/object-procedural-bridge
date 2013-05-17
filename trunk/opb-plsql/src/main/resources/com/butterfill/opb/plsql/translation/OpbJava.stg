@@ -10,6 +10,7 @@ javaFile(plsqlPackage) ::= <<
 
 package <plsqlPackage.javaPackageName>;
 
+<if(plsqlPackage.valueObjectProvider)>import com.butterfill.opb.OpbValueObjectProvider;<endif>
 import com.butterfill.opb.data.*;
 import com.butterfill.opb.util.*;
 
@@ -21,7 +22,8 @@ public interface <plsqlPackage.javaInterfaceName><if(!plsqlPackage.onlyConstants
 
         extends <if(plsqlPackage.identifiable)>OpbActiveCacheableEntity
         <else>OpbActiveDataObject<if(plsqlPackage.loadable)>, OpbEntity<endif>
-        <endif><if(plsqlPackage.useScalarResultCache)>, OpbScalarResultCacheUser<endif><endif> {
+        <endif><if(plsqlPackage.useScalarResultCache)>, OpbScalarResultCacheUser<endif><if(plsqlPackage.valueObjectProvider)>,
+        OpbValueObjectProvider\<<plsqlPackage.javaValueObjectName>\><endif><endif> {
 
     <plsqlPackage.constants:constant()>
     <if(plsqlPackage.fields)>

@@ -170,8 +170,70 @@ public class BigDecimalsImpl implements BigDecimals {
 
         }
 
-    } // End of opbLoad(ResultSet resultSet)
+    } // End of opbLoad(ResultSet)
 
+
+    /**
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
+     * the value object.
+     *
+     * @param valueObject The value object from which this instance should be loaded.
+     */
+    public void opbLoad(final BigDecimalsValueObject valueObject) {
+        final String methodName = "opbLoad(BigDecimalsValueObject)";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        // Clear all field values
+        opbClearState();
+
+        // Make sure valueObject is not null
+        OpbAssert.notNull(logger, CLASS_NAME, methodName, "valueObject", valueObject);
+
+        // Get field values from valueObject
+        aNumberNoInitial = valueObject.aNumberNoInitial;
+        aNumberNoInitialDataSourceValue = valueObject.aNumberNoInitialDataSourceValue;
+
+        aNumberWithInitial = valueObject.aNumberWithInitial;
+        aNumberWithInitialDataSourceValue = valueObject.aNumberWithInitialDataSourceValue;
+
+        aNumberWithInitial2 = valueObject.aNumberWithInitial2;
+        aNumberWithInitial2DataSourceValue = valueObject.aNumberWithInitial2DataSourceValue;
+
+        aNumberWithInitial3 = valueObject.aNumberWithInitial3;
+        aNumberWithInitial3DataSourceValue = valueObject.aNumberWithInitial3DataSourceValue;
+
+
+    } // End of opbLoad(BigDecimalsValueObject)
+
+    /**
+     * Returns a value object for this instance.
+     * @return A value object for this BigDecimalsImpl.
+     */
+    public BigDecimalsValueObject opbToValueObject() {
+        final String methodName = "opbToValueObject()";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        final BigDecimalsValueObject valueObject = new BigDecimalsValueObject();
+
+        valueObject.aNumberNoInitial = aNumberNoInitial;
+        valueObject.aNumberNoInitialDataSourceValue = aNumberNoInitialDataSourceValue;
+
+        valueObject.aNumberWithInitial = aNumberWithInitial;
+        valueObject.aNumberWithInitialDataSourceValue = aNumberWithInitialDataSourceValue;
+
+        valueObject.aNumberWithInitial2 = aNumberWithInitial2;
+        valueObject.aNumberWithInitial2DataSourceValue = aNumberWithInitial2DataSourceValue;
+
+        valueObject.aNumberWithInitial3 = aNumberWithInitial3;
+        valueObject.aNumberWithInitial3DataSourceValue = aNumberWithInitial3DataSourceValue;
+
+
+        return valueObject;
+
+    } // End of opbToValueObject()
 
     /**
      * Derived from an opb-package field.

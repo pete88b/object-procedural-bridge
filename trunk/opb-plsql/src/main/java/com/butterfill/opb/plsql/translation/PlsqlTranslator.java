@@ -76,9 +76,16 @@ public class PlsqlTranslator {
     private StringTemplateGroup opbJavaImplStg;
 
     /**
+     * The string template group used to create Java value objects.
+     */
+    private StringTemplateGroup opbJavaValueObjectStg;
+
+    /**
      * Flag to include/exclude PL/SQL comments from generated Java code.
      */
     private boolean includePlsqlComments = true;
+
+    // TODO: add a flag to control value object creation - off, all or default
 
     /**
      * Creates a new PlsqlTranslator.
@@ -97,6 +104,9 @@ public class PlsqlTranslator {
 
             opbJavaImplStg = new StringTemplateGroup(new InputStreamReader(
                     getClass().getResourceAsStream("OpbJavaImpl.stg"), "UTF-8"));
+
+            opbJavaValueObjectStg = new StringTemplateGroup(new InputStreamReader(
+                    getClass().getResourceAsStream("OpbJavaValueObject.stg"), "UTF-8"));
 
         } catch (Exception ex) {
             OpbExceptionHelper.throwException(
@@ -177,20 +187,20 @@ public class PlsqlTranslator {
         final PlsqlPackage plsqlPackage = treeParser.getPlsqlPackage();
         plsqlPackage.validate();
 
-        // write the Java interface to file
+        // create the Java interface
         StringTemplate template = opbJavaStg.getInstanceOf("javaFile");
         template.setAttribute("plsqlPackage", plsqlPackage);
 
+        // write the Java interface to file
         PrintWriter writer = new PrintWriter(
                 outputDir.getPath() + File.separator
-                + treeParser.getPlsqlPackage().getJavaInterfaceName() + ".java",
+                + plsqlPackage.getJavaInterfaceName() + ".java",
                 "UTF-8");
 
         writer.write(template.toString());
         writer.close();
 
-        // if the only translatable elements are constants, do not create the
-        // Java class file
+        // if the only translatable elements are constants, do not create the Java implementation
         if (plsqlPackage.isOnlyConstants()) {
             // tell the user if the Java class won't be created
             logger.logp(Level.INFO, CLASS_NAME, methodName,
@@ -198,14 +208,30 @@ public class PlsqlTranslator {
                     + "Java class will NOT be created");
 
         } else {
-            // write the Java class to file
+            if (plsqlPackage.isValueObjectProvider()) {
+                // create the Java value object class
+                template = opbJavaValueObjectStg.getInstanceOf("javaFile");
+                template.setAttribute("plsqlPackage", plsqlPackage);
+
+                // write the class to a file
+                writer = new PrintWriter(
+                        outputDir.getPath() + File.separator
+                        + plsqlPackage.getJavaValueObjectName() + ".java",
+                        "UTF-8");
+
+                writer.write(template.toString());
+                writer.close();
+
+            }
+
+            // create the Java implementation class
             template = opbJavaImplStg.getInstanceOf("javaFile");
             template.setAttribute("plsqlPackage", plsqlPackage);
 
-            // write the output to a file
+            // write the class to a file
             writer = new PrintWriter(
                     outputDir.getPath() + File.separator
-                    + treeParser.getPlsqlPackage().getJavaClassName() + ".java",
+                    + plsqlPackage.getJavaClassName() + ".java",
                     "UTF-8");
 
             writer.write(template.toString());

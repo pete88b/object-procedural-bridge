@@ -1,0 +1,50 @@
+group OpbJavaImpl;
+
+javaFile(plsqlPackage) ::= <<
+/*
+ * File created by opb-plsql.
+ *
+ * <plsqlPackage.opbPlsqlTitle> version: <plsqlPackage.opbPlsqlVersion>
+ * <plsqlPackage.opbLibraryTitle> version: <plsqlPackage.opbLibraryVersion>
+ */
+
+package <plsqlPackage.javaPackageName>;
+
+/**
+ * File created from the PL/SQL package specification
+ * <plsqlPackage.sqlName>.
+ */
+public class <plsqlPackage.javaValueObjectName> {
+
+    /**
+     * Returns a String representation of this instance and it's values.
+     * @return A String representation of this <plsqlPackage.javaValueObjectName>.
+     */
+    @Override
+    public String toString() {
+        return com.butterfill.opb.util.OpbToStringHelper.toString(this);
+    }
+
+    <plsqlPackage.fields:field()>
+}
+>>
+
+field(field) ::= <<
+<if(it.includeInValueObject)>
+/**
+ * Derived from an opb-package field.
+ */
+public <it.datatype> <it.name>;
+
+<if(it.hasDatasourceValue)>
+/**
+ * Derived from a read-write opb-package field.
+ */
+public <it.datatype> <it.name>DataSourceValue;
+<\n>
+<endif>
+<else>
+// The field <it.name> has been excluded. See OpbField#JAVA_DATATYPES_TO_EXCLUDE_FROM_VALUE_OBJECT
+<\n>
+<endif>
+>>

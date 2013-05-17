@@ -76,6 +76,7 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
     }
 
 
+
     /**
      * 
      * Calls the database function get_null.
@@ -91,7 +92,7 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
 
         java.math.BigDecimal[] result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := user_defined_collections.get_null(); END;");
@@ -126,7 +127,7 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
 
         java.math.BigDecimal[] result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := user_defined_collections.echo_number_table(?); END;");
@@ -165,7 +166,7 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := user_defined_collections.format_number_table(?); END;");
@@ -209,7 +210,7 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
                 logger, CLASS_NAME, methodName,
                 "pResults", pResults);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := user_defined_collections.how_long(?, ?); END;");
@@ -255,7 +256,7 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
                 logger, CLASS_NAME, methodName,
                 "pData", pData);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN user_defined_collections.get_null_proc(?); END;");
@@ -290,7 +291,7 @@ public class UserDefinedCollectionsImpl implements UserDefinedCollections {
                 logger, CLASS_NAME, methodName,
                 "pData", pData);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN user_defined_collections.simple_in_out(?); END;");

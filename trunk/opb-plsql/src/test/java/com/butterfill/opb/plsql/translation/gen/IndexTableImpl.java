@@ -93,6 +93,52 @@ public class IndexTableImpl implements IndexTable {
     } // End of opbClearState()
 
     /**
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
+     * the value object.
+     *
+     * @param valueObject The value object from which this instance should be loaded.
+     */
+    public void opbLoad(final IndexTableValueObject valueObject) {
+        final String methodName = "opbLoad(IndexTableValueObject)";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        // Clear all field values
+        opbClearState();
+
+        // Make sure valueObject is not null
+        OpbAssert.notNull(logger, CLASS_NAME, methodName, "valueObject", valueObject);
+
+        // Get field values from valueObject
+        numberArray = valueObject.numberArray;
+
+        varcharArray = valueObject.varcharArray;
+
+
+    } // End of opbLoad(IndexTableValueObject)
+
+    /**
+     * Returns a value object for this instance.
+     * @return A value object for this IndexTableImpl.
+     */
+    public IndexTableValueObject opbToValueObject() {
+        final String methodName = "opbToValueObject()";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        final IndexTableValueObject valueObject = new IndexTableValueObject();
+
+        valueObject.numberArray = numberArray;
+
+        valueObject.varcharArray = varcharArray;
+
+
+        return valueObject;
+
+    } // End of opbToValueObject()
+
+    /**
      * Derived from an opb-package field.
      */
     private java.math.BigDecimal[] numberArray = null;
@@ -152,7 +198,7 @@ public class IndexTableImpl implements IndexTable {
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN index_table.a(?); END;");
@@ -186,7 +232,7 @@ public class IndexTableImpl implements IndexTable {
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN index_table.a2(?); END;");
@@ -220,7 +266,7 @@ public class IndexTableImpl implements IndexTable {
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN index_table.a3(?); END;");
@@ -254,7 +300,7 @@ public class IndexTableImpl implements IndexTable {
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN index_table.x(?); END;");
@@ -288,7 +334,7 @@ public class IndexTableImpl implements IndexTable {
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN index_table.x2(?); END;");
@@ -322,7 +368,7 @@ public class IndexTableImpl implements IndexTable {
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN index_table.x3(?); END;");
@@ -356,7 +402,7 @@ public class IndexTableImpl implements IndexTable {
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN index_table.y2(?); END;");
@@ -400,7 +446,7 @@ public class IndexTableImpl implements IndexTable {
                 "pData3", pData3,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN index_table.z(?, ?, ?); END;");

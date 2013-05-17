@@ -76,6 +76,7 @@ public class ArraysInImpl implements ArraysIn {
     }
 
 
+
     /**
      * 
      * Calls the database procedure test_one.
@@ -93,7 +94,7 @@ public class ArraysInImpl implements ArraysIn {
                 "pArray", pArray,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN arrays_in.test_one(?); END;");
@@ -127,7 +128,7 @@ public class ArraysInImpl implements ArraysIn {
                 "pArray", pArray,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN arrays_in.test_two(?); END;");

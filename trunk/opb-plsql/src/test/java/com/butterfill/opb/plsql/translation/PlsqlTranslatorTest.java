@@ -23,11 +23,11 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
- * 
+ *
  * @author Peter Butterfill
  */
 public class PlsqlTranslatorTest extends TestCase {
-    
+
     public PlsqlTranslatorTest(String testName) {
         super(testName);
     }
@@ -52,25 +52,32 @@ public class PlsqlTranslatorTest extends TestCase {
      */
     public void testToJava() throws Exception {
         System.out.println("toJava");
-        
+
         File inputDir = new File(
                 "src/test/resources/com/butterfill/opb/plsql/translation");
         File outputDir = new File(
                 "src/test/java/com/butterfill/opb/plsql/translation/gen");
         String javaPackageName = "com.butterfill.opb.plsql.translation.gen";
         PlsqlTranslator instance = new PlsqlTranslator();
-        
+
         File[] files = inputDir.listFiles(new FileFilter() {
             public boolean accept(File pathname) {
                 return pathname.getName().endsWith(".spc") ||
                         pathname.getName().endsWith(".pck");
             }
         });
-        
+
         instance.setIncludePlsqlComments(true);
-        
+
         instance.toJava(files, outputDir, javaPackageName);
-        
+
     }
-    
+
+    public void testIsIncludePlsqlComments() {
+        PlsqlTranslator instance = new PlsqlTranslator();
+        assertTrue(instance.isIncludePlsqlComments());
+        instance.setIncludePlsqlComments(false);
+        assertFalse(instance.isIncludePlsqlComments());
+    }
+
 }

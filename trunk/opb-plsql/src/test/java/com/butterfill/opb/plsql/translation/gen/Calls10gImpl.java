@@ -76,6 +76,7 @@ public class Calls10gImpl implements Calls10g {
     }
 
 
+
     /**
      * 
      * Calls the database function echo.
@@ -91,7 +92,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.echo(?); END;");
@@ -130,7 +131,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_CHAR(?); END;");
@@ -169,7 +170,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_VARCHAR2(?); END;");
@@ -208,7 +209,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_NUMBER(?); END;");
@@ -247,7 +248,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_INTEGER(?); END;");
@@ -286,7 +287,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_RAW(?); END;");
@@ -328,7 +329,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_DATE(?); END;");
@@ -367,7 +368,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_TIMESTAMP(?); END;");
@@ -406,7 +407,7 @@ public class Calls10gImpl implements Calls10g {
 
         java.sql.Blob result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_blob(); END;");
@@ -441,7 +442,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_BLOB(?); END;");
@@ -480,7 +481,7 @@ public class Calls10gImpl implements Calls10g {
 
         java.sql.Clob result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_clob(); END;");
@@ -515,7 +516,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_CLOB(?); END;");
@@ -554,7 +555,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_BOOLEAN(?); END;");
@@ -598,7 +599,7 @@ public class Calls10gImpl implements Calls10g {
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_DBMS_SQL_VARCHAR2_TABLE(?); END;");
@@ -642,7 +643,7 @@ public class Calls10gImpl implements Calls10g {
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_DBMS_SQL_NUMBER_TABLE(?); END;");
@@ -681,7 +682,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_BINARY_DOUBLE(?); END;");
@@ -720,7 +721,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_BINARY_FLOAT(?); END;");
@@ -759,7 +760,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_BINARY_INTEGER(?); END;");
@@ -798,7 +799,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_DEC(?); END;");
@@ -837,7 +838,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_DECIMAL(?); END;");
@@ -876,7 +877,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_FLOAT(?); END;");
@@ -915,7 +916,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_INT(?); END;");
@@ -954,7 +955,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_NUMERIC(?); END;");
@@ -993,7 +994,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_PLS_INTEGER(?); END;");
@@ -1032,7 +1033,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_POSITIVE(?); END;");
@@ -1071,7 +1072,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_SMALLINT(?); END;");
@@ -1110,7 +1111,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_CHARACTER(?); END;");
@@ -1149,7 +1150,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_NCHAR(?); END;");
@@ -1188,7 +1189,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_NVARCHAR2(?); END;");
@@ -1227,7 +1228,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_ROWID(?); END;");
@@ -1266,7 +1267,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_STRING(?); END;");
@@ -1305,7 +1306,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_UROWID(?); END;");
@@ -1344,7 +1345,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.f_VARCHAR(?); END;");
@@ -1383,7 +1384,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_CHAR(); END;");
@@ -1418,7 +1419,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_VARCHAR2(); END;");
@@ -1453,7 +1454,7 @@ public class Calls10gImpl implements Calls10g {
 
         java.math.BigDecimal result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_NUMBER(); END;");
@@ -1488,7 +1489,7 @@ public class Calls10gImpl implements Calls10g {
 
         Long result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_INTEGER(); END;");
@@ -1523,7 +1524,7 @@ public class Calls10gImpl implements Calls10g {
 
         byte[] result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_RAW(); END;");
@@ -1558,7 +1559,7 @@ public class Calls10gImpl implements Calls10g {
 
         java.util.Date result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_DATE(); END;");
@@ -1593,7 +1594,7 @@ public class Calls10gImpl implements Calls10g {
 
         java.sql.Timestamp result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_TIMESTAMP(); END;");
@@ -1628,7 +1629,7 @@ public class Calls10gImpl implements Calls10g {
 
         Boolean result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_BOOLEAN(); END;");
@@ -1663,7 +1664,7 @@ public class Calls10gImpl implements Calls10g {
 
         Double result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_BINARY_DOUBLE(); END;");
@@ -1698,7 +1699,7 @@ public class Calls10gImpl implements Calls10g {
 
         Double result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_BINARY_DOUBLE_null(); END;");
@@ -1733,7 +1734,7 @@ public class Calls10gImpl implements Calls10g {
 
         Float result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_BINARY_FLOAT(); END;");
@@ -1768,7 +1769,7 @@ public class Calls10gImpl implements Calls10g {
 
         Float result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_BINARY_FLOAT_null(); END;");
@@ -1803,7 +1804,7 @@ public class Calls10gImpl implements Calls10g {
 
         Long result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_BINARY_INTEGER(); END;");
@@ -1838,7 +1839,7 @@ public class Calls10gImpl implements Calls10g {
 
         java.math.BigDecimal result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_DEC(); END;");
@@ -1873,7 +1874,7 @@ public class Calls10gImpl implements Calls10g {
 
         java.math.BigDecimal result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_DECIMAL(); END;");
@@ -1908,7 +1909,7 @@ public class Calls10gImpl implements Calls10g {
 
         java.math.BigDecimal result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_FLOAT(); END;");
@@ -1943,7 +1944,7 @@ public class Calls10gImpl implements Calls10g {
 
         Long result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_INT(); END;");
@@ -1978,7 +1979,7 @@ public class Calls10gImpl implements Calls10g {
 
         java.math.BigDecimal result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_NUMERIC(); END;");
@@ -2013,7 +2014,7 @@ public class Calls10gImpl implements Calls10g {
 
         Long result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_PLS_INTEGER(); END;");
@@ -2048,7 +2049,7 @@ public class Calls10gImpl implements Calls10g {
 
         java.math.BigDecimal result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_POSITIVE(); END;");
@@ -2083,7 +2084,7 @@ public class Calls10gImpl implements Calls10g {
 
         Long result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_SMALLINT(); END;");
@@ -2118,7 +2119,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_CHARACTER(); END;");
@@ -2153,7 +2154,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_NCHAR(); END;");
@@ -2188,7 +2189,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_NVARCHAR2(); END;");
@@ -2223,7 +2224,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_ROWID(); END;");
@@ -2258,7 +2259,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_STRING(); END;");
@@ -2293,7 +2294,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_UROWID(); END;");
@@ -2328,7 +2329,7 @@ public class Calls10gImpl implements Calls10g {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_VARCHAR(); END;");
@@ -2383,7 +2384,7 @@ public class Calls10gImpl implements Calls10g {
                 "pNumberArray", pNumberArray,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.data_types(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); END;");
@@ -2470,7 +2471,7 @@ public class Calls10gImpl implements Calls10g {
             return result;
         }
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_from_test_table(); END;");
@@ -2522,7 +2523,7 @@ public class Calls10gImpl implements Calls10g {
             return result;
         }
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls10g.get_one_of_each_sql_type(); END;");
@@ -2562,7 +2563,7 @@ public class Calls10gImpl implements Calls10g {
                 logger, CLASS_NAME, methodName,
                 "pResult", pResult);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN calls10g.echo(?, ?); END;");

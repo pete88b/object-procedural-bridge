@@ -76,6 +76,7 @@ public class ParamCache3Impl implements ParamCache3 {
     }
 
 
+
     /**
      * functions that return cursors use the result cache by default -
      * unless they use OUT params.
@@ -100,7 +101,7 @@ public class ParamCache3Impl implements ParamCache3 {
                 logger, CLASS_NAME, methodName,
                 "pKey", pKey);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache3.use_result_cache_b(?); END;");
@@ -151,7 +152,7 @@ public class ParamCache3Impl implements ParamCache3 {
                 logger, CLASS_NAME, methodName,
                 "pKey", pKey);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache3.use_result_cache_b_part2(?); END;");
@@ -206,7 +207,7 @@ public class ParamCache3Impl implements ParamCache3 {
                 logger, CLASS_NAME, methodName,
                 "pKey", pKey);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache3.use_result_cache_b2(?); END;");
@@ -257,7 +258,7 @@ public class ParamCache3Impl implements ParamCache3 {
                 logger, CLASS_NAME, methodName,
                 "pKey", pKey);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache3.use_result_cache_b2_part2(?); END;");
@@ -311,7 +312,7 @@ public class ParamCache3Impl implements ParamCache3 {
                 logger, CLASS_NAME, methodName,
                 "pKey", pKey);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache3.use_result_cache_b3(?); END;");
@@ -358,7 +359,7 @@ public class ParamCache3Impl implements ParamCache3 {
                 logger, CLASS_NAME, methodName,
                 "pKey", pKey);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache3.use_scalar_result_cache_b(?); END;");
@@ -403,7 +404,7 @@ public class ParamCache3Impl implements ParamCache3 {
                 logger, CLASS_NAME, methodName,
                 "pKey", pKey);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache3.use_scalar_result_cache_b_p2(?); END;");
@@ -452,7 +453,7 @@ public class ParamCache3Impl implements ParamCache3 {
                 logger, CLASS_NAME, methodName,
                 "pKey", pKey);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache3.use_scalar_result_cache_b2(?); END;");
@@ -497,7 +498,7 @@ public class ParamCache3Impl implements ParamCache3 {
                 logger, CLASS_NAME, methodName,
                 "pKey", pKey);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache3.use_scalar_result_cache_b2_p2(?); END;");
@@ -545,7 +546,7 @@ public class ParamCache3Impl implements ParamCache3 {
                 logger, CLASS_NAME, methodName,
                 "pKey", pKey);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache3.use_scalar_result_cache_b3(?); END;");
@@ -594,7 +595,7 @@ public class ParamCache3Impl implements ParamCache3 {
                 logger, CLASS_NAME, methodName,
                 "pKey", pKey);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache3.use_data_object_cache_b(?); END;");
@@ -645,7 +646,7 @@ public class ParamCache3Impl implements ParamCache3 {
                 logger, CLASS_NAME, methodName,
                 "pKey", pKey);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_cache3.use_data_object_cache_b2(?); END;");
@@ -694,7 +695,7 @@ public class ParamCache3Impl implements ParamCache3 {
                 logger, CLASS_NAME, methodName,
                 "pKey", pKey);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN param_cache3.use_data_object_cache_a(?, ?); END;");

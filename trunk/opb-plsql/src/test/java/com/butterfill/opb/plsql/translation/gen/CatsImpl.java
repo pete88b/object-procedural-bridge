@@ -76,6 +76,7 @@ public class CatsImpl implements Cats {
     }
 
 
+
     /**
      * 
      * Calls the database function get_cats.
@@ -106,7 +107,7 @@ public class CatsImpl implements Cats {
             return result;
         }
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := cats.get_cats(); END;");
