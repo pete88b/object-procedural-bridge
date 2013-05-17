@@ -16,21 +16,17 @@
 
 package com.butterfill.opb.util;
 
-import com.butterfill.opb.OpbId;
-import java.lang.reflect.AccessibleObject;
-import java.lang.reflect.Field;
+import com.butterfill.opb.OpbObjectSourceImpl;
+import com.butterfill.opb.OpbValueObjectProvider;
+import com.butterfill.opb.data.OpbActiveDataObject;
+import com.butterfill.opb.data.OpbDataObjectSource;
+import com.butterfill.opb.session.OpbSession;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Provides methods for converting Opb objects to simple value objects.
- * <br/>
- * One expected use of this class is to simplify serialization of Opb objects -
- * so you might convert an Opb object to a value object before serializing the object.
+ * Provides methods for converting Opb objects to value objects and vice versa.
  *
  * @author Peter Butterfill
  */
@@ -47,125 +43,79 @@ public class OpbValueObjectHelper {
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
     /**
-     * The default field filter which accepts any non-synthetic fields that are
-     * not called logger, opbConnectionProvider or opbDataObjectSource.
+     * Default data object source to use.
      */
-    private static final OpbFieldFilter DEFAULT_FIELD_FILTER =
-            new OpbFieldFilter() {
-        public boolean accept(final Object object, final Field field) {
-            return !field.isSynthetic()
-                    && !field.getName().equals("logger")
-                    && !field.getName().equals("opbConnectionProvider")
-                    && !field.getName().equals("opbDataObjectSource");
-        }
-    };
+    private final OpbDataObjectSource dataObjectSource;
 
     /**
-     * Used by toValueObject to control which fields are included.
-     */
-    private OpbFieldFilter fieldFilter = DEFAULT_FIELD_FILTER;
-
-    /**
-     * Creates a new instance of OpbValueObjectHelper.
+     * Creates a new instance of OpbValueObjectHelper that will use a {@link OpbDataObjectSource}.
      */
     public OpbValueObjectHelper() {
+        dataObjectSource = new OpbDataObjectSource(new OpbObjectSourceImpl());
     }
 
     /**
-     * Returns a copy of the values held by the specified OpbId.
-     * @param opbId
-     *   An OpbId - which must not be null.
-     * @return
-     *   A copy of the values held by the specified OpbId.
+     * Creates a new instance of OpbValueObjectHelper that will use the specified data object
+     * source.
+     * @param dataObjectSource
+     *   The data object source used by {@link #toOpbObjectList(java.lang.Class, java.util.List)}
+     *   to create new instances.
      */
-    private Object[] getOpbIdValues(final Object opbId) {
-        final String method = "getOpbIdValues(Object)";
+    public OpbValueObjectHelper(final OpbDataObjectSource dataObjectSource) {
+        OpbAssert.notNull(logger, CLASS_NAME, "toOpbObjectList",
+                "dataObjectSource", dataObjectSource);
 
-        try {
-            final Field valuesField = OpbId.class.getDeclaredField("values");
-            valuesField.setAccessible(true);
-            final Object[] values = (Object[]) valuesField.get(opbId);
-            return values.clone();
-
-        } catch (Exception ex) {
-            throw OpbExceptionHelper.throwException(
-                    new RuntimeException("failed to get OpbId#values field value", ex),
-                    logger, CLASS_NAME, method);
-
-        }
+        this.dataObjectSource = dataObjectSource;
     }
 
     /**
-     * Returns a "value object" representation of the specified object.
-     * <br/>
-     * Using the default field filter, this method will return a map;
-     * <ul>
-     * <li>
-     *  containing all fields that are;
-     *  <ul>
-     *      <li>not synthetic</li>
-     *      <li>not called logger</li>
-     *      <li>not called opbConnectionProvider</li>
-     *      <li>not called opbDataObjectSource</li>
-     *  </ul>
-     * </li>
-     * <li>where key is the field name and value is the field value</li>
-     * <li>
-     *  containing an extra entry where key is <code>CLASS_NAME</code>
-     *  and value is the name of the class of the object passed to this method
-     * </li>
-     * </ul>
-     * () containing all
-     * @param object
-     *   The object to convert.
-     * @return
-     *   A value object or null if object is null.
+     * Creates a new instance of OpbValueObjectHelper that will use the data object
+     * source of the specified session.
+     * @param session
+     *   A session from which we can get the data object source used by
+     *   {@link #toOpbObjectList(java.lang.Class, java.util.List)} to create new instances.
      */
-    public Map<String, Object> toValueObject(final Object object) {
-        final String method = "toValueObject(Object)";
+    public OpbValueObjectHelper(final OpbSession session) {
+        OpbAssert.notNull(logger, CLASS_NAME, "toOpbObjectList", "session", session);
 
-        if (object == null) {
+        this.dataObjectSource = session.getDataObjectSource();
+
+        OpbAssert.notNull(logger, CLASS_NAME, "toOpbObjectList",
+                "dataObjectSource", dataObjectSource);
+
+    }
+
+    /**
+     * Converts a list of Opb objects to a list of value objects.
+     * @param opbObjects
+     *   A list of Opb objects.
+     * @return
+     *   A list of Opb objects or null if opbObjects is null.
+     */
+    public List toValueObjectList(final List opbObjects) {
+        final String method = "toValueObjectList(List)";
+
+        logger.entering(CLASS_NAME, method);
+
+        if (opbObjects == null) {
             return null;
         }
 
-        final Map<String, Object> result = new HashMap<String, Object>();
+        final List<Object> result = new ArrayList<Object>();
 
-        final Class objectClass = object.getClass();
+        for (Object object : opbObjects) {
+            if (object == null) {
+                result.add(null);
 
-        result.put("CLASS_NAME", objectClass.getName());
+            } else if (object instanceof OpbValueObjectProvider) {
+                result.add(((OpbValueObjectProvider) object).opbToValueObject());
 
-        final Field[] fields = objectClass.getDeclaredFields();
+            } else if (object instanceof OpbActiveDataObject) {
+                result.add(null);
 
-        try {
-            AccessibleObject.setAccessible(fields, true);
-
-        } catch (SecurityException ex) {
-            // if we can't make the fields accessible, we'll get illegal argument
-            // and illegal access exceptions when we try to get field values
-            logger.logp(Level.WARNING, CLASS_NAME, method,
-                    "failed to make fields accessible", ex);
-        }
-
-        for (Field field : fields) {
-            // see if the field filter excludes this field
-            if (!fieldFilter.accept(object, field)) {
-                continue;
-            }
-
-            try {
-                final Object value = field.get(object);
-
-                if (value instanceof OpbId) {
-                    result.put(field.getName(), getOpbIdValues(value));
-
-                } else {
-                    result.put(field.getName(), value);
-
-                }
-
-            } catch (Exception ex) {
+            } else {
                 OpbExceptionHelper.throwException(
-                        new RuntimeException("failed to get field value", ex),
+                        new RuntimeException("failed to add value object to list. " + object),
                         logger, CLASS_NAME, method);
 
             }
@@ -177,65 +127,43 @@ public class OpbValueObjectHelper {
     }
 
     /**
-     * Returns a list of "value object" representations of the specified objects.
-     * @param objects
-     *   The objects to convert.
+     * Converts a list of value objects to a list of Opb objects.
+     * @param <T>
+     *   The type of object to convert to.
+     * @param classOfObject
+     *   The class of object to convert to.
+     * @param valueObjects
+     *   A list of value objects.
      * @return
-     *   A list of value objects or null if objects is null.
+     *   A list of Opb objects or null if valueObjects is null.
      */
-    public List<Map<String, Object>> toValueObject(final List objects) {
-        if (objects == null) {
+    public <T extends OpbValueObjectProvider> List<T> toOpbObjectList(
+            final Class<T> classOfObject, final List valueObjects) {
+        final String method = "toOpbObjectList(Class, List)";
+
+        logger.entering(CLASS_NAME, method);
+
+        if (valueObjects == null) {
             return null;
         }
 
-        final List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
+        final List<T> result = new ArrayList<T>();
 
-        for (Object object : objects) {
-            result.add(toValueObject(object));
+        for (Object object : valueObjects) {
+            if (object == null) {
+                result.add(null);
+
+            } else {
+                final T opbObject = dataObjectSource.newInstance(classOfObject);
+                opbObject.opbLoad(object);
+                result.add(opbObject);
+
+            }
+
         }
 
         return result;
 
-    }
-
-    /**
-     * Returns a list of "value object" representations of the specified objects.
-     * @param objects
-     *   The objects to convert.
-     * @return
-     *   A list of value objects or null if objects is null.
-     */
-    public List<Map<String, Object>> toValueObject(final Object[] objects) {
-        if (objects == null) {
-            return null;
-        }
-
-        final List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
-
-        for (Object object : objects) {
-            result.add(toValueObject(object));
-        }
-
-        return result;
-
-    }
-
-    /**
-     * Returns the field filter used by the toString method.
-     * @return The field filter used by the toString method.
-     */
-    public OpbFieldFilter getFieldFilter() {
-        return fieldFilter;
-    }
-
-    /**
-     * Sets the field filter to be used by the toString method.
-     * @param filter
-     *   The field filter to be used by the toString method.
-     *   If filter is null, the default field filter will be used.
-     */
-    public void setFieldFilter(final OpbFieldFilter filter) {
-        fieldFilter = (filter == null) ? DEFAULT_FIELD_FILTER : filter;
     }
 
 } // End of class OpbValueObjectHelper

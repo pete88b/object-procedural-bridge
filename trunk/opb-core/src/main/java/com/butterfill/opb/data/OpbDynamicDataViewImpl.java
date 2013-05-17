@@ -18,6 +18,7 @@ package com.butterfill.opb.data;
 
 import com.butterfill.opb.util.OpbAssert;
 import com.butterfill.opb.util.OpbExceptionHelper;
+import com.butterfill.opb.util.OpbSqlNameToJavaNameHelper;
 import com.butterfill.opb.util.OpbToStringHelper;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -48,10 +49,15 @@ public class OpbDynamicDataViewImpl implements OpbDynamicDataView {
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
     /**
+     * The SqlNameToJavaNameHelper used by this instance.
+     */
+    private final OpbSqlNameToJavaNameHelper sqlNameToJavaNameHelper =
+            new OpbSqlNameToJavaNameHelper();
+
+    /**
      * Holds values loaded by the opbLoad(ResultSet) method.
      */
-    private final Map<String, Object> valuesMap =
-            new HashMap<String, Object>();
+    private final Map<String, Object> valuesMap = new HashMap<String, Object>();
 
     /**
      * Creates a new instance of OpbDynamicDataViewImpl.
@@ -70,57 +76,6 @@ public class OpbDynamicDataViewImpl implements OpbDynamicDataView {
     public String toString() {
         return OpbToStringHelper.toString(this);
     }
-
-    /**
-     * Contains Java names for SQL names already converted by
-     * sqlNameToJavaName(String).
-     */
-    private static final Map<String, String> NAME_CACHE =
-            new HashMap<String, String>();
-
-    /**
-     * Converts a SQL name to a Java name.
-     *
-     * @param sqlName The SQL name to convert.
-     * @return The Java name for the specified SQL name.
-     *
-     * @see #opbLoad(ResultSet)
-     */
-    private String sqlNameToJavaName(final String sqlName) {
-
-        // if the name is already cached, we don't need to convert
-        if (!NAME_CACHE.containsKey(sqlName)) {
-            String[] nameBits = sqlName.toLowerCase().split("_");
-
-            StringBuilder sb = new StringBuilder();
-
-            boolean firstBit = true;
-
-            for (String bit : nameBits) {
-                if (firstBit) {
-                    firstBit = false;
-                    sb.append(bit);
-
-                } else if (bit.length() > 0) {
-                    // bit.length() will be 0 if the sql name contained
-                    // consecutive underscores
-                    sb.append(bit.substring(0, 1).toUpperCase());
-                    if (bit.length() > 1) {
-                        sb.append(bit.substring(1));
-
-                    }
-
-                }
-
-            } // End of for (String bit : nameBits)
-
-            NAME_CACHE.put(sqlName, sb.toString());
-
-        } // End of if (!NAME_CACHE.containsKey(sqlName))
-
-        return NAME_CACHE.get(sqlName);
-
-    } // End of sqlNameToJavaName(String)
 
     /**
      * Loads this 'view' with the data in the current row of the result set
@@ -184,7 +139,7 @@ public class OpbDynamicDataViewImpl implements OpbDynamicDataView {
                         "getting values for column {0}", i);
 
                 valuesMap.put(
-                        sqlNameToJavaName(metadata.getColumnName(i)),
+                        sqlNameToJavaNameHelper.sqlNameToJavaName(metadata.getColumnName(i)),
                         resultSet.getObject(i));
 
             }
