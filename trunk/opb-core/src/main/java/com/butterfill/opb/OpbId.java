@@ -123,7 +123,7 @@ public class OpbId {
      * Compares the specified object with this id for equality.
      * <br/>
      * Returns true if the specified object is an OpbId and contains equal
-     * values in the same order as this id, false otehrwise.
+     * values in the same order as this id, false otherwise.
      * <br/>
      * Arrays are considered equal if they have the same length and equal
      * elements in the same order.
