@@ -95,6 +95,56 @@ public class PeopleImpl implements People {
     } // End of opbClearState()
 
     /**
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
+     * the value object.
+     *
+     * @param valueObject The value object from which this instance should be loaded.
+     */
+    public void opbLoad(final PeopleValueObject valueObject) {
+        final String methodName = "opbLoad(PeopleValueObject)";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        // Clear all field values
+        opbClearState();
+
+        // Make sure valueObject is not null
+        OpbAssert.notNull(logger, CLASS_NAME, methodName, "valueObject", valueObject);
+
+        // Get field values from valueObject
+        lastName = valueObject.lastName;
+
+        addressId = valueObject.addressId;
+
+        firstName = valueObject.firstName;
+
+
+    } // End of opbLoad(PeopleValueObject)
+
+    /**
+     * Returns a value object for this instance.
+     * @return A value object for this PeopleImpl.
+     */
+    public PeopleValueObject opbToValueObject() {
+        final String methodName = "opbToValueObject()";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        final PeopleValueObject valueObject = new PeopleValueObject();
+
+        valueObject.lastName = lastName;
+
+        valueObject.addressId = addressId;
+
+        valueObject.firstName = firstName;
+
+
+        return valueObject;
+
+    } // End of opbToValueObject()
+
+    /**
      * Derived from an opb-package field.
      */
     private String lastName = null;
@@ -195,7 +245,7 @@ public class PeopleImpl implements People {
             return result;
         }
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := people.get_filtered(?, ?, ?, ?); END;");

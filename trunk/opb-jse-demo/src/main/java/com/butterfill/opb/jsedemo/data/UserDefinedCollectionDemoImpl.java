@@ -76,6 +76,7 @@ public class UserDefinedCollectionDemoImpl implements UserDefinedCollectionDemo 
     }
 
 
+
     /**
      * 
      * Calls the database function echo.
@@ -91,7 +92,7 @@ public class UserDefinedCollectionDemoImpl implements UserDefinedCollectionDemo 
 
         java.math.BigDecimal[] result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := user_defined_collection_demo.echo(?); END;");

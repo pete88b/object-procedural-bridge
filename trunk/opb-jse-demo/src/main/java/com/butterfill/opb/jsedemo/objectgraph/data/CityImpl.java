@@ -171,8 +171,56 @@ public class CityImpl implements City {
 
         }
 
-    } // End of opbLoad(ResultSet resultSet)
+    } // End of opbLoad(ResultSet)
 
+
+    /**
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
+     * the value object.
+     *
+     * @param valueObject The value object from which this instance should be loaded.
+     */
+    public void opbLoad(final CityValueObject valueObject) {
+        final String methodName = "opbLoad(CityValueObject)";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        // Clear all field values
+        opbClearState();
+
+        // Make sure valueObject is not null
+        OpbAssert.notNull(logger, CLASS_NAME, methodName, "valueObject", valueObject);
+
+        // Get field values from valueObject
+        cityId = valueObject.cityId;
+
+        cityName = valueObject.cityName;
+        cityNameDataSourceValue = valueObject.cityNameDataSourceValue;
+
+
+    } // End of opbLoad(CityValueObject)
+
+    /**
+     * Returns a value object for this instance.
+     * @return A value object for this CityImpl.
+     */
+    public CityValueObject opbToValueObject() {
+        final String methodName = "opbToValueObject()";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        final CityValueObject valueObject = new CityValueObject();
+
+        valueObject.cityId = cityId;
+
+        valueObject.cityName = cityName;
+        valueObject.cityNameDataSourceValue = cityNameDataSourceValue;
+
+
+        return valueObject;
+
+    } // End of opbToValueObject()
 
     /**
      * Derived from an opb-package field.
@@ -273,7 +321,7 @@ public class CityImpl implements City {
             return result;
         }
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := city.get_addresses(?); END;");
@@ -335,7 +383,7 @@ public class CityImpl implements City {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN city.del(?, ?); END;");
@@ -394,7 +442,7 @@ public class CityImpl implements City {
                 logger, CLASS_NAME, methodName,
                 "pCityId", pCityId);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN city.ins(?, ?); END;");
@@ -459,7 +507,7 @@ public class CityImpl implements City {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN city.upd(?, ?, ?); END;");

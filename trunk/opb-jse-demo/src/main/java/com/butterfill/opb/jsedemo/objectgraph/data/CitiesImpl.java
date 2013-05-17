@@ -91,6 +91,48 @@ public class CitiesImpl implements Cities {
     } // End of opbClearState()
 
     /**
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
+     * the value object.
+     *
+     * @param valueObject The value object from which this instance should be loaded.
+     */
+    public void opbLoad(final CitiesValueObject valueObject) {
+        final String methodName = "opbLoad(CitiesValueObject)";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        // Clear all field values
+        opbClearState();
+
+        // Make sure valueObject is not null
+        OpbAssert.notNull(logger, CLASS_NAME, methodName, "valueObject", valueObject);
+
+        // Get field values from valueObject
+        cityName = valueObject.cityName;
+
+
+    } // End of opbLoad(CitiesValueObject)
+
+    /**
+     * Returns a value object for this instance.
+     * @return A value object for this CitiesImpl.
+     */
+    public CitiesValueObject opbToValueObject() {
+        final String methodName = "opbToValueObject()";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        final CitiesValueObject valueObject = new CitiesValueObject();
+
+        valueObject.cityName = cityName;
+
+
+        return valueObject;
+
+    } // End of opbToValueObject()
+
+    /**
      * Derived from an opb-package field.
      */
     private String cityName = null;
@@ -143,7 +185,7 @@ public class CitiesImpl implements Cities {
             return result;
         }
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := cities.get_filtered(?); END;");
@@ -206,7 +248,7 @@ public class CitiesImpl implements Cities {
 
         Long result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := cities.get_city_id(?); END;");
