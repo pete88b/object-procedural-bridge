@@ -181,8 +181,60 @@ public class FieldsIdImpl implements FieldsId {
 
         }
 
-    } // End of opbLoad(ResultSet resultSet)
+    } // End of opbLoad(ResultSet)
 
+
+    /**
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
+     * the value object.
+     *
+     * @param valueObject The value object from which this instance should be loaded.
+     */
+    public void opbLoad(final FieldsIdValueObject valueObject) {
+        final String methodName = "opbLoad(FieldsIdValueObject)";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        // Clear all field values
+        opbClearState();
+
+        // Make sure valueObject is not null
+        OpbAssert.notNull(logger, CLASS_NAME, methodName, "valueObject", valueObject);
+
+        // Get field values from valueObject
+        pk = valueObject.pk;
+
+        pk2 = valueObject.pk2;
+        pk2DataSourceValue = valueObject.pk2DataSourceValue;
+
+        a = valueObject.a;
+
+
+    } // End of opbLoad(FieldsIdValueObject)
+
+    /**
+     * Returns a value object for this instance.
+     * @return A value object for this FieldsIdImpl.
+     */
+    public FieldsIdValueObject opbToValueObject() {
+        final String methodName = "opbToValueObject()";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        final FieldsIdValueObject valueObject = new FieldsIdValueObject();
+
+        valueObject.pk = pk;
+
+        valueObject.pk2 = pk2;
+        valueObject.pk2DataSourceValue = pk2DataSourceValue;
+
+        valueObject.a = a;
+
+
+        return valueObject;
+
+    } // End of opbToValueObject()
 
     /**
      * Derived from an opb-package field.

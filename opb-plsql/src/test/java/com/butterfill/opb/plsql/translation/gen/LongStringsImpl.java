@@ -76,6 +76,7 @@ public class LongStringsImpl implements LongStrings {
     }
 
 
+
     /**
      * 
      * Calls the database function how_long.
@@ -91,7 +92,7 @@ public class LongStringsImpl implements LongStrings {
 
         Long result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := long_strings.how_long(?); END;");
@@ -130,7 +131,7 @@ public class LongStringsImpl implements LongStrings {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := long_strings.get_long(?); END;");
@@ -171,7 +172,7 @@ public class LongStringsImpl implements LongStrings {
                 logger, CLASS_NAME, methodName,
                 "pData", pData);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN long_strings.in_out(?); END;");

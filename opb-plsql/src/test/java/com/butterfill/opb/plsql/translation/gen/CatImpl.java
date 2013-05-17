@@ -189,8 +189,64 @@ public class CatImpl implements Cat {
 
         }
 
-    } // End of opbLoad(ResultSet resultSet)
+    } // End of opbLoad(ResultSet)
 
+
+    /**
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
+     * the value object.
+     *
+     * @param valueObject The value object from which this instance should be loaded.
+     */
+    public void opbLoad(final CatValueObject valueObject) {
+        final String methodName = "opbLoad(CatValueObject)";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        // Clear all field values
+        opbClearState();
+
+        // Make sure valueObject is not null
+        OpbAssert.notNull(logger, CLASS_NAME, methodName, "valueObject", valueObject);
+
+        // Get field values from valueObject
+        name = valueObject.name;
+
+        type = valueObject.type;
+
+        lastChanged = valueObject.lastChanged;
+
+        description = valueObject.description;
+        descriptionDataSourceValue = valueObject.descriptionDataSourceValue;
+
+
+    } // End of opbLoad(CatValueObject)
+
+    /**
+     * Returns a value object for this instance.
+     * @return A value object for this CatImpl.
+     */
+    public CatValueObject opbToValueObject() {
+        final String methodName = "opbToValueObject()";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        final CatValueObject valueObject = new CatValueObject();
+
+        valueObject.name = name;
+
+        valueObject.type = type;
+
+        valueObject.lastChanged = lastChanged;
+
+        valueObject.description = description;
+        valueObject.descriptionDataSourceValue = descriptionDataSourceValue;
+
+
+        return valueObject;
+
+    } // End of opbToValueObject()
 
     /**
      * Derived from an opb-package field.
@@ -316,7 +372,7 @@ public class CatImpl implements Cat {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN cat.update_description(?, ?, ?); END;");
@@ -376,7 +432,7 @@ public class CatImpl implements Cat {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN cat.delete_cat(?, ?); END;");
@@ -430,7 +486,7 @@ public class CatImpl implements Cat {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN cat.clear_cached_all(); END;");
@@ -457,7 +513,7 @@ public class CatImpl implements Cat {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN cat.invalidate_cached_all(); END;");
@@ -484,7 +540,7 @@ public class CatImpl implements Cat {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN cat.clear_cached_cats(); END;");
@@ -511,7 +567,7 @@ public class CatImpl implements Cat {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN cat.invalidate_cached_cats(); END;");

@@ -7,6 +7,7 @@
 
 package com.butterfill.opb.plsql.translation.gen;
 
+import com.butterfill.opb.OpbValueObjectProvider;
 import com.butterfill.opb.data.*;
 import com.butterfill.opb.util.*;
 
@@ -15,7 +16,8 @@ import com.butterfill.opb.util.*;
  * embedded_comments.
  */
 public interface EmbeddedComments
-        extends OpbActiveDataObject, OpbEntity {
+        extends OpbActiveDataObject, OpbEntity,
+        OpbValueObjectProvider<EmbeddedCommentsValueObject> {
 
     /**
      * Resets all field values to their initial values.

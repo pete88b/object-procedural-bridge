@@ -76,6 +76,7 @@ public class ParamDatatypeImpl implements ParamDatatype {
     }
 
 
+
     /**
      * 
      * Calls the database function invalid_1.
@@ -91,7 +92,7 @@ public class ParamDatatypeImpl implements ParamDatatype {
 
         java.math.BigDecimal result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := param_datatype.invalid_1(); END;");
@@ -124,7 +125,7 @@ public class ParamDatatypeImpl implements ParamDatatype {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN param_datatype.invalid_2(?); END;");
@@ -161,7 +162,7 @@ public class ParamDatatypeImpl implements ParamDatatype {
                 logger, CLASS_NAME, methodName,
                 "p2", p2);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN param_datatype.dodgy(?, ?); END;");
@@ -203,7 +204,7 @@ public class ParamDatatypeImpl implements ParamDatatype {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN param_datatype.a(?, ?); END;");

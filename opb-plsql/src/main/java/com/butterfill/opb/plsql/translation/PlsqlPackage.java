@@ -46,10 +46,9 @@ class PlsqlPackage {
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
     /**
-     * The translastion helper used by this class.
+     * The translation helper used by this class.
      */
-    private final PlsqlTranslationHelper translationHelper =
-            new PlsqlTranslationHelper();
+    private final PlsqlTranslationHelper translationHelper = new PlsqlTranslationHelper();
 
     /**
      * The title given to the opb-library project.
@@ -77,16 +76,19 @@ class PlsqlPackage {
     private String sqlName;
 
     /**
-     * The name of the Java class that should be created by translating this
-     * PL/SQL package.
+     * The name of the Java interface that should be created by translating this PL/SQL package.
+     */
+    private String javaInterfaceName;
+
+    /**
+     * The name of the Java class that should be created by translating this PL/SQL package.
      */
     private String javaClassName;
 
     /**
-     * The name of the Java interface that should be created by translating this
-     * PL/SQL package.
+     * The name of the Java value object that should be created by translating this PL/SQL package.
      */
-    private String javaInterfaceName;
+    private String javaValueObjectName;
 
     /**
      * The name of the Java package that should be used for both the class and
@@ -99,6 +101,11 @@ class PlsqlPackage {
      * As defined in an opb-package comment.
      */
     private final List<OpbField> fields = new ArrayList<OpbField>();
+
+    /**
+     * The fields of this PL/SQL package that can be used in the value object.
+     */
+    private final List<OpbField> valueObjectFields = new ArrayList<OpbField>();
 
     /**
      * The constants of this PL/SQL package.
@@ -174,6 +181,18 @@ class PlsqlPackage {
     }
 
     /**
+     * Returns the fields of this PL/SQL package that will be used in the value object.
+     * <strong>
+     *   This list is populated by {@link #validate() } -
+     *   so this method will return null until validate has been called.
+     * </strong>
+     * @return The fields of this PL/SQL package that will be used in the value object.
+     */
+    public List<OpbField> getValueObjectFields() {
+        return valueObjectFields;
+    }
+
+    /**
      * Returns the constants of this PL/SQL package.
      * @return The constants of this PL/SQL package.
      */
@@ -197,7 +216,8 @@ class PlsqlPackage {
     public void setSqlName(final String sqlName) {
         this.sqlName = sqlName;
         javaInterfaceName = translationHelper.toJavaClassName(sqlName);
-        javaClassName = translationHelper.toJavaClassName(sqlName) + "Impl";
+        javaClassName = javaInterfaceName + "Impl";
+        javaValueObjectName = javaInterfaceName + "ValueObject";
     }
 
     /**
@@ -260,6 +280,13 @@ class PlsqlPackage {
         for (Iterator<OpbField> i = fields.iterator(); i.hasNext();) {
             if (!i.next().validate()) {
                 i.remove();
+            }
+        }
+
+        // populate the list of value object fields after validation
+        for (OpbField field : fields) {
+            if (field.getIncludeInValueObject()) {
+                valueObjectFields.add(field);
             }
         }
 
@@ -343,13 +370,12 @@ class PlsqlPackage {
     }
 
     /**
-     * Returns the name of the Java class that should be created by translating
-     * this PL/SQL package.
-     * @return The name of the Java class that should be created by translating
-     * this PL/SQL package.
+     * Returns true if this package can be a value object provider, false otherwise.
+     * @return
+     *   Returns true if this package can be converted to a value object.
      */
-    public String getJavaClassName() {
-        return javaClassName;
+    public boolean isValueObjectProvider() {
+        return !valueObjectFields.isEmpty();
     }
 
     /**
@@ -360,6 +386,26 @@ class PlsqlPackage {
      */
     public String getJavaInterfaceName() {
         return javaInterfaceName;
+    }
+
+    /**
+     * Returns the name of the Java class that should be created by translating
+     * this PL/SQL package.
+     * @return The name of the Java class that should be created by translating
+     * this PL/SQL package.
+     */
+    public String getJavaClassName() {
+        return javaClassName;
+    }
+
+    /**
+     * Returns the name of the Java value object that should be created by translating
+     * this PL/SQL package.
+     * @return The name of the Java value object that should be created by translating
+     * this PL/SQL package.
+     */
+    public String getJavaValueObjectName() {
+        return javaValueObjectName;
     }
 
     /**

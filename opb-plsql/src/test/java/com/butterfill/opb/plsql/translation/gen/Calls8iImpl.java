@@ -76,6 +76,7 @@ public class Calls8iImpl implements Calls8i {
     }
 
 
+
     /**
      * 
      * Calls the database function echo.
@@ -91,7 +92,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.echo(?); END;");
@@ -130,7 +131,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_CHAR(?); END;");
@@ -169,7 +170,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_VARCHAR2(?); END;");
@@ -208,7 +209,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_NUMBER(?); END;");
@@ -247,7 +248,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_INTEGER(?); END;");
@@ -286,7 +287,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_RAW(?); END;");
@@ -328,7 +329,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_DATE(?); END;");
@@ -367,7 +368,7 @@ public class Calls8iImpl implements Calls8i {
 
         java.sql.Blob result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_blob(); END;");
@@ -402,7 +403,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_BLOB(?); END;");
@@ -441,7 +442,7 @@ public class Calls8iImpl implements Calls8i {
 
         java.sql.Clob result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_clob(); END;");
@@ -476,7 +477,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_CLOB(?); END;");
@@ -515,7 +516,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_BOOLEAN(?); END;");
@@ -559,7 +560,7 @@ public class Calls8iImpl implements Calls8i {
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_DBMS_SQL_VARCHAR2_TABLE(?); END;");
@@ -603,7 +604,7 @@ public class Calls8iImpl implements Calls8i {
                 "pData", pData,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_DBMS_SQL_NUMBER_TABLE(?); END;");
@@ -642,7 +643,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_BINARY_INTEGER(?); END;");
@@ -681,7 +682,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_DEC(?); END;");
@@ -720,7 +721,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_DECIMAL(?); END;");
@@ -759,7 +760,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_FLOAT(?); END;");
@@ -798,7 +799,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_INT(?); END;");
@@ -837,7 +838,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_NUMERIC(?); END;");
@@ -876,7 +877,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_PLS_INTEGER(?); END;");
@@ -915,7 +916,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_POSITIVE(?); END;");
@@ -954,7 +955,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_SMALLINT(?); END;");
@@ -993,7 +994,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_CHARACTER(?); END;");
@@ -1032,7 +1033,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_NCHAR(?); END;");
@@ -1071,7 +1072,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_NVARCHAR2(?); END;");
@@ -1110,7 +1111,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_ROWID(?); END;");
@@ -1149,7 +1150,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_STRING(?); END;");
@@ -1188,7 +1189,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_UROWID(?); END;");
@@ -1227,7 +1228,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.f_VARCHAR(?); END;");
@@ -1266,7 +1267,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_CHAR(); END;");
@@ -1301,7 +1302,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_VARCHAR2(); END;");
@@ -1336,7 +1337,7 @@ public class Calls8iImpl implements Calls8i {
 
         java.math.BigDecimal result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_NUMBER(); END;");
@@ -1371,7 +1372,7 @@ public class Calls8iImpl implements Calls8i {
 
         Long result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_INTEGER(); END;");
@@ -1406,7 +1407,7 @@ public class Calls8iImpl implements Calls8i {
 
         byte[] result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_RAW(); END;");
@@ -1441,7 +1442,7 @@ public class Calls8iImpl implements Calls8i {
 
         java.util.Date result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_DATE(); END;");
@@ -1476,7 +1477,7 @@ public class Calls8iImpl implements Calls8i {
 
         Boolean result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_BOOLEAN(); END;");
@@ -1511,7 +1512,7 @@ public class Calls8iImpl implements Calls8i {
 
         Long result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_BINARY_INTEGER(); END;");
@@ -1546,7 +1547,7 @@ public class Calls8iImpl implements Calls8i {
 
         java.math.BigDecimal result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_DEC(); END;");
@@ -1581,7 +1582,7 @@ public class Calls8iImpl implements Calls8i {
 
         java.math.BigDecimal result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_DECIMAL(); END;");
@@ -1616,7 +1617,7 @@ public class Calls8iImpl implements Calls8i {
 
         java.math.BigDecimal result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_FLOAT(); END;");
@@ -1651,7 +1652,7 @@ public class Calls8iImpl implements Calls8i {
 
         Long result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_INT(); END;");
@@ -1686,7 +1687,7 @@ public class Calls8iImpl implements Calls8i {
 
         java.math.BigDecimal result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_NUMERIC(); END;");
@@ -1721,7 +1722,7 @@ public class Calls8iImpl implements Calls8i {
 
         Long result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_PLS_INTEGER(); END;");
@@ -1756,7 +1757,7 @@ public class Calls8iImpl implements Calls8i {
 
         java.math.BigDecimal result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_POSITIVE(); END;");
@@ -1791,7 +1792,7 @@ public class Calls8iImpl implements Calls8i {
 
         Long result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_SMALLINT(); END;");
@@ -1826,7 +1827,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_CHARACTER(); END;");
@@ -1861,7 +1862,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_NCHAR(); END;");
@@ -1896,7 +1897,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_NVARCHAR2(); END;");
@@ -1931,7 +1932,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_ROWID(); END;");
@@ -1966,7 +1967,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_STRING(); END;");
@@ -2001,7 +2002,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_UROWID(); END;");
@@ -2036,7 +2037,7 @@ public class Calls8iImpl implements Calls8i {
 
         String result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_VARCHAR(); END;");
@@ -2090,7 +2091,7 @@ public class Calls8iImpl implements Calls8i {
                 "pNumberArray", pNumberArray,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.data_types(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); END;");
@@ -2174,7 +2175,7 @@ public class Calls8iImpl implements Calls8i {
             return result;
         }
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_from_test_table(); END;");
@@ -2226,7 +2227,7 @@ public class Calls8iImpl implements Calls8i {
             return result;
         }
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := calls8i.get_one_of_each_sql_type(); END;");
@@ -2266,7 +2267,7 @@ public class Calls8iImpl implements Calls8i {
                 logger, CLASS_NAME, methodName,
                 "pResult", pResult);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN calls8i.echo(?, ?); END;");

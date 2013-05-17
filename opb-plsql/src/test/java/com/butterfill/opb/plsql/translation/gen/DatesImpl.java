@@ -148,8 +148,58 @@ public class DatesImpl implements Dates {
 
         }
 
-    } // End of opbLoad(ResultSet resultSet)
+    } // End of opbLoad(ResultSet)
 
+
+    /**
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
+     * the value object.
+     *
+     * @param valueObject The value object from which this instance should be loaded.
+     */
+    public void opbLoad(final DatesValueObject valueObject) {
+        final String methodName = "opbLoad(DatesValueObject)";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        // Clear all field values
+        opbClearState();
+
+        // Make sure valueObject is not null
+        OpbAssert.notNull(logger, CLASS_NAME, methodName, "valueObject", valueObject);
+
+        // Get field values from valueObject
+        aDate = valueObject.aDate;
+        aDateDataSourceValue = valueObject.aDateDataSourceValue;
+
+        bDate = valueObject.bDate;
+        bDateDataSourceValue = valueObject.bDateDataSourceValue;
+
+
+    } // End of opbLoad(DatesValueObject)
+
+    /**
+     * Returns a value object for this instance.
+     * @return A value object for this DatesImpl.
+     */
+    public DatesValueObject opbToValueObject() {
+        final String methodName = "opbToValueObject()";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        final DatesValueObject valueObject = new DatesValueObject();
+
+        valueObject.aDate = aDate;
+        valueObject.aDateDataSourceValue = aDateDataSourceValue;
+
+        valueObject.bDate = bDate;
+        valueObject.bDateDataSourceValue = bDateDataSourceValue;
+
+
+        return valueObject;
+
+    } // End of opbToValueObject()
 
     /**
      * Derived from an opb-package field.
@@ -259,7 +309,7 @@ public class DatesImpl implements Dates {
 
         java.util.Date result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := dates.add_one_day(?); END;");
@@ -320,7 +370,7 @@ public class DatesImpl implements Dates {
 
         java.util.Date result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := dates.today(); END;");
@@ -357,7 +407,7 @@ public class DatesImpl implements Dates {
                 logger, CLASS_NAME, methodName,
                 "pDate", pDate);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN dates.date_in_out(?); END;");

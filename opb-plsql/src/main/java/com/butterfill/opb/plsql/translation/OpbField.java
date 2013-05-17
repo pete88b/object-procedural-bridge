@@ -44,6 +44,12 @@ class OpbField {
     private static final Logger logger = Logger.getLogger(CLASS_NAME);
 
     /**
+     * List of Java data types that should not included in the value objects.
+     */
+    public static final List<String> JAVA_DATATYPES_TO_EXCLUDE_FROM_VALUE_OBJECT =
+            new ArrayList<String>();
+
+    /**
      * The SQL name of this field.
      */
     private String sqlName;
@@ -112,6 +118,13 @@ class OpbField {
     private final PlsqlTranslationHelper translationHelper =
             new PlsqlTranslationHelper();
 
+    /**
+     * Adds java.sql.Blob and java.sql.Clob to the list of excluded datatypes.
+     */
+    static {
+        JAVA_DATATYPES_TO_EXCLUDE_FROM_VALUE_OBJECT.add("java.sql.Blob");
+        JAVA_DATATYPES_TO_EXCLUDE_FROM_VALUE_OBJECT.add("java.sql.Clob");
+    }
 
     /**
      * Creates a new PlsqlPackageField.
@@ -353,6 +366,16 @@ class OpbField {
      */
     public boolean getHasDatasourceValue() {
         return isLoadable() && !isReadOnly();
+    }
+
+    /**
+     * Returns true if the Java datatype of this field is not in the exclude list, false otherwise.
+     * @see #JAVA_DATATYPES_TO_EXCLUDE_FROM_VALUE_OBJECT
+     * @return
+     *   true if the Java datatype of this field is not in the exclude list.
+     */
+    public boolean getIncludeInValueObject() {
+        return !JAVA_DATATYPES_TO_EXCLUDE_FROM_VALUE_OBJECT.contains(getDatatype());
     }
 
     /**

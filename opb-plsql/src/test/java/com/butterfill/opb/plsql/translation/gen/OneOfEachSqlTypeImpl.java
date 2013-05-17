@@ -258,8 +258,100 @@ public class OneOfEachSqlTypeImpl implements OneOfEachSqlType {
 
         }
 
-    } // End of opbLoad(ResultSet resultSet)
+    } // End of opbLoad(ResultSet)
 
+
+    /**
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
+     * the value object.
+     *
+     * @param valueObject The value object from which this instance should be loaded.
+     */
+    public void opbLoad(final OneOfEachSqlTypeValueObject valueObject) {
+        final String methodName = "opbLoad(OneOfEachSqlTypeValueObject)";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        // Clear all field values
+        opbClearState();
+
+        // Make sure valueObject is not null
+        OpbAssert.notNull(logger, CLASS_NAME, methodName, "valueObject", valueObject);
+
+        // Get field values from valueObject
+        aBinaryDouble = valueObject.aBinaryDouble;
+        aBinaryDoubleDataSourceValue = valueObject.aBinaryDoubleDataSourceValue;
+
+        aBinaryFloat = valueObject.aBinaryFloat;
+        aBinaryFloatDataSourceValue = valueObject.aBinaryFloatDataSourceValue;
+
+        aChar = valueObject.aChar;
+        aCharDataSourceValue = valueObject.aCharDataSourceValue;
+
+        aDate = valueObject.aDate;
+        aDateDataSourceValue = valueObject.aDateDataSourceValue;
+
+        aNumber = valueObject.aNumber;
+        aNumberDataSourceValue = valueObject.aNumberDataSourceValue;
+
+        aNvarchar2 = valueObject.aNvarchar2;
+        aNvarchar2DataSourceValue = valueObject.aNvarchar2DataSourceValue;
+
+        aRaw = valueObject.aRaw;
+        aRawDataSourceValue = valueObject.aRawDataSourceValue;
+
+        aTimestamp = valueObject.aTimestamp;
+        aTimestampDataSourceValue = valueObject.aTimestampDataSourceValue;
+
+        aVarchar2 = valueObject.aVarchar2;
+        aVarchar2DataSourceValue = valueObject.aVarchar2DataSourceValue;
+
+
+    } // End of opbLoad(OneOfEachSqlTypeValueObject)
+
+    /**
+     * Returns a value object for this instance.
+     * @return A value object for this OneOfEachSqlTypeImpl.
+     */
+    public OneOfEachSqlTypeValueObject opbToValueObject() {
+        final String methodName = "opbToValueObject()";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        final OneOfEachSqlTypeValueObject valueObject = new OneOfEachSqlTypeValueObject();
+
+        valueObject.aBinaryDouble = aBinaryDouble;
+        valueObject.aBinaryDoubleDataSourceValue = aBinaryDoubleDataSourceValue;
+
+        valueObject.aBinaryFloat = aBinaryFloat;
+        valueObject.aBinaryFloatDataSourceValue = aBinaryFloatDataSourceValue;
+
+        valueObject.aChar = aChar;
+        valueObject.aCharDataSourceValue = aCharDataSourceValue;
+
+        valueObject.aDate = aDate;
+        valueObject.aDateDataSourceValue = aDateDataSourceValue;
+
+        valueObject.aNumber = aNumber;
+        valueObject.aNumberDataSourceValue = aNumberDataSourceValue;
+
+        valueObject.aNvarchar2 = aNvarchar2;
+        valueObject.aNvarchar2DataSourceValue = aNvarchar2DataSourceValue;
+
+        valueObject.aRaw = aRaw;
+        valueObject.aRawDataSourceValue = aRawDataSourceValue;
+
+        valueObject.aTimestamp = aTimestamp;
+        valueObject.aTimestampDataSourceValue = aTimestampDataSourceValue;
+
+        valueObject.aVarchar2 = aVarchar2;
+        valueObject.aVarchar2DataSourceValue = aVarchar2DataSourceValue;
+
+
+        return valueObject;
+
+    } // End of opbToValueObject()
 
     /**
      * Derived from an opb-package field.
