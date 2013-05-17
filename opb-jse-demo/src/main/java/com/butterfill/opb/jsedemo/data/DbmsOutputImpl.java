@@ -76,6 +76,7 @@ public class DbmsOutputImpl implements DbmsOutput {
     }
 
 
+
     /**
      * 
      * Calls the database procedure enable.
@@ -88,7 +89,7 @@ public class DbmsOutputImpl implements DbmsOutput {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN dbms_output.enable(?); END;");
@@ -117,7 +118,7 @@ public class DbmsOutputImpl implements DbmsOutput {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN dbms_output.disable(); END;");
@@ -142,7 +143,7 @@ public class DbmsOutputImpl implements DbmsOutput {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN dbms_output.put(?); END;");
@@ -171,7 +172,7 @@ public class DbmsOutputImpl implements DbmsOutput {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN dbms_output.put_line(?); END;");
@@ -200,7 +201,7 @@ public class DbmsOutputImpl implements DbmsOutput {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN dbms_output.new_line(); END;");
@@ -233,7 +234,7 @@ public class DbmsOutputImpl implements DbmsOutput {
                 logger, CLASS_NAME, methodName,
                 "status", status);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN dbms_output.get_line(?, ?); END;");

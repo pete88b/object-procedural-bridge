@@ -7,6 +7,7 @@
 
 package com.butterfill.opb.jsedemo.objectgraph.data;
 
+import com.butterfill.opb.OpbValueObjectProvider;
 import com.butterfill.opb.data.*;
 import com.butterfill.opb.util.*;
 
@@ -15,7 +16,8 @@ import com.butterfill.opb.util.*;
  * city.
  */
 public interface City
-        extends OpbActiveCacheableEntity {
+        extends OpbActiveCacheableEntity,
+        OpbValueObjectProvider<CityValueObject> {
 
     /**
      * Resets all field values to their initial values.

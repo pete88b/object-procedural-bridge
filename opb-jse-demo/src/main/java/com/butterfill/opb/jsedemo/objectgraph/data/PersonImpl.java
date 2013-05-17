@@ -209,8 +209,76 @@ public class PersonImpl implements Person {
 
         }
 
-    } // End of opbLoad(ResultSet resultSet)
+    } // End of opbLoad(ResultSet)
 
+
+    /**
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
+     * the value object.
+     *
+     * @param valueObject The value object from which this instance should be loaded.
+     */
+    public void opbLoad(final PersonValueObject valueObject) {
+        final String methodName = "opbLoad(PersonValueObject)";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        // Clear all field values
+        opbClearState();
+
+        // Make sure valueObject is not null
+        OpbAssert.notNull(logger, CLASS_NAME, methodName, "valueObject", valueObject);
+
+        // Get field values from valueObject
+        personId = valueObject.personId;
+
+        lastName = valueObject.lastName;
+        lastNameDataSourceValue = valueObject.lastNameDataSourceValue;
+
+        addressId = valueObject.addressId;
+        addressIdDataSourceValue = valueObject.addressIdDataSourceValue;
+
+        firstName = valueObject.firstName;
+        firstNameDataSourceValue = valueObject.firstNameDataSourceValue;
+
+        addressLabel = valueObject.addressLabel;
+
+        cityLabel = valueObject.cityLabel;
+
+
+    } // End of opbLoad(PersonValueObject)
+
+    /**
+     * Returns a value object for this instance.
+     * @return A value object for this PersonImpl.
+     */
+    public PersonValueObject opbToValueObject() {
+        final String methodName = "opbToValueObject()";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        final PersonValueObject valueObject = new PersonValueObject();
+
+        valueObject.personId = personId;
+
+        valueObject.lastName = lastName;
+        valueObject.lastNameDataSourceValue = lastNameDataSourceValue;
+
+        valueObject.addressId = addressId;
+        valueObject.addressIdDataSourceValue = addressIdDataSourceValue;
+
+        valueObject.firstName = firstName;
+        valueObject.firstNameDataSourceValue = firstNameDataSourceValue;
+
+        valueObject.addressLabel = addressLabel;
+
+        valueObject.cityLabel = cityLabel;
+
+
+        return valueObject;
+
+    } // End of opbToValueObject()
 
     /**
      * Derived from an opb-package field.
@@ -445,7 +513,7 @@ public class PersonImpl implements Person {
             return result;
         }
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := person.get_address(?); END;");
@@ -509,7 +577,7 @@ public class PersonImpl implements Person {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN person.del(?, ?, ?, ?); END;");
@@ -580,7 +648,7 @@ public class PersonImpl implements Person {
                 logger, CLASS_NAME, methodName,
                 "pPersonId", pPersonId);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN person.ins(?, ?, ?, ?); END;");
@@ -659,7 +727,7 @@ public class PersonImpl implements Person {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN person.upd(?, ?, ?, ?, ?, ?, ?); END;");

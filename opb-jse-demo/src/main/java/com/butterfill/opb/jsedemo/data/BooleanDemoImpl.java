@@ -76,6 +76,7 @@ public class BooleanDemoImpl implements BooleanDemo {
     }
 
 
+
     /**
      * 
      * Calls the database function get_true.
@@ -91,7 +92,7 @@ public class BooleanDemoImpl implements BooleanDemo {
 
         Boolean result = null;
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := boolean_demo.get_true(); END;");

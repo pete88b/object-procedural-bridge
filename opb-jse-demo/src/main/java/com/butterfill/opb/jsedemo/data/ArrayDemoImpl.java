@@ -76,6 +76,7 @@ public class ArrayDemoImpl implements ArrayDemo {
     }
 
 
+
     /**
      * Logs the elements of the specified collection at level 101.
      * Calls the database procedure demo_one.
@@ -93,7 +94,7 @@ public class ArrayDemoImpl implements ArrayDemo {
                 "pArray", pArray,
                 "PL/SQL index-by tables cannot be set to null");
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN array_demo.demo_one(?); END;");

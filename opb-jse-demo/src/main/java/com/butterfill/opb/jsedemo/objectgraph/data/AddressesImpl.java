@@ -95,6 +95,56 @@ public class AddressesImpl implements Addresses {
     } // End of opbClearState()
 
     /**
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
+     * the value object.
+     *
+     * @param valueObject The value object from which this instance should be loaded.
+     */
+    public void opbLoad(final AddressesValueObject valueObject) {
+        final String methodName = "opbLoad(AddressesValueObject)";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        // Clear all field values
+        opbClearState();
+
+        // Make sure valueObject is not null
+        OpbAssert.notNull(logger, CLASS_NAME, methodName, "valueObject", valueObject);
+
+        // Get field values from valueObject
+        cityId = valueObject.cityId;
+
+        line1 = valueObject.line1;
+
+        line2 = valueObject.line2;
+
+
+    } // End of opbLoad(AddressesValueObject)
+
+    /**
+     * Returns a value object for this instance.
+     * @return A value object for this AddressesImpl.
+     */
+    public AddressesValueObject opbToValueObject() {
+        final String methodName = "opbToValueObject()";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        final AddressesValueObject valueObject = new AddressesValueObject();
+
+        valueObject.cityId = cityId;
+
+        valueObject.line1 = line1;
+
+        valueObject.line2 = line2;
+
+
+        return valueObject;
+
+    } // End of opbToValueObject()
+
+    /**
      * Derived from an opb-package field.
      */
     private String cityId = null;
@@ -193,7 +243,7 @@ public class AddressesImpl implements Addresses {
             return result;
         }
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := addresses.get_filtered(?, ?, ?); END;");

@@ -193,8 +193,68 @@ public class AddressImpl implements Address {
 
         }
 
-    } // End of opbLoad(ResultSet resultSet)
+    } // End of opbLoad(ResultSet)
 
+
+    /**
+     * Resets all field values to their initial values by calling
+     * opbClearState() and then sets all field values using values taken from
+     * the value object.
+     *
+     * @param valueObject The value object from which this instance should be loaded.
+     */
+    public void opbLoad(final AddressValueObject valueObject) {
+        final String methodName = "opbLoad(AddressValueObject)";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        // Clear all field values
+        opbClearState();
+
+        // Make sure valueObject is not null
+        OpbAssert.notNull(logger, CLASS_NAME, methodName, "valueObject", valueObject);
+
+        // Get field values from valueObject
+        addressId = valueObject.addressId;
+
+        cityId = valueObject.cityId;
+        cityIdDataSourceValue = valueObject.cityIdDataSourceValue;
+
+        line1 = valueObject.line1;
+        line1DataSourceValue = valueObject.line1DataSourceValue;
+
+        line2 = valueObject.line2;
+        line2DataSourceValue = valueObject.line2DataSourceValue;
+
+
+    } // End of opbLoad(AddressValueObject)
+
+    /**
+     * Returns a value object for this instance.
+     * @return A value object for this AddressImpl.
+     */
+    public AddressValueObject opbToValueObject() {
+        final String methodName = "opbToValueObject()";
+
+        logger.entering(CLASS_NAME, methodName);
+
+        final AddressValueObject valueObject = new AddressValueObject();
+
+        valueObject.addressId = addressId;
+
+        valueObject.cityId = cityId;
+        valueObject.cityIdDataSourceValue = cityIdDataSourceValue;
+
+        valueObject.line1 = line1;
+        valueObject.line1DataSourceValue = line1DataSourceValue;
+
+        valueObject.line2 = line2;
+        valueObject.line2DataSourceValue = line2DataSourceValue;
+
+
+        return valueObject;
+
+    } // End of opbToValueObject()
 
     /**
      * Derived from an opb-package field.
@@ -387,7 +447,7 @@ public class AddressImpl implements Address {
             return result;
         }
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN ? := address.get_people(?); END;");
@@ -451,7 +511,7 @@ public class AddressImpl implements Address {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN address.del(?, ?, ?, ?); END;");
@@ -522,7 +582,7 @@ public class AddressImpl implements Address {
                 logger, CLASS_NAME, methodName,
                 "pAddressId", pAddressId);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN address.ins(?, ?, ?, ?); END;");
@@ -601,7 +661,7 @@ public class AddressImpl implements Address {
 
         logger.entering(CLASS_NAME, methodName);
 
-        OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
+        final OpbPlsqlCallHelper opbCallHelper = new OpbPlsqlCallHelper(
                 logger, CLASS_NAME, methodName,
                 opbConnectionProvider,
                 "BEGIN address.upd(?, ?, ?, ?, ?, ?, ?); END;");
