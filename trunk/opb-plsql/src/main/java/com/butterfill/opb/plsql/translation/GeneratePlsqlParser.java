@@ -16,7 +16,6 @@
 
 package com.butterfill.opb.plsql.translation;
 
-import java.io.File;
 import java.util.logging.Logger;
 import org.antlr.Tool;
 
