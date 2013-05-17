@@ -24,7 +24,7 @@ import junit.framework.*;
  * @author Peter Butterfill
  */
 public class UtilSuite extends TestCase {
-    
+
     public UtilSuite(String testName) {
         super(testName);
     }
@@ -52,7 +52,8 @@ public class UtilSuite extends TestCase {
         suite.addTest(com.butterfill.opb.util.OpbAssertTest.suite());
         suite.addTest(com.butterfill.opb.util.OpbBooleanHelperTest.suite());
         suite.addTest(com.butterfill.opb.util.OpbScalarResultCacheTest.suite());
+        suite.addTest(com.butterfill.opb.util.OpbSqlNameToJavaNameHelperTest.suite());
         return suite;
     }
-    
+
 }

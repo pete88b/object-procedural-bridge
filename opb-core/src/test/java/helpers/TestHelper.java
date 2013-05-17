@@ -15,15 +15,19 @@
  */
 package helpers;
 
+import com.butterfill.opb.OpbId;
 import com.butterfill.opb.OpbObjectSourceImpl;
 import com.butterfill.opb.data.OpbDataObjectSource;
 import com.butterfill.opb.plsql.session.OpbSessionPlsqlImpl;
 import com.butterfill.opb.session.OpbSession;
 import com.butterfill.opb.util.OpbScalarResultCache;
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -207,6 +211,38 @@ public class TestHelper {
 
         }
 
+    }
+
+    public static OpbId toOpbId(final Object object) {
+        if (object == null) {
+            return null;
+        }
+        try {
+            Field[] fields = object.getClass().getDeclaredFields();
+            Field.setAccessible(fields, true);
+            Object[] values = new Object[fields.length];
+            for (int i = 0; i < fields.length; i++) {
+                Field field = fields[i];
+                values[i] = field.get(object);
+            }
+            return new OpbId(values);
+
+        } catch (Exception ex) {
+            throw new RuntimeException("failed to convert object to OpbId", ex);
+
+        }
+
+    }
+
+    public static List<OpbId> toOpbIdList(final List list) {
+        if (list == null) {
+            return null;
+        }
+        List<OpbId> result = new ArrayList<OpbId>();
+        for (Object object : list) {
+            result.add(toOpbId(object));
+        }
+        return result;
     }
 
 }
