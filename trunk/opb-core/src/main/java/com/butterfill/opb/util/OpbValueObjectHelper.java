@@ -127,19 +127,19 @@ public class OpbValueObjectHelper {
     }
 
     /**
-     * Converts a list of value objects to a list of Opb objects.
+     * Converts an array of value objects to a list of Opb objects.
      * @param <T>
      *   The type of object to convert to.
      * @param classOfObject
      *   The class of object to convert to.
      * @param valueObjects
-     *   A list of value objects.
+     *   An array of value objects.
      * @return
      *   A list of Opb objects or null if valueObjects is null.
      */
     public <T extends OpbValueObjectProvider> List<T> toOpbObjectList(
-            final Class<T> classOfObject, final List valueObjects) {
-        final String method = "toOpbObjectList(Class, List)";
+            final Class<T> classOfObject, final Object[] valueObjects) {
+        final String method = "toOpbObjectList(Class, Object[])";
 
         logger.entering(CLASS_NAME, method);
 
@@ -163,6 +163,31 @@ public class OpbValueObjectHelper {
         }
 
         return result;
+
+    }
+
+    /**
+     * Converts a list of value objects to a list of Opb objects.
+     * @param <T>
+     *   The type of object to convert to.
+     * @param classOfObject
+     *   The class of object to convert to.
+     * @param valueObjects
+     *   A list of value objects.
+     * @return
+     *   A list of Opb objects or null if valueObjects is null.
+     */
+    public <T extends OpbValueObjectProvider> List<T> toOpbObjectList(
+            final Class<T> classOfObject, final List valueObjects) {
+        final String method = "toOpbObjectList(Class, List)";
+
+        logger.entering(CLASS_NAME, method);
+
+        if (valueObjects == null) {
+            return null;
+        }
+
+        return toOpbObjectList(classOfObject, valueObjects.toArray());
 
     }
 
