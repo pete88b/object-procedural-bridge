@@ -1,5 +1,4 @@
-# object-procedural-bridge
-Overview of the Opb project
+#Overview of the Opb project
 The goal of the object-procedural-bridge (Opb) project is to ease the pain of developing Java applications that 
 communicate with an Oracle database via PL/SQL.
 
